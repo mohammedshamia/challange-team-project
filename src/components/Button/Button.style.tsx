@@ -4,7 +4,7 @@ import styled from "styled-components";
 interface Iprpos {
   width: string;
   height: string;
-  children?: string | ReactNode;
+  children: string | ReactNode;
   borderRadius?: string | undefined;
   color?: string;
   backgroundColor?: string;
@@ -18,4 +18,5 @@ export const Button = styled.button<Iprpos>((props: Iprpos) => ({
   backgroundColor: props.color || "#FCDD06",
   borderRadius: props.borderRadius || "10px",
   fontSize: props.fontSize || "16px",
+  border: "none",
 }));
