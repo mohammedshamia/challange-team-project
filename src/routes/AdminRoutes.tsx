@@ -1,6 +1,6 @@
 import  React , { lazy } from "react";
 
-const Products = React.lazy(() => import("./../screens/admin/products/index"));
+const Products = lazy(() => import("./../screens/admin/products/index"));
 
 const CreateNewProduct = lazy(() => import("./../screens/admin/products/createNewProduct"));
 
@@ -9,11 +9,11 @@ const CreateNewProduct = lazy(() => import("./../screens/admin/products/createNe
 const AdminRoutes = [
     {
         path: "/products",
-        component: Products
+        component: <Products/>
     },
     {
         path: "/create-new-product",
-        component: CreateNewProduct
+        component: <CreateNewProduct/>
     },
 
 ];
