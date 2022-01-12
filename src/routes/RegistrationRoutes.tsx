@@ -10,15 +10,15 @@ const ForgotPassword = lazy(() => import("./../screens/registration/forgetPasswo
 const RegistrationRoutes = [
   {
     path: "/register/signup",
-    component: SignUp
+    component: <SignUp/>
   },
   {
     path: "/register/signin",
-    component: SignIn
+    component: <SignIn/>
   },
   {
     path: "/register/forgot-password",
-    component: ForgotPassword
+    component: <ForgotPassword/>
   },
   ];
 
