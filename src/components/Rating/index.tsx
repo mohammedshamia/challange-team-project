@@ -1,16 +1,22 @@
 import Rating from '@mui/material/Rating';
 
+type Name='disabled'|'read-only'|'no-value'|'simple-controlled'|'half-rating'|'half-rating-read';
 interface  Iprops{
 value:number
 precision:number
+isReadOnly:boolean
+isDisabled :boolean
+name:Name
+
 }
  
 
- function HalfRating({value,precision}:Iprops) {
+ function RatingComponent({value,precision,isReadOnly,isDisabled,name}:Iprops) {
   return (
     <>
-      <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
+      <Rating name={name} defaultValue={value} precision={precision}  readOnly={isReadOnly} disabled ={isDisabled}/>
     </>
   );
 }
-export default HalfRating;
+export default RatingComponent;
+
