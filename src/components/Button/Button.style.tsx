@@ -19,4 +19,6 @@ export const Button = styled.button<Iprpos>((props: Iprpos) => ({
   borderRadius: props.borderRadius || "10px",
   fontSize: props.fontSize || "16px",
   border: "none",
+  cursor: "pointer",
+  "&:hover": { backgroundColor: "#dfc300" },
 }));
