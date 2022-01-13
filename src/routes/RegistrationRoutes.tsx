@@ -1,25 +1,24 @@
-import  React , { lazy } from "react";
+import React, { lazy } from "react";
 
-const SignUp = React.lazy(() => import("./../screens/registration/signUp/index"));
+const SignUp = React.lazy(() => import("../screens/auth/SignUp"));
 
-const SignIn = lazy(() => import("./../screens/registration/signIn/index"));
+const Login = lazy(() => import("../screens/auth/Login"));
 
-const ForgotPassword = lazy(() => import("./../screens/registration/forgetPassword/index"));
+const ForgotPassword = lazy(() => import("../screens/auth/ForgetPassword"));
 
-
-const RegistrationRoutes = [
+const AuthRoutes = [
   {
-    path: "/register/signup",
-    component: <SignUp/>
+    path: "/auth/signup",
+    component: <SignUp />,
   },
   {
-    path: "/register/signin",
-    component: <SignIn/>
+    path: "/auth/login",
+    component: <Login />,
   },
   {
-    path: "/register/forgot-password",
-    component: <ForgotPassword/>
+    path: "/auth/forgot-password",
+    component: <ForgotPassword />,
   },
-  ];
+];
 
-export default RegistrationRoutes;
+export default AuthRoutes;
