@@ -22,9 +22,6 @@ function App() {
   return (
     <ThemeProvider theme={{}}>
       <Suspense fallback={<Loading />}>
-        <Button onClick={toggleTheme_} height="60px" width="300px">
-          click
-        </Button>
         <Routes>
           {RootRoutes.routes.map((route, Index) => (
             <Route path={route.path} element={route.component} key={Index} />
