@@ -3,37 +3,80 @@ import { createTheme, Theme, ThemeOptions } from "@mui/material/styles";
 const baseTheme: ThemeOptions = createTheme({
   typography: {
     fontFamily: "Mulish, sans-serif",
+    fontSize: 14,
+    h1: {
+      fontSize: "3.75rem",
+      lineHeight: 1.167,
+      letterSpacing: "-0.01562em",
+      fontWeight: "bold",
+    },
+    h2: {
+      fontSize: "2rem",
+      fontWeight: "bold",
+      lineHeight: 1.2,
+      letterSpacing: "-0.01562em",
+    },
+    h3: {
+      fontSize: "2rem",
+      fontWeight: "normal",
+      lineHeight: 1.167,
+      letterSpacing: "-0.01562em",
+    },
+    h4: {
+      fontSize: "1.875rem",
+      lineHeight: 1.235,
+      letterSpacing: "-0.01562em",
+    },
+    button: {
+      fontSize: "22px",
+      lineHeight: 1.167,
+      fontWeight: "normal",
+      textTransform: "uppercase",
+      letterSpacing: "-0.01562em",
+    },
   },
 });
-const lighttheme: Theme = createTheme({
+export const lightTheme: Theme = createTheme({
   ...baseTheme,
   palette: {
     mode: "light",
     primary: {
-      main: "",
-      light: "",
-      dark: "",
+      main: "#fcdd06",
     },
     secondary: {
-      main: "",
-      light: "",
-      dark: "",
+      main: "#f2f2f2",
     },
-    error: {
-      main: "",
-      light: "",
-      dark: "",
+
+    text: {
+      primary: "#242424",
+      secondary: "#707070",
+      disabled: "#979797",
+    },
+    background: {
+      paper: "#f7f8fc",
+      default: "#ffffff",
     },
   },
 });
-const darkTheme: Theme = createTheme({
+export const darkTheme: Theme = createTheme({
   ...baseTheme,
   palette: {
-    mode: "dark",
+    mode: "light",
     primary: {
-      main: "",
-      light: "",
-      dark: "",
+      main: "#fcdd06",
+    },
+    secondary: {
+      main: "#2f2f2f",
+    },
+
+    text: {
+      primary: "#ffffff",
+      secondary: "#f7f8fc",
+      disabled: "rgba(255,255,255,0.5)",
+    },
+    background: {
+      paper: "#282c34",
+      default: "#282c34",
     },
   },
 });
