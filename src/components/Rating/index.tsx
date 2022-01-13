@@ -1,5 +1,5 @@
 import Rating from "@mui/material/Rating";
-import { useEffect,useState } from "react";
+import {  useEffect,useState, SyntheticEvent } from "react";
 
 export type Name =
   | "disabled"
@@ -15,7 +15,7 @@ interface Iprops {
   isReadOnly: boolean;
   isDisabled: boolean;
   name: Name;
-  onChange:Function;
+  onChangeValue:Function;
 }
 
 function RatingComponent({
@@ -24,23 +24,30 @@ function RatingComponent({
   isReadOnly,
   isDisabled,
   name,
-  onChange,
+  onChangeValue,
 }: Iprops) {
+  const [valueRating, setvalueRating] = useState<number>(value);
 
-  const [Value, setValue] = useState<number>(value);
-  
   useEffect(() => {
-      onChange(Value)
-  }, [Value])
+    onChangeValue(valueRating)
+  }, [valueRating])
 
   return (
     <Rating
       name={name}
-      defaultValue={Value}
+      value={valueRating}
       precision={precision}
       readOnly={isReadOnly}
       disabled={isDisabled}
+      onChange={(event, newValue) => {
+        setvalueRating(newValue as number);
+        console.log(valueRating)
+      }}
        />
   );
 }
 export default RatingComponent;
+function handleChange(value: number) {
+  throw new Error("Function not implemented.");
+}
+
