@@ -15,10 +15,11 @@ export const Button = styled.button<Iprpos>((props: Iprpos) => ({
   width: props.width,
   height: props.height,
   color: props.color || "#000000",
-  backgroundColor: props.color || "#FCDD06",
+  backgroundColor: props.backgroundColor || "#FCDD06",
   borderRadius: props.borderRadius || "10px",
   fontSize: props.fontSize || "16px",
   border: "none",
   cursor: "pointer",
+  textDecoration: "none",
   "&:hover": { backgroundColor: "#dfc300" },
 }));
