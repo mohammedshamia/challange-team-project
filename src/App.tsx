@@ -8,14 +8,17 @@ import { toggleTheme } from "./redux/actions/theme.action";
 import { lightTheme, darkTheme } from "./theme/theme";
 import RootRoutes from "./routes/RootRoutes";
 import { Button } from "./components/Button/Button.style";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const dispatch = useDispatch();
+
   const { theme } = useSelector((state: AppState) => state);
 
   const toggleTheme_ = useCallback(() => {
     dispatch(toggleTheme(theme === "light" ? "dark" : "light"));
-  }, [theme]);
+  }, [theme, dispatch]);
 
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
@@ -26,6 +29,7 @@ function App() {
           ))}
         </Routes>
       </Suspense>
+      <ToastContainer autoClose={3000} />
     </ThemeProvider>
   );
 }

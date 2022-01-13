@@ -1,8 +1,5 @@
-import '@mui/material/styles';
+import "@mui/material/styles";
 
-declare module '@mui/material/styles'{
-    export interface  Theme {
-
-    }
+declare module "@mui/material/styles" {
+  export interface Theme {}
 }
-
