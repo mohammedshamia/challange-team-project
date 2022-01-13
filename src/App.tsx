@@ -1,7 +1,7 @@
 import { Suspense, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "styled-components";
 import Loading from "./components/Loading/loading";
 import { AppState } from "./redux/store";
 import { toggleTheme } from "./redux/actions/theme.action";
@@ -9,8 +9,8 @@ import { lightTheme, darkTheme } from "./theme/theme";
 import RootRoutes from "./routes/RootRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-
+import BasicBreadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
+import Input from "./components/input/Input";
 
 function App() {
   const dispatch = useDispatch();
