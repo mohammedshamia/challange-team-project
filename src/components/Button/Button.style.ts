@@ -20,5 +20,6 @@ export const Button = styled.button<Iprpos>((props: Iprpos) => ({
   fontSize: props.fontSize || "16px",
   border: "none",
   cursor: "pointer",
+  textDecoration: "none",
   "&:hover": { backgroundColor: "#dfc300" },
 }));
