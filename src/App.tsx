@@ -17,7 +17,7 @@ function App() {
 
   const toggleTheme_ = useCallback(() => {
     dispatch(toggleTheme(theme === "light" ? "dark" : "light"));
-  }, [theme]);
+  }, [theme, dispatch]);
 
   return (
     <ThemeProvider theme={{}}>
