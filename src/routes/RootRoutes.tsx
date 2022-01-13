@@ -18,12 +18,12 @@ const ErrorRoute = [
   },
 ];
 
-const HomePage = lazy(() => import("./../screens/landingPage/index"));
-const ShoppingCart = lazy(() => import("./../screens/landingPage/index"));
-const ReviewOrder = lazy(() => import("./../screens/landingPage/index"));
-const SearchPage = lazy(() => import("./../screens/landingPage/index"));
-const ProductDetails = lazy(() => import("./../screens/landingPage/index"));
-const Profile = lazy(() => import("./../screens/landingPage/index"));
+const HomePage = lazy(() => import("../screens/home"));
+const ShoppingCart = lazy(() => import("../screens/home"));
+const ReviewOrder = lazy(() => import("../screens/home"));
+const SearchPage = lazy(() => import("../screens/home"));
+const ProductDetails = lazy(() => import("../screens/home"));
+const Profile = lazy(() => import("../screens/home"));
 
 const RootRoutes = {
   routes: [
