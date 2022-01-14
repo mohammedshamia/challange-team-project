@@ -2,20 +2,14 @@ import Rating from "@mui/material/Rating";
 import {  useEffect,useState } from "react";
 import { CounterRating } from "./Rating.styled";
 
-export type Name =
-  | "disabled"
-  | "read-only"
-  | "no-value"
-  | "simple-controlled"
-  | "half-rating"
-  | "half-rating-read";
+
 
 interface Iprops {
   value: number;
   precision: number;
   isReadOnly: boolean;
   isDisabled: boolean;
-  name: Name;
+  name: string;
   onChangeValue:Function;
   paddingRating?:string;
 }
