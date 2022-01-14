@@ -9,8 +9,6 @@ import { lightTheme, darkTheme } from "./theme/theme";
 import RootRoutes from "./routes/RootRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import BasicBreadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
-import Input from "./components/input/Input";
 
 
 
