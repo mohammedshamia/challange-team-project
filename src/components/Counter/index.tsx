@@ -1,29 +1,39 @@
 import {useState, useEffect} from 'react';
 import { Button } from '../Button/Button.style';
-import { CounterContainer } from './Counter.styled';
+import { CounterContainer, H1Style } from './Counter.styled';
 import AddIcon from '@mui/icons-material/Add';
 import MaximizeIcon from '@mui/icons-material/Maximize';
 
  function Counter({value, onChange}:{value:number, onChange: Function}) {
     const [counter, setCounter] = useState<number>(value);
-    console.log(counter)
+
+    const handleChangeCounter=(name:string)=>{
+      if(name==='+')setCounter(counter+1)
+      else{setCounter(counter-1)}
+    }
     
     useEffect(() => {
         onChange(counter);
     }, [counter])
 
     return (
-      <CounterContainer>
-        <Button width= '40PX' height='40px'   onClick={() =>{setCounter(counter+1)}}  >
+     <CounterContainer>
+        <Button width= '40PX' height='40px' 
+         backgroundColor='white'
+         border= '1px solid #FCDD06'
+         onClick={()=>{handleChangeCounter('+')}} >
           <AddIcon/>
         </Button>
-        <h1>{counter}</h1>
-        <Button width= '40PX' height='40px'   onClick={() =>{setCounter(counter-1)}}  >
+        <H1Style>{counter}</H1Style>
+        <Button width= '40PX' height='40px'  backgroundColor='white'  
+           border= '1px solid #FCDD06'
+          onClick={()=>{handleChangeCounter('-')}} >
           <MaximizeIcon/>
         </Button>
-        </CounterContainer>
+     </CounterContainer>
     );
   }
 
 
   export default Counter;
+
