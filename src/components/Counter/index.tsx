@@ -21,12 +21,14 @@ import MaximizeIcon from '@mui/icons-material/Maximize';
         <Button width= '40PX' height='40px' 
          backgroundColor='white'
          border= '1px solid #FCDD06'
+         borderRadius='0'
          onClick={()=>{handleChangeCounter('+')}} >
           <AddIcon/>
         </Button>
         <H1Style>{counter}</H1Style>
         <Button width= '40PX' height='40px'  backgroundColor='white'  
            border= '1px solid #FCDD06'
+           borderRadius='0'
           onClick={()=>{handleChangeCounter('-')}} >
           <MaximizeIcon/>
         </Button>
