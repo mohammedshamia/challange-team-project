@@ -1,6 +1,6 @@
-import { createTheme, Theme, ThemeOptions } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 
-const baseTheme: ThemeOptions = createTheme({
+const baseTheme = createTheme({
   typography: {
     fontFamily: "Mulish, sans-serif",
     fontSize: 14,
@@ -36,7 +36,7 @@ const baseTheme: ThemeOptions = createTheme({
     },
   },
 });
-export const lightTheme: Theme = createTheme({
+export const lightTheme = createTheme({
   ...baseTheme,
   palette: {
     mode: "light",
@@ -58,7 +58,7 @@ export const lightTheme: Theme = createTheme({
     },
   },
 });
-export const darkTheme: Theme = createTheme({
+export const darkTheme = createTheme({
   ...baseTheme,
   palette: {
     mode: "light",
