@@ -1,6 +1,5 @@
-import { createTheme, Theme, ThemeOptions } from "@mui/material/styles";
-
-const baseTheme: ThemeOptions = createTheme({
+import { DefaultTheme } from "styled-components";
+const baseTheme = {
   typography: {
     fontFamily: "Mulish, sans-serif",
     fontSize: 14,
@@ -35,8 +34,8 @@ const baseTheme: ThemeOptions = createTheme({
       letterSpacing: "-0.01562em",
     },
   },
-});
-export const lightTheme: Theme = createTheme({
+};
+export const lightTheme: DefaultTheme = {
   ...baseTheme,
   palette: {
     mode: "light",
@@ -57,8 +56,8 @@ export const lightTheme: Theme = createTheme({
       default: "#ffffff",
     },
   },
-});
-export const darkTheme: Theme = createTheme({
+};
+export const darkTheme: DefaultTheme = {
   ...baseTheme,
   palette: {
     mode: "light",
@@ -79,4 +78,4 @@ export const darkTheme: Theme = createTheme({
       default: "#282c34",
     },
   },
-});
+};
