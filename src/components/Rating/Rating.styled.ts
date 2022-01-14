@@ -1,6 +1,8 @@
-import { styled } from "@mui/material/styles";
+import styled from "styled-components";
 
-
-export const CounterRating = styled('div')(({ theme }) => ({
-
-  }));
+interface Iprops{
+  padding?: string;
+}
+export const CounterRating = styled.div<Iprops>`
+padding:${props=>props.padding};
+`;
