@@ -1,5 +1,6 @@
 import Rating from "@mui/material/Rating";
-import {  useEffect,useState, SyntheticEvent } from "react";
+import {  useEffect,useState } from "react";
+import { CounterRating } from "./Rating.styled";
 
 export type Name =
   | "disabled"
@@ -16,6 +17,7 @@ interface Iprops {
   isDisabled: boolean;
   name: Name;
   onChangeValue:Function;
+  paddingRating?:string;
 }
 
 function RatingComponent({
@@ -25,29 +27,32 @@ function RatingComponent({
   isDisabled,
   name,
   onChangeValue,
+  paddingRating
 }: Iprops) {
   const [valueRating, setvalueRating] = useState<number>(value);
+  const handleChangeRating=(newValue : number)=>{
+    setvalueRating(newValue );
+
+  }
 
   useEffect(() => {
     onChangeValue(valueRating)
   }, [valueRating])
 
   return (
-    <Rating
+    <CounterRating padding={paddingRating}>
+      <Rating
       name={name}
       value={valueRating}
       precision={precision}
       readOnly={isReadOnly}
       disabled={isDisabled}
       onChange={(event, newValue) => {
-        setvalueRating(newValue as number);
-        console.log(valueRating)
-      }}
+        handleChangeRating(newValue as number)      }}
        />
+    </CounterRating>
+ 
   );
 }
 export default RatingComponent;
-function handleChange(value: number) {
-  throw new Error("Function not implemented.");
-}
 
