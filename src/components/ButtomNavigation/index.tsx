@@ -3,7 +3,7 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Stack } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface Iprops {
   wishlist: number;
@@ -11,15 +11,15 @@ interface Iprops {
 }
 
 export default function BottonNavigationGroup(props: Iprops) {
+  const navigate = useNavigate();
   return (
     <Stack direction="row">
-      <Link to="/auth/login" style={{ textDecoration: "none" }}>
-        <SimpleBottomNavigation
-          label="Login / Sign up"
-          icon={<PersonIcon />}
-          path=""
-        />
-      </Link>
+      <SimpleBottomNavigation
+        label="Login / Sign up"
+        icon={<PersonIcon />}
+        path=""
+        onClick={() => navigate("/auth/login")}
+      />
       <SimpleBottomNavigation
         path=""
         label="Wishlist"

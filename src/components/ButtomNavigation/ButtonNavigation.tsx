@@ -1,6 +1,6 @@
 import { BottonNavigation, IconBox } from "./BottonNavigation.style";
 import Badge from "@mui/material/Badge";
-import { ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 interface Iprops {
@@ -8,13 +8,14 @@ interface Iprops {
   label: string;
   icon: ReactNode;
   path: string;
+  onClick?: MouseEventHandler;
 }
 
 export default function SimpleBottomNavigation(props: Iprops) {
   return (
     <>
       {props.badgeContent ? (
-        <BottonNavigation as={Link} to={props.path}>
+        <BottonNavigation as={Link} to={props.path} onClick={props.onClick}>
           <Badge
             badgeContent={props.badgeContent}
             sx={{
@@ -33,7 +34,7 @@ export default function SimpleBottomNavigation(props: Iprops) {
           </p>
         </BottonNavigation>
       ) : (
-        <BottonNavigation>
+        <BottonNavigation onClick={props.onClick}>
           {" "}
           <IconBox>{props.icon}</IconBox>{" "}
           <p style={{ color: "white", fontSize: "13px", margin: "0" }}>

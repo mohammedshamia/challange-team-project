@@ -36,12 +36,7 @@ const baseTheme = createTheme({
     },
   },
 });
-<<<<<<< HEAD
-
-export const lightTheme: Theme = createTheme({
-=======
 export const lightTheme = createTheme({
->>>>>>> 100-Global-Style-Fix
   ...baseTheme,
   palette: {
     mode: "light",
@@ -62,15 +57,10 @@ export const lightTheme = createTheme({
     },
   },
 });
-<<<<<<< HEAD
-
-export const darkTheme: Theme = createTheme({
-=======
 export const darkTheme = createTheme({
->>>>>>> 100-Global-Style-Fix
   ...baseTheme,
   palette: {
-    mode: "light",
+    mode: "dark",
     primary: {
       main: "#fcdd06",
     },
