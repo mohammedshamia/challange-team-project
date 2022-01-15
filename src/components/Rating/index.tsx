@@ -1,16 +1,16 @@
 import Rating from "@mui/material/Rating";
 import {  useEffect,useState } from "react";
-import { CounterRating } from "./Rating.styled";
+import { RatingContiner } from "./Rating.styled";
 
 
 
 interface Iprops {
   value: number;
-  precision: number;
-  isReadOnly: boolean;
-  isDisabled: boolean;
-  name: string;
-  onChangeValue:Function;
+  precision?: number;
+  isReadOnly?: boolean;
+  isDisabled?: boolean;
+  name?: string;
+  onChangeValue?:Function;
   paddingRating?:string;
 }
 
@@ -30,11 +30,11 @@ function RatingComponent({
   }
 
   useEffect(() => {
-    onChangeValue(valueRating)
+    onChangeValue?.(valueRating)
   }, [valueRating])
 
   return (
-    <CounterRating padding={paddingRating}>
+    <RatingContiner padding={paddingRating}>
       <Rating
       name={name}
       value={valueRating}
@@ -44,7 +44,7 @@ function RatingComponent({
       onChange={(event, newValue) => {
         handleChangeRating(newValue as number)      }}
        />
-    </CounterRating>
+    </RatingContiner>
  
   );
 }
