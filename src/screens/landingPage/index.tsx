@@ -1,7 +1,13 @@
 import React from 'react'
+import {Typography} from "@mui/material";
+import VerticalTabs from "../../components/Tabs";
 function LandingPage(){
     return(
-        <p>LandingPage </p>
+        <>
+            <Typography variant="h2">LandingPage </Typography>
+            <VerticalTabs/>
+        </>
+
     )
 }
 
