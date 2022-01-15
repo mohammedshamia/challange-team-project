@@ -1,6 +1,6 @@
-import { createTheme, Theme, ThemeOptions } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 
-const baseTheme: ThemeOptions = createTheme({
+const baseTheme = createTheme({
   typography: {
     fontFamily: "Mulish, sans-serif",
     fontSize: 14,
@@ -36,8 +36,12 @@ const baseTheme: ThemeOptions = createTheme({
     },
   },
 });
+<<<<<<< HEAD
 
 export const lightTheme: Theme = createTheme({
+=======
+export const lightTheme = createTheme({
+>>>>>>> 100-Global-Style-Fix
   ...baseTheme,
   palette: {
     mode: "light",
@@ -47,7 +51,6 @@ export const lightTheme: Theme = createTheme({
     secondary: {
       main: "#f2f2f2",
     },
-
     text: {
       primary: "#242424",
       secondary: "#707070",
@@ -59,8 +62,12 @@ export const lightTheme: Theme = createTheme({
     },
   },
 });
+<<<<<<< HEAD
 
 export const darkTheme: Theme = createTheme({
+=======
+export const darkTheme = createTheme({
+>>>>>>> 100-Global-Style-Fix
   ...baseTheme,
   palette: {
     mode: "light",

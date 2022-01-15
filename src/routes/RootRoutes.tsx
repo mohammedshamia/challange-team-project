@@ -2,7 +2,7 @@ import React, { lazy } from "react";
 import { Navigate } from "react-router-dom";
 
 // import { roles } from "../utils/role";
-import RegistrationRoutes from "./RegistrationRoutes";
+import AuthRoutes from "./AuthRoutes";
 import AdminRoutes from "./AdminRoutes";
 
 const RedirectRoute = [
@@ -27,7 +27,7 @@ const Profile = lazy(() => import("../screens/home"));
 
 const RootRoutes = {
   routes: [
-    ...RegistrationRoutes,
+    ...AuthRoutes,
     {
       path: "/",
       exact: true,
