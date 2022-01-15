@@ -10,6 +10,8 @@ import { lightTheme, darkTheme } from "./theme/theme";
 import RootRoutes from "./routes/RootRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Header from "./components/common/Header";
+import { GlobalStyle } from "./components/GlobalStyles";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,18 +23,20 @@ function App() {
   // }, [theme, dispatch]);
 
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-      <MuiTheme theme={theme === "light" ? lightTheme : darkTheme}>
-        <Suspense fallback={<Loading />}>
-          <Routes>
+    <Suspense fallback={<Loading />}>
+      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+        <MuiTheme theme={theme === "light" ? lightTheme : darkTheme}>
+          <GlobalStyle />
+          <Header />
+          {/* <Routes>
             {RootRoutes.routes.map((route, Index) => (
               <Route path={route.path} element={route.component} key={Index} />
             ))}
-          </Routes>
-        </Suspense>
-        <ToastContainer autoClose={3000} />
-      </MuiTheme>
-    </ThemeProvider>
+          </Routes> */}
+          <ToastContainer autoClose={3000} />
+        </MuiTheme>
+      </ThemeProvider>
+    </Suspense>
   );
 }
 
