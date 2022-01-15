@@ -8,7 +8,7 @@ import MaximizeIcon from '@mui/icons-material/Maximize';
     const [counter, setCounter] = useState<number>(value);
 
     const handleChangeCounter=(name:string)=>{
-      if(name==='+')setCounter(counter+1)
+      if(name==='increment')setCounter(counter+1)
       else{setCounter(counter-1)}
     }
     
@@ -24,7 +24,7 @@ import MaximizeIcon from '@mui/icons-material/Maximize';
          borderRadius='0'
          color='gray'
 
-         onClick={()=>{handleChangeCounter('+')}} >
+         onClick={()=>{handleChangeCounter('increment')}} >
           <AddIcon/>
         </Button>
         <H1Style>{counter}</H1Style>
@@ -33,7 +33,7 @@ import MaximizeIcon from '@mui/icons-material/Maximize';
            borderRadius='0'
            color='#000000'
 
-          onClick={()=>{handleChangeCounter('-')}} >
+          onClick={()=>{handleChangeCounter('decrement')}} >
           <MaximizeIcon/>
         </Button>
      </CounterContainer>
