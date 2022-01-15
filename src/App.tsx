@@ -28,11 +28,11 @@ function App() {
         <MuiTheme theme={theme === "light" ? lightTheme : darkTheme}>
           <GlobalStyle />
           <Header />
-          {/* <Routes>
+          <Routes>
             {RootRoutes.routes.map((route, Index) => (
               <Route path={route.path} element={route.component} key={Index} />
             ))}
-          </Routes> */}
+          </Routes>
           <ToastContainer autoClose={3000} />
         </MuiTheme>
       </ThemeProvider>
