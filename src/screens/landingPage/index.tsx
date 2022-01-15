@@ -1,7 +1,8 @@
 import React from 'react'
+import PaginationButtons from "../../components/common/Pagination";
 function LandingPage(){
     return(
-        <p>LandingPage </p>
+        <PaginationButtons count={10}/>
     )
 }
 
