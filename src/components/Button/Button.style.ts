@@ -9,6 +9,7 @@ interface Iprpos {
   color?: string;
   backgroundColor?: string;
   fontSize?: string;
+  border?:string;
 }
 
 export const Button = styled.button<Iprpos>((props: Iprpos) => ({
@@ -18,7 +19,8 @@ export const Button = styled.button<Iprpos>((props: Iprpos) => ({
   backgroundColor: props.backgroundColor || "#FCDD06",
   borderRadius: props.borderRadius || "10px",
   fontSize: props.fontSize || "16px",
-  border: "none",
+  border:props.border|| "none",
   cursor: "pointer",
+  textDecoration: "none",
   "&:hover": { backgroundColor: "#dfc300" },
 }));
