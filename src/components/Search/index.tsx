@@ -24,8 +24,7 @@ export default function Search() {
     <Lable>
       <SearchInput value={value} onChange={handleValue} onKeyUp={handleKey} />
       <Button
-        width="152px"
-        height="40px"
+        width="25%"
         backgroundColor="#FCDD06"
         borderRadius="6px"
         fontSize="16px"
@@ -34,6 +33,7 @@ export default function Search() {
           alignItems: "center",
           justifyContent: "center",
           fontWeight: "bold",
+          minWidth: "110px",
         }}
         as={Link}
         to="/search"

@@ -1,5 +1,9 @@
-import { BottonNavigation, IconBox } from "./BottonNavigation.style";
-import Badge from "@mui/material/Badge";
+import {
+  Badge,
+  BottonNavigation,
+  IconBox,
+  Typography,
+} from "./BottonNavigation.style";
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
@@ -15,30 +19,15 @@ export default function SimpleBottomNavigation(props: Iprops) {
     <>
       {props.badgeContent ? (
         <BottonNavigation as={Link} to={props.path}>
-          <Badge
-            badgeContent={props.badgeContent}
-            sx={{
-              "&>span": {
-                backgroundColor: "#FCDD06",
-                fontSize: "10px",
-                width: "15px",
-                color: "#242424",
-              },
-            }}
-          >
+          <Badge badgeContent={props.badgeContent}>
             <IconBox>{props.icon}</IconBox>
           </Badge>
-          <p style={{ color: "white", fontSize: "13px", margin: "0" }}>
-            {props.label}
-          </p>
+          <Typography>{props.label}</Typography>
         </BottonNavigation>
       ) : (
         <BottonNavigation>
-          {" "}
-          <IconBox>{props.icon}</IconBox>{" "}
-          <p style={{ color: "white", fontSize: "13px", margin: "0" }}>
-            {props.label}
-          </p>
+          <IconBox>{props.icon}</IconBox>
+          <Typography>{props.label}</Typography>
         </BottonNavigation>
       )}
     </>

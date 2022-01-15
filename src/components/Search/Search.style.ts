@@ -3,9 +3,10 @@ import styled from "styled-components";
 export const Lable = styled.div`
   background-color: white;
   border-radius: 6px;
-  width: 705px;
+  width:  43%;
   height: 40px;
   display: flex;
+  
 `;
 
 export const SearchInput = styled.input.attrs({ type: "search" })`
