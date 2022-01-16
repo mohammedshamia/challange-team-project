@@ -9,6 +9,7 @@ import { lightTheme, darkTheme } from "./theme/theme";
 import RootRoutes from "./routes/RootRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Counter from "./components/Counter";
 
 
 
@@ -27,6 +28,7 @@ function App() {
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <Suspense fallback={<Loading />}>
+        <Counter value={0} onChange={()=>{}}/>
         <Routes>
           {RootRoutes.routes.map((route, Index) => (
             <Route path={route.path} element={route.component} key={Index} />

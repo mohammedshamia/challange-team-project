@@ -4,7 +4,7 @@ import { CounterContainer, H1Style } from './Counter.styled';
 import AddIcon from '@mui/icons-material/Add';
 import MaximizeIcon from '@mui/icons-material/Maximize';
 
- function Counter({value, onChange}:{value:number, onChange: Function}) {
+ function Counter({value, onChange,maxValue,minValue}:{value:number, minValue:number,maxValue:number,onChange: Function}) {
     const [counter, setCounter] = useState<number>(value);
 
     const handleChangeCounter=(name:string)=>{
@@ -23,17 +23,16 @@ import MaximizeIcon from '@mui/icons-material/Maximize';
          border= '1px solid #FCDD06'
          borderRadius='0'
          color='gray'
-
-         onClick={()=>{handleChangeCounter('increment')}} >
+         onClick={()=>{handleChangeCounter('increment')}}   max={maxValue}>
           <AddIcon/>
         </Button>
         <H1Style>{counter}</H1Style>
         <Button width= '40PX' height='40px'  backgroundColor='white'  
            border= '1px solid #FCDD06'
            borderRadius='0'
-           color='#000000'
+           color='#000000' 
 
-          onClick={()=>{handleChangeCounter('decrement')}} >
+          onClick={()=>{handleChangeCounter('decrement')}} min={minValue} >
           <MaximizeIcon/>
         </Button>
      </CounterContainer>
