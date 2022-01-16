@@ -11,7 +11,7 @@ function LandingPage(){
         <>
             <p>LandingPage </p>
             <ShoppingCart imgSrc={headphones}
-                          counter={<Counter onChange={handleChange} value={2}/>}
+                          counter={<p>counter</p>}
                           title='Apple iPhone 11 Pro 256GB Memory'
                           price='$499.99'
                           salePrice='$499'

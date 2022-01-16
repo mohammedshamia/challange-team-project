@@ -9,7 +9,7 @@ export const WrapperCart = styled.div`
     border-radius: 16px;
     opacity:1;
     width: 100%;
-    max-width: 76.25%;
+    max-width: 1126px;
     height: 242px;
     & img{
         width: 100%;
@@ -19,19 +19,32 @@ export const WrapperCart = styled.div`
         object-fit: contain;
     }
 `;
-
+export const Title= styled.div`
+  width: 409px;
+`;
 export const CounterWrapper = styled.div`
     width: 100%;
-    max-width: 12.75%;
-    height: 40px;
+    max-width:204px;
+    padding-left: 21px;
+    text-align: center;
+    //height: 40px;
+    margin-top: 100px;
 `;
 export const Price = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
     //width: 120px;
     //height: 38px;
-    text-align: left;
-    font: normal normal 900 30px/15px Muli;
+    text-align: right;
+    font-family: Mulish, sans-serif;
     letter-spacing: 0.6px;
-    color: #242424;
+    font-weight: bold;
+    & p{
+      font-size: 30px;
+      color: #242424;
+    }
+    & span { 
+      color: #707070;
+    }
 `;
