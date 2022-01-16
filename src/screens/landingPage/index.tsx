@@ -1,8 +1,23 @@
 import React from 'react'
-import PaginationButtons from "../../components/common/Pagination";
+import ShoppingCart from "../../components/Card/ShoppingCart";
+// @ts-ignore
+import headphones from './../../assets/headphones.jpg';
+import Counter from "../../components/Counter";
 function LandingPage(){
+    const handleChange=()=>{
+
+    }
     return(
-        <PaginationButtons count={10}/>
+        <>
+            <p>LandingPage </p>
+            <ShoppingCart imgSrc={headphones}
+                          counter={<p>counter</p>}
+                          title='Apple iPhone 11 Pro 256GB Memory'
+                          price='$499.99'
+                          salePrice='$499'
+
+            />
+        </>
     )
 }
 
