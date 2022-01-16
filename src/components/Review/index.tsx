@@ -20,6 +20,7 @@ export default function Review({nameReviewer,valueRating,optionsReviewer,timeOfR
            <GrayText>
              <Typography variant="body2" gutterBottom>{optionsReviewer}</Typography>
             </GrayText>
+            
         </ReviewContiner>
     )
 }
