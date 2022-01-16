@@ -23,6 +23,5 @@ export const Button = styled('button')<Iprpos>((props) => ({
   border: props.border|| "none",
   cursor: "pointer",
   textDecoration: "none",
-  "&:hover": { opacity:'.8' },
-  
+  "&:hover": { opacity:'.8' }
 }));
