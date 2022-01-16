@@ -1,40 +1,35 @@
 import styled from 'styled-components'
-// background-color: ${props => props.theme.palette.secondary.main};
+import {Typography} from "@mui/material";
 
 export const WrapperCart = styled.div`
     display: flex;
-    background-color: #F2F2F2;
+    background-color: ${props => props.theme.palette.secondary.main} ;
+    //background-color: #F2F2F2;
+    padding: 17px 35px;
     border-radius: 16px;
     opacity:1;
-    width: 1226px;
+    width: 100%;
+    max-width: 76.25%;
     height: 242px;
     & img{
-        width: 304px;
+        width: 100%;
+        max-width: 19%;
         height: 203px;
         background: transparent;
         object-fit: contain;
     }
 `;
 
-export const Title = styled.h2`
-    width: 409px;
-    height: 72px;
-    font: normal normal 900 30px/15px Muli;
-    text-align: left;
-    letter-spacing: 0.48px;
-    color: #242424;
-    opacity: 1;
-`;
-
-export const Counter = styled.div`
-    width: 204px;
+export const CounterWrapper = styled.div`
+    width: 100%;
+    max-width: 12.75%;
     height: 40px;
 `;
 export const Price = styled.div`
     display: flex;
     flex-direction: column;
-    width: 120px;
-    height: 38px;
+    //width: 120px;
+    //height: 38px;
     text-align: left;
     font: normal normal 900 30px/15px Muli;
     letter-spacing: 0.6px;
