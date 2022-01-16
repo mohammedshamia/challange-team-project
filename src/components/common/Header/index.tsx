@@ -1,45 +1,27 @@
-// import React from "react";
-// import Logo from "../../Logo";
-// import Search from "../../Search";
-// import { HeaderBox } from "./Header.style";
-// import BottonNavigationGroup from "../../ButtomNavigation";
-// export default function Header() {
-//   return (
-//     <HeaderBox>
-//       <Logo />
-//       <Search />
-//       <BottonNavigationGroup cartItems={2} wishlist={3} />
-//     </HeaderBox>
-//   );
-// }
-
-// import AppBar from "@mui/material/AppBar";
-// import { typography } from "@mui/system";
-// import React from "react";
-
-// export default function index() {
-//   return (
-//     <AppBar
-//       sx={{ padding: "0 5%", backgroundColor: "black", height: "85px" }}
-//     >
-//       <typography></typography>
-//     </AppBar>
-//   );
-// }
-
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logo from "../../Logo";
 import Search from "../../Search/index";
 import BottonNavigationGroup from "../../ButtomNavigation";
+import { useDispatch, useSelector } from "react-redux";
+import { AppState } from "../../../redux/store";
+import { toggleTheme } from "../../../redux/actions/theme.action";
+import { ButtonIcon } from "./Header.style";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
 
-const ResponsiveAppBar = () => {
+export default function Header() {
+  const dispatch = useDispatch();
+  const { theme } = useSelector((state: AppState) => state);
+
+  const toggleTheme_ = React.useCallback(() => {
+    dispatch(toggleTheme(theme === "light" ? "dark" : "light"));
+  }, [theme, dispatch]);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -88,6 +70,9 @@ const ResponsiveAppBar = () => {
           >
             <Search />
             <BottonNavigationGroup wishlist={9} cartItems={98} />
+            <ButtonIcon onClick={toggleTheme_} aria-label="toggle-theme">
+              {theme === "light" ? <Brightness4Icon /> : <Brightness7Icon />}
+            </ButtonIcon>
           </Menu>
         </Box>
         <Box
@@ -104,9 +89,11 @@ const ResponsiveAppBar = () => {
           <Logo />
           <Search />
           <BottonNavigationGroup wishlist={9} cartItems={98} />
+          <ButtonIcon onClick={toggleTheme_} aria-label="toggle-theme">
+            {theme === "light" ? <Brightness4Icon /> : <Brightness7Icon />}
+          </ButtonIcon>
         </Box>
       </Toolbar>
     </AppBar>
   );
-};
-export default ResponsiveAppBar;
+}
