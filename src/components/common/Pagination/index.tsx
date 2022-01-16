@@ -1,16 +1,14 @@
-import * as React from 'react';
-import Pagination from '@mui/material/Pagination';
+import { Pagination as Pag } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 interface IProps {
-    count:number;
-    /**
-     * The active color.
-     * @default 'standard'
-     */
-    color?:'primary' | 'secondary' | 'standard'
+  count: number;
 }
-export default function PaginationButtons({count,color}:IProps) {
-    return (
-        <Pagination count={count} color={color} />
-    );
+
+const Pagination = styled(Pag)((props) => ({
+  color: props.theme.palette.text.primary,
+}));
+
+export default function PaginationButtons({ count }: IProps) {
+  return <Pagination count={count} />;
 }

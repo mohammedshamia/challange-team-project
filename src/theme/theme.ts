@@ -61,7 +61,7 @@ export const lightTheme = createTheme({
 export const darkTheme = createTheme({
   ...baseTheme,
   palette: {
-    mode: "light",
+    mode: "dark",
     primary: {
       main: "#fcdd06",
     },
