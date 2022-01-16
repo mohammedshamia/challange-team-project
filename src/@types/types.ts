@@ -3,5 +3,5 @@ export type theme = "light" | "dark";
 
 export interface ToggleThemeAction {
   type: ThemeConstants.TOGGLE_THEME;
-  payload: theme;
+  payload: "light" | "dark";
 }
