@@ -9,7 +9,9 @@ export const GlobalStyle = createGlobalStyle`
 body{
     padding:0;
     margin: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    background:${(props) => props.theme.palette.background.default};   
+    transition: all 0.2s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
 }
 `;
