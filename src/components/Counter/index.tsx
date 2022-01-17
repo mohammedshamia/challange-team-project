@@ -16,6 +16,7 @@ function Counter({ value, onChange, maxValue, minValue,WidthCounter }: Iprops) {
 
   const handleChangeCounter = (name: string) => {
     if (name === "increment") setCounter(counter + 1);
+
     else {
       setCounter(counter - 1);
     }
@@ -59,6 +60,7 @@ function Counter({ value, onChange, maxValue, minValue,WidthCounter }: Iprops) {
         variant="outlined"
       >
         <MaximizeIcon sx={{ paddingTop: "calc(50% - 1px)" }} />
+
       </Button>
     </CounterContainer>
   );
