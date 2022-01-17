@@ -4,7 +4,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Button } from "../Button/Button.style";
 import { Link } from "react-router-dom";
 
-export default function Search() {
+interface Iprops {
+  width?: string;
+}
+
+export default function Search(props: Iprops) {
   let [value, setValue] = useState<string>("");
   const ref: any = React.createRef();
 
@@ -21,14 +25,16 @@ export default function Search() {
   };
 
   return (
-    <Lable>
+    <Lable width={props.width}>
       <SearchInput value={value} onChange={handleValue} onKeyUp={handleKey} />
       <Button
-        width="25%"
+        width="22%"
+        height="40px"
         backgroundColor="#FCDD06"
         borderRadius="6px"
         fontSize="16px"
         style={{
+          minWidth: "80px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
