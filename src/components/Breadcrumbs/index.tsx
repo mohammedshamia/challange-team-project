@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
-import React from "react";
+import { useCallback } from "react";
 
 interface Iprops {
   itemName: string;
@@ -11,14 +11,14 @@ interface Iprops {
 export default function BasicBreadcrumbs(props: Iprops) {
   let navigate = useNavigate();
 
-  async function handleSubmit() {
+  const Back = useCallback(() => {
     navigate(-1);
-  }
+  }, []);
 
   return (
     <div>
       <Breadcrumbs>
-        <Link underline="hover" color="inherit" onClick={handleSubmit}>
+        <Link underline="hover" color="text.secondary" onClick={Back}>
           Back
         </Link>
         <Typography color="text.primary">{props.itemName}</Typography>
