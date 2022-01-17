@@ -39,7 +39,6 @@ export default function Search(props: Iprops) {
           alignItems: "center",
           justifyContent: "center",
           fontWeight: "bold",
-          minWidth: "110px",
         }}
         as={Link}
         to="/search"

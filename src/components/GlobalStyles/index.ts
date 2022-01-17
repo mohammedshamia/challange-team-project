@@ -12,6 +12,6 @@ body{
     background:${(props) => props.theme.palette.background.default};   
     transition: all 0.2s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+   -moz-osx-font-smoothing: grayscale;
 }
 `;

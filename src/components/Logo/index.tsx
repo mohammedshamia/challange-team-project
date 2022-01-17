@@ -9,9 +9,9 @@ export default function Logo() {
       <Typography
         sx={{ color: "#FCDD06", display: "inline", fontSize: "40px" }}
       >
-        pro
+        Pro
       </Typography>
-      shop
+      <Typography sx={{ display: "inline", fontSize: "40px" }}>Shop</Typography>
     </LogoBox>
   );
 }

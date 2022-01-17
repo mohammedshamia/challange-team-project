@@ -4,7 +4,7 @@ import {
   IconBox,
   Typography,
 } from "./BottonNavigation.style";
-import { ReactNode } from "react";
+import { ReactNode, MouseEventHandler } from "react";
 import { Link } from "react-router-dom";
 
 interface Iprops {
@@ -12,6 +12,7 @@ interface Iprops {
   label: string;
   icon: ReactNode;
   path: string;
+  onClick?: MouseEventHandler;
 }
 
 export default function SimpleBottomNavigation(props: Iprops) {

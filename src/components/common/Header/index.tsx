@@ -8,18 +8,20 @@ import Search from "../../Search/index";
 import BottonNavigationGroup from "../../ButtomNavigation";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../../redux/store";
-import { toggleTheme } from "../../../redux/actions/theme.action";
+import { toggleTheme } from "../../../redux/actions/theme.actions";
 import { ButtonIcon, FlexBox, HeaderBox, Toolbar } from "./Header.style";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 
 export default function Header() {
   const dispatch = useDispatch();
+
   const { theme } = useSelector((state: AppState) => state);
 
   const toggleTheme_ = React.useCallback(() => {
     dispatch(toggleTheme(theme === "light" ? "dark" : "light"));
   }, [theme, dispatch]);
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -28,9 +30,9 @@ export default function Header() {
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = React.useCallback(() => {
     setAnchorElNav(null);
-  };
+  }, []);
 
   return (
     <HeaderBox>
@@ -64,7 +66,6 @@ export default function Header() {
                 padding: "7px",
                 backgroundColor: "#242424",
               },
-
               textAlign: "center",
               display: { xs: "block", lg: "none" },
             }}
@@ -100,6 +101,5 @@ export default function Header() {
         </Box>
       </Toolbar>
     </HeaderBox>
-
   );
 }

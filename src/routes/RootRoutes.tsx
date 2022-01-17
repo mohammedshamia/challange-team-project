@@ -2,7 +2,7 @@ import React, { lazy } from "react";
 import { Navigate } from "react-router-dom";
 
 // import { roles } from "../utils/role";
-import RegistrationRoutes from "./RegistrationRoutes";
+import AuthRoutes from "./AuthRoutes";
 import AdminRoutes from "./AdminRoutes";
 
 const RedirectRoute = [
@@ -18,16 +18,16 @@ const ErrorRoute = [
   },
 ];
 
-const HomePage = lazy(() => import("./../screens/landingPage/index"));
-const ShoppingCart = lazy(() => import("./../screens/landingPage/index"));
-const ReviewOrder = lazy(() => import("./../screens/landingPage/index"));
-const SearchPage = lazy(() => import("./../screens/landingPage/index"));
-const ProductDetails = lazy(() => import("./../screens/landingPage/index"));
-const Profile = lazy(() => import("./../screens/landingPage/index"));
+const HomePage = lazy(() => import("../screens/home"));
+const ShoppingCart = lazy(() => import("../screens/home"));
+const ReviewOrder = lazy(() => import("../screens/home"));
+const SearchPage = lazy(() => import("../screens/home"));
+const ProductDetails = lazy(() => import("../screens/home"));
+const Profile = lazy(() => import("../screens/home"));
 
 const RootRoutes = {
   routes: [
-    ...RegistrationRoutes,
+    ...AuthRoutes,
     {
       path: "/",
       exact: true,
@@ -42,7 +42,7 @@ const RootRoutes = {
       component: <ReviewOrder />,
     },
     {
-      path: "/search",
+      path: "/search/:id",
       component: <SearchPage />,
     },
     {
