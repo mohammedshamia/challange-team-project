@@ -1,46 +1,31 @@
 import { Field, FieldProps } from "formik";
-import { Input as MUIinput, TextField } from "@mui/material";
-import styled from "styled-components";
+import { TextField, FormControlLabel } from "@mui/material";
+import { Checkbox, ErrorMessage, Label, Input } from "./FormInput.styled";
+import { CSSProperties } from "react";
 
 export interface IFormInputProps {
   name: string;
   label: string;
   type?: string;
   placeholder?: string;
+  style?: CSSProperties;
 }
 
-export const Label = styled("label")`
-  color: #242424; //${(props) => props.theme.palette.text.primary};
-`;
-
-export const Input = styled(MUIinput)`
-  border: 1px solid #242424;
-  width: 100%;
-  padding: 11px;
-  border-radius: 6px;
-  color: ${(props) => props.theme.palette.grey.A700};
-  /**
-    border: 1px solid ${(props) => props.theme.palette.text.primary};
-    width: 100%;
-    padding: 11px;
-    border-radius: 6px;
-    color: ${(props) => props.theme.palette.text.secondary};
-  */
-  &::before,
-  &::after {
-    border-bottom: none;
-  }
-`;
-
-const FormInput = ({ name, type, placeholder, label }: IFormInputProps) => (
-  <Field name={name}>
+const FormInput = ({
+  name,
+  type,
+  placeholder,
+  label,
+  style,
+}: IFormInputProps) => (
+  <Field name={name} style={{ ...style }}>
     {({
       field /* { name, value, onChange, onBlur } */,
       form, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
       meta,
     }: FieldProps) => (
       <>
-        <Label htmlFor={name}>{label}</Label>
+        {label && type !== "checkbox" && <Label htmlFor={name}>{label}</Label>}
         <div style={{ width: "100%", textAlign: "center" }}>
           {type === "textarea" ? (
             <TextField
@@ -57,6 +42,23 @@ const FormInput = ({ name, type, placeholder, label }: IFormInputProps) => (
               value={field.value}
               placeholder={placeholder}
             ></TextField>
+          ) : type === "checkbox" ? (
+            <>
+              {console.log(field)}
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    defaultChecked={field.value}
+                    checked={field.value}
+                    onChange={(e) => {
+                      form.setFieldValue(name, e.target.checked);
+                    }}
+                  />
+                }
+                color="text.primary"
+                label={<Label>{label}</Label>}
+              />
+            </>
           ) : (
             <Input
               name={name}
@@ -74,10 +76,10 @@ const FormInput = ({ name, type, placeholder, label }: IFormInputProps) => (
               placeholder={placeholder}
             />
           )}
-          {meta.touched && meta.error && (
-            <div style={{ color: "red" }}>{meta.error}</div>
-          )}
         </div>
+        {meta.touched && meta.error && (
+          <ErrorMessage>{meta.error}</ErrorMessage>
+        )}
       </>
     )}
   </Field>

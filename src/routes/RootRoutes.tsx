@@ -42,7 +42,7 @@ const RootRoutes = {
       component: <ReviewOrder />,
     },
     {
-      path: "/search",
+      path: "/search/:id",
       component: <SearchPage />,
     },
     {
