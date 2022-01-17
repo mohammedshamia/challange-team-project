@@ -10,6 +10,7 @@ export const Button = styled(B)(({ theme }) => ({
   textDecoration: " none",
   height: "62px",
   "&:hover": {
+    background: theme.palette.primary.main,
     opacity: "0.8",
   },
 }));
