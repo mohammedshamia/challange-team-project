@@ -1,7 +1,7 @@
 import { Box, IconButton, Toolbar as T } from "@mui/material";
 import { styled } from "@mui/system";
-
 export const HeaderBox = styled('div')`
+
   position: sticky;
   top: 0;
   height: 85px;
@@ -12,7 +12,6 @@ export const HeaderBox = styled('div')`
   background-color: #242424;
   color: white;
 `;
-
 
 export const ButtonIcon = styled(IconButton)(({ theme }) => ({
   borderRadius: "7px",
@@ -28,6 +27,5 @@ flexGrow:'99'
 
 export const FlexBox = styled(Box)(()=>({
   display:'flex',
-    
-    
-}))
+}));
+
