@@ -9,6 +9,7 @@ interface Iprops {
   isDisabled?: boolean;
   name?: string;
   onChangeValue?: Function;
+
   paddingRating?: string;
 }
 
