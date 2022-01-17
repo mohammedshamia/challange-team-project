@@ -1,7 +1,7 @@
 import React from 'react'
 import MainTitle from '../MainTitle';
 import { ContinerCategroiesCard } from './CategroiesCard.styled';
-import CategroyCard from './CategroyCard';
+import CategroyCard from '../CategroyCard';
 
 export interface categroyCard{
     img:string;

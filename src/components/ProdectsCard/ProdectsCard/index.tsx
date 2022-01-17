@@ -49,7 +49,7 @@ export default function ProdectCard({
       >
         {salary}$
       </Typography>
-      
+
       <SittingContainer>
         <Button
           width="18%"

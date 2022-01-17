@@ -13,6 +13,7 @@ import CardComponent from "./components/Card";
 import CategroiesCard from "./components/CategroiesCard";
 import ProdectCard from "./components/ProdectsCard/ProdectsCard";
 import ProdectsCard from './components/ProdectsCard/index';
+import CategroyCard from "./components/CategroyCard";
 
 
 
@@ -34,6 +35,7 @@ function App() {
         <ProdectsCard prodectsCard={[{name:'ipone prodect card item', salary:100, valueRating:3.5,
        img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpyffid16snFPtJ6s49jvrcum78LXroUVK9g&usqp=CAU'},
        {name:'iponelabtaop',img:''},{name:'ipone',img:''}]} />
+       <CategroyCard img={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpyffid16snFPtJ6s49jvrcum78LXroUVK9g&usqp=CAU"} name={"labtob"}/>
         <Routes>
           {RootRoutes.routes.map((route, Index) => (
             <Route path={route.path} element={route.component} key={Index} />
