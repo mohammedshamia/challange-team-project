@@ -5,9 +5,3 @@ export interface ToggleThemeAction {
   type: ThemeConstants.TOGGLE_THEME;
   payload: "light" | "dark";
 }
-
-export interface IUserLogin {
-  email: string;
-  password?: string;
-  remember_me: boolean;
-}

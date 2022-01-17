@@ -11,15 +11,22 @@ import { formSchema } from "./signUp.validation";
 import FormInput from "../../../components/common/FormInput";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../../redux/actions/auth.actions";
 
 const SignUp = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = useCallback(
     (values, FormikHelpers) => {
-      navigate("/auth/login");
+      dispatch(
+        createUser(values, () => {
+          navigate("/auth/login");
+        })
+      );
     },
-    [navigate]
+    [navigate, dispatch]
   );
 
   return (

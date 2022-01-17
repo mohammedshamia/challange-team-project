@@ -12,24 +12,36 @@ import { Typography } from "@mui/material";
 import { formSchema } from "./signIn.validation";
 import FormInput from "../../../components/common/FormInput";
 import { useNavigate } from "react-router-dom";
-import { IUserLogin } from "../../../@types/types";
+import { useDispatch } from "react-redux";
+import { login } from "../../../redux/actions/auth.actions";
+import { ILogin } from "../../../@types/auth.types";
 
 const SignIn = () => {
-  const [state, setState] = useState<IUserLogin>({
+  const dispatch = useDispatch();
+  const [state, setState] = useState<ILogin>({
     email: "",
+    password: "",
     remember_me: false,
   });
 
   const navigate = useNavigate();
 
-  const handleSubmit = useCallback((values) => {
-    if (values.remember_me) {
-      const { password, ...rest } = values;
-      localStorage.setItem("RememberMe", JSON.stringify(rest));
-    } else {
-      localStorage.removeItem("RememberMe");
-    }
-  }, []);
+  const handleSubmit = useCallback(
+    (values) => {
+      if (values.remember_me) {
+        const { password, ...rest } = values;
+        localStorage.setItem("RememberMe", JSON.stringify(rest));
+      } else {
+        localStorage.removeItem("RememberMe");
+      }
+      dispatch(
+        login(values, () => {
+          navigate("/");
+        })
+      );
+    },
+    [dispatch, navigate]
+  );
 
   const handleRedirect = useCallback(
     () => navigate("/auth/signup"),
@@ -38,7 +50,7 @@ const SignIn = () => {
 
   useEffect(() => {
     let data = localStorage.getItem("RememberMe");
-    const user: IUserLogin = data && JSON.parse(data);
+    const user: ILogin = data && JSON.parse(data);
     if (user) {
       setState(user);
     }
