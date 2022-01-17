@@ -94,11 +94,18 @@ export const CardContainer = styled(Card)<Iprpos>((props) => ({
 }));
 
 export const SittingContainer = styled.div`
-width:70%;
 display:flex;
 align-items:center;
-justify-content:space-between;
-margin-left:10%;`;
+gap:'16px';
+ margin:'32px 62px';
+`
+;
+export const SalaryContainer = styled.div`
+display:flex;
+ margin-left:161px;
+  gap:14px;
+`
+;
 
 
 
