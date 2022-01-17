@@ -11,6 +11,7 @@ const RedirectRoute = [
     component: () => <Navigate to="/" />,
   },
 ];
+
 const ErrorRoute = [
   {
     path: "*",

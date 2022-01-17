@@ -1,10 +1,22 @@
 import { AuthConstants } from "../contants/auth.constants";
-import { ActionsType, IAuth } from "../../@types/auth.types";
+import { ActionsType, IAuth, IUser } from "../../@types/auth.types";
+
+const user: string = localStorage.getItem("user-data") || "";
 
 const initial_state: IAuth = {
   loading: false,
   error: "",
-  user: {},
+  isAuthenticated: Boolean(user),
+  user: (user && (JSON.parse(user) as IUser)) || {
+    _id: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    isAdmin: false,
+    token: "",
+    dateOfBirth: "",
+    profileImage: "",
+  },
 };
 
 export const AuthReducer = (state = initial_state, action: ActionsType) => {
@@ -35,6 +47,7 @@ export const AuthReducer = (state = initial_state, action: ActionsType) => {
       return {
         ...state,
         loading: false,
+        isAuthenticated: true,
         user: action.payload,
       };
     case AuthConstants.LOGIN_FAIL:
