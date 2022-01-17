@@ -27,25 +27,22 @@ export default function Search(props: Iprops) {
   return (
     <Lable width={props.width}>
       <SearchInput value={value} onChange={handleValue} onKeyUp={handleKey} />
+      <Link to={`/serch/${value}`} ref={ref}></Link>
       <Button
-        width="22%"
-        height="40px"
-        backgroundColor="#FCDD06"
-        borderRadius="6px"
-        fontSize="16px"
-        style={{
+        sx={{
+          width = "22%",
+          height = "40px",
+          fontSize = "16px",
           minWidth: "80px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           fontWeight: "bold",
         }}
-        as={Link}
-        to="/search"
-        ref={ref}
       >
         <SearchIcon /> Search
       </Button>
+      </Link>
     </Lable>
   );
 }
