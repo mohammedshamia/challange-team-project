@@ -1,45 +1,69 @@
-import {useState, useEffect} from 'react';
-import { Button } from '../Button/Button.style';
-import { CounterContainer, H1Style } from './Counter.styled';
-import AddIcon from '@mui/icons-material/Add';
-import MaximizeIcon from '@mui/icons-material/Maximize';
+import { useState, useEffect } from "react";
+// import { Button } from '../Button/Button.style';
+import { CounterContainer } from "./Counter.styled";
+import AddIcon from "@mui/icons-material/Add";
+import MaximizeIcon from "@mui/icons-material/Maximize";
+import { Typography, Button } from "@mui/material";
+interface Iprops {
+  value: number;
+  minValue?: number;
+  maxValue?: number;
+  onChange: Function;
+  WidthCounter?:string;
+}
+function Counter({ value, onChange, maxValue, minValue,WidthCounter }: Iprops) {
+  const [counter, setCounter] = useState<number>(value);
 
- function Counter({value, onChange}:{value:number, onChange: Function}) {
-    const [counter, setCounter] = useState<number>(value);
+  const handleChangeCounter = (name: string) => {
+    if (name === "increment") setCounter(counter + 1);
 
-    const handleChangeCounter=(name:string)=>{
-      if(name==='increment')setCounter(counter+1)
-      else{setCounter(counter-1)}
+    else {
+      setCounter(counter - 1);
     }
-    
-    useEffect(() => {
-        onChange(counter);
-    }, [counter])
+  };
 
-    return (
-     <CounterContainer>
-        <Button width= '40PX' height='40px' 
-         backgroundColor='white'
-         border= '1px solid #FCDD06'
-         borderRadius='0'
-         color='gray'
+  useEffect(() => {
+    onChange(counter);
+  }, [counter]);
 
-         onClick={()=>{handleChangeCounter('increment')}} >
-          <AddIcon/>
-        </Button>
-        <H1Style>{counter}</H1Style>
-        <Button width= '40PX' height='40px'  backgroundColor='white'  
-           border= '1px solid #FCDD06'
-           borderRadius='0'
-           color='#000000'
+  return (
+    <CounterContainer  width={WidthCounter}  >
+      <Button
+        disabled={counter === maxValue && true}
+        sx={{ width: "48px", height: "40px", borderRadius: "0" }}
+        onClick={() => {
+          handleChangeCounter("increment");
+        }}
+        variant="outlined"
+      >
+        <AddIcon />
+      </Button>
+      <Typography
+        variant="h3"
+        color="text-primary"
+        sx={{
+          width: "100px",
+          border: "1px solid #F7F8FC",
+          textAlign: "center",
+          boxSizing: "border-box",
+        }}
+      >
+        {" "}
+        {counter}
+      </Typography>
+      <Button
+        disabled={(counter === 0 || minValue === counter) && true}
+        sx={{ width: "48px", height: "40px", borderRadius: "0" }}
+        onClick={() => {
+          handleChangeCounter("decrement");
+        }}
+        variant="outlined"
+      >
+        <MaximizeIcon sx={{ paddingTop: "calc(50% - 1px)" }} />
 
-          onClick={()=>{handleChangeCounter('decrement')}} >
-          <MaximizeIcon/>
-        </Button>
-     </CounterContainer>
-    );
-  }
+      </Button>
+    </CounterContainer>
+  );
+}
 
-
-  export default Counter;
-
+export default Counter;

@@ -1,21 +1,16 @@
 import Rating from "@mui/material/Rating";
-import {  useEffect,useState, SyntheticEvent } from "react";
-
-export type Name =
-  | "disabled"
-  | "read-only"
-  | "no-value"
-  | "simple-controlled"
-  | "half-rating"
-  | "half-rating-read";
+import { useEffect, useState } from "react";
+import { RatingContiner } from "./Rating.styled";
 
 interface Iprops {
   value: number;
-  precision: number;
-  isReadOnly: boolean;
-  isDisabled: boolean;
-  name: Name;
-  onChangeValue:Function;
+  precision?: number;
+  isReadOnly?: boolean;
+  isDisabled?: boolean;
+  name?: string;
+  onChangeValue?: Function;
+
+  paddingRating?: string;
 }
 
 function RatingComponent({
@@ -25,29 +20,30 @@ function RatingComponent({
   isDisabled,
   name,
   onChangeValue,
+  paddingRating,
 }: Iprops) {
   const [valueRating, setvalueRating] = useState<number>(value);
+  const handleChangeRating = (newValue: number) => {
+    setvalueRating(newValue);
+  };
 
   useEffect(() => {
-    onChangeValue(valueRating)
-  }, [valueRating])
+    onChangeValue?.(valueRating);
+  }, [valueRating]);
 
   return (
-    <Rating
-      name={name}
-      value={valueRating}
-      precision={precision}
-      readOnly={isReadOnly}
-      disabled={isDisabled}
-      onChange={(event, newValue) => {
-        setvalueRating(newValue as number);
-        console.log(valueRating)
-      }}
-       />
+    <RatingContiner padding={paddingRating}>
+      <Rating
+        name={name}
+        value={valueRating}
+        precision={precision}
+        readOnly={isReadOnly}
+        disabled={isDisabled}
+        onChange={(event, newValue) => {
+          handleChangeRating(newValue as number);
+        }}
+      />
+    </RatingContiner>
   );
 }
 export default RatingComponent;
-function handleChange(value: number) {
-  throw new Error("Function not implemented.");
-}
-
