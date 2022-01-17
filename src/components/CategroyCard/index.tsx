@@ -1,8 +1,8 @@
 import { Typography } from "@mui/material";
-import { categroyCard } from "../CategroiesCard";
 import { CardContainer } from "../Card/Card.style";
+import { Card } from '../Card/Types';
 
-interface IProps extends categroyCard {}
+interface IProps extends Card {}
 
 export default function CategroyCard({ img, name }: IProps) {
   return (
