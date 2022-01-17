@@ -31,23 +31,26 @@ e.preventDefault();
         </form>
     )
 }*/
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import Typography from '@mui/material/Typography';
-import { Rating, TextField } from '@mui/material'
+import * as React from "react";
+import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import Typography from "@mui/material/Typography";
+import { Rating, TextField } from "@mui/material";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuiDialogContent-root': {
+  "& .MuiPaper-root": {
+    width: '90%'
+  },
+  "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
   },
-  '& .MuiDialogActions-root': {
+  "& .MuiDialogActions-root": {
     padding: theme.spacing(1),
   },
 }));
@@ -69,7 +72,7 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
           aria-label="close"
           onClick={onClose}
           sx={{
-            position: 'absolute',
+            position: "absolute",
             right: 8,
             top: 8,
             color: (theme) => theme.palette.grey[500],
@@ -82,12 +85,14 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
   );
 };
 
-export default function FormReview({handleSubmit,handleChange}:{handleSubmit:Function,handleChange:Function}) {
-
- const [open, setOpen] = React.useState(false);
-
-
-
+export default function FormReview({
+  handleSubmit,
+  handleChange,
+}: {
+  handleSubmit: Function;
+  handleChange: Function;
+}) {
+  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -98,40 +103,70 @@ export default function FormReview({handleSubmit,handleChange}:{handleSubmit:Fun
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen} sx={{color:'gold' , border:'1px solid gold'}}>
-      Add  Anther Review
+      <Button
+        variant="outlined"
+        onClick={handleClickOpen}
+        sx={{ color: "gold", border: "1px solid gold" }}
+      >
+        Add Anther Review
       </Button>
-      <BootstrapDialog  
+      <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
-        open={open}  sx={{width:'1200px', maxWidth:'2200px'}}
+        open={open}
+        sx={{ width: "1200px", maxWidth: "2200px" }}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose} >
+        <BootstrapDialogTitle
+          id="customized-dialog-title"
+          onClose={handleClose}
+        >
           Add Review
         </BootstrapDialogTitle>
-        <DialogContent dividers >
-        <form   style={{display:'flex' , flexDirection:'column' ,gap:'10px'}}  onSubmit={(e)=>{handleSubmit(e)} } >
-      <TextField label="name reviwer:" variant="filled"  name='name' onChange={(e)=>{handleChange(e)}}/>
-       
-       <Rating  onChange={(event, newValue) => {
-  }}/>
-      <TextField id="filled-basic" label="data:" variant="filled" name='time'/>
+        <DialogContent dividers>
+          <form
+            style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+            onSubmit={(e) => {
+              handleSubmit(e);
+            }}
+          >
+            <TextField
+              label="name reviwer:"
+              variant="filled"
+              name="name"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+            />
 
-      <TextField
-      placeholder="discraption" name='discrption'
-      multiline
-      rows={2}
-      onChange={(e)=>{handleChange(e)}}
-    />
-<DialogActions>
-          <Button type='submit' autoFocus onClick={handleClose} sx={{color:'gold' , border:'1px solid gold'}}>
-          Add Review
-          </Button>
-        </DialogActions>
+            <Rating onChange={(event, newValue) => {}} />
+            <TextField
+              id="filled-basic"
+              label="data:"
+              variant="filled"
+              name="time"
+            />
 
-        </form>
+            <TextField
+              placeholder="discraption"
+              name="discrption"
+              multiline
+              rows={2}
+              onChange={(e) => {
+                handleChange(e);
+              }}
+            />
+            <DialogActions>
+              <Button
+                type="submit"
+                autoFocus
+                onClick={handleClose}
+                sx={{ color: "gold", border: "1px solid gold" }}
+              >
+                Add Review
+              </Button>
+            </DialogActions>
+          </form>
         </DialogContent>
-     
       </BootstrapDialog>
     </div>
   );
