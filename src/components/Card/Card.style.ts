@@ -77,18 +77,18 @@ import styled from "styled-components";
 
 interface Iprpos {
   width: string;
-  borderradius?:number;
+  borderRadius?:number;
   background?:string;
   height?:string;
   padding?:string,
   boxshadow?:string
 }
-export const CardContainer = styled(Card)<Iprpos>((props: Iprpos) => ({
+
+export const CardContainer = styled(Card)<Iprpos>((props) => ({
   width: props.width,
   height: props.height,
   background:props.background,
   padding:props.padding,
-  borderRadius:0,
   boxSizing: 'border-box',
   boxShadow:props.boxshadow
 }));

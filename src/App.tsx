@@ -30,8 +30,8 @@ function App() {
       <Suspense fallback={<Loading />}>
         hi
        <CategroiesCard categroiesCard={[{name:'ipone',
-       img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpyffid16snFPtJ6s49jvrcum78LXroUVK9g&usqp=CAU'},{name:'iponelabtaop',img:''},{name:'ipone',img:''},{name:'ipone',img:''}]}/>
-        <ProdectsCard prodectsCard={[{name:'ipone', salary:100, valueRating:3.5,
+       img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpyffid16snFPtJ6s49jvrcum78LXroUVK9g&usqp=CAU'},{name:'iponelabtaop sony ghui',img:''},{name:'ipone',img:''},{name:'ipone',img:''}]}/>
+        <ProdectsCard prodectsCard={[{name:'ipone prodect card item', salary:100, valueRating:3.5,
        img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpyffid16snFPtJ6s49jvrcum78LXroUVK9g&usqp=CAU'},
        {name:'iponelabtaop',img:''},{name:'ipone',img:''}]} />
         <Routes>
