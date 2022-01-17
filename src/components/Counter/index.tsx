@@ -9,8 +9,10 @@ interface Iprops {
   minValue?: number;
   maxValue?: number;
   onChange: Function;
+  WidthCounter?:string;
+  backgroundCounter?:string
 }
-function Counter({ value, onChange, maxValue, minValue }: Iprops) {
+function Counter({ value, onChange, maxValue, minValue,WidthCounter,backgroundCounter }: Iprops) {
   const [counter, setCounter] = useState<number>(value);
 
   const handleChangeCounter = (name: string) => {
@@ -25,7 +27,7 @@ function Counter({ value, onChange, maxValue, minValue }: Iprops) {
   }, [counter]);
 
   return (
-    <CounterContainer>
+    <CounterContainer  width={WidthCounter}  background={backgroundCounter}>
       <Button
         disabled={counter === maxValue && true}
         sx={{ width: "48px", height: "40px", borderRadius: "0" }}
