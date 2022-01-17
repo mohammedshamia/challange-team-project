@@ -46,6 +46,7 @@ export const FormWrapper = styled.div`
 export const Button = styled(Btn)`
   margin-top: 20px;
   background-color: ${({ theme }) => theme.palette.primary.main};
+  border: 1px solid ${({ theme }) => theme.palette.primary.main};
   text-transform: capitalize;
 `;
 
@@ -63,7 +64,7 @@ export const Divider = styled(Divider_)`
   margin-top: 1em;
 `;
 
-export const SignUpButton = styled(Btn)`
+export const SignUpButton = styled(Link_)`
   margin-top: 20px;
   background-color: inherit;
   border: 3px solid ${({ theme }) => theme.palette.primary.main};
@@ -72,4 +73,5 @@ export const SignUpButton = styled(Btn)`
   text-transform: capitalize;
   margin-inline: auto;
   padding-inline: 2em;
+  text-decoration: none;
 `;

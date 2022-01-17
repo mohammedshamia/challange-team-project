@@ -4,18 +4,26 @@ import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Stack } from "@mui/material";
 import { Link } from "./BottonNavigation.style";
+import { useSelector } from "react-redux";
+import { AppState } from "../../redux/store";
 
 interface Iprops {
   wishlist: number;
   cartItems: number;
+  username?: string;
 }
 
 export default function BottonNavigationGroup(props: Iprops) {
+  const { auth } = useSelector((state: AppState) => state);
   return (
     <Stack direction="row">
-      <Link to={"/auth/login"}>
+      <Link to={auth.isAuthenticated ? "/profile" : "/auth/login"}>
         <SimpleBottomNavigation
-          label="Login / Sign up"
+          label={
+            (auth.isAuthenticated &&
+              `${auth.user.firstName} ${auth.user.lastName}`) ||
+            "Login / Sign up"
+          }
           icon={<PersonIcon />}
           path=""
         />

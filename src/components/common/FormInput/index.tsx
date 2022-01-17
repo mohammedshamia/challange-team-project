@@ -43,22 +43,19 @@ const FormInput = ({
               placeholder={placeholder}
             ></TextField>
           ) : type === "checkbox" ? (
-            <>
-              {console.log(field)}
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    defaultChecked={field.value}
-                    checked={field.value}
-                    onChange={(e) => {
-                      form.setFieldValue(name, e.target.checked);
-                    }}
-                  />
-                }
-                color="text.primary"
-                label={<Label>{label}</Label>}
-              />
-            </>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  defaultChecked={field.value}
+                  checked={field.value}
+                  onChange={(e) => {
+                    form.setFieldValue(name, e.target.checked);
+                  }}
+                />
+              }
+              color="text.primary"
+              label={<Label>{label}</Label>}
+            />
           ) : (
             <Input
               name={name}
