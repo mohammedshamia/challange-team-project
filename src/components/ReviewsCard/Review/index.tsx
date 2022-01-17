@@ -1,8 +1,8 @@
 import { Typography } from "@mui/material";
-import RatingComponent from "../Rating";
+import RatingComponent from "../../Rating";
 import { GrayText, RatingContiner, ReviewContiner } from "./Review.styled";
 
-interface Iprops {
+export interface Iprops {
    nameReviewer:string;
    valueRating:number;
    optionsReviewer:string;

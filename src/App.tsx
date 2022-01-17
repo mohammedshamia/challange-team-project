@@ -10,6 +10,7 @@ import RootRoutes from "./routes/RootRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReviewsCard from "./components/ReviewsCard";
+import CustomizedDialogs from "./components/ReviewsCard/ReviewForm";
 
 
 
@@ -42,3 +43,25 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
