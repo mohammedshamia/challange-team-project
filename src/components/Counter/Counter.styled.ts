@@ -2,11 +2,10 @@ import { styled } from "@mui/material/styles";
 
 interface Iprpos {
 width?:string;
-background?: string;
 }
-export const CounterContainer = styled('div')(({ props:Iprpos }) => ({
+export const CounterContainer = styled('div')<Iprpos>((props) => ({
   display: 'flex',
-  background:props.background||theme.background.
+  width:props.width||'300px'
  
   }));
 
@@ -14,6 +13,8 @@ export const CounterContainer = styled('div')(({ props:Iprpos }) => ({
 
   
 
+
+  
 
 
 
