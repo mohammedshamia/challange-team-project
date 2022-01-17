@@ -39,5 +39,7 @@ export default function CategroyCard({ img, name }: IProps) {
         {name}
       </Typography>
     </CardContainer>
+
+    
   );
 }
