@@ -24,7 +24,7 @@ export default function ShoppingCartPage() {
         <BasicBreadcrumbs itemName="Shopping Cart" />
       </Box>
       <Grid container spacing={4}>
-        <Grid item xs={12} lg={8}>
+        <Grid item xs={12} lg={9}>
           {arr.map((item: ShoppingCartProps) => {
             return (
               <Box mb="32px">
@@ -37,7 +37,7 @@ export default function ShoppingCartPage() {
             );
           })}
         </Grid>
-        <Grid item xs={12} lg={4}>
+        <Grid item xs={12} lg={3} sx={{ order: { xs: 0, lg: 2 } }}>
           <SubTotalCard
             priceAfterDiscount="$999.97"
             priceBeforeDiscount="$989.97"
