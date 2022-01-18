@@ -12,6 +12,7 @@ import Header from "./components/common/Header";
 import { GlobalStyle } from "./components/GlobalStyles";
 import "react-toastify/dist/ReactToastify.css";
 
+
 function App() {
   const { theme } = useSelector((state: AppState) => state);
   return (

@@ -8,6 +8,7 @@ import {
   IUser,
 } from "../../@types/auth.types";
 import API from "../../api";
+import { notify } from "../../utils/helpers";
 import { AuthConstants } from "../contants/auth.constants";
 
 export const login =
@@ -21,15 +22,17 @@ export const login =
         "/users/login",
         data
       );
+      localStorage.setItem("user-data", JSON.stringify(res.data));
       dispatch({
         type: AuthConstants.LOGIN_SUCCESS,
         payload: res.data,
       });
       callback?.();
     } catch (error: any) {
+      notify("error", error.response.data.message || error.message);
       dispatch({
         type: AuthConstants.LOGIN_FAIL,
-        payload: error.message,
+        payload: error.response.data.message || error.message,
       });
     }
   };

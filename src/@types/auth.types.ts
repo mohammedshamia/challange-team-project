@@ -3,7 +3,8 @@ import { AuthConstants } from "../redux/contants/auth.constants";
 export interface IAuth {
   loading: boolean;
   error: string;
-  user: IUser | object;
+  isAuthenticated: boolean;
+  user: IUser;
 }
 
 export interface ILogin {
@@ -24,14 +25,14 @@ export interface IForgetPassword {
 }
 
 export interface IUser {
-  user: {
-    _id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    isAdmin: boolean;
-  };
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  isAdmin: boolean;
   token: string;
+  dateOfBirth?: string;
+  profileImage?: string;
 }
 
 export interface CREATE_USER_START {
