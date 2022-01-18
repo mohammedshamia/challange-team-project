@@ -11,6 +11,8 @@ import { ToastContainer } from "react-toastify";
 import Header from "./components/common/Header";
 import { GlobalStyle } from "./components/GlobalStyles";
 import "react-toastify/dist/ReactToastify.css";
+import ReviewsCard from "./components/ReviewsCard";
+import CustomizedDialogs from "./components/ReviewsCard/ReviewForm";
 
 
 function App() {
@@ -34,3 +36,25 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

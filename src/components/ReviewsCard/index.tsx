@@ -1,28 +1,30 @@
-import Review from "../Review";
-import { ContainerReviewsCard } from "./ReviewsCard.styled";
 
-interface reviewer {
-  nameReviewer: string;
-  valueRating: number;
-  optionsReviewer: string;
-  timeOfReview: string;
+
+import { ContainerReviewsCard } from './ReviewsCard.styled'
+import FormReview from './ReviewForm';
+import Review, { Reviewer } from './Review';
+
+interface Iprops  {
+    reviewer:Reviewer[]
+    addAntherReviewer:Function
 }
 
-interface Iprops {
-  reviewer: reviewer[];
-}
 
-export default function ReviewsCard({ reviewer }: Iprops) {
-  return (
-    <ContainerReviewsCard>
-      {reviewer.map((reviewer) => (
-        <Review
-          nameReviewer={reviewer.nameReviewer}
-          valueRating={reviewer.valueRating}
-          optionsReviewer={reviewer.optionsReviewer}
-          timeOfReview={reviewer.timeOfReview}
-        />
-      ))}
-    </ContainerReviewsCard>
-  );
-}
+export default function ReviewsCard ({reviewer,addAntherReviewer}:Iprops) {
+  
+
+        return (
+            <ContainerReviewsCard>
+              {reviewer.map((reviewer,index)=>(
+                <Review key={index}
+                    nameReviewer={reviewer.nameReviewer}
+                    valueRating={reviewer.valueRating}
+                    optionsReviewer={reviewer.optionsReviewer} 
+                    timeOfReview={reviewer.timeOfReview}/>))}
+                 <FormReview  addAntherReviewer={addAntherReviewer}  />
+            </ContainerReviewsCard>
+       )
+    
+  }
+
+
