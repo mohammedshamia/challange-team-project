@@ -24,7 +24,7 @@ const ShoppingCart = lazy(() => import("../screens/ShoppingCart/ShoppingCart"));
 const ReviewOrder = lazy(() => import("../screens/home"));
 const SearchPage = lazy(() => import("../screens/landingPage/SearchPage"));
 const ProductDetails = lazy(() => import("../screens/home"));
-const Profile = lazy(() => import("../screens/home"));
+const Profile = lazy(() => import("../screens/profile"));
 
 const RootRoutes = {
   routes: [

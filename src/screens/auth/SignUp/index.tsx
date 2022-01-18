@@ -10,7 +10,7 @@ import {
 } from "../SignIn/SignIn.styled";
 import { Typography } from "@mui/material";
 import { Form, Formik } from "formik";
-import { formSchema } from "./SignUp.validation";
+import { formSchema } from "./signUp.validation";
 import FormInput from "../../../components/common/FormInput";
 import { createUser } from "../../../redux/actions/auth.actions";
 

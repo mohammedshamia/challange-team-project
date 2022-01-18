@@ -9,7 +9,7 @@ import {
   SignUpButton,
 } from "./SignIn.styled";
 import { Typography } from "@mui/material";
-import { formSchema } from "./SignIn.validation";
+import { formSchema } from "./signIn.validation";
 import FormInput from "../../../components/common/FormInput";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
