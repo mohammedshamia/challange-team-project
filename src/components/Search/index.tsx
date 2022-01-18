@@ -13,13 +13,13 @@ export default function Search(props: Iprops) {
   const ref: any = React.createRef();
 
   const handleValue = (e: React.FormEvent<HTMLInputElement>): void => {
-    let val: string = e.currentTarget.value;
+    let val: string = e.currentTarget.value.trim();
     setValue(val);
   };
 
   let handleKey = (e: any) => {
     let keyCode: any = e.keyCode;
-    if (keyCode === 13) {
+    if (keyCode === 13 && value) {
       ref.current.click();
     }
   };
@@ -27,27 +27,30 @@ export default function Search(props: Iprops) {
   return (
     <Lable width={props.width}>
       <SearchInput value={value} onChange={handleValue} onKeyUp={handleKey} />
-      <Link
-        to={`/search/${value}`}
-        ref={ref}
+      {/* <Link
+        to={`${value.trim() !== "" ? `/search/${value}` : ""} `}
         style={{ width: "22%", minWidth: "120px", textDecoration: "none" }}
+        > */}
+      <Button
+        as={Link}
+        ref={ref}
+        to={value && `/search/${value}`}
+        borderRadius="6px"
+        sx={{
+          width: "22%",
+          minWidth: "120px",
+          textDecoration: "none",
+          height: "40px",
+          fontSize: "16px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontWeight: "bold",
+        }}
       >
-        <Button
-          borderRadius="6px"
-          sx={{
-            width: "100%",
-            height: "40px",
-            fontSize: "16px",
-            minWidth: "80px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontWeight: "bold",
-          }}
-        >
-          <SearchIcon /> Search
-        </Button>
-      </Link>
+        <SearchIcon /> Search
+      </Button>
+      {/* </Link> */}
     </Lable>
   );
 }
