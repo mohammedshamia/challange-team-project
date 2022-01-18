@@ -7,6 +7,7 @@ interface Iprops {
   width?: string;
   fontSize?: string;
   background?: string;
+  to?: string;
 }
 export const Button = styled(B)<Iprops>((props) => ({
   color: props.theme.palette.text.primary,
