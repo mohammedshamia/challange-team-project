@@ -20,7 +20,7 @@ const ErrorRoute = [
 ];
 
 const HomePage = lazy(() => import("../screens/home"));
-const ShoppingCart = lazy(() => import("../screens/home"));
+const ShoppingCart = lazy(() => import("../screens/ShoppingCart/ShoppingCart"));
 const ReviewOrder = lazy(() => import("../screens/home"));
 const SearchPage = lazy(() => import("../screens/landingPage/SearchPage"));
 const ProductDetails = lazy(() => import("../screens/home"));
