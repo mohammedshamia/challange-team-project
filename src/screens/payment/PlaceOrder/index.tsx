@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../../../components/Button/Button.style";
 import { Column, Row, Section } from "../../../components/GlobalStyles";
@@ -13,7 +14,9 @@ const Container = styled.div`
   padding: 0;
 `;
 
-const index = () => {
+const PlaceOrder = () => {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <Column
@@ -81,17 +84,70 @@ const index = () => {
             </Row>
           </Row>
         </Section>
-        <Row justfiyContent="flex-start" width="100%" alignItems="stretch">
-          <Section style={{ width: "60%" }}>
+        <div>
+          <Section style={{ width: "100%", padding: "25px 40px" }}>
             <Typography
-              variant="h3"
+              variant="h5"
               color="text.primary"
               sx={{ marginBottom: "0.5em" }}
             >
               Order Details
             </Typography>
+            <Row justfiyContent="flex-start" width="100%" alignItems="center">
+              <Column
+                justfiyContent="space-between"
+                width="100%"
+                alignItems="center"
+              >
+                <Typography variant="caption" color="text.secondary">
+                  Subtotal
+                </Typography>
+                <Typography variant="caption" color="text.secondary">
+                  $589.98
+                </Typography>
+              </Column>
+              <Column
+                justfiyContent="space-between"
+                width="100%"
+                alignItems="center"
+              >
+                <Typography variant="caption" color="text.secondary">
+                  Tax
+                </Typography>
+                <Typography variant="caption" color="text.secondary">
+                  $2.53
+                </Typography>
+              </Column>
+              <Column
+                justfiyContent="space-between"
+                width="100%"
+                alignItems="center"
+              >
+                <Typography variant="caption" color="text.secondary">
+                  Shipping
+                </Typography>
+                <Typography variant="caption" color="text.secondary">
+                  $0.00
+                </Typography>
+              </Column>
+              <Column
+                justfiyContent="space-between"
+                width="100%"
+                alignItems="center"
+              >
+                <Typography variant="caption" color="text.primary">
+                  Total
+                </Typography>
+                <Typography variant="caption" color="text.primary">
+                  $592.51
+                </Typography>
+              </Column>
+            </Row>
           </Section>
-          <Button style={{ width: "300px" }} onClick={() => {}}>
+          <Button
+            style={{ width: "300px", marginTop: "1em" }}
+            onClick={() => navigate("/payment-success")}
+          >
             <Typography
               variant="h6"
               style={{ textTransform: "capitalize", paddingInline: "50px" }}
@@ -99,10 +155,10 @@ const index = () => {
               Place Order
             </Typography>
           </Button>
-        </Row>
+        </div>
       </Column>
     </Container>
   );
 };
 
-export default index;
+export default PlaceOrder;

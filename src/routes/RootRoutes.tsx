@@ -21,6 +21,7 @@ const ErrorRoute = [
 
 const HomePage = lazy(() => import("../screens/home"));
 const ReviewOrder = lazy(() => import("../screens/payment"));
+const PaymentSuccess = lazy(() => import("../screens/payment/PaymentSuccess"));
 const ShoppingCart = lazy(() => import("../screens/ShoppingCart/ShoppingCart"));
 const SearchPage = lazy(() => import("../screens/landingPage/SearchPage"));
 const ProductDetails = lazy(() => import("../screens/home"));
@@ -41,6 +42,10 @@ const RootRoutes = {
     {
       path: "/review-order",
       component: <ReviewOrder />,
+    },
+    {
+      path: "/payment-success",
+      component: <PaymentSuccess />,
     },
     {
       path: "/search/:keyword",
