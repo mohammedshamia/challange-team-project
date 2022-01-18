@@ -14,7 +14,9 @@ export const WrapperAvatarTab =styled.div`
 `;
 export const WrapperAvatar =styled.div`
     display: flex;
-
+  & h2{
+     color:  ${props => props.theme.palette.text.primary};
+  }
 `
 export const AvatarTab =styled.img`
     width: 137px;

@@ -1,7 +1,7 @@
 import React from "react";
 import VerticalTabs from "../../components/Tabs";
 import {Typography} from "@mui/material";
-import Avatar from "./tabs/avatar";
+import Profile from "./tabs/profile";
 import {Container, WrapperAvatarTab, AvatarTab} from "./Profile.style";
 
 
@@ -14,24 +14,24 @@ const ProfilePage = () => {
                 <Typography variant='h2'>Amy Mayer</Typography>
             </WrapperAvatarTab>
             ,
-            content: <Avatar/>
+            content: <Profile/>
 
         },
         {
             label: <Typography variant='h3'>My Orders</Typography>,
-            content:<Avatar/>
+            content:<Profile/>
         },
         {
             label: <Typography variant='h3'>Wishlist</Typography>,
-            content:<Avatar/>
+            content:<Profile/>
         },
         {
             label: <Typography variant='h3'>Notifications</Typography>,
-            content:<Avatar/>
+            content:<Profile/>
         },
         {
             label: <Typography variant='h3'>Settings</Typography>,
-            content:<Avatar/>
+            content:<Profile/>
         },
     ];
 
@@ -39,6 +39,7 @@ const ProfilePage = () => {
         <Container>
             <VerticalTabs  labels={Tabs.map(label=> label.label)}
                            content={Tabs.map(content=>content.content)}
+                           button='logout'
             />
         </Container>
 

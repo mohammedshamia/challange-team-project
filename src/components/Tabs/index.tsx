@@ -3,7 +3,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import {TabComponent, WrapperTab} from './Tabs.style';
+import {TabComponent, WrapperTab, Line, Button} from './Tabs.style';
+// import {Button} from '../Button/Button.style';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -14,6 +15,7 @@ interface VerticalTabsProps {
     children?: React.ReactNode;
     labels: Array<any>;
     content: Array<React.ReactNode>;
+    button?:string
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -62,6 +64,8 @@ export default function VerticalTabs(props: VerticalTabsProps) {
                 {props.labels.map((label,index)=>
                         <Tab label={label} {...a11yProps(index)}/>
                     )}
+                <Line />
+                <Button>{props.button}</Button>
             </Tabs>
             <TabComponent>
             {props.content.map((comp, i)=>

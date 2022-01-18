@@ -3,10 +3,10 @@ import {Typography} from "@mui/material";
 import {WrapperAvatar} from "./../../Profile.style";
 
 
-const Avatar = () => {
+const Profile = () => {
     return(
         <WrapperAvatar>
-            <Typography variant='h1'>My Profile</Typography>
+            <Typography variant='h2'>My Profile</Typography>
             <div>
                 <div>
                     {/*<p>First Name</p>*/}
@@ -16,4 +16,4 @@ const Avatar = () => {
     )
 };
 
-export default Avatar;
+export default Profile;

@@ -11,12 +11,12 @@ export const WrapperTab = styled.div`
   }
   & .css-11y7uy9-MuiButtonBase-root-MuiTab-root {
     text-transform: none ;
-     color:  ${props => props.theme.palette.text.primary};;
+     color:  ${props => props.theme.palette.text.primary};
  }
  & .css-jpln7h-MuiTabs-scroller{
     padding: 20px 16px;
     border-radius: 16px;
-    background: #F2F2F2;
+    background-color: ${props => props.theme.palette.secondary.main};
     width: 398px;
     max-width: 100%;
  }
@@ -28,7 +28,7 @@ export const WrapperTab = styled.div`
      outline: 3px solid  ${props => props.theme.palette.primary.main}; 
  }
  & .Mui-selected .MuiTypography-h2{
-    color:  ${props => props.theme.palette.text.primary};;
+    color:  ${props => props.theme.palette.text.primary};
  }
  & .css-v4onqz-MuiTabs-indicator{
         display: none;
@@ -43,4 +43,23 @@ export const TabComponent = styled.div`
     border-radius: 16px;
     border-right: 0;
     width: 950px;
+`;
+
+export const Line = styled.hr`
+  width: 100%;
+  height: 2px;
+  margin-top: 1rem;
+`
+export const Button = styled.button`
+  outline: none;
+  text-align: left;
+  border: none;
+  width: 76px;
+  height: 30px;
+  font-size: 24px;
+  padding: 20px 16px;
+  line-height: 30px;
+  color:  ${props => props.theme.palette.text.primary};
+  background-color: ${props => props.theme.palette.secondary.main};
+  cursor: pointer;
 `
