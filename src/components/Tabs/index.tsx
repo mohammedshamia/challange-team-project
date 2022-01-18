@@ -3,11 +3,17 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import {TabComponent} from './Tabs.style';
 
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
     value: number;
+}
+interface VerticalTabsProps {
+    children?: React.ReactNode;
+    labels: Array<any>;
+    content: Array<React.ReactNode>;
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -37,7 +43,7 @@ function a11yProps(index: number) {
     };
 }
 
-export default function VerticalTabs() {
+export default function VerticalTabs(props: VerticalTabsProps) {
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -46,34 +52,25 @@ export default function VerticalTabs() {
 
     return (
         <Box
-            sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 224 }}
+            sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', gap:'32px'}}
         >
             <Tabs
                 orientation="vertical"
                 // variant="scrollable"
                 value={value}
                 onChange={handleChange}
-                aria-label="Vertical tabs example"
+                aria-label="Vertical tabs "
                 sx={{ borderRight: 1, borderColor: 'divider' }}
             >
-                <Tab label="Item One" {...a11yProps(0)} />
-                <Tab label="Item Two" {...a11yProps(1)} />
-                <Tab label="Item Three" {...a11yProps(2)} />
-                <Tab label="Item Four" {...a11yProps(3)} />
-
+                {props.labels.map((label,index)=>
+                        <Tab label={label} {...a11yProps(index)} className='tab'/>
+                    )}
             </Tabs>
-            <TabPanel value={value} index={0}>
-                Item One
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                Item Two
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                Item Three
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-                Item Four
-            </TabPanel>
+            {props.content.map((comp, i)=>
+                <TabPanel value={value} index={i}>
+                    {comp}
+                </TabPanel>
+            )}
 
         </Box>
     );
