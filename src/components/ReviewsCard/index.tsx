@@ -5,11 +5,10 @@ import Review, { Reviewer } from './Review';
 
 interface Iprops  {
     reviewer:Reviewer[]
-    addAntherReviewer:Function
 }
 
 
-export default function ReviewsCard ({reviewer,addAntherReviewer}:Iprops) {
+export default function ReviewsCard ({reviewer}:Iprops) {
   
 
         return (
@@ -20,7 +19,7 @@ export default function ReviewsCard ({reviewer,addAntherReviewer}:Iprops) {
                     valueRating={reviewer.valueRating}
                     optionsReviewer={reviewer.optionsReviewer} 
                     timeOfReview={reviewer.timeOfReview}/>))}
-                 <FormReview  addAntherReviewer={addAntherReviewer}  />
+                 <FormReview    />
             </ContainerReviewsCard>
        )
     

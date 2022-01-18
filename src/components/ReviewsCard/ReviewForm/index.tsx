@@ -46,7 +46,8 @@ import { MainForm } from "./Form";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root": {
-    width: '90%'
+    width: '400px',
+    height:'400px'
   },
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -86,11 +87,7 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
   );
 };
 
-export default function FormReview({
-  addAntherReviewer,
-}: {
-  addAntherReviewer: Function;
-}) {
+export default function FormReview() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -119,10 +116,10 @@ export default function FormReview({
           id="customized-dialog-title"
           onClose={handleClose}
         >
-          Add Review
+           <Typography  color='gold'>  Add Review</Typography> 
         </BootstrapDialogTitle>
         <DialogContent dividers>
-        <MainForm  addAntherReviewer={addAntherReviewer}/>
+        <MainForm  />
         </DialogContent>
       </BootstrapDialog>
     </div>
