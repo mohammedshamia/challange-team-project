@@ -21,7 +21,15 @@ export default function SubTotalCard(props: IProps) {
         {props.priceBeforeDiscount}
       </Typography>
       <Divider sx={{ margin: "30px -30px" }} />
-      <Button sx={{ px: "45px", textTransform: "capitalize" }}>
+      <Button
+        sx={{
+          px: "45px",
+          textTransform: "capitalize",
+          position: "inherit",
+          height: "auto",
+          minHeight: "62px",
+        }}
+      >
         Proceed to checkout
       </Button>
     </Box>
