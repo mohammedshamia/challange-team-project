@@ -33,6 +33,7 @@ export default function Search(props: Iprops) {
         style={{ width: "22%", minWidth: "120px", textDecoration: "none" }}
       >
         <Button
+          borderRadius="6px"
           sx={{
             width: "100%",
             height: "40px",
