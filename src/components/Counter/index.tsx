@@ -1,14 +1,22 @@
 import { useState, useEffect } from "react";
-import { Button } from "../Button/Button.style";
-import { CounterContainer, H1Style } from "./Counter.styled";
+// import { Button } from '../Button/Button.style';
+import { CounterContainer } from "./Counter.styled";
 import AddIcon from "@mui/icons-material/Add";
 import MaximizeIcon from "@mui/icons-material/Maximize";
-
-function Counter({ value, onChange }: { value: number; onChange: Function }) {
+import { Typography, Button } from "@mui/material";
+interface Iprops {
+  value: number;
+  minValue?: number;
+  maxValue?: number;
+  onChange: Function;
+  WidthCounter?:string;
+}
+function Counter({ value, onChange, maxValue, minValue,WidthCounter }: Iprops) {
   const [counter, setCounter] = useState<number>(value);
 
   const handleChangeCounter = (name: string) => {
-    if (name === "+") setCounter(counter + 1);
+    if (name === "increment") setCounter(counter + 1);
+
     else {
       setCounter(counter - 1);
     }
@@ -19,33 +27,40 @@ function Counter({ value, onChange }: { value: number; onChange: Function }) {
   }, [counter]);
 
   return (
-    <CounterContainer>
+    <CounterContainer  width={WidthCounter}  >
       <Button
-        width="40PX"
-        height="40px"
-        backgroundColor="white"
-        border="1px solid #FCDD06"
-        borderRadius="0"
-        color="gray"
+        disabled={counter === maxValue && true}
+        sx={{ width: "48px", height: "40px", borderRadius: "0" }}
         onClick={() => {
-          handleChangeCounter("+");
+          handleChangeCounter("increment");
         }}
+        variant="outlined"
       >
         <AddIcon />
       </Button>
-      <H1Style>{counter}</H1Style>
-      <Button
-        width="40PX"
-        height="40px"
-        backgroundColor="white"
-        border="1px solid #FCDD06"
-        borderRadius="0"
-        color="#000000"
-        onClick={() => {
-          handleChangeCounter("-");
+      <Typography
+        variant="h3"
+        color="text-primary"
+        sx={{
+          width: "100px",
+          border: "1px solid #F7F8FC",
+          textAlign: "center",
+          boxSizing: "border-box",
         }}
       >
-        <MaximizeIcon />
+        {" "}
+        {counter}
+      </Typography>
+      <Button
+        disabled={(counter === 0 || minValue === counter) && true}
+        sx={{ width: "48px", height: "40px", borderRadius: "0" }}
+        onClick={() => {
+          handleChangeCounter("decrement");
+        }}
+        variant="outlined"
+      >
+        <MaximizeIcon sx={{ paddingTop: "calc(50% - 1px)" }} />
+
       </Button>
     </CounterContainer>
   );
