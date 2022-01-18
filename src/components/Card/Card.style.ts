@@ -77,36 +77,35 @@ import styled from "styled-components";
 
 interface Iprpos {
   width: string;
-  borderRadius?:number;
-  background?:string;
-  height?:string;
-  padding?:string,
-  boxshadow?:string
+  borderRadius?: number;
+  background?: string;
+  height?: string;
+  padding?: string;
+  boxshadow?: string;
 }
 
 export const CardContainer = styled(Card)<Iprpos>((props) => ({
   width: props.width,
   height: props.height,
-  background:props.background,
-  padding:props.padding,
-  boxSizing: 'border-box',
-  boxShadow:props.boxshadow
+  background: props.background,
+  padding: props.padding,
+  boxSizing: "border-box",
+  boxShadow: props.boxshadow,
 }));
 
 export const SittingContainer = styled.div`
-display:flex;
-align-items:center;
-gap:'16px';
- margin:'32px 62px';
-`
-;
+  display: flex;
+  justify-content: center;
+  gap: "16px";
+  
+`;
+
 export const SalaryContainer = styled.div`
-display:flex;
- margin-left:161px;
-  gap:14px;
-`
-;
-
-
-
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  gap: 14px;
+  margin-block:16px;
+  
+`;
 

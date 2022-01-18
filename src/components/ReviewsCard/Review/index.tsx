@@ -17,7 +17,7 @@ export default function Review({nameReviewer,valueRating,optionsReviewer,timeOfR
         <ReviewContiner>
            <Typography variant="h6" component="h6">{nameReviewer}</Typography> 
            <RatingContiner>
-              <RatingComponent paddingRating={'1% 0.9%'} value={valueRating} precision={0.5} isReadOnly={true} isDisabled={false} name={"disabled"} onChangeValue={()=>{}}/>
+              <RatingComponent  value={valueRating} precision={0.5} isReadOnly={true} isDisabled={false} name={"disabled"} onChangeValue={()=>{}}/>
                <Typography variant="caption" display="block" gutterBottom> {timeOfReview}</Typography> 
            </RatingContiner>
            <GrayText>
