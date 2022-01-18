@@ -1,21 +1,11 @@
-import React from "react";
-import ShoppingCart from "../../components/Card/ShoppingCart";
-// @ts-ignore
-import headphones from "./../../assets/headphones.jpg";
+import React from 'react'
+import VerticalTabs from "../../components/Tabs";
+function LandingPage(){
+    return (
+        <VerticalTabs  labels={['Avatar', ' My Orders', 'Wishlist', 'Notifications', 'Settings']}
+                       content={[<div>1 </div>, <p>2</p>]} />
 
-function LandingPage() {
-  return (
-    <>
-      <p>LandingPage </p>
-      <ShoppingCart
-        imgSrc={headphones}
-        counter={<p>counter</p>}
-        title="Apple iPhone 11 Pro 256GB Memory"
-        price="$499.99"
-        salePrice="$499"
-      />
-    </>
-  );
+    );
 }
 
 export default LandingPage as React.FC;

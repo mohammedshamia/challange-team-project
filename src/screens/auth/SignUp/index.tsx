@@ -1,18 +1,18 @@
+import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
   Button,
   Container,
   Divider,
   FormWrapper,
   Link,
-} from "../SignIn/SignIn.styled";
+} from "../signIn/SignIn.styled";
 import { Typography } from "@mui/material";
 import { Form, Formik } from "formik";
-import { formSchema } from "./signUp.validation";
 import FormInput from "../../../components/common/FormInput";
-import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { createUser } from "../../../redux/actions/auth.actions";
+import { formSchema } from "./signUp.validation";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -39,7 +39,6 @@ const SignUp = () => {
           Sign up and get exclusive offers from us
         </Typography>
         <Formik
-          enableReinitialize
           initialValues={{
             name: "",
             email: "",

@@ -12,16 +12,18 @@ export default function BasicBreadcrumbs(props: Iprops) {
   let navigate = useNavigate();
 
   const Back = useCallback(() => {
-    navigate(-1);
-  }, []);
+    navigate("/");
+  }, [navigate]);
 
   return (
     <div>
-      <Breadcrumbs>
+      <Breadcrumbs sx={{ fontSize: "24px" }}>
         <Link underline="hover" color="text.secondary" onClick={Back}>
           Back
         </Link>
-        <Typography color="text.primary">{props.itemName}</Typography>
+        <Typography color="text.primary" sx={{ fontSize: "24px" }}>
+          {props.itemName}
+        </Typography>
       </Breadcrumbs>
     </div>
   );

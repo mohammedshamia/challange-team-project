@@ -1,30 +1,31 @@
 import { useCallback, useEffect, useState } from "react";
 import { Formik, Form } from "formik";
-import {
-  Container,
-  FormWrapper,
-  Button,
-  Link,
-  Divider,
-  SignUpButton,
-} from "./SignIn.styled";
 import { Typography } from "@mui/material";
 import { formSchema } from "./signIn.validation";
 import FormInput from "../../../components/common/FormInput";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../redux/actions/auth.actions";
 import { ILogin } from "../../../@types/auth.types";
+import { AppState } from "../../../redux/store";
+import {
+  Button,
+  Container,
+  Divider,
+  FormWrapper,
+  Link,
+  SignUpButton,
+} from "./SignIn.styled";
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { loading } = useSelector((state: AppState) => state.auth);
   const [state, setState] = useState<ILogin>({
     email: "",
     password: "",
     remember_me: false,
   });
-
-  const navigate = useNavigate();
 
   const handleSubmit = useCallback(
     (values) => {
@@ -41,11 +42,6 @@ const SignIn = () => {
       );
     },
     [dispatch, navigate]
-  );
-
-  const handleRedirect = useCallback(
-    () => navigate("/auth/signup"),
-    [navigate]
   );
 
   useEffect(() => {
@@ -88,7 +84,7 @@ const SignIn = () => {
                 placeholder="******"
                 label={"Enter your password"}
               />
-              <Button type="submit">
+              <Button type="submit" disabled={loading}>
                 <Typography variant="h6" color="#000">
                   Login
                 </Typography>
@@ -100,7 +96,7 @@ const SignIn = () => {
               />
               <Link to={"/auth/forgot-password"}>Forgot your password?</Link>
               <Divider />
-              <SignUpButton type="button" onClick={handleRedirect}>
+              <SignUpButton to="/auth/signup">
                 <Typography variant="h6" color="text.primary">
                   Sign up now
                 </Typography>

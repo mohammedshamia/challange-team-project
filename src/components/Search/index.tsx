@@ -28,9 +28,9 @@ export default function Search(props: Iprops) {
     <Lable width={props.width}>
       <SearchInput value={value} onChange={handleValue} onKeyUp={handleKey} />
       <Link
-        to={`/serch/${value}`}
+        to={`/search/${value}`}
         ref={ref}
-        style={{ width: "22%", textDecoration: "none" }}
+        style={{ width: "22%", minWidth: "120px", textDecoration: "none" }}
       >
         <Button
           sx={{
