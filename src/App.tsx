@@ -8,9 +8,12 @@ import { AppState } from "./redux/store";
 import { lightTheme, darkTheme } from "./theme/theme";
 import RootRoutes from "./routes/RootRoutes";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/common/Header";
 import { GlobalStyle } from "./components/GlobalStyles";
+import "react-toastify/dist/ReactToastify.css";
+import ReviewsCard from "./components/ReviewsCard";
+import CustomizedDialogs from "./components/ReviewsCard/ReviewForm";
+
 
 function App() {
   const { theme } = useSelector((state: AppState) => state);
@@ -33,3 +36,25 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

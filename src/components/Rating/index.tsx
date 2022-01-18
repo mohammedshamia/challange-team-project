@@ -1,23 +1,15 @@
 import Rating from "@mui/material/Rating";
 import { useEffect, useState } from "react";
-import { CounterRating } from "./Rating.styled";
-
-export type Name =
-  | "disabled"
-  | "read-only"
-  | "no-value"
-  | "simple-controlled"
-  | "half-rating"
-  | "half-rating-read";
+import { RatingContiner } from "./Rating.styled";
 
 interface Iprops {
   value: number;
-  precision: number;
-  isReadOnly: boolean;
-  isDisabled: boolean;
-  name: Name;
-  onChangeValue: Function;
-  paddingRating?: string;
+  precision?: number;
+  isReadOnly?: boolean;
+  isDisabled?: boolean;
+  name?: string;
+  onChangeValue?:Function;
+  paddingRating?:string;
 }
 
 function RatingComponent({
@@ -30,17 +22,17 @@ function RatingComponent({
   paddingRating,
 }: Iprops) {
   const [valueRating, setvalueRating] = useState<number>(value);
-
   const handleChangeRating = (newValue: number) => {
     setvalueRating(newValue);
   };
 
   useEffect(() => {
-    onChangeValue(valueRating);
-  }, [valueRating]);
+    onChangeValue?.(valueRating)
+  }, [valueRating])
+
 
   return (
-    <CounterRating padding={paddingRating}>
+    <RatingContiner padding={paddingRating}>
       <Rating
         name={name}
         value={valueRating}
@@ -51,7 +43,7 @@ function RatingComponent({
           handleChangeRating(newValue as number);
         }}
       />
-    </CounterRating>
+    </RatingContiner>
   );
 }
 export default RatingComponent;

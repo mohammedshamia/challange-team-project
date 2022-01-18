@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes } from "styled-components";
 
 const CubeMove = keyframes`
   25% {
@@ -17,15 +17,15 @@ const CubeMove = keyframes`
     transform: rotate(-360deg);
     -webkit-transform: rotate(-360deg);
   }
-`
-export const Spinner =  styled('div')`
-  margin: 100px auto;
+`;
+export const Spinner = styled("div")`
+  margin: 40vh auto;
   width: 40px;
   height: 40px;
   position: relative;
   & .cube1,
   & .cube2 {
-    background-color: #FCDD06;
+    background-color: #fcdd06;
     width: 15px;
     height: 15px;
     position: absolute;
@@ -38,4 +38,4 @@ export const Spinner =  styled('div')`
     -webkit-animation-delay: -0.9s;
     animation-delay: -0.9s;
   }
-`
+`;

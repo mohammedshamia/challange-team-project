@@ -7,11 +7,26 @@ export default function Logo() {
   return (
     <LogoBox as={Link} to="/">
       <Typography
-        sx={{ color: "#FCDD06", display: "inline", fontSize: "40px" }}
+        sx={{
+          color: "#FCDD06",
+          display: "inline",
+          fontSize: "40px",
+          fontWeight: "900",
+          letterSpacing: "2px",
+        }}
       >
-        pro
+        Pro
       </Typography>
-      shop
+      <Typography
+        sx={{
+          display: "inline",
+          fontSize: "40px",
+          fontWeight: "900",
+          letterSpacing: "2px",
+        }}
+      >
+        Shop
+      </Typography>
     </LogoBox>
   );
 }
