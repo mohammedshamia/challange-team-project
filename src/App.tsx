@@ -27,6 +27,7 @@ function App() {
         <MuiTheme theme={theme === "light" ? lightTheme : darkTheme}>
           <GlobalStyle />
           <Header />
+          <ProdectPage/>
           <Routes>
             {RootRoutes.routes.map((route, Index) => (
               <Route path={route.path} element={route.component} key={Index} />

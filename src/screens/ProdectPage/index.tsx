@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ReviewsCard from '../../components/ReviewsCard'
 import { Reviewer } from '../../components/ReviewsCard/Review'
+import { DetailesProdectContainer, ProdectesContainer, ReviewesContainer, SpecificationContainer } from './ProdectPage.styled'
 
 export default function ProdectPage() {
    const [reviewer, setReviewer] = useState<Reviewer[]>([{nameReviewer:'hadeel',valueRating:3.5,optionsReviewer:''}])
@@ -10,8 +11,15 @@ export default function ProdectPage() {
    }
    return (
       <div>
-             <ReviewsCard addAntherReviewer={addAntherReviewer} 
-        reviewer={reviewer}/>
+         <DetailesProdectContainer>div1</DetailesProdectContainer>
+         <SpecificationContainer>dv2</SpecificationContainer>  
+         <ReviewesContainer>div3</ReviewesContainer>
+         <ProdectesContainer>div4</ProdectesContainer>  
       </div>
    )
 }
+
+
+
+
+
