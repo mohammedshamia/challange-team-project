@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { CardContainer } from "../Card/Card.style";
-import { Card } from '../Card/Types';
+import { Card } from "../Card/Types";
 
 interface IProps extends Card {}
 
@@ -39,7 +39,5 @@ export default function CategroyCard({ img, name }: IProps) {
         {name}
       </Typography>
     </CardContainer>
-
-    
   );
 }

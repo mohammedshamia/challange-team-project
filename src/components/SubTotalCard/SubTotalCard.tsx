@@ -1,4 +1,5 @@
 import { Divider } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../Button/Button.style";
 import { Box, Typography } from "./SubTotalCard.style";
 
@@ -9,6 +10,7 @@ interface IProps {
 }
 
 export default function SubTotalCard(props: IProps) {
+  const navigate = useNavigate();
   return (
     <Box>
       <Typography color="text.primary" align="center" weight="800" mb="30px">
@@ -29,6 +31,7 @@ export default function SubTotalCard(props: IProps) {
           height: "auto",
           minHeight: "62px",
         }}
+        onClick={() => navigate("/review-order")}
       >
         Proceed to checkout
       </Button>
