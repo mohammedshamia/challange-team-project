@@ -8,9 +8,8 @@ interface Iprops {
   isReadOnly?: boolean;
   isDisabled?: boolean;
   name?: string;
-  onChangeValue?: Function;
-
-  paddingRating?: string;
+  onChangeValue?:Function;
+  paddingRating?:string;
 }
 
 function RatingComponent({
@@ -28,8 +27,9 @@ function RatingComponent({
   };
 
   useEffect(() => {
-    onChangeValue?.(valueRating);
-  }, [valueRating]);
+    onChangeValue?.(valueRating)
+  }, [valueRating])
+
 
   return (
     <RatingContiner padding={paddingRating}>
