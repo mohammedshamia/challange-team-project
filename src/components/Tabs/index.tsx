@@ -66,11 +66,13 @@ export default function VerticalTabs(props: VerticalTabsProps) {
                         <Tab label={label} {...a11yProps(index)} className='tab'/>
                     )}
             </Tabs>
+            <TabComponent>
             {props.content.map((comp, i)=>
                 <TabPanel value={value} index={i}>
                     {comp}
                 </TabPanel>
             )}
+            </TabComponent>
 
         </Box>
     );

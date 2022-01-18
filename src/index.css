@@ -9,13 +9,13 @@
 .css-35zqo5-MuiTabs-root{
     border-right: 0 !important;
 }
-#vertical-tabpanel-0,
+.wrapper_tabs,
 .css-jpln7h-MuiTabs-scroller{
     padding: 20px 16px;
     border-radius: 16px;
     background: #F2F2F2;
 }
-#vertical-tabpanel-0{
+.wrapper_tabs{
     width: 950px !important;
 }
 

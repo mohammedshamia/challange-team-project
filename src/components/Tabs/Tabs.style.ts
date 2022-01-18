@@ -5,4 +5,6 @@ export const TabComponent = styled.div`
     padding: 20px 16px;
     border-radius: 16px;
     border-right: 0;
+    width: 950px !important;
+
 `
