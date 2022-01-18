@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import { ReactNode } from "react";
 import { useParams } from "react-router";
-import { Row } from "../../components/GlobalStyles/row";
+import { Row } from "../../components/GlobalStyles";
 
 export default function SearchPage() {
   const { keyword } = useParams();
@@ -24,7 +24,7 @@ export default function SearchPage() {
   };
   return (
     <div>
-      <Row jsutfiyContent="Featured Products" width="100px"></Row>
+      <Row justfiyContent="Featured Products" width="100px"></Row>
       <Grid spacing={2} container sx={{ justifyContent: "center" }}>
         {filter(arr)}
       </Grid>

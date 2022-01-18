@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
 }
+
 body{
     padding:0;
     margin: 0;
@@ -21,13 +22,13 @@ export const Section = styled.div`
   height: 100%;
   width: 100%;
   border-radius: 16px;
-  padding: 45px 88px;
 `;
 
 interface Iprops {
   justfiyContent: string;
   width: string;
   gap?: string;
+  alignItems?: string;
 }
 
 export const Row = styled("div")<Iprops>((props) => ({
@@ -36,6 +37,7 @@ export const Row = styled("div")<Iprops>((props) => ({
   flexDirection: "column",
   width: props.width || "100%",
   gap: props.gap || "2px",
+  alignItems: props.alignItems || "flex-start",
 }));
 
 export const Column = styled("div")<Iprops>((props) => ({
@@ -43,4 +45,5 @@ export const Column = styled("div")<Iprops>((props) => ({
   justifyContent: props.justfiyContent || "flex-start",
   width: props.width || "100%",
   gap: props.gap || "2px",
+  alignItems: props.alignItems || "flex-start",
 }));

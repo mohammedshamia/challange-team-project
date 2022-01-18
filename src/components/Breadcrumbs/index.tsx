@@ -17,11 +17,13 @@ export default function BasicBreadcrumbs(props: Iprops) {
 
   return (
     <div>
-      <Breadcrumbs>
+      <Breadcrumbs sx={{ fontSize: "24px" }}>
         <Link underline="hover" color="text.secondary" onClick={Back}>
           Back
         </Link>
-        <Typography color="text.primary">{props.itemName}</Typography>
+        <Typography color="text.primary" sx={{ fontSize: "24px" }}>
+          {props.itemName}
+        </Typography>
       </Breadcrumbs>
     </div>
   );

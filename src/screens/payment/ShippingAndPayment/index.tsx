@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { Button, Typography } from "@mui/material";
-// import Button from "../../../components/Button";
 import { Row, Column } from "../../../components/GlobalStyles";
 import { Section } from "../../../components/GlobalStyles";
 import { Form, Formik } from "formik";
 import FormInput from "../../../components/common/FormInput";
+import { Link } from "react-router-dom";
 
 interface IProps {
   next: Function;
@@ -14,6 +14,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 1em;
+  padding: 0;
 `;
 
 const index = ({ next }: IProps) => {
@@ -23,7 +24,7 @@ const index = ({ next }: IProps) => {
         <Section>
           <Formik initialValues={{}} onSubmit={() => {}}>
             {() => (
-              <Form>
+              <Form style={{ padding: "45px 88px" }}>
                 <Row justfiyContent="flex-start" width="100%" gap="20px">
                   <Row justfiyContent="flex-start" width="100%">
                     <Typography
@@ -113,10 +114,21 @@ const index = ({ next }: IProps) => {
             )}
           </Formik>
         </Section>
-        <Section style={{ width: "30%" }}>
-          <Typography variant="h6" color="text.primary">
-            Order Details
-          </Typography>
+        <Section style={{ width: "40%" }}>
+          <div style={{ padding: "22px" }}>
+            <Column
+              justfiyContent="space-between"
+              width="100%"
+              alignItems="center"
+            >
+              <Typography variant="h6" color="text.primary">
+                Order Details
+              </Typography>
+              <Link to={"/shopping-cart"} color="text.secondary">
+                Change
+              </Link>
+            </Column>
+          </div>
         </Section>
       </Column>
       <Row justfiyContent="flex-end" width="fit-content">
