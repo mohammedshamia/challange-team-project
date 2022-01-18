@@ -42,6 +42,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
 import { Rating, TextField } from "@mui/material";
+import { MainForm } from "./Form";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root": {
@@ -86,11 +87,9 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
 };
 
 export default function FormReview({
-  handleSubmit,
-  handleChange,
+  addAntherReviewer,
 }: {
-  handleSubmit: Function;
-  handleChange: Function;
+  addAntherReviewer: Function;
 }) {
   const [open, setOpen] = React.useState(false);
 
@@ -123,49 +122,7 @@ export default function FormReview({
           Add Review
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <form
-            style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-            onSubmit={(e) => {
-              handleSubmit(e);
-            }}
-          >
-            <TextField
-              label="name reviwer:"
-              variant="filled"
-              name="name"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-            />
-
-            <Rating onChange={(event, newValue) => {}} />
-            <TextField
-              id="filled-basic"
-              label="data:"
-              variant="filled"
-              name="time"
-            />
-
-            <TextField
-              placeholder="discraption"
-              name="discrption"
-              multiline
-              rows={2}
-              onChange={(e) => {
-                handleChange(e);
-              }}
-            />
-            <DialogActions>
-              <Button
-                type="submit"
-                autoFocus
-                onClick={handleClose}
-                sx={{ color: "gold", border: "1px solid gold" }}
-              >
-                Add Review
-              </Button>
-            </DialogActions>
-          </form>
+        <MainForm  addAntherReviewer={addAntherReviewer}/>
         </DialogContent>
       </BootstrapDialog>
     </div>

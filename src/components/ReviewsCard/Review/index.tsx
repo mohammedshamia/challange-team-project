@@ -2,12 +2,15 @@ import { Typography } from "@mui/material";
 import RatingComponent from "../../Rating";
 import { GrayText, RatingContiner, ReviewContiner } from "./Review.styled";
 
-export interface Iprops {
-   nameReviewer:string;
-   valueRating:number;
-   optionsReviewer:string;
-   timeOfReview:string;
-  }
+export interface Reviewer {
+    nameReviewer:string;
+    valueRating:number;
+    optionsReviewer:string;
+    timeOfReview?:Date;
+   }
+
+ interface Iprops  extends Reviewer {}
+
   
 export default function Review({nameReviewer,valueRating,optionsReviewer,timeOfReview}:Iprops) {
     return (
@@ -23,4 +26,4 @@ export default function Review({nameReviewer,valueRating,optionsReviewer,timeOfR
             
         </ReviewContiner>
     )
-}
+} 

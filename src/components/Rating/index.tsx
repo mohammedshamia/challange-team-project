@@ -12,11 +12,11 @@ export type Name =
 
 interface Iprops {
   value: number;
-  precision: number;
-  isReadOnly: boolean;
-  isDisabled: boolean;
-  name: Name;
-  onChangeValue:Function;
+  precision?: number;
+  isReadOnly?: boolean;
+  isDisabled?: boolean;
+  name?: string;
+  onChangeValue?:Function;
   paddingRating?:string;
 }
 
@@ -36,7 +36,7 @@ function RatingComponent({
   }
 
   useEffect(() => {
-    onChangeValue(valueRating)
+    onChangeValue?.(valueRating)
   }, [valueRating])
 
   return (
