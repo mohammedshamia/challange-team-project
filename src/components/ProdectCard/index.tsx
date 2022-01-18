@@ -1,5 +1,4 @@
-import { Rating, Typography } from "@mui/material";
-import { Button } from "../Button/Button.style";
+import { Avatar, Button, Typography } from "@mui/material";
 import {
   CardContainer,
   SittingContainer,
@@ -7,6 +6,7 @@ import {
 } from "../Card/Card.style";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { Card } from "../Card/Types";
+import RatingComponent from "../Rating";
 
 interface IProps extends Card {}
 
@@ -21,12 +21,12 @@ export default function ProdectCard({
     <CardContainer
       width="520px"
       height="650px"
-      boxshadow="none"
       sx={{
         background: "white",
         borderRadius: "16px",
         paddingTop: "35px",
         boxSizing: "border-box",
+        position: "relative",
       }}
     >
       <img src={img} alt="" width="513px" height="342px" />
@@ -37,12 +37,14 @@ export default function ProdectCard({
           textAlign: "left",
           font: "normal normal normal 24px/15px Muli",
           letterSpacing: "0.48px",
-          color: " #242424",
         }}
       >
         {name}
       </Typography>
-      <Rating defaultValue={valueRating} sx={{ margin: " 28px 161px  " }} />
+      <RatingComponent
+        value={valueRating as number}
+        paddingRating="28px 161px"
+      />
       <SalaryContainer
         style={{ display: "flex", marginLeft: " 161px", gap: "14px" }}
       >
@@ -63,6 +65,7 @@ export default function ProdectCard({
             font: "normal normal bold 30px/15px Muli",
             letterSpacing: "0.6px",
             color: " #242424",
+            textDecoration: "solid line-through purple 4px",
           }}
         >
           {salary}$
@@ -71,21 +74,25 @@ export default function ProdectCard({
 
       <SittingContainer style={{ gap: "16px", margin: "32px 62px" }}>
         <Button
-        // width="54px"
-        // height="62px"
-        // backgroundColor="#F2F2F2"
-        // borderRadius="10px"
-        // color="gray"
+          sx={{
+            width: "54px",
+            height: "62px",
+            backgroundColor: "#F2F2F2",
+            borderRadius: "10px",
+            color: "gray",
+          }}
         >
           <BookmarkBorderIcon
             sx={{ width: "24px", height: "28px", margin: "15px 10px " }}
           />
         </Button>
         <Button
-        // width="324px"
-        // height="62px"
-        // backgroundColor="text.primary"
-        // borderRadius=" 10px"
+          sx={{
+            width: "324px",
+            height: "62px",
+            backgroundColor: "#F2F2F2",
+            borderRadius: " 10px",
+          }}
         >
           <Typography
             color="text.primary"
@@ -96,9 +103,23 @@ export default function ProdectCard({
             }}
           >
             add to card
-          </Typography>{" "}
+          </Typography>
         </Button>
       </SittingContainer>
+      {discountValue && (
+        <Avatar
+          sx={{
+            position: "absolute",
+            width: "87px",
+            height: "87px",
+            top: "19px",
+            left: "421px",
+            background: "red",
+          }}
+        >
+          -{discountValue}%
+        </Avatar>
+      )}
     </CardContainer>
   );
 }

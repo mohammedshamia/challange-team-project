@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import { Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Row, Column } from "../../../components/GlobalStyles";
 import { Section } from "../../../components/GlobalStyles";
 import { Form, Formik } from "formik";
+import OrderDetails from "../OrderDetails";
 import FormInput from "../../../components/common/FormInput";
-import { Link } from "react-router-dom";
+import { Button } from "../../../components/Button/Button.style";
 
 interface IProps {
   next: Function;
@@ -20,11 +21,16 @@ const Container = styled.div`
 const index = ({ next }: IProps) => {
   return (
     <Container>
-      <Column justfiyContent="space-between" width="100%" gap="30px">
-        <Section>
-          <Formik initialValues={{}} onSubmit={() => {}}>
-            {() => (
-              <Form style={{ padding: "45px 88px" }}>
+      <Formik initialValues={{}} onSubmit={() => {}}>
+        {() => (
+          <Form>
+            <Column
+              justfiyContent="stretch"
+              width="100%"
+              alignItems="stretch"
+              gap="30px"
+            >
+              <Section style={{ padding: "45px 88px" }}>
                 <Row justfiyContent="flex-start" width="100%" gap="20px">
                   <Row justfiyContent="flex-start" width="100%">
                     <Typography
@@ -110,30 +116,92 @@ const index = ({ next }: IProps) => {
                     </Row>
                   </Row>
                 </Row>
-              </Form>
-            )}
-          </Formik>
-        </Section>
-        <Section style={{ width: "40%" }}>
-          <div style={{ padding: "22px" }}>
-            <Column
-              justfiyContent="space-between"
-              width="100%"
-              alignItems="center"
-            >
-              <Typography variant="h6" color="text.primary">
-                Order Details
-              </Typography>
-              <Link to={"/shopping-cart"} color="text.secondary">
-                Change
-              </Link>
+              </Section>
+              <Section
+                style={{ width: "40%", height: "inherit", padding: "22px" }}
+              >
+                <Row
+                  justfiyContent="flex-start"
+                  width="100%"
+                  alignItems="center"
+                >
+                  <OrderDetails products={[]} />
+                </Row>
+                <Row
+                  justfiyContent="flex-start"
+                  width="100%"
+                  alignItems="center"
+                >
+                  <Column
+                    justfiyContent="space-between"
+                    width="100%"
+                    alignItems="center"
+                  >
+                    <Typography variant="caption" color="text.secondary">
+                      Subtotal
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      $589.98
+                    </Typography>
+                  </Column>
+                  <Column
+                    justfiyContent="space-between"
+                    width="100%"
+                    alignItems="center"
+                  >
+                    <Typography variant="caption" color="text.secondary">
+                      Tax
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      $2.53
+                    </Typography>
+                  </Column>
+                  <Column
+                    justfiyContent="space-between"
+                    width="100%"
+                    alignItems="center"
+                  >
+                    <Typography variant="caption" color="text.secondary">
+                      Shipping
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      $0.00
+                    </Typography>
+                  </Column>
+                  <Column
+                    justfiyContent="space-between"
+                    width="100%"
+                    alignItems="center"
+                  >
+                    <Typography variant="caption" color="text.primary">
+                      Total
+                    </Typography>
+                    <Typography variant="caption" color="text.primary">
+                      $592.51
+                    </Typography>
+                  </Column>
+                </Row>
+              </Section>
             </Column>
-          </div>
-        </Section>
-      </Column>
-      <Row justfiyContent="flex-end" width="fit-content">
-        <Button onClick={() => next()}>Review order</Button>
-      </Row>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row-reverse",
+                marginTop: "0.5em",
+              }}
+            >
+              <Button onClick={() => next()}>
+                <Typography
+                  variant="h6"
+                  style={{ textTransform: "capitalize", paddingInline: "50px" }}
+                >
+                  Review order
+                </Typography>
+              </Button>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </Container>
   );
 };

@@ -19,7 +19,6 @@ body{
 
 export const Section = styled.div`
   background-color: ${({ theme }) => theme.palette.secondary.main};
-  height: 100%;
   width: 100%;
   border-radius: 16px;
 `;
@@ -29,6 +28,7 @@ interface Iprops {
   width: string;
   gap?: string;
   alignItems?: string;
+  padding?: string;
 }
 
 export const Row = styled("div")<Iprops>((props) => ({
