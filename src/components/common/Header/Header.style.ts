@@ -26,4 +26,5 @@ export const Toolbar = styled(T)(() => ({
 
 export const FlexBox = styled(Box)(() => ({
   display: "flex",
+  alignItems: "center",
 }));

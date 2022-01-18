@@ -8,7 +8,7 @@ export const WrapperCart = styled.div`
   border-radius: 16px;
   opacity: 1;
   width: 100%;
-  max-width: 1126px;
+
   height: 242px;
   & img {
     width: 100%;
