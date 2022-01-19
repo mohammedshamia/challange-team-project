@@ -8,6 +8,7 @@ interface Iprops {
   width?: string;
   fontSize?: string;
   background?: string;
+  unhover?: boolean;
 }
 export const Button = styled(B)<Iprops>((props) => ({
   color: props.theme.palette.text.primary,
@@ -18,8 +19,8 @@ export const Button = styled(B)<Iprops>((props) => ({
   textDecoration: "none",
   height: props.height || "62px",
   width: props.width || "100%",
-  "&:hover": {
-    background: "none",
+  "&:hover": !props.unhover && {
+    background: props.theme.palette.primary.main,
     opacity: "0.8",
   },
 }));

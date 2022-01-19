@@ -46,6 +46,7 @@ export const lightTheme = createTheme({
     secondary: {
       main: "#f2f2f2",
     },
+    divider: "rgba(112,112,112,0.3)",
     text: {
       primary: "#242424",
       secondary: "#707070",

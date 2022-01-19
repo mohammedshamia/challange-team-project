@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { CardContainer } from "../Card/Card.style";
-import { Card } from '../Card/Types';
+import { Card } from "../Card/Types";
 
 interface IProps extends Card {}
 
@@ -18,7 +18,8 @@ export default function CategroyCard({ img, name }: IProps) {
       }}
     >
       <CardContainer
-        width="100%"
+        height="346px"
+        width="380px"
         sx={{
           display: "flex",
           justifyContent: "center",
@@ -26,20 +27,19 @@ export default function CategroyCard({ img, name }: IProps) {
           boxShadow: "1px 2px px 1px rgba(0,0,0,0.2)",
         }}
       >
-        <img src={img} alt="" width="290px" height="200px" />
+        <img src={img} alt="img" />
       </CardContainer>
       <Typography
+        variant="h2"
+        fontSize="1.5rem"
         sx={{
           marginTop: "16px",
           textAlign: "center",
-          font: " normal normal bold 24px/15px Muli",
           letterSpacing: "0.6px",
         }}
       >
         {name}
       </Typography>
     </CardContainer>
-
-    
   );
 }
