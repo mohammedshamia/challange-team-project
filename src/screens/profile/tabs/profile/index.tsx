@@ -41,7 +41,7 @@ const Profile = () => {
             </LeftSide>
             <RightSide>
                 <AvatarTab src={"/static/avatar.jpg"} alt='avatar' width='198px' height='198px'/>
-                <Button width='153' height='40px'>Upload new photo</Button>
+                <Button width='153' height='40px' fontSize='13px'>Upload new photo</Button>
             </RightSide>
         </WrapperAvatar>
     )

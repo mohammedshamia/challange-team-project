@@ -2,7 +2,7 @@ import React, { lazy } from "react";
 
 const SignUp = React.lazy(() => import("../screens/auth/SignUp"));
 
-const SignIn = lazy(() => import("../screens/auth/signIn"));
+const SignIn = lazy(() => import("../screens/auth/SignIn"));
 
 const ForgotPassword = lazy(() => import("../screens/auth/ForgetPassword"));
 

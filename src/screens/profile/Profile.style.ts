@@ -31,6 +31,7 @@ export const AvatarTab =styled.img<Iprops>((props) => ({
     maxWidth: "100%",
     maxHeight: "100%",
     borderRadius: props.borderRadius || "50%",
+    objectFit:'cover',
 }));
 
 export const LeftSide = styled.div`
@@ -41,7 +42,8 @@ export const RightSide = styled.div`
     display: flex;
     flex-direction: column;
     & button {
-      margin-top:50px
+      margin-top:50px;
+      text-transform: none !important;
     } 
   
 `
