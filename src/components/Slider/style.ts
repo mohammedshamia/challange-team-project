@@ -28,22 +28,21 @@ export const DivImg = styled("div")(() => ({
   zIndex: "0",
 }));
 
-
 interface IpropsDots {
-  width:string,
-  height:string,
-  margin:string,
-  position:string,
-  top:string,
-  
+  width?: string;
+  height?: string;
+  margin?: string;
+  active: boolean;
 }
-// export const DotsItem = styled("span")((props) => ({
-//   width: props.width || "25px",
-//   height: props.width || "25px",
-//   borderRadius: "50%",
-//   margin: props.margin || "10px",
-//   background: props.theme.palette.secondary.main,
-//   position: props.position || "static",
-//   top: props.top || "50%",
-//   right: props.right || "50%",
-// }));
+export const DotsItem = styled("span")<IpropsDots>`
+  width: ${(props) => props.width || "25px"};
+  height: ${(props) => props.height || "25px"};
+  border-radius: 50%;
+  margin: ${(props) => props.margin || "10px"};
+
+  ${(props) =>
+    props.active
+      ? `background:${props.theme.palette.primary.main}`
+      : `background:${props.theme.palette.text.secondary};opacity: 0.3;`};
+  cursor: pointer;
+`;

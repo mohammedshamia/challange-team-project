@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Button } from "../Button/Button.style";
-import { Stack, Contianer, Dots,DivImg } from "./style";
+import { Stack, Contianer, Dots, DivImg, DotsItem } from "./style";
 import { DataBannerSlider } from "./sliderData";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
@@ -53,45 +53,52 @@ export default function Slider() {
           </Contianer>
         ))}
       </AutoPlaySwipeableViews>
-      <Dots
-        variant="dots"
-        steps={DataBannerSlider.length}
-        position="static"
-        activeStep={activeStep}
-        sx={{ maxWidth: 400, flexGrow: 1 }}
-        nextButton={
-          <Button
-            unhover
-            width="17px"
-            background="none"
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep === DataBannerSlider.length - 1}
-          >
-            <KeyboardArrowRight
-              sx={{
-                fontSize: "3.4rem",
-              }}
-            />
-          </Button>
-        }
-        backButton={
-          <Button
-            unhover
-            width="17px"
-            background="none"
-            size="small"
-            onClick={handleBack}
-            disabled={activeStep === 0}
-          >
-            <KeyboardArrowLeft
-              sx={{
-                fontSize: "3.4rem",
-              }}
-            />
-          </Button>
-        }
-      />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          padding: "20px 0",
+          alignItems: "center",
+        }}
+      >
+        <Button
+          unhover
+          width="17px"
+          background="none"
+          size="small"
+          onClick={handleNext}
+          disabled={activeStep === DataBannerSlider.length - 1}
+        >
+          <KeyboardArrowLeft
+            sx={{
+              fontSize: "3.4rem",
+            }}
+          />
+        </Button>
+        {Array.from(Array(DataBannerSlider.length)).map((_, index) => (
+          <DotsItem
+            active={activeStep === index && true}
+            onClick={() => handleChangeIndex(index)}
+            width="25px"
+            height="25px"
+            key={index}
+          />
+        ))}
+        <Button
+          unhover
+          width="17px"
+          background="none"
+          size="small"
+          onClick={handleBack}
+          disabled={activeStep === 0}
+        >
+          <KeyboardArrowRight
+            sx={{
+              fontSize: "3.4rem",
+            }}
+          />
+        </Button>
+      </div>
     </div>
   );
 }
