@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const ContainerReviewsCard= styled.div`
-width:60%;
-padding:1% 2%;
+width:1586px;
 border: 1px solid #BCBCBC;
+padding-block:2%;
 
 `;
