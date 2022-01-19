@@ -1,7 +1,7 @@
-import {  Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Button } from "../Button/Button.style";
-import { Stack, Contianer, Dots } from "./style";
+import { Stack, Contianer, Dots,DivImg } from "./style";
 import { DataBannerSlider } from "./sliderData";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
@@ -24,6 +24,7 @@ export default function Slider() {
   return (
     <div>
       <AutoPlaySwipeableViews
+        interval={6000}
         enableMouseEvents
         index={activeStep}
         onChangeIndex={handleChangeIndex}
@@ -46,9 +47,9 @@ export default function Slider() {
                 Shop now
               </Button>
             </Stack>
-            <div>
+            <DivImg>
               <img src={item.image} alt="slide" />
-            </div>
+            </DivImg>
           </Contianer>
         ))}
       </AutoPlaySwipeableViews>
@@ -60,6 +61,7 @@ export default function Slider() {
         sx={{ maxWidth: 400, flexGrow: 1 }}
         nextButton={
           <Button
+            unhover
             width="17px"
             background="none"
             size="small"
@@ -75,6 +77,7 @@ export default function Slider() {
         }
         backButton={
           <Button
+            unhover
             width="17px"
             background="none"
             size="small"

@@ -24,3 +24,26 @@ export const Dots = styled(MobileStepper)((props) => ({
     height: "25px",
   },
 }));
+export const DivImg = styled("div")(() => ({
+  zIndex: "0",
+}));
+
+
+interface IpropsDots {
+  width:string,
+  height:string,
+  margin:string,
+  position:string,
+  top:string,
+  
+}
+// export const DotsItem = styled("span")((props) => ({
+//   width: props.width || "25px",
+//   height: props.width || "25px",
+//   borderRadius: "50%",
+//   margin: props.margin || "10px",
+//   background: props.theme.palette.secondary.main,
+//   position: props.position || "static",
+//   top: props.top || "50%",
+//   right: props.right || "50%",
+// }));
