@@ -59,7 +59,7 @@ export const Button = styled.button`
   font-size: 24px;
   padding: 20px 16px;
   line-height: 30px;
-  color:  ${props => props.theme.palette.text.primary};
+  color:  ${props => props.theme.palette.text.secondary};
   background-color: ${props => props.theme.palette.secondary.main};
   cursor: pointer;
 `

@@ -19,19 +19,19 @@ const ProfilePage = () => {
         },
         {
             label: <Typography variant='h3'>My Orders</Typography>,
-            content:<Profile/>
+            content:<Typography variant='h3'>My Orders</Typography>
         },
         {
             label: <Typography variant='h3'>Wishlist</Typography>,
-            content:<Profile/>
+            content:<Typography variant='h3'>Wishlist</Typography>
         },
         {
             label: <Typography variant='h3'>Notifications</Typography>,
-            content:<Profile/>
+            content:<Typography variant='h3'>Notifications</Typography>
         },
         {
             label: <Typography variant='h3'>Settings</Typography>,
-            content:<Profile/>
+            content:<Typography variant='h3'>Settings</Typography>
         },
     ];
 
