@@ -1,12 +1,13 @@
-import { Avatar, Button, Typography } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
 import {
   CardContainer,
-  SittingContainer,
   SalaryContainer,
+  SittingContainer,
 } from "../Card/Card.style";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { Card } from "../Card/Types";
 import RatingComponent from "../Rating";
+import { Button } from "../Button/Button.style";
 
 interface IProps extends Card {}
 
@@ -17,12 +18,13 @@ export default function ProdectCard({
   valueRating,
   discountValue,
 }: IProps) {
+  const salaryAfterDiscount: number | undefined = discountValue;
   return (
     <CardContainer
       width="520px"
       height="650px"
       sx={{
-        background: "white",
+        background: "#fff",
         borderRadius: "16px",
         paddingTop: "35px",
         boxSizing: "border-box",
@@ -34,20 +36,20 @@ export default function ProdectCard({
       <Typography
         color="text.primary"
         sx={{
-          textAlign: "left",
+          textAlign: "center",
           font: "normal normal normal 24px/15px Muli",
           letterSpacing: "0.48px",
+          marginBlock: "16px",
         }}
       >
         {name}
       </Typography>
-      <RatingComponent
-        value={valueRating as number}
-        paddingRating="28px 161px"
-      />
-      <SalaryContainer
-        style={{ display: "flex", marginLeft: " 161px", gap: "14px" }}
-      >
+
+      <SalaryContainer>
+        <RatingComponent value={valueRating as number} isReadOnly={true} />
+      </SalaryContainer>
+
+      <SalaryContainer>
         {discountValue && (
           <Typography
             sx={{
@@ -64,36 +66,27 @@ export default function ProdectCard({
           sx={{
             font: "normal normal bold 30px/15px Muli",
             letterSpacing: "0.6px",
-            color: " #242424",
-            textDecoration: "solid line-through purple 4px",
+            color: " text.primary",
+            textDecoration: "solid line-through black 4px",
           }}
         >
-          {salary}$
+          {salaryAfterDiscount}$
         </Typography>
       </SalaryContainer>
 
-      <SittingContainer style={{ gap: "16px", margin: "32px 62px" }}>
+      <SittingContainer style={{ gap: "14px" }}>
         <Button
-          sx={{
-            width: "54px",
-            height: "62px",
-            backgroundColor: "#F2F2F2",
-            borderRadius: "10px",
-            color: "gray",
-          }}
+          background="#f2f2f2"
+          width="54px"
+          height="62px"
+          borderRadius="10px"
         >
           <BookmarkBorderIcon
             sx={{ width: "24px", height: "28px", margin: "15px 10px " }}
           />
         </Button>
-        <Button
-          sx={{
-            width: "324px",
-            height: "62px",
-            backgroundColor: "#F2F2F2",
-            borderRadius: " 10px",
-          }}
-        >
+        <Button width="324px" height="62px" borderRadius="10px"           background="#f2f2f2"
+>
           <Typography
             color="text.primary"
             sx={{
@@ -110,8 +103,8 @@ export default function ProdectCard({
         <Avatar
           sx={{
             position: "absolute",
-            width: "87px",
-            height: "87px",
+            width: "80px",
+            height: "80px",
             top: "19px",
             left: "421px",
             background: "red",

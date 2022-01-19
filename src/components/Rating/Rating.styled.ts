@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
-interface Iprops{
+interface Iprops {
   padding?: string;
 }
-export const RatingContiner = styled.div<Iprops>`
-padding:${props=>props.padding};
+
+export const CounterRating = styled.div<Iprops>`
+  padding: ${(props) => props.padding};
 `;

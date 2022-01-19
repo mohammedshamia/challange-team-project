@@ -1,6 +1,5 @@
 import { styled } from "@mui/material/styles";
 import { Button as B } from "@mui/material";
-import { height } from "@mui/system";
 interface Iprops {
   borderRadius?: string;
   border?: string;
@@ -9,6 +8,7 @@ interface Iprops {
   fontSize?: string;
   background?: string;
   unhover?: boolean;
+  to?: string;
 }
 export const Button = styled(B)<Iprops>((props) => ({
   color: props.theme.palette.text.primary,
@@ -22,5 +22,6 @@ export const Button = styled(B)<Iprops>((props) => ({
   "&:hover": !props.unhover && {
     background: props.theme.palette.primary.main,
     opacity: "0.8",
+    backgroundColor: props.theme.palette.primary.main,
   },
 }));
