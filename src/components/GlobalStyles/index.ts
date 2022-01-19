@@ -1,3 +1,4 @@
+import { Divider } from "@mui/material";
 import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -24,8 +25,8 @@ export const Section = styled.div`
 `;
 
 interface Iprops {
-  justfiyContent: string;
-  width: string;
+  justfiyContent?: string;
+  width?: string;
   gap?: string;
   alignItems?: string;
   padding?: string;
@@ -38,6 +39,9 @@ export const Row = styled("div")<Iprops>((props) => ({
   width: props.width || "100%",
   gap: props.gap || "2px",
   alignItems: props.alignItems || "flex-start",
+  borderBottom: `0.5px solid ${props.theme.palette.divider}`,
+  margin: "auto",
+  paddingTop:"16px",
 }));
 
 export const Column = styled("div")<Iprops>((props) => ({
@@ -46,4 +50,14 @@ export const Column = styled("div")<Iprops>((props) => ({
   width: props.width || "100%",
   gap: props.gap || "2px",
   alignItems: props.alignItems || "flex-start",
+}));
+
+interface IpropsDivider {
+  widthDivider: string;
+}
+export const Divder = styled(Divider)<IpropsDivider>((props) => ({
+  width: props.widthDivider || "45%",
+  border: `2px solid ${props.theme.palette.primary.main}`,
+  marginTop: "22px",
+  zIndex: 1,
 }));
