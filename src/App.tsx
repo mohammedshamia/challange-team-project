@@ -11,25 +11,11 @@ import { ToastContainer } from "react-toastify";
 import Header from "./components/common/Header";
 import { GlobalStyle } from "./components/GlobalStyles";
 import "react-toastify/dist/ReactToastify.css";
-import ReviewsCard from "./components/ReviewsCard";
-import CustomizedDialogs from "./components/ReviewsCard/ReviewForm";
+
 
 function App() {
   const { theme } = useSelector((state: AppState) => state);
   return (
-<<<<<<< HEAD
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-      <Suspense fallback={<Loading />}>
-       <ReviewsCard reviewer={[{nameReviewer:'hadeel',valueRating:3, optionsReviewer:'yes' }]}/>
-        <Routes>
-          {RootRoutes.routes.map((route, Index) => (
-            <Route path={route.path} element={route.component} key={Index} />
-          ))}
-        </Routes>
-      </Suspense>
-      <ToastContainer autoClose={3000} />
-    </ThemeProvider>
-=======
     <Suspense fallback={<Loading />}>
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <MuiTheme theme={theme === "light" ? lightTheme : darkTheme}>
@@ -44,7 +30,6 @@ function App() {
         </MuiTheme>
       </ThemeProvider>
     </Suspense>
->>>>>>> 83b3618d0f8f77f726b8c09ab7b395e40a23dabf
   );
 }
 
