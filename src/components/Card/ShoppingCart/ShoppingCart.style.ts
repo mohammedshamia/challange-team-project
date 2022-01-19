@@ -11,7 +11,7 @@ export const WrapperCart = styled(Grid)`
 `;
 
 export const ImgContainer = styled(Grid)`
-  max-width: 450px !important;
+  max-width: 210px !important;
   height: 210px;
   width: 300px;
   margin: auto;

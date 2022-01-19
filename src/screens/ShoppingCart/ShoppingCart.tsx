@@ -3,7 +3,6 @@ import { Box } from "@mui/system";
 import { ReactNode } from "react";
 import BasicBreadcrumbs from "../../components/Breadcrumbs";
 import ShoppingCart from "../../components/Card/ShoppingCart";
-import PaginationButtons from "../../components/common/Pagination";
 import SubTotalCard from "../../components/SubTotalCard/SubTotalCard";
 
 interface ShoppingCartProps {
@@ -14,7 +13,12 @@ interface ShoppingCartProps {
   salePrice?: string;
 }
 const arr: Array<ShoppingCartProps> = [
-  { title: "one", counter: "9", price: "678", imgSrc: "/static/img1.png" },
+  {
+    title: "one gjhv jkbnl kb bijb",
+    counter: "9",
+    price: "678",
+    imgSrc: "/static/img1.png",
+  },
   {
     title: "two lkn jn jbouhbjhnmkmn jhbjlkn ",
     counter: "83",
@@ -69,7 +73,6 @@ export default function ShoppingCartPage() {
           />
         </Grid>
       </Grid>
-      <PaginationButtons count={6} />
     </Box>
   );
 }
