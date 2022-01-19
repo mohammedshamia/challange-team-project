@@ -7,7 +7,7 @@ import {
   Divider,
   FormWrapper,
   Link,
-} from "../signIn/SignIn.styled";
+} from "../SignIn/SignIn.styled";
 import { Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 import FormInput from "../../../components/common/FormInput";

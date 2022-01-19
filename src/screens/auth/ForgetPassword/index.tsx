@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 import { useCallback } from "react";
 import FormInput from "../../../components/common/FormInput";
-import { Divider, Link } from "../signIn/SignIn.styled";
+import { Divider, Link } from "../SignIn/SignIn.styled";
 import { Button, Container, FormWrapper } from "./ForgetPassword.styled";
 import { formSchema } from "./ForgetPassword.validation";
 
