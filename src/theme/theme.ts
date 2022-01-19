@@ -72,6 +72,7 @@ export const darkTheme = createTheme({
     secondary: {
       main: "#2f2f2f",
     },
+    divider: "rgba(212,212,212,0.5)",
     success: {
       main: "#4BB543",
     },

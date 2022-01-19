@@ -39,7 +39,6 @@ export const Row = styled("div")<Iprops>((props) => ({
   width: props.width || "100%",
   gap: props.gap || "2px",
   alignItems: props.alignItems || "flex-start",
-  borderBottom: `0.5px solid ${props.theme.palette.divider}`,
   margin: "auto",
   paddingTop:"16px",
 }));
@@ -57,7 +56,8 @@ interface IpropsDivider {
 }
 export const Divder = styled(Divider)<IpropsDivider>((props) => ({
   width: props.widthDivider || "45%",
-  border: `2px solid ${props.theme.palette.primary.main}`,
+  height: '7px',
+  background: props.theme.palette.primary.main,
   marginTop: "22px",
   zIndex: 1,
 }));

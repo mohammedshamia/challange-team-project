@@ -1,6 +1,7 @@
-import { Typography } from "@mui/material";
+import { Divider, Typography } from "@mui/material";
 import React from "react";
-import { Row, Divder } from "./index";
+import styled from "styled-components";
+import { Row as Row_, Divder } from "./index";
 
 interface Iprops {
   title: string;
@@ -9,6 +10,10 @@ interface Iprops {
   alignItems?: "center" | "flex-start" | "flex-end";
 }
 
+const Row = styled(Row_)`
+  border-bottom: 0.5px solid ${(props) => props.theme.palette.divider};
+  margin-bottom: 40px;
+`;
 export default function RowComponent({
   title,
   widthDivider,
