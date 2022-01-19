@@ -19,7 +19,6 @@ function App() {
 
   const { theme } = useSelector((state: AppState) => state);
   return (
-
     <Suspense fallback={<Loading />}>
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <MuiTheme theme={theme === "light" ? lightTheme : darkTheme}>
@@ -38,25 +37,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

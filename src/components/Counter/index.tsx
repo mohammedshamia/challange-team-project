@@ -1,66 +1,62 @@
 import { useState, useEffect } from "react";
-// import { Button } from '../Button/Button.style';
 import { CounterContainer } from "./Counter.styled";
 import AddIcon from "@mui/icons-material/Add";
-import MaximizeIcon from "@mui/icons-material/Maximize";
-import { Typography, Button } from "@mui/material";
+import { Typography } from "@mui/material";
+import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
+import { Button } from "../Button/Button.style";
+
 interface Iprops {
   value: number;
   minValue?: number;
   maxValue?: number;
-  onChange: Function;
-  WidthCounter?:string;
 }
-function Counter({ value, onChange, maxValue, minValue,WidthCounter }: Iprops) {
+
+function Counter({ value, maxValue, minValue }: Iprops) {
   const [counter, setCounter] = useState<number>(value);
 
   const handleChangeCounter = (name: string) => {
-    if (name === "increment") setCounter(counter + 1);
-
-    else {
-      setCounter(counter - 1);
-    }
+    name === "increment" ? setCounter(counter + 1) : setCounter(counter - 1);
   };
 
-  useEffect(() => {
-    onChange(counter);
-  }, [counter]);
-
   return (
-    <CounterContainer  width={WidthCounter}  >
-      <Button
-        disabled={counter === maxValue && true}
-        sx={{ width: "48px", height: "40px", borderRadius: "0" }}
-        onClick={() => {
-          handleChangeCounter("increment");
-        }}
-        variant="outlined"
-      >
-        <AddIcon />
-      </Button>
-      <Typography
-        variant="h3"
-        color="text-primary"
-        sx={{
-          width: "100px",
-          border: "1px solid #F7F8FC",
-          textAlign: "center",
-          boxSizing: "border-box",
-        }}
-      >
-        {" "}
-        {counter}
-      </Typography>
+    <CounterContainer
+      sx={{ width: "100%", maxWidth: "220px", margin: { xs: "auto", lg: "0" } }}
+    >
       <Button
         disabled={(counter === 0 || minValue === counter) && true}
-        sx={{ width: "48px", height: "40px", borderRadius: "0" }}
         onClick={() => {
           handleChangeCounter("decrement");
         }}
-        variant="outlined"
+        width="48px"
+        height="40px"
+        borderRadius="0"
+        background="palette.primary.main"
+        border="1px solid #FCDD06"
+        sx={{ minWidth: "40px" }}
       >
-        <MaximizeIcon sx={{ paddingTop: "calc(50% - 1px)" }} />
-
+        <HorizontalRuleIcon />
+      </Button>
+      <Typography
+        variant="h5"
+        fontWeight={"bold"}
+        color="text.primary"
+        sx={{ flexGrow: "99" }}
+      >
+        {counter}
+      </Typography>
+      <Button
+        disabled={counter === maxValue && true}
+        onClick={() => {
+          handleChangeCounter("increment");
+        }}
+        width="48px"
+        height="40px"
+        borderRadius="0"
+        border="1px solid #FCDD06"
+        background="background.default"
+        sx={{ minWidth: "40px" }}
+      >
+        <AddIcon />
       </Button>
     </CounterContainer>
   );

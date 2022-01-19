@@ -1,34 +1,44 @@
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { ReactNode } from "react";
 import { useParams } from "react-router";
-import { Row } from "../../components/GlobalStyles";
+import ProdectCard from "../../components/ProdectCard";
+
+const arr: Array<{ name: string }> = [
+  { name: "one" },
+  { name: "two" },
+  { name: "threoe" },
+  { name: "foukjre" },
+  { name: "thmnoree" },
+  { name: "fou-rnme" },
+];
 
 export default function SearchPage() {
   const { keyword } = useParams();
-  const arr: Array<{ name: string }> = [
-    { name: "one" },
-    { name: "two" },
-    { name: "three" },
-    { name: "foure" },
-  ];
 
   let filter = (array: Array<{ name: string }>): ReactNode[] => {
     return array.map(
       (item) =>
         item.name.includes("o") && (
-          <Grid item key={item.name}>
-            {item.name}
+          <Grid item xs={12} md={6} lg={4}>
+            <ProdectCard
+              img="/static/img1.png"
+              name={item.name}
+              salary={45}
+              valueRating={4}
+              discountValue={3}
+              key={item.name}
+            />
           </Grid>
         )
     );
   };
+
   return (
-    <div>
-      <Row justfiyContent="Featured Products" width="100px"></Row>
-      <Grid spacing={2} container sx={{ justifyContent: "center" }}>
+    <Box p={"0 7%"}>
+      <Grid spacing={5} container sx={{ justifyContent: "center" }}>
         {filter(arr)}
       </Grid>
-    </div>
+    </Box>
   );
 }
 // keyword as string

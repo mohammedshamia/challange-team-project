@@ -3,7 +3,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import {TabComponent} from './Tabs.style';
+import {TabComponent, WrapperTab, Line, Button} from './Tabs.style';
+// import {Button} from '../Button/Button.style';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -14,11 +15,11 @@ interface VerticalTabsProps {
     children?: React.ReactNode;
     labels: Array<any>;
     content: Array<React.ReactNode>;
+    button?:string
 }
 
 function TabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
-
     return (
         <div
             role="tabpanel"
@@ -51,20 +52,20 @@ export default function VerticalTabs(props: VerticalTabsProps) {
     };
 
     return (
-        <Box
-            sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', gap:'32px'}}
-        >
+        <WrapperTab>
+
             <Tabs
                 orientation="vertical"
-                // variant="scrollable"
                 value={value}
                 onChange={handleChange}
                 aria-label="Vertical tabs "
                 sx={{ borderRight: 1, borderColor: 'divider' }}
             >
                 {props.labels.map((label,index)=>
-                        <Tab label={label} {...a11yProps(index)} className='tab'/>
+                        <Tab label={label} {...a11yProps(index)}/>
                     )}
+                <Line />
+                <Button>{props.button}</Button>
             </Tabs>
             <TabComponent>
             {props.content.map((comp, i)=>
@@ -74,6 +75,6 @@ export default function VerticalTabs(props: VerticalTabsProps) {
             )}
             </TabComponent>
 
-        </Box>
+        </WrapperTab>
     );
 }
