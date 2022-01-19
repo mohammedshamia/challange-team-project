@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 *{
@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
 }
+
 body{
     padding:0;
     margin: 0;
@@ -15,3 +16,34 @@ body{
    -moz-osx-font-smoothing: grayscale;
 }
 `;
+
+export const Section = styled.div`
+  background-color: ${({ theme }) => theme.palette.secondary.main};
+  width: 100%;
+  border-radius: 16px;
+`;
+
+interface Iprops {
+  justfiyContent: string;
+  width: string;
+  gap?: string;
+  alignItems?: string;
+  padding?: string;
+}
+
+export const Row = styled("div")<Iprops>((props) => ({
+  display: "flex",
+  justifyContent: props.justfiyContent || "flex-start",
+  flexDirection: "column",
+  width: props.width || "100%",
+  gap: props.gap || "2px",
+  alignItems: props.alignItems || "flex-start",
+}));
+
+export const Column = styled("div")<Iprops>((props) => ({
+  display: "flex",
+  justifyContent: props.justfiyContent || "flex-start",
+  width: props.width || "100%",
+  gap: props.gap || "2px",
+  alignItems: props.alignItems || "flex-start",
+}));

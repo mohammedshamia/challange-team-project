@@ -1,16 +1,25 @@
 import { styled } from "@mui/material/styles";
 import { Button as B } from "@mui/material";
-
-export const Button = styled(B)(({ theme }) => ({
-  color: theme.palette.text.primary,
-  background: theme.palette.primary.main,
-  borderRadius: "8px",
-  fontSize: "24px",
-  border: "none",
-  textDecoration: " none",
-  height: "62px",
+interface Iprops {
+  borderRadius?: string;
+  border?: string;
+  height?: string;
+  width?: string;
+  fontSize?: string;
+  background?: string;
+  to?: string;
+}
+export const Button = styled(B)<Iprops>((props) => ({
+  color: props.theme.palette.text.primary,
+  background: props.background || props.theme.palette.primary.main,
+  borderRadius: props.borderRadius || "10px",
+  fontSize: props.fontSize || "24px",
+  border: props.border || "none",
+  textDecoration: "none",
+  height: props.height || "62px",
+  width: props.width || "100%",
   "&:hover": {
-    background: theme.palette.primary.main,
     opacity: "0.8",
+    backgroundColor: props.theme.palette.primary.main,
   },
 }));
