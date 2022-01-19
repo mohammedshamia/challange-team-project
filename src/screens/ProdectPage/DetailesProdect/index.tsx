@@ -49,7 +49,7 @@ export default function DetailesProdect({nameProdect, priceProdect,imgpropdect,i
 
               </TitleInformationsContiner>
 
-              <Counter value={3} onChange={()=>{}}/>
+              <Counter value={3} />
                
                <SizesOfProdectContiner>
                   { colors&&  <SummeryComponent colors={colors}/>}

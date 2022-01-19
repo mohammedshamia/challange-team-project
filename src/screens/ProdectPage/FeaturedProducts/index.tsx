@@ -21,7 +21,7 @@ export default function FeaturedProducts({prodect}:Iprops) {
              <BoldLine></BoldLine>
             </TitleContiner>
             <div style={{width:'1640px', height: '650px', display:'flex', gap:'40px' , marginTop:'70px'}}>
-            {prodect.map((prodect,index)=>(<ProdectCard  key={}  img={prodect.img} name={prodect.name} salary={prodect.salary} valueRating={prodect.valueRating}   discountValue={prodect.discountValue}/>))}
+            {prodect.map((prodect,index)=>(<ProdectCard  key={index}  img={prodect.img} name={prodect.name} salary={prodect.salary} valueRating={prodect.valueRating}   discountValue={prodect.discountValue}/>))}
             </div>
          </ProdectesContainer>  
         </FeaturedProductsContiner>
