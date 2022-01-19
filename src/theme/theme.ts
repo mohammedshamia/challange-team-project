@@ -47,6 +47,9 @@ export const lightTheme = createTheme({
       main: "#f2f2f2",
     },
     divider: "rgba(112,112,112,0.3)",
+    success: {
+      main: "#4BB543",
+    },
     text: {
       primary: "#242424",
       secondary: "#707070",
@@ -70,6 +73,9 @@ export const darkTheme = createTheme({
       main: "#2f2f2f",
     },
     divider: "rgba(212,212,212,0.5)",
+    success: {
+      main: "#4BB543",
+    },
     text: {
       primary: "#ffffff",
       secondary: "#f7f8fc",

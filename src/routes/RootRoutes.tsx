@@ -25,7 +25,7 @@ const PaymentSuccess = lazy(() => import("../screens/payment/PaymentSuccess"));
 const ShoppingCart = lazy(() => import("../screens/ShoppingCart/ShoppingCart"));
 const SearchPage = lazy(() => import("../screens/landingPage/SearchPage"));
 const ProductDetails = lazy(() => import("../screens/home"));
-const Profile = lazy(() => import("../screens/home"));
+const Profile = lazy(() => import("../screens/profile"));
 
 const RootRoutes = {
   routes: [

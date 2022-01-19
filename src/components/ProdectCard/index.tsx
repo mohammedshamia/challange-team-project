@@ -18,7 +18,7 @@ export default function ProdectCard({
   valueRating,
   discountValue,
 }: IProps) {
-  const salaryAfterDiscount: number | undefined = discountValue;
+  const salaryAfterDiscount: number | undefined =salary;
   return (
     <CardContainer
       width="520px"
@@ -85,8 +85,12 @@ export default function ProdectCard({
             sx={{ width: "24px", height: "28px", margin: "15px 10px " }}
           />
         </Button>
-        <Button width="324px" height="62px" borderRadius="10px"           background="#f2f2f2"
->
+        <Button
+          width="324px"
+          height="62px"
+          borderRadius="10px"
+          background="#f2f2f2"
+        >
           <Typography
             color="text.primary"
             sx={{

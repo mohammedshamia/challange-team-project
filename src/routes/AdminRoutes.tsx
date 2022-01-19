@@ -3,7 +3,7 @@ import { lazy } from "react";
 const Products = lazy(() => import("./../screens/admin/products/index"));
 
 const CreateNewProduct = lazy(
-  () => import("./../screens/admin/products/createNewProduct")
+  () => import("./../screens/admin/products/NewProduct")
 );
 
 const AdminRoutes = [
@@ -12,7 +12,7 @@ const AdminRoutes = [
     component: <Products />,
   },
   {
-    path: "/create-new-product",
+    path: "/products/new",
     component: <CreateNewProduct />,
   },
 ];

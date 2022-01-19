@@ -19,7 +19,9 @@ function Counter({ value, maxValue, minValue }: Iprops) {
   };
 
   return (
-    <CounterContainer sx={{ width: "100%", maxWidth: "220px" }}>
+    <CounterContainer
+      sx={{ width: "100%", maxWidth: "220px", margin: { xs: "auto", lg: "0" } }}
+    >
       <Button
         disabled={(counter === 0 || minValue === counter) && true}
         onClick={() => {

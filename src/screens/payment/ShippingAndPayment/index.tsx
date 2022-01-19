@@ -185,15 +185,17 @@ const index = ({ next }: IProps) => {
             </Column>
             <div
               style={{
+                width: "20%",
+                marginLeft: "80%",
                 display: "flex",
-                flexDirection: "row-reverse",
-                marginTop: "0.5em",
               }}
             >
-              <Button onClick={() => next()}>
+              <Button onClick={() => next()} style={{ margin: "0.5em" }}>
                 <Typography
                   variant="h6"
-                  style={{ textTransform: "capitalize", paddingInline: "50px" }}
+                  style={{
+                    textTransform: "capitalize",
+                  }}
                 >
                   Review order
                 </Typography>
