@@ -11,8 +11,11 @@ import { ToastContainer } from "react-toastify";
 import Header from "./components/common/Header";
 import { GlobalStyle } from "./components/GlobalStyles";
 import "react-toastify/dist/ReactToastify.css";
+<<<<<<< HEAD
 import ProdectPage from "./screens/ProdectPage";
 
+=======
+>>>>>>> b4a3d80e27fedd59ffcfe232825705585c9a54e7
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +23,10 @@ function App() {
 
   const { theme } = useSelector((state: AppState) => state);
   return (
+<<<<<<< HEAD
 
+=======
+>>>>>>> b4a3d80e27fedd59ffcfe232825705585c9a54e7
     <Suspense fallback={<Loading />}>
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <MuiTheme theme={theme === "light" ? lightTheme : darkTheme}>
@@ -40,25 +46,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

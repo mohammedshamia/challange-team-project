@@ -1,4 +1,5 @@
 import { Divider } from "@mui/material";
+import { Link } from "react-router-dom";
 import { Button } from "../Button/Button.style";
 import { Box, Typography } from "./SubTotalCard.style";
 
@@ -21,17 +22,19 @@ export default function SubTotalCard(props: IProps) {
         {props.priceBeforeDiscount}
       </Typography>
       <Divider sx={{ margin: "30px -30px" }} />
-      <Button
-        sx={{
-          px: "45px",
-          textTransform: "capitalize",
-          position: "inherit",
-          height: "auto",
-          minHeight: "62px",
-        }}
-      >
-        Proceed to checkout
-      </Button>
+      <Link to="/review-order" style={{ textDecoration: "none" }}>
+        <Button
+          sx={{
+            px: "45px",
+            textTransform: "capitalize",
+            position: "inherit",
+            height: "auto",
+            minHeight: "62px",
+          }}
+        >
+          Proceed to checkout
+        </Button>
+      </Link>
     </Box>
   );
 }
