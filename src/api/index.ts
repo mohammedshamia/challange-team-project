@@ -1,5 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { IUser } from "../@types/auth.types";
+import axios, { AxiosInstance, AxiosResponse } from "axios";
 
 const Axios: AxiosInstance = axios.create({
   baseURL: "https://prohop-express.herokuapp.com/api",

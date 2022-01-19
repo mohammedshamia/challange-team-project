@@ -14,3 +14,9 @@ export const calculatePrice = (items: any[]) => {
     items.reduce((acc, item) => acc + item.price * item.qty, 0)
   );
 };
+
+export const createFormData = (image: File) => {
+  let data = new FormData();
+  data.append("image", image);
+  return data;
+};

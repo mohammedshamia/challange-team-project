@@ -1,4 +1,8 @@
-import { Input as MUIinput, Checkbox as ChkBox } from "@mui/material";
+import {
+  Input as MUIinput,
+  Checkbox as ChkBox,
+  TextareaAutosize,
+} from "@mui/material";
 import styled from "styled-components";
 
 export const Checkbox = styled(ChkBox)`
@@ -11,6 +15,7 @@ export const Checkbox = styled(ChkBox)`
 
 export const Label = styled("label")`
   font-size: 16px;
+  font-family: "Mulish";
   color: ${(props) => props.theme.palette.text.primary};
   margin-block: 5px;
 `;
@@ -18,6 +23,7 @@ export const Label = styled("label")`
 export const ErrorMessage = styled.span`
   color: red;
   text-align: center;
+  font-family: "Mulish";
 `;
 
 export const Input = styled(MUIinput)`
@@ -36,4 +42,13 @@ export const Input = styled(MUIinput)`
   &::after {
     border-bottom: none;
   }
+`;
+
+export const TextArea = styled(TextareaAutosize)`
+  border: 1px solid ${(props) => props.theme.palette.text.primary};
+  padding: 11px;
+  border-radius: 6px;
+  color: ${(props) => props.theme.palette.text.secondary};
+  background-color: transparent;
+  outline: none;
 `;
