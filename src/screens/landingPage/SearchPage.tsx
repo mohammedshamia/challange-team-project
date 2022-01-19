@@ -39,7 +39,7 @@ export default function SearchPage() {
       <Box m="50px 0">
         <RowComponent
           title="Featured Products"
-          widthDivider="20%"
+          widthDivider="200px"
           alignItems="center"
         />
       </Box>
