@@ -1,0 +1,32 @@
+.tab{
+    text-transform: none!important;
+}
+
+.css-1ws93rz{
+    background-color: white !important;
+    margin: 214px 140px !important;
+}
+.css-35zqo5-MuiTabs-root{
+    border-right: 0 !important;
+}
+.wrapper_tabs,
+.css-jpln7h-MuiTabs-scroller{
+    padding: 20px 16px;
+    border-radius: 16px;
+    background: #F2F2F2;
+}
+.wrapper_tabs{
+    width: 950px !important;
+}
+
+.css-jpln7h-MuiTabs-scroller{
+    width: 398px !important;
+
+}
+.css-11y7uy9-MuiButtonBase-root-MuiTab-root.Mui-selected{
+    color: black !important;
+    font-weight: bold;
+}
+.css-v4onqz-MuiTabs-indicator{
+    right: unset !important;
+}

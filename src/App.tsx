@@ -1,30 +1,23 @@
-import { Suspense, useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { Suspense } from "react";
+import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
+import { ThemeProvider as MuiTheme } from "@mui/material/styles";
 import Loading from "./components/Loading/loading";
 import { AppState } from "./redux/store";
-import { toggleTheme } from "./redux/actions/theme.action";
 import { lightTheme, darkTheme } from "./theme/theme";
 import RootRoutes from "./routes/RootRoutes";
 import { ToastContainer } from "react-toastify";
+import Header from "./components/common/Header";
+import { GlobalStyle } from "./components/GlobalStyles";
 import "react-toastify/dist/ReactToastify.css";
 import ReviewsCard from "./components/ReviewsCard";
 import CustomizedDialogs from "./components/ReviewsCard/ReviewForm";
 
-
-
-
 function App() {
-  const dispatch = useDispatch();
-
   const { theme } = useSelector((state: AppState) => state);
-
-  const toggleTheme_ = useCallback(() => {
-    dispatch(toggleTheme(theme === "light" ? "dark" : "light"));
-  }, [theme, dispatch]);
-
   return (
+<<<<<<< HEAD
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <Suspense fallback={<Loading />}>
        <ReviewsCard reviewer={[{nameReviewer:'hadeel',valueRating:3, optionsReviewer:'yes' }]}/>
@@ -36,6 +29,22 @@ function App() {
       </Suspense>
       <ToastContainer autoClose={3000} />
     </ThemeProvider>
+=======
+    <Suspense fallback={<Loading />}>
+      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+        <MuiTheme theme={theme === "light" ? lightTheme : darkTheme}>
+          <GlobalStyle />
+          <Header />
+          <Routes>
+            {RootRoutes.routes.map((route, Index) => (
+              <Route path={route.path} element={route.component} key={Index} />
+            ))}
+          </Routes>
+          <ToastContainer autoClose={3000} />
+        </MuiTheme>
+      </ThemeProvider>
+    </Suspense>
+>>>>>>> 83b3618d0f8f77f726b8c09ab7b395e40a23dabf
   );
 }
 

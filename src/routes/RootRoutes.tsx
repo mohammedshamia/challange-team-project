@@ -2,7 +2,7 @@ import React, { lazy } from "react";
 import { Navigate } from "react-router-dom";
 
 // import { roles } from "../utils/role";
-import RegistrationRoutes from "./RegistrationRoutes";
+import AuthRoutes from "./AuthRoutes";
 import AdminRoutes from "./AdminRoutes";
 
 const RedirectRoute = [
@@ -11,6 +11,7 @@ const RedirectRoute = [
     component: () => <Navigate to="/" />,
   },
 ];
+
 const ErrorRoute = [
   {
     path: "*",
@@ -18,16 +19,17 @@ const ErrorRoute = [
   },
 ];
 
-const HomePage = lazy(() => import("./../screens/landingPage/index"));
-const ShoppingCart = lazy(() => import("./../screens/landingPage/index"));
-const ReviewOrder = lazy(() => import("./../screens/landingPage/index"));
-const SearchPage = lazy(() => import("./../screens/landingPage/index"));
-const ProductDetails = lazy(() => import("./../screens/landingPage/index"));
-const Profile = lazy(() => import("./../screens/landingPage/index"));
+const HomePage = lazy(() => import("../screens/home"));
+const ReviewOrder = lazy(() => import("../screens/payment"));
+const PaymentSuccess = lazy(() => import("../screens/payment/PaymentSuccess"));
+const ShoppingCart = lazy(() => import("../screens/ShoppingCart/ShoppingCart"));
+const SearchPage = lazy(() => import("../screens/landingPage/SearchPage"));
+const ProductDetails = lazy(() => import("../screens/home"));
+const Profile = lazy(() => import("../screens/home"));
 
 const RootRoutes = {
   routes: [
-    ...RegistrationRoutes,
+    ...AuthRoutes,
     {
       path: "/",
       exact: true,
@@ -42,7 +44,11 @@ const RootRoutes = {
       component: <ReviewOrder />,
     },
     {
-      path: "/search",
+      path: "/payment-success",
+      component: <PaymentSuccess />,
+    },
+    {
+      path: "/search/:keyword",
       component: <SearchPage />,
     },
     {

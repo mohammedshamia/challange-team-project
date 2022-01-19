@@ -9,7 +9,7 @@ import { Reviewer } from '../../Review';
 import Input from '@mui/material/Input';
 import { RatingContiner } from '../../Review/Review.styled';
 import {  TextareaAutosize, Typography } from '@mui/material';
-import { FormContiner } from './Form.styled';
+import { AddReviewButton, FormContiner } from './Form.styled';
 import { typography } from '@mui/system';
 import { Button } from '../../../Button/Button.style';
 
@@ -42,23 +42,13 @@ export const MainForm = () => (
       {({ errors, touched ,handleChange }) => (
         <FormContiner>
           <Input placeholder="your name:"   name="nameReviewer"    onChange={handleChange}  />
-
-          {errors.nameReviewer && touched.nameReviewer ? (
-            <div>{errors.nameReviewer}</div>
-          ) : null}
+          {errors.nameReviewer && touched.nameReviewer ? (<Typography variant="h4" color='red'  fontSize='10px'>{errors.nameReviewer}</Typography>  ) : null}
           <RatingComponent name="valueRating" value={3.5} />
-          {errors.valueRating && touched.valueRating ? (
-            <div>{errors.valueRating}</div>
-          ) : null}
-             
-            <Typography>your opinine:</Typography>  
-             <TextareaAutosize   name="optionsReviewer"   onChange={handleChange} 
-  maxRows={5} minRows={3}
-/>
-   
-          {errors.optionsReviewer && touched.optionsReviewer ? <div>{errors.optionsReviewer}</div> : null}
-      
-          <button type="submit"  style={{border:'1px solid gold',background:'white',  height:'50px', fontSize:'17px', color:'gold'}}>Submit</button>
+          {errors.valueRating && touched.valueRating ? ( <Typography variant="h4" color='red'  fontSize='10px'>{errors.valueRating}</Typography>  ) : null}
+           <label htmlFor='optionsReviewer'>your opinine:  </label>
+            <TextareaAutosize id='optionsReviewer'  name="optionsReviewer"    onChange={handleChange} maxRows={5} minRows={3} />
+          {errors.optionsReviewer && touched.optionsReviewer ? <Typography variant="h4" color='red'  fontSize='10px'>{errors.optionsReviewer}</Typography>  : null}
+          <AddReviewButton type="submit" >add anther reviewer</AddReviewButton>
         </FormContiner>
       )}
     </Formik>

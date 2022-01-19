@@ -2,7 +2,7 @@ import { PureComponent, ReactNode } from "react";
 import MUIStepper from "@mui/material/Stepper";
 import MUIStep from "@mui/material/Step";
 import MUIStepLabel from "@mui/material/StepLabel";
-import { StepIcon } from "./Stepper.styled";
+import { Container, StepIcon } from "./Stepper.styled";
 
 export interface IProps {
   steps: IStep[];
@@ -20,22 +20,31 @@ export default class Stepper extends PureComponent<IProps> {
   render() {
     return (
       <>
-        <MUIStepper
-          activeStep={this.props.defaultActive}
-          orientation={this.props.orientation || "horizontal"}
-        >
-          {this.props.steps.map((step, index) => (
-            <MUIStep
-              key={step.text}
-              active={this.props.defaultActive === index}
-              last={step?.last || false}
-            >
-              <MUIStepLabel icon={<StepIcon>{++index}</StepIcon>}>
-                {step.text}
-              </MUIStepLabel>
-            </MUIStep>
-          ))}
-        </MUIStepper>
+        <Container>
+          <MUIStepper
+            activeStep={this.props.defaultActive}
+            orientation={this.props.orientation || "horizontal"}
+          >
+            {this.props.steps.map((step, index) => (
+              <MUIStep
+                key={step.text}
+                className={
+                  this.props.defaultActive > index
+                    ? "finished"
+                    : this.props.defaultActive < index
+                    ? "not-reached"
+                    : ""
+                }
+                active={this.props.defaultActive === index}
+                last={step?.last || false}
+              >
+                <MUIStepLabel icon={<StepIcon>{++index}</StepIcon>}>
+                  {step.text}
+                </MUIStepLabel>
+              </MUIStep>
+            ))}
+          </MUIStepper>
+        </Container>
         {this.props.steps[this.props.defaultActive]?.children}
       </>
     );

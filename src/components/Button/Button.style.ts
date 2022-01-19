@@ -1,26 +1,25 @@
-import { ReactNode } from "react";
-import styled from "styled-components";
-
-interface Iprpos {
-  width: string;
-  height: string;
-  children: string | ReactNode;
-  borderRadius?: string | undefined;
-  color?: string;
-  backgroundColor?: string;
+import { styled } from "@mui/material/styles";
+import { Button as B } from "@mui/material";
+interface Iprops {
+  borderRadius?: string;
+  border?: string;
+  height?: string;
+  width?: string;
   fontSize?: string;
-  border?:string;
+  background?: string;
+  to?: string;
 }
-
-export const Button = styled.button<Iprpos>((props: Iprpos) => ({
-  width: props.width,
-  height: props.height,
-  color: props.color || "#000000",
-  backgroundColor: props.backgroundColor || "#FCDD06",
+export const Button = styled(B)<Iprops>((props) => ({
+  color: props.theme.palette.text.primary,
+  background: props.background || props.theme.palette.primary.main,
   borderRadius: props.borderRadius || "10px",
-  fontSize: props.fontSize || "16px",
-  border:props.border|| "none",
-  cursor: "pointer",
+  fontSize: props.fontSize || "24px",
+  border: props.border || "none",
   textDecoration: "none",
-  "&:hover": { backgroundColor: "#dfc300" },
+  height: props.height || "62px",
+  width: props.width || "100%",
+  "&:hover": {
+    opacity: "0.8",
+    backgroundColor: props.theme.palette.primary.main,
+  },
 }));

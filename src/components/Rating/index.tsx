@@ -46,7 +46,7 @@ function RatingComponent({
         value={value}
         precision={precision}
         readOnly={isReadOnly}
-        disabled={isDisabled}
+        disabled={isDisabled} sx={{color:'#FCDD06'}}
         onChange={(e, value_) => onChangeValue?.(value_)}
       />
     </CounterRating>

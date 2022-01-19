@@ -2,25 +2,30 @@ import styled from "styled-components";
 
 
 export const ReviewContiner = styled.div`
-width:98%;
-height:25%;
-background:inherit;
-margin-bottom:10px;
+width:1484px;
+height:224px;
+margin:auto;
 `;
 
 export const GrayText= styled.div`
-width:100%;
+width:1483px;
 background:#F2F2F2;
-padding:2% 2%;
-border-radius:5px;
-
+box-sizing:border-box;
+padding: 22px 35px ;
 `;
 
 export const RatingContiner= styled.div`
 display:flex;
 justify-content:space-between;
 align-items:center;
+width:1483px;
+margin-block:16px ;
+height:20px;
 
+
+`;
+export const Line= styled.hr`
+background:#BCBCBC;
 `;
 
 
