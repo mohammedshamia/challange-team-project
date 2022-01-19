@@ -1,6 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import { ReactNode } from "react";
 import { useParams } from "react-router";
+import RowComponent from "../../components/GlobalStyles/Row";
 import ProdectCard from "../../components/ProdectCard";
 
 const arr: Array<{ name: string }> = [
@@ -35,6 +36,14 @@ export default function SearchPage() {
 
   return (
     <Box p={"0 7%"}>
+      <Box m="50px 0">
+        <RowComponent
+          title="Featured Products"
+          widthDivider="20%"
+          alignItems="center"
+        />
+      </Box>
+
       <Grid spacing={5} container sx={{ justifyContent: "center" }}>
         {filter(arr)}
       </Grid>
