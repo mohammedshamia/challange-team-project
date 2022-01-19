@@ -20,12 +20,16 @@ export default function ShoppingCart(props: IPropsShoppingCart) {
       </ImgContainer>
       <Grid
         item
-        p="40px 10px "
         xs={12}
         lg={4}
         sx={{ textAlign: { xs: "center", lg: "left" } }}
       >
-        <Typography variant="h5" fontWeight="bold" color="text.primary">
+        <Typography
+          variant="h5"
+          fontWeight="bold"
+          color="text.primary"
+          p="40px 20px 40px 10px"
+        >
           {props.title}
         </Typography>
       </Grid>
