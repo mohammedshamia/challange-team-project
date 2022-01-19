@@ -11,7 +11,6 @@ import { ToastContainer } from "react-toastify";
 import Header from "./components/common/Header";
 import { GlobalStyle } from "./components/GlobalStyles";
 import "react-toastify/dist/ReactToastify.css";
-import ProdectPage from "./screens/ProdectPage";
 
 
 function App() {
@@ -26,7 +25,6 @@ function App() {
         <MuiTheme theme={theme === "light" ? lightTheme : darkTheme}>
           <GlobalStyle />
           <Header />
-          <ProdectPage/>
           <Routes>
             {RootRoutes.routes.map((route, Index) => (
               <Route path={route.path} element={route.component} key={Index} />
