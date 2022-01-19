@@ -10,7 +10,6 @@ interface IProps {
 }
 
 export default function SubTotalCard(props: IProps) {
-  const navigate = useNavigate();
   return (
     <Box>
       <Typography color="text.primary" align="center" weight="800" mb="30px">
