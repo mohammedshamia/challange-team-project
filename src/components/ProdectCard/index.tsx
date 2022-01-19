@@ -18,7 +18,7 @@ export default function ProdectCard({
   valueRating,
   discountValue,
 }: IProps) {
-  const salaryAfterDiscount: number | undefined = discountValue;
+  const salaryAfterDiscount: number | undefined =salary;
   return (
     <CardContainer
       width="520px"
