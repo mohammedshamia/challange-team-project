@@ -11,6 +11,7 @@ export const HeaderBox = styled("div")`
   justify-content: space-between;
   background-color: #242424;
   color: white;
+  z-index: 999;
 `;
 
 export const ButtonIcon = styled(IconButton)(({ theme }) => ({
