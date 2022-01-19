@@ -1,58 +1,27 @@
-/*import { Rating, TextField } from '@mui/material'
-import React, { useState } from 'react'
-import { Button } from '../../Button/Button.style'
-import RatingComponent from '../../Rating'
-import { Iprops } from '../Review'
 
-export default function ReviewForm() {
-
-     const [state, setstate] = useState<Iprops>({nameReviewer:'',timeOfReview:'',valueRating:0,optionsReviewer:''})
-     const handleSubmit=(e: { preventDefault: () => void })=>{
-e.preventDefault();
-
-     }
-
-    return (
-        <form    >
-      <TextField id="filled-basic" label="name reviwer:" variant="filled" />
-       
-       <Rating/>
-      <TextField id="filled-basic" label="data:" variant="filled" />
-
-      <TextField
-  placeholder="discraption"
-  multiline
-  rows={1}
-  maxRows={1}
-/>
-<Button  width='30%'  borderRadius='5px' height='40px'   >add anther review</Button>
-
-
-        </form>
-    )
-}*/
 import * as React from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
-import { Rating, TextField } from "@mui/material";
 import { MainForm } from "./Form";
+import { ContainerReviewsForm } from "./ReviewForm.styled";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root": {
-    width: '90%'
+    width: '1300px',
+    height:'400px',
   },
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
+
   },
   "& .MuiDialogActions-root": {
     padding: theme.spacing(1),
+ 
   },
 }));
 
@@ -86,11 +55,7 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
   );
 };
 
-export default function FormReview({
-  addAntherReviewer,
-}: {
-  addAntherReviewer: Function;
-}) {
+export default function FormReview() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -101,11 +66,11 @@ export default function FormReview({
   };
 
   return (
-    <div>
+    <ContainerReviewsForm>
       <Button
         variant="outlined"
         onClick={handleClickOpen}
-        sx={{ color: "gold", border: "1px solid gold" }}
+        sx={{ color: "#FCDD06", border: "1px solid gold" }}
       >
         Add Anther Review
       </Button>
@@ -113,18 +78,17 @@ export default function FormReview({
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
-        sx={{ width: "1200px", maxWidth: "2200px" }}
+        sx={{ width: "1300px", maxWidth: "1300px" }}
       >
         <BootstrapDialogTitle
           id="customized-dialog-title"
           onClose={handleClose}
         >
-          Add Review
+         <Typography variant="h2" fontSize='25px'  color='#FCDD06'> Add Anther Review</Typography> 
         </BootstrapDialogTitle>
-        <DialogContent dividers>
-        <MainForm  addAntherReviewer={addAntherReviewer}/>
-        </DialogContent>
+        <MainForm/>
+
       </BootstrapDialog>
-    </div>
+    </ContainerReviewsForm>
   );
 }
