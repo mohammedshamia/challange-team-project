@@ -1,6 +1,12 @@
 import { Field, FieldProps } from "formik";
-import { TextField, FormControlLabel } from "@mui/material";
-import { Checkbox, ErrorMessage, Label, Input } from "./FormInput.styled";
+import { FormControlLabel } from "@mui/material";
+import {
+  Checkbox,
+  ErrorMessage,
+  Label,
+  Input,
+  TextArea,
+} from "./FormInput.styled";
 import { CSSProperties } from "react";
 
 export interface IFormInputProps {
@@ -28,7 +34,8 @@ const FormInput = ({
         {label && type !== "checkbox" && <Label htmlFor={name}>{label}</Label>}
         <div style={{ width: "100%", textAlign: "center" }}>
           {type === "textarea" ? (
-            <TextField
+            <TextArea
+              style={{ width: "100%" }}
               name={name}
               onFocus={() => {
                 form.getFieldHelpers(name).setTouched(true);
@@ -41,7 +48,8 @@ const FormInput = ({
               }}
               value={field.value}
               placeholder={placeholder}
-            ></TextField>
+              minRows={5}
+            ></TextArea>
           ) : type === "checkbox" ? (
             <FormControlLabel
               control={
