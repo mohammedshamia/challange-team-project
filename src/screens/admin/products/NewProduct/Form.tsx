@@ -1,34 +1,46 @@
 import { Typography } from "@mui/material";
+import { AxiosResponse } from "axios";
 import { Formik, Form } from "formik";
 import { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "styled-components";
+import { IProductForm } from "../../../../@types/products.types";
+import API from "../../../../api";
 import { Button } from "../../../../components/Button/Button.style";
 import FormInput from "../../../../components/common/FormInput";
 import { Row, Column, Section } from "../../../../components/GlobalStyles";
+import { createProduct } from "../../../../redux/actions/products.actions";
+import { AppState } from "../../../../redux/store";
 import ImageUpload from "../ImageUpload";
 import { formSchema } from "./validation";
 
 const NewProductForm = () => {
   const theme = useTheme();
-
-  const handleSubmit = useCallback((values) => {
-    console.log(values);
-  }, []);
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state: AppState) => state.products);
+  const handleSubmit = useCallback(
+    async (values: IProductForm) => {
+      dispatch(createProduct(values));
+    },
+    [dispatch]
+  );
 
   return (
     <Formik
       validationSchema={formSchema}
       onSubmit={handleSubmit}
-      initialValues={{
-        name: "",
-        brand: "",
-        category: "",
-        countInStock: "",
-        description: "",
-        ID: "",
-        price: "",
-        images: [],
-      }}
+      initialValues={
+        {
+          name: "",
+          brand: "",
+          category: "",
+          countInStock: "",
+          description: "",
+          ID: "",
+          price: "",
+          images: [],
+        } as IProductForm
+      }
     >
       {({ values, errors }) => (
         <Form style={{ width: "100%" }}>
@@ -96,6 +108,7 @@ const NewProductForm = () => {
                 height: "fit-content",
                 padding: "10px",
               }}
+              disabled={loading}
             >
               <Typography
                 variant="body2"

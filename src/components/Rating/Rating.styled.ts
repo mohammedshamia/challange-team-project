@@ -6,4 +6,7 @@ interface Iprops {
 
 export const CounterRating = styled.div<Iprops>`
   padding: ${(props) => props.padding};
+  & .MuiRating-icon {
+    color: #fcdd06;
+  }
 `;
