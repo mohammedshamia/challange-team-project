@@ -1,5 +1,12 @@
+import Slider from "../../components/Slider/sliderBanner";
+import { Banner } from "./styled";
+
 const HomePage = () => {
-  return <p>Home Page</p>;
+  return (
+    <Banner>
+      <Slider />
+    </Banner>
+  );
 };
 
 export default HomePage;

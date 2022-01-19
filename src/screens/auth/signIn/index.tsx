@@ -1,13 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import { Formik, Form } from "formik";
-import {
-  Container,
-  FormWrapper,
-  Button,
-  Link,
-  Divider,
-  SignUpButton,
-} from "./SignIn.styled";
 import { Typography } from "@mui/material";
 import { formSchema } from "./signIn.validation";
 import FormInput from "../../../components/common/FormInput";
@@ -16,6 +8,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../redux/actions/auth.actions";
 import { ILogin } from "../../../@types/auth.types";
 import { AppState } from "../../../redux/store";
+import {
+  Button,
+  Container,
+  Divider,
+  FormWrapper,
+  Link,
+  SignUpButton,
+} from "./SignIn.styled";
 
 const SignIn = () => {
   const navigate = useNavigate();

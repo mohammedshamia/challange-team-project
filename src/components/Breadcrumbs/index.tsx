@@ -12,8 +12,8 @@ export default function BasicBreadcrumbs(props: Iprops) {
   let navigate = useNavigate();
 
   const Back = useCallback(() => {
-    navigate(-1);
-  }, []);
+    navigate("/");
+  }, [navigate]);
 
   return (
     <div>

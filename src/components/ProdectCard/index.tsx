@@ -1,8 +1,13 @@
-import { Avatar, Button, Rating, Typography } from "@mui/material";
-import { CardContainer, SittingContainer ,SalaryContainer} from "../Card/Card.style";
+import { Avatar, Typography } from "@mui/material";
+import {
+  CardContainer,
+  SalaryContainer,
+  SittingContainer,
+} from "../Card/Card.style";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import { Card } from '../Card/Types';
+import { Card } from "../Card/Types";
 import RatingComponent from "../Rating";
+import { Button } from "../Button/Button.style";
 
 interface IProps extends Card {}
 
@@ -11,87 +16,103 @@ export default function ProdectCard({
   name,
   salary,
   valueRating,
-  discountValue
+  discountValue,
 }: IProps) {
+  const salaryAfterDiscount: number | undefined = discountValue;
   return (
     <CardContainer
       width="520px"
       height="650px"
-      sx={{ background: "white", borderRadius: "16px" ,paddingTop:'35px',  boxSizing:'border-box',position:'relative' }}
+      sx={{
+        background: "#fff",
+        borderRadius: "16px",
+        paddingTop: "35px",
+        boxSizing: "border-box",
+        position: "relative",
+      }}
     >
-     
-        <img
-          src={img}
-          alt=""
-          width="513px"
-          height="342px"
-        />
+      <img src={img} alt="" width="513px" height="342px" />
 
       <Typography
         color="text.primary"
-        sx={{  textAlign: 'left',
-        font:'normal normal normal 24px/15px Muli',
-        letterSpacing: '0.48px',
+        sx={{
+          textAlign: "center",
+          font: "normal normal normal 24px/15px Muli",
+          letterSpacing: "0.48px",
+          marginBlock: "16px",
         }}
       >
         {name}
       </Typography>
-      <RatingComponent  value={valueRating as number} paddingRating='28px 161px'  />
-      <SalaryContainer style={{display:'flex' , marginLeft:' 161px', gap:'14px' }}> 
-      {
-        discountValue &&  <Typography   sx={{ 
-        font: 'normal normal bold 30px/15px Muli',
-        letterSpacing: '0.6px',
-        color:' red' ,
-      }}
-      >
-        {salary}$
-      </Typography>
-        
-        } 
-        
-      <Typography   sx={{
-        font: 'normal normal bold 30px/15px Muli',
-        letterSpacing: '0.6px',
-        color:' #242424' , textDecoration:'solid line-through purple 4px'
 
-        }}
-      >
-        {salary}$
-        
-      </Typography>
-         </SalaryContainer>
- 
-      
-      <SittingContainer style={{gap:'16px', margin:'32px 62px'}}>
-        <Button  sx={{width:"54px",
-          height:"62px",
-          backgroundColor:"#F2F2F2",
-          borderRadius:"10px",
-          color:"gray"}}
-       
+      <SalaryContainer>
+        <RatingComponent value={valueRating as number} isReadOnly={true} />
+      </SalaryContainer>
+
+      <SalaryContainer>
+        {discountValue && (
+          <Typography
+            sx={{
+              font: "normal normal bold 30px/15px Muli",
+              letterSpacing: "0.6px",
+              color: " red",
+            }}
+          >
+            {salary}$
+          </Typography>
+        )}
+
+        <Typography
+          sx={{
+            font: "normal normal bold 30px/15px Muli",
+            letterSpacing: "0.6px",
+            color: " text.primary",
+            textDecoration: "solid line-through black 4px",
+          }}
         >
-          <BookmarkBorderIcon sx={{width:'24px',height:'28px',margin:'15px 10px '}}/>
+          {salaryAfterDiscount}$
+        </Typography>
+      </SalaryContainer>
+
+      <SittingContainer style={{ gap: "14px" }}>
+        <Button
+          background="#f2f2f2"
+          width="54px"
+          height="62px"
+          borderRadius="10px"
+        >
+          <BookmarkBorderIcon
+            sx={{ width: "24px", height: "28px", margin: "15px 10px " }}
+          />
         </Button>
-        <Button  sx={{     width:"324px",
-          height:"62px",
-          backgroundColor:"#F2F2F2",
-          borderRadius:" 10px"}}
-     
-        >
-        <Typography  color='text.primary'  sx={{
-        font:'normal normal normal 24px/15px Muli',
-        letterSpacing: '0.48px',
-          padding:'16px 39px'
-
-        }}
-      >
-        add to card
-      </Typography>     
-         </Button>
+        <Button width="324px" height="62px" borderRadius="10px"           background="#f2f2f2"
+>
+          <Typography
+            color="text.primary"
+            sx={{
+              font: "normal normal normal 24px/15px Muli",
+              letterSpacing: "0.48px",
+              padding: "16px 39px",
+            }}
+          >
+            add to card
+          </Typography>
+        </Button>
       </SittingContainer>
-    { discountValue && <Avatar sx={{ position:'absolute',width:'87px' , height:'87px' ,top:'19px',left:'421px', background:'red'}}>-{discountValue}%</Avatar>}
-
+      {discountValue && (
+        <Avatar
+          sx={{
+            position: "absolute",
+            width: "80px",
+            height: "80px",
+            top: "19px",
+            left: "421px",
+            background: "red",
+          }}
+        >
+          -{discountValue}%
+        </Avatar>
+      )}
     </CardContainer>
   );
 }

@@ -1,20 +1,11 @@
 import { styled } from "@mui/material/styles";
 
 interface Iprpos {
-width?:string;
+  width?: string;
 }
-export const CounterContainer = styled('div')<Iprpos>((props) => ({
-  display: 'flex',
-  width:props.width||'300px'
- 
-  }));
-
-  
-
-  
-
-
-  
-
-
-
+export const CounterContainer = styled("div")<Iprpos>((props) => ({
+  display: "flex",
+  width: props.width || "300px",
+  textAlign: "center",
+  backgroundColor: props.theme.palette.background.default,
+}));

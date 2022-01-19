@@ -10,8 +10,9 @@ export const Checkbox = styled(ChkBox)`
 `;
 
 export const Label = styled("label")`
-  font-size: 22px;
+  font-size: 16px;
   color: ${(props) => props.theme.palette.text.primary};
+  margin-block: 5px;
 `;
 
 export const ErrorMessage = styled.span`
@@ -22,7 +23,8 @@ export const ErrorMessage = styled.span`
 export const Input = styled(MUIinput)`
   border: 1px solid ${(props) => props.theme.palette.text.primary};
   width: 100%;
-  padding: 11px;
+  padding-inline: 11px;
+  height: 40px;
   border-radius: 6px;
   color: ${(props) => props.theme.palette.text.secondary};
 
