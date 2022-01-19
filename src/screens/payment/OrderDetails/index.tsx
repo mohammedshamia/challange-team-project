@@ -1,8 +1,7 @@
 import { Typography } from "@mui/material";
 import React from "react";
-import styled from "styled-components";
 import { Link } from "../Payment.styled";
-import { Column, Row } from "../../../components/GlobalStyles";
+import { Column } from "../../../components/GlobalStyles";
 import Product from "./Product";
 
 interface IProps {

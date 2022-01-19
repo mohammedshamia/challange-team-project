@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { ThemeReducer } from "./reducers/theme.reducers";
 import { AuthReducer } from "./reducers/auth.reducers";
+import { ProductsReducer } from "./reducers/products.reducers";
 
 declare global {
   interface Window {
@@ -12,6 +13,7 @@ declare global {
 const reducers = combineReducers({
   theme: ThemeReducer,
   auth: AuthReducer,
+  products: ProductsReducer,
 });
 
 const middlewares = [thunk];

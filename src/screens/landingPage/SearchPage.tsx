@@ -3,16 +3,17 @@ import { ReactNode } from "react";
 import { useParams } from "react-router";
 import ProdectCard from "../../components/ProdectCard";
 
+const arr: Array<{ name: string }> = [
+  { name: "one" },
+  { name: "two" },
+  { name: "threoe" },
+  { name: "foukjre" },
+  { name: "thmnoree" },
+  { name: "fou-rnme" },
+];
+
 export default function SearchPage() {
   const { keyword } = useParams();
-  const arr: Array<{ name: string }> = [
-    { name: "one" },
-    { name: "two" },
-    { name: "threoe" },
-    { name: "foukjre" },
-    { name: "thmnoree" },
-    { name: "fou-rnme" },
-  ];
 
   let filter = (array: Array<{ name: string }>): ReactNode[] => {
     return array.map(
@@ -31,6 +32,7 @@ export default function SearchPage() {
         )
     );
   };
+
   return (
     <Box p={"0 7%"}>
       <Grid spacing={5} container sx={{ justifyContent: "center" }}>
