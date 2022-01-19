@@ -25,7 +25,7 @@ export const Button = styled(B)<Iprops>((props) => ({
   "&:hover": !props.unhover && {
     background: props.theme.palette.primary.main,
     opacity: "0.8",
-    background: props.background || props.theme.palette.primary.main,
+    // background: props.background || props.theme.palette.primary.main,
     // backgroundColor: props.theme.palette.primary.main,
   },
 }));
