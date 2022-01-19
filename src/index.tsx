@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { store } from "./redux/store";
 import App from "./App";
 import ScrollToTop from "./components/common/ScrollToTop";
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

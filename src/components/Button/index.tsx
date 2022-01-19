@@ -1,17 +1,21 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Button as Btn } from "./Button.style";
 import CircularProgress from "@mui/material/CircularProgress";
 
-interface IProps extends HTMLButtonElement {
-  loading: boolean;
-  //   children?: React.ReactNode | string;
+interface Iprops {
+  borderRadius?: string;
+  border?: string;
+  height?: string;
+  width?: string;
+  fontSize?: string;
+  background?: string;
+  loading?: boolean;
+  children: ReactNode | string;
 }
-
-const Button = ({ loading, children, ...props }: IProps) => {
+const Button = ({ loading, children, ...props }: Iprops) => {
   return (
-    <Btn disabled={loading}>
-      {loading && <CircularProgress size={14} />}
-      {!loading && children}
+    <Btn {...props} disabled={loading}>
+      {loading ? <CircularProgress size={14} /> : children}
     </Btn>
   );
 };
