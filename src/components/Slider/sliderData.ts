@@ -1,5 +1,4 @@
 import { Card } from '../Card/Types';
-import { DiscountValue } from '../Card/Card.style';
 
 interface Idata {
   topTitle: string;
