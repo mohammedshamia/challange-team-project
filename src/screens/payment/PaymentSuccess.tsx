@@ -53,8 +53,7 @@ const PaymentSuccess = () => {
               </Typography>
             </Row>
           </Column>
-
-          <Row justfiyContent="space-between" width="30%">
+          <Row justfiyContent="flex-start" width="30%" style={{ margin: 0 }}>
             <Typography variant="caption" color="text.secondary">
               An email will be sent to your email address contains order
               confirmation and tracking code.

@@ -29,10 +29,11 @@ export const login =
       });
       callback?.();
     } catch (error: any) {
-      notify("error", error.response.data.message || error.message);
+      console.log(error);
+      notify("error", error?.response?.data?.message || error.message);
       dispatch({
         type: AuthConstants.LOGIN_FAIL,
-        payload: error.response.data.message || error.message,
+        payload: error?.response?.data?.message || error.message,
       });
     }
   };
@@ -61,7 +62,13 @@ export const createUser =
     }
   };
 
-export const logout = () => (dispatch: Dispatch<ActionsType>) => {};
+export const logout = (callback?: Function) => {
+  localStorage.removeItem("user-data");
+  callback?.();
+  return {
+    type: AuthConstants.LOG_OUT,
+  };
+};
 
 export const forgetPassword =
   (data: IForgetPassword) => (dispatch: Dispatch<ActionsType>) => {};

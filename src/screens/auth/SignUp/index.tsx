@@ -7,7 +7,7 @@ import {
   Divider,
   FormWrapper,
   Link,
-} from "../SignIn/SignIn.styled";
+} from "../signIn/SignIn.styled";
 import { Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 import { formSchema } from "./signUp.validation";

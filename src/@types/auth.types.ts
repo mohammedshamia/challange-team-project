@@ -63,6 +63,10 @@ export interface LOGIN_FAIL {
   payload: string;
 }
 
+export interface LOG_OUT {
+  type: AuthConstants.LOG_OUT;
+}
+
 export interface FORGET_PASSWORD_START {
   type: AuthConstants.FORGET_PASSWORD_START;
 }
@@ -85,4 +89,5 @@ export type ActionsType =
   | LOGIN_FAIL
   | FORGET_PASSWORD_START
   | FORGET_PASSWORD_SUCCESS
-  | FORGET_PASSWORD_FAIL;
+  | FORGET_PASSWORD_FAIL
+  | LOG_OUT;
