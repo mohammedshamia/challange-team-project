@@ -11,6 +11,31 @@ export interface IProductForm {
   images: File[];
 }
 
+export interface IProduct {
+  countInStock: number;
+  discount: number;
+  price: number;
+  description: string;
+  brand: string;
+  user?: string;
+  name: string;
+  _id?: string;
+  images?: string[];
+  colors?: string[];
+  categories?: string[];
+  rating?: number;
+  numReviews?: number;
+  reviews?: any[];
+  createdAt?: string;
+  updatedAt?: string;
+  __v?: number;
+}
+
+export interface ICategory {
+  name: string;
+  image: string;
+}
+
 export interface CREATE_PRODUCT_START {
   type: ProductConstants.CREATE_PRODUCT_START;
 }
@@ -24,7 +49,58 @@ export interface CREATE_PRODUCT_FAIL {
   payload: string;
 }
 
+export interface GET_TOP_PRODUCTS_START {
+  type: ProductConstants.GET_TOP_PRODUCTS_START;
+}
+
+export interface GET_TOP_PRODUCTS_SUCCESS {
+  type: ProductConstants.GET_TOP_PRODUCTS_SUCCESS;
+  payload: IProduct[];
+}
+
+export interface GET_TOP_PRODUCTS_FAIL {
+  type: ProductConstants.GET_TOP_PRODUCTS_FAIL;
+  payload: string;
+}
+
+export interface GET_PRODUCTS_START {
+  type: ProductConstants.GET_PRODUCTS_START;
+}
+
+export interface GET_PRODUCTS_SUCCESS {
+  type: ProductConstants.GET_PRODUCTS_SUCCESS;
+  payload: IProduct[];
+}
+
+export interface GET_PRODUCTS_FAIL {
+  type: ProductConstants.GET_PRODUCTS_FAIL;
+  payload: string;
+}
+
+export interface GET_CATEGORIES_START {
+  type: ProductConstants.GET_CATEGORIES_START;
+}
+
+export interface GET_CATEGORIES_SUCCESS {
+  type: ProductConstants.GET_CATEGORIES_SUCCESS;
+  payload: ICategory[];
+}
+
+export interface GET_CATEGORIES_FAIL {
+  type: ProductConstants.GET_CATEGORIES_FAIL;
+  payload: string;
+}
+
 export type ActionsType =
   | CREATE_PRODUCT_START
   | CREATE_PRODUCT_SUCCESS
-  | CREATE_PRODUCT_FAIL;
+  | CREATE_PRODUCT_FAIL
+  | GET_TOP_PRODUCTS_START
+  | GET_TOP_PRODUCTS_SUCCESS
+  | GET_TOP_PRODUCTS_FAIL
+  | GET_PRODUCTS_START
+  | GET_PRODUCTS_SUCCESS
+  | GET_PRODUCTS_FAIL
+  | GET_CATEGORIES_START
+  | GET_CATEGORIES_SUCCESS
+  | GET_CATEGORIES_FAIL;
