@@ -1,7 +1,5 @@
-<<<<<<< HEAD
+
 import Typography from '@mui/material/Typography'
-import React from 'react'
-import { Card } from '../../../components/Card/Types'
 
 import { BoldLine, FeaturedProductsContiner, ProdectesContainer, TitleContiner } from '../ProdectPage.styled'
 import SliderProduct from './sliderProduct'
