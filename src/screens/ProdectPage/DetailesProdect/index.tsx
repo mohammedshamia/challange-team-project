@@ -1,10 +1,20 @@
-import Typography from '@mui/material/Typography'
-import React from 'react'
-import { Button } from '../../../components/Button/Button.style'
-import { SittingContainer } from '../../../components/Card/Card.style'
-import Counter from '../../../components/Counter'
-import SummeryComponent from '../../../components/SummeryComponent'
-import { DetailesContiner, DetailesProdectContainer, DiscraptinsContiner, ImagesContiner, InformationsContiner, SizesOFimgContiner, SizesOfProdectContiner, SpicficationContiner, TitleInformationsContiner } from '../ProdectPage.styled'
+import Typography from "@mui/material/Typography";
+import React from "react";
+import { Button } from "../../../components/Button/Button.style";
+import { SittingContainer } from "../../../components/Card/Card.style";
+import Counter from "../../../components/Counter";
+import SummeryComponent from "../../../components/SummeryComponent";
+import {
+  DetailesContiner,
+  DetailesProdectContainer,
+  DiscraptinsContiner,
+  ImagesContiner,
+  InformationsContiner,
+  SizesOFimgContiner,
+  SizesOfProdectContiner,
+  SpicficationContiner,
+  TitleInformationsContiner,
+} from "../ProdectPage.styled";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
 
