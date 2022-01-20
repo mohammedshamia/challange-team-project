@@ -22,10 +22,71 @@ export const createProduct =
         type: ProductConstants.CREATE_PRODUCT_START,
       });
     } catch (error: any) {
-      notify("error", error.response.data.message || error.message);
+      notify("error", error?.response?.data?.message || error.message);
       dispatch({
         type: ProductConstants.CREATE_PRODUCT_FAIL,
-        payload: error.response.data.message || error.message,
+        payload: error?.response?.data?.message || error.message,
       });
     }
   };
+
+export const getTopProducts = () => async (dispatch: Dispatch<ActionsType>) => {
+  try {
+    dispatch({
+      type: ProductConstants.GET_TOP_PRODUCTS_START,
+    });
+    const { data }: AxiosResponse = await API.get("/products/top");
+    dispatch({
+      type: ProductConstants.GET_TOP_PRODUCTS_SUCCESS,
+      payload: data,
+    });
+  } catch (error: any) {
+    notify("error", error?.response?.data?.message || error.message);
+    dispatch({
+      type: ProductConstants.GET_TOP_PRODUCTS_FAIL,
+      payload: error?.response?.data?.message || error.message,
+    });
+  }
+};
+
+export const getProducts =
+  (keyword: string = "", page: number = 1) =>
+  async (dispatch: Dispatch<ActionsType>) => {
+    try {
+      dispatch({
+        type: ProductConstants.GET_PRODUCTS_START,
+      });
+      const { data }: AxiosResponse = await API.get("/products", {
+        params: { keyword: keyword, page: page },
+      });
+      dispatch({
+        type: ProductConstants.GET_PRODUCTS_SUCCESS,
+        payload: data,
+      });
+    } catch (error: any) {
+      notify("error", error?.response?.data?.message || error.message);
+      dispatch({
+        type: ProductConstants.GET_PRODUCTS_FAIL,
+        payload: error?.response?.data?.message || error.message,
+      });
+    }
+  };
+
+export const getCategories = () => async (dispatch: Dispatch<ActionsType>) => {
+  try {
+    dispatch({ type: ProductConstants.GET_CATEGORIES_START });
+    const {
+      data: { categories },
+    }: AxiosResponse = await API.get("/products/category/all");
+    dispatch({
+      type: ProductConstants.GET_CATEGORIES_SUCCESS,
+      payload: categories,
+    });
+  } catch (error: any) {
+    notify("error", error?.response?.data?.message || error.message);
+    dispatch({
+      type: ProductConstants.GET_CATEGORIES_FAIL,
+      payload: error?.response?.data?.message || error.message,
+    });
+  }
+};

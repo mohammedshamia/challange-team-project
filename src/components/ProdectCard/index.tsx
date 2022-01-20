@@ -18,7 +18,7 @@ export default function ProdectCard({
   valueRating,
   discountValue,
 }: IProps) {
-  const salaryAfterDiscount: number | undefined =salary;
+  const salaryAfterDiscount: number | undefined = salary;
   return (
     <CardContainer
       width="520px"
@@ -55,7 +55,7 @@ export default function ProdectCard({
             sx={{
               font: "normal normal bold 30px/15px Muli",
               letterSpacing: "0.6px",
-              color: " red",
+              color: "red",
             }}
           >
             {salary}$
@@ -67,7 +67,9 @@ export default function ProdectCard({
             font: "normal normal bold 30px/15px Muli",
             letterSpacing: "0.6px",
             color: " text.primary",
-            textDecoration: "solid line-through black 4px",
+            textDecoration: discountValue
+              ? "solid line-through black 4px"
+              : "none",
           }}
         >
           {salaryAfterDiscount}$
