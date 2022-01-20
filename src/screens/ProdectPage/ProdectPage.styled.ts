@@ -134,8 +134,7 @@ export const SpicficationContiner = styled.div`
 ;
 export const FeaturedProductsContiner = styled.div`
 width:100%;
-background-color:#F7F8FC;
-;
+background-color: #F7F8FC;
 `
 ;
 

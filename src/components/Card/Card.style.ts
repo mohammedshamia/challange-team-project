@@ -93,7 +93,6 @@ export const CardContainer = styled(Card)<Iprpos>((props) => ({
   boxShadow: props.boxshadow,
 }));
 
-<<<<<<< HEAD
 
 interface SittingContainer{
   margin?:string
@@ -105,14 +104,6 @@ export const SittingContainer = styled('div')<SittingContainer>((props) => ({
   justifyContent: 'center',
   gap: "16px"
 }));
-=======
-export const SittingContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: "16px";
-  
-`;
->>>>>>> 84884131e437e70e22f17bc63e87f352fce7250d
 
 export const SalaryContainer = styled.div`
   display: flex;
@@ -123,7 +114,6 @@ export const SalaryContainer = styled.div`
   
 `;
 
-<<<<<<< HEAD
 export const ImagContainer = styled("img")`
   height: 100%;
   width: 100%;
@@ -144,5 +134,3 @@ export const SalaryPercentage = styled("div")`
 `;
 
 
-=======
->>>>>>> 84884131e437e70e22f17bc63e87f352fce7250d

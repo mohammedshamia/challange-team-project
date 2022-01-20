@@ -35,7 +35,8 @@ export default function SliderProduct() {
                            name={prodect.name} 
                            salary={prodect.salary} 
                            valueRating={prodect.valueRating}  
-                            discountValue={prodect.discountValue}/>
+                            // discountValue={prodect.discountValue}
+                            />
             ))}
           </div>
         ))}
