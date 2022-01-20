@@ -20,6 +20,7 @@ export default function ProdectCard({
   valueRating,
   discountValue,
 }: IProps) {
+
   return (
     <CardContainer>
       <Box width="98%" m="auto" height="350px">

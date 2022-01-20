@@ -26,6 +26,5 @@ export const Button = styled(B)<Iprops>((props) => ({
     background: props.theme.palette.primary.main,
     opacity: "0.8",
     backgroundColor: props.background || props.theme.palette.primary.main,
-    // backgroundColor: props.theme.palette.primary.main,
   },
 }));

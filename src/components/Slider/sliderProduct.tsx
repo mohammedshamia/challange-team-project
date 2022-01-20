@@ -4,14 +4,12 @@ import SwipeableViews from "react-swipeable-views";
 
 import { Button } from "../Button/Button.style";
 import { DataCatagorySlider } from "./sliderData";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import CategroyCard from "../CategroyCard";
-import { Grid } from "@mui/material";
+
 import { DotsItem } from "./style";
+import ProdectCard from "../ProdectCard";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-export default function SliderCatagory() {
+export default function SliderProduct() {
   const [activeStep, setActiveStep] = useState(0);
 
   const handleChangeIndex = (index: number) => {
@@ -40,7 +38,7 @@ export default function SliderCatagory() {
             }}
           >
             {itempage.page.map((item) => (
-              <CategroyCard img={item.image} name={item.title} />
+              <ProdectCard img={item.image} name={item.title} />
             ))}
           </div>
         ))}
@@ -49,14 +47,12 @@ export default function SliderCatagory() {
         style={{
           display: "flex",
           justifyContent: "center",
-          position: "absolute",
-          top: "calc(10% - 7px)",
-          right: "4.8%",
+          padding: "20px 0",
         }}
       >
         {Array.from(Array(DataCatagorySlider.length)).map((_, index) => (
           <DotsItem
-            active={activeStep === index}
+            active={activeStep === index && true}
             onClick={() => handleChangeIndex(index)}
             width="15px"
             height="15px"

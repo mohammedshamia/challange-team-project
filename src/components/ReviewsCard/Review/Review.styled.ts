@@ -24,8 +24,15 @@ height:20px;
 
 
 `;
-export const Line= styled.hr`
-background:#BCBCBC;
+
+interface Iprops{
+    background?:string   
+}
+export const Line= styled.div<Iprops>`
+height:1px;
+
+background:  ${(props)=>props.background ?  props.background  : "#F9F9F9"};
+
 `;
 
 
