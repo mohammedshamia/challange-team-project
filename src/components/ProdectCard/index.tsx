@@ -60,7 +60,7 @@ export default function ProdectCard({
               color: " red",
             }}
           >
-             <DiscountValue discountValue={discountValue} >{salary}$</DiscountValue>
+           {salary}$
           </Typography>
         )}
 
@@ -71,7 +71,8 @@ export default function ProdectCard({
             color: " text.primary",
           }}
         >
-          {salaryAfterDiscount}$
+           <DiscountValue discountValue={discountValue} >{salaryAfterDiscount}$</DiscountValue>
+
         </Typography>
       </SalaryContainer>
 

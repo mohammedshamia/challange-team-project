@@ -109,11 +109,11 @@ export const SalaryContainer = styled.div`
   
 `;
 
-interface Iprops{
+interface IdiscountValue{
   discountValue?:number
 }
-export const DiscountValue = styled.span<Iprops>`
-   text-decoration: solid line-through black 4px;
+export const DiscountValue = styled.span<IdiscountValue>`
+   text-decoration: ${props => props.discountValue ? "solid line-through black 4px" : "none"};
 
   
 `;
