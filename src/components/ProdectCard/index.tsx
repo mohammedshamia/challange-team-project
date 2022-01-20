@@ -5,8 +5,6 @@ import {
   SalaryContainer,
   SalaryPercentage,
   SittingContainer,
-  DiscountValue
-
 } from "../Card/Card.style";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { Card } from "../Card/Types";
@@ -51,7 +49,7 @@ export default function ProdectCard({
               color: "#FC4059",
             }}
           >
-           {salary}$
+            {salary}$
           </Typography>
         )}
 
@@ -60,11 +58,10 @@ export default function ProdectCard({
           fontSize="30px"
           color=" text.primary"
           sx={{
-            letterSpacing: "0.6px",
-            color: " text.primary",
+            textDecoration: discountValue ? "line-through" : "none",
           }}
         >
-           <DiscountValue discountValue={discountValue} >{salaryAfterDiscount}$</DiscountValue>
+          {salary}$
         </Typography>
       </SalaryContainer>
 

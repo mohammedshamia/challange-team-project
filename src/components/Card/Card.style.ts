@@ -36,9 +36,16 @@ export const ImagContainer = styled("img")`
   width: 100%;
 `;
 
-interface IdiscountValue{
-  discountValue?:number
-}
-export const DiscountValue = styled.span<IdiscountValue>`
-   text-decoration: ${props => props.discountValue ? "solid line-through black 4px" : "none"};
+export const SalaryPercentage = styled("div")`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 87px;
+  height: 87px;
+  top: 20px;
+  right: 20px;
+  border-radius: 50%;
+  background-color: #fc4059;
+  color: white;
 `;

@@ -78,40 +78,7 @@ export default function DetailesProdect({
               </Typography>
             </TitleInformationsContiner>
 
-              <Counter value={3} />
-               
-               <SizesOfProdectContiner>
-                  { colors&&  <SummeryComponent colors={colors}/>}
-                  <SpicficationContiner>
-              {  sizes&&    <SummeryComponent sizes={sizes}/>}
-                  <SittingContainer style={{ gap: "14px" }}>
-                <Button
-               background="#f2f2f2"
-               width="54px"
-               height="62px"
-               borderRadius="10px"
-               border='1px solid #FCDD06'
-                 >
-          <BookmarkBorderIcon
-            sx={{ width: "30px", height: "28px", margin: "4px 6px " }}
-          />
-        </Button>
-        <Button width="324px" height="62px" borderRadius="10px"          background="#FCDD06"
->
-          <Typography
-            color="text.primary"
-            sx={{
-              font: "normal normal normal 24px/15px Muli",
-              letterSpacing: "0.48px",
-              padding: "16px 39px",
-            }}
-          >
-            add to card
-          </Typography>
-        </Button>
-      </SittingContainer>
-                        </SpicficationContiner>
-
+            <Counter value={3} />
 
             <SizesOfProdectContiner>
               {colors && <SummeryComponent colors={colors} />}
