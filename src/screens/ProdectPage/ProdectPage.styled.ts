@@ -68,6 +68,8 @@ margin-top:40px;
 export const DetailesContiner = styled.div`
 width:69%;
 height:702px;
+padding-left:2%;
+
 
 
 ;

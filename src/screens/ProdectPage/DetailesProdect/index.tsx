@@ -63,9 +63,9 @@ export default function DetailesProdect({nameProdect, priceProdect,imgpropdect,i
                
                <SizesOfProdectContiner>
                   { colors&&  <SummeryComponent colors={colors}/>}
-                  <SpicficationContiner>
-              {  sizes&&    <SummeryComponent sizes={sizes}/>}
-                  <SittingContainer style={{ gap: "14px" }}>
+                 {  sizes&&    <SummeryComponent sizes={sizes}/>}
+
+                 <SittingContainer  margin='-7% 40%'>
                 <Button
                background="#f2f2f2"
                width="54px"
@@ -91,7 +91,6 @@ export default function DetailesProdect({nameProdect, priceProdect,imgpropdect,i
           </Typography>
         </Button>
       </SittingContainer>
-                        </SpicficationContiner>
 
                </SizesOfProdectContiner>
                

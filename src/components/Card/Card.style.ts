@@ -15,13 +15,17 @@ export const CardContainer = styled(Card)<Iprpos>((props) => ({
   backgroundColor: props.theme.palette.background.default,
 }));
 
-export const SittingContainer = styled("div")`
-  width: 90%;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  gap: "16px";
-`;
+
+interface SittingContainer{
+  margin?:string
+}
+export const SittingContainer = styled('div')<SittingContainer>((props) => ({
+  width: '90%',
+  margin:  props.margin || "auto",
+  display: 'flex',
+  justifyContent: 'center',
+  gap: "16px"
+}));
 
 export const SalaryContainer = styled("div")`
   display: flex;
