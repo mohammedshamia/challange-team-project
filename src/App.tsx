@@ -12,6 +12,8 @@ import Header from "./components/common/Header";
 import { GlobalStyle } from "./components/GlobalStyles";
 import "react-toastify/dist/ReactToastify.css";
 
+import ProdectPage from "./screens/ProdectPage";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +21,7 @@ function App() {
 
   const { theme } = useSelector((state: AppState) => state);
   return (
+
     <Suspense fallback={<Loading />}>
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <MuiTheme theme={theme === "light" ? lightTheme : darkTheme}>

@@ -34,37 +34,43 @@ export const MainForm = () => (
   >
     {({ errors, touched, handleChange }) => (
       <FormContiner>
-        <Input
+        <Input 
           placeholder="your name:"
           name="nameReviewer"
           onChange={handleChange}
+           sx={{  borderBottom:'1px solid  #FCDD06' ,  color:'white', padding:'10px'}}
         />
         {errors.nameReviewer && touched.nameReviewer ? (
-          <Typography variant="h4" color="red" fontSize="10px">
+          <Typography variant="h4" color="red" fontSize="19px">
             {errors.nameReviewer}
           </Typography>
         ) : null}
-        <RatingComponent name="valueRating" value={3.5} />
+        <RatingComponent name="valueRating" value={3.5}  isReadOnly={false} />
         {errors.valueRating && touched.valueRating ? (
-          <Typography variant="h4" color="red" fontSize="10px">
+          <Typography variant="h4" color="red" fontSize="19px">
             {errors.valueRating}
           </Typography>
         ) : null}
-        <label htmlFor="optionsReviewer">your opinine: </label>
+        <label htmlFor="optionsReviewer"  > your opinine in this prodect:        </label>
+        
+
+    
         <TextareaAutosize
           id="optionsReviewer"
           name="optionsReviewer"
           onChange={handleChange}
           maxRows={5}
-          minRows={3}
+          minRows={5}
         />
         {errors.optionsReviewer && touched.optionsReviewer ? (
-          <Typography variant="h4" color="red" fontSize="10px">
+          <Typography variant="h4" color="red" fontSize="19px">
             {errors.optionsReviewer}
           </Typography>
         ) : null}
-        <AddReviewButton type="submit">add anther reviewer</AddReviewButton>
-      </FormContiner>
+    <AddReviewButton >
+        Add another Review
+      </AddReviewButton>
+            </FormContiner>
     )}
   </Formik>
 );
