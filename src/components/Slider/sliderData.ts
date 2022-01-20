@@ -1,3 +1,6 @@
+import { Card } from '../Card/Types';
+import { DiscountValue } from '../Card/Card.style';
+
 interface Idata {
   topTitle: string;
   mainTitle: string;
@@ -117,3 +120,86 @@ export const DataCatagorySlider: IdataCatagory[] = [
     ],
   },
 ];
+interface IdataProdect {
+  page: Card[];
+}
+
+export const DataProdectSlider: IdataProdect[]= [
+  {
+    page: [
+      {
+        name: "Amazon Echo Dot 3rd Generation",
+        img: "/static/prodect.PNG",
+        salary:29.99,
+ valueRating:3.5
+      },
+     {
+        name: "LAPTOP",
+        img: "/static/prodect.PNG",
+        salary:345,
+        discountValue:30,
+        
+      },
+      {
+        name: "LAPTOP",
+        img: "/static/prodect.PNG",
+        salary:29.99,
+        valueRating:3.5
+        
+      },
+    ],
+  },
+
+
+  {
+    page: [
+      {
+        name: "Amazon Echo Dot 3rd Generation",
+        img: "/static/prodect.PNG",
+        salary:345,
+        discountValue:30,
+
+      },
+     {
+        name: "LAPTOP",
+        img: "/static/prodect.PNG",
+        salary:345,
+        discountValue:30,
+        
+      },
+      {
+        name: "LAPTOP",
+        img: "/static/img1.PNG",
+        salary:345,
+        discountValue:30,
+        
+      },
+    ],
+  },
+  {
+    page: [
+      {
+        name: "LAPTOP",
+        img: "/static/prodect.PNG",
+        salary:345,
+        discountValue:30,
+
+      },
+     {
+        name: "LAPTOP",
+        img: "/static/prodect.PNG",
+        salary:345,
+        discountValue:30,
+        
+      },
+      {
+        name: "LAPTOP",
+        img: "/static/prodect.PNG",
+        salary:345,
+        discountValue:30,
+        
+      },
+    ],
+  }
+];
+

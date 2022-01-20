@@ -28,11 +28,11 @@ export default function DetailesProdect({nameProdect, priceProdect,imgpropdect,i
         <div>
             <DetailesProdectContainer>
           <ImagesContiner >
-           <img  src={imgpropdect} alt='' width='501px  40%'  height={'501px'}/>
+           <img  src={imgpropdect} alt='' width='100%'  height={'65%'}/>
            <SizesOFimgContiner>
-              <img src={img1propdect} alt='nameprodect'  width='142px'  height={'142px'} />
-              <img src={img2propdect} alt='nameprodect'  width='142px'  height={'142px'} />
-              <img src={img3propdect}alt='nameprodect'  width='142px'  height={'142px'} />
+              <img src={img1propdect} alt='nameprodect'  width='29%'  height={'100%'} />
+              <img src={img2propdect} alt='nameprodect'  width='29%'  height={'100%'} />
+              <img src={img3propdect}alt='nameprodect'  width='29%'  height={'100%'} />
            </SizesOFimgContiner>
           </ImagesContiner>
 
