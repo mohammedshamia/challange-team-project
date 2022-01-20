@@ -3,6 +3,8 @@ import {
   CardContainer,
   SalaryContainer,
   SittingContainer,
+  DiscountValue
+
 } from "../Card/Card.style";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { Card } from "../Card/Types";
@@ -58,7 +60,7 @@ export default function ProdectCard({
               color: " red",
             }}
           >
-            {salary}$
+             <DiscountValue discountValue={discountValue} >{salary}$</DiscountValue>
           </Typography>
         )}
 
@@ -67,7 +69,6 @@ export default function ProdectCard({
             font: "normal normal bold 30px/15px Muli",
             letterSpacing: "0.6px",
             color: " text.primary",
-            textDecoration: "solid line-through black 4px",
           }}
         >
           {salaryAfterDiscount}$

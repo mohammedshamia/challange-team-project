@@ -109,3 +109,11 @@ export const SalaryContainer = styled.div`
   
 `;
 
+interface Iprops{
+  discountValue?:number
+}
+export const DiscountValue = styled.span<Iprops>`
+   text-decoration: solid line-through black 4px;
+
+  
+`;
