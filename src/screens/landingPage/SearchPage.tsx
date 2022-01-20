@@ -1,44 +1,45 @@
 import { Box, Grid } from "@mui/material";
-import { ReactNode } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { IProduct } from "../../@types/products.types";
+import { baseURL } from "../../api";
+import Loading from "../../components/common/Loading";
 import ProdectCard from "../../components/ProdectCard";
-
-const arr: Array<{ name: string }> = [
-  { name: "one" },
-  { name: "two" },
-  { name: "threoe" },
-  { name: "foukjre" },
-  { name: "thmnoree" },
-  { name: "fou-rnme" },
-];
+import { getProducts } from "../../redux/actions/products.actions";
+import { AppState } from "../../redux/store";
 
 export default function SearchPage() {
   const { keyword } = useParams();
 
-  let filter = (array: Array<{ name: string }>): ReactNode[] => {
-    return array.map(
-      (item) =>
-        item.name.includes("o") && (
-          <Grid item xs={12} md={6} lg={4}>
-            <ProdectCard
-              img="/static/img1.png"
-              name={item.name}
-              salary={45}
-              valueRating={4}
-              discountValue={3}
-              key={item.name}
-            />
-          </Grid>
-        )
-    );
-  };
+  const dispatch = useDispatch();
+
+  const {
+    loading,
+    products: { products },
+  } = useSelector((state: AppState) => state.products);
+
+  useEffect(() => {
+    dispatch(getProducts(keyword as string));
+  }, [dispatch, keyword]);
 
   return (
     <Box p={"0 7%"}>
       <Grid spacing={5} container sx={{ justifyContent: "center" }}>
-        {filter(arr)}
+        {loading ? (
+          <Loading />
+        ) : (
+          (products as IProduct[]).map((product) => (
+            <ProdectCard
+              key={product._id}
+              img={`${baseURL}${product.images?.[0]}` || ""}
+              name={product.name}
+              salary={product.price}
+              valueRating={product.rating}
+            />
+          ))
+        )}
       </Grid>
     </Box>
   );
 }
-// keyword as string

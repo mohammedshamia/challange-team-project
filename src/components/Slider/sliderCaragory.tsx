@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { autoPlay } from "react-swipeable-views-utils";
 import SwipeableViews from "react-swipeable-views";
 
@@ -9,11 +9,24 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import CategroyCard from "../CategroyCard";
 import { Grid } from "@mui/material";
 import { DotsItem } from "./style";
+import { useDispatch, useSelector } from "react-redux";
+import { AppState } from "../../redux/store";
+import { getCategories } from "../../redux/actions/products.actions";
+import Loading from "../common/Loading";
+import { ICategory } from "../../@types/products.types";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 export default function SliderCatagory() {
   const [activeStep, setActiveStep] = useState(0);
+  const dispatch = useDispatch();
 
+  const { loading, categories } = useSelector(
+    (state: AppState) => state.products
+  );
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
   const handleChangeIndex = (index: number) => {
     setActiveStep(index);
   };
@@ -39,9 +52,15 @@ export default function SliderCatagory() {
               margin: "auto",
             }}
           >
-            {itempage.page.map((item) => (
-              <CategroyCard img={item.image} name={item.title} />
-            ))}
+            {loading ? (
+              <Loading />
+            ) : (
+              (categories as ICategory[])
+                ?.slice(0, 4)
+                .map((item) => (
+                  <CategroyCard img={item.image} name={item.name} />
+                ))
+            )}
           </div>
         ))}
       </SwipeableViews>

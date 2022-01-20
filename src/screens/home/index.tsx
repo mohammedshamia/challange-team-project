@@ -1,5 +1,8 @@
-import Button from "../../components/Button";
-import CategroyCard from "../../components/CategroyCard";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { IProduct } from "../../@types/products.types";
+import { baseURL } from "../../api";
+import Loading from "../../components/common/Loading";
 import RowComponent from "../../components/GlobalStyles/Row";
 import ProdectCard from "../../components/ProdectCard";
 import {
@@ -7,9 +10,20 @@ import {
   SliderCaragory,
   SliderProduct,
 } from "../../components/Slider";
+import { getTopProducts } from "../../redux/actions/products.actions";
+import { AppState } from "../../redux/store";
 import { Banner, Categroy, FeaturedProducts, TopRateProducts } from "./styled";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+  const { loading, topProducts } = useSelector(
+    (state: AppState) => state.products
+  );
+
+  useEffect(() => {
+    dispatch(getTopProducts());
+  }, [dispatch]);
+
   return (
     <>
       <Banner>
@@ -48,9 +62,19 @@ const HomePage = () => {
             margin: "auto",
           }}
         >
-          {Array.from(Array(3)).map((_, index) => (
-            <ProdectCard img={""} name={""} />
-          ))}
+          {loading ? (
+            <Loading />
+          ) : (
+            (topProducts as IProduct[]).map((product) => (
+              <ProdectCard
+                key={product._id}
+                img={`${baseURL}${product.images?.[0]}` || ""}
+                name={product.name}
+                valueRating={product.rating}
+                salary={product.price}
+              />
+            ))
+          )}
         </div>
       </TopRateProducts>
     </>

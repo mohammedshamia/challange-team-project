@@ -3,8 +3,10 @@ import { IUser } from "../@types/auth.types";
 
 const user = localStorage.getItem("user-data") || "";
 
+export const baseURL = "https://prohop-express.herokuapp.com";
+
 const Axios: AxiosInstance = axios.create({
-  baseURL: "https://prohop-express.herokuapp.com/api",
+  baseURL: `${baseURL}/api`,
 });
 
 Axios.interceptors.request.use(
@@ -23,8 +25,11 @@ Axios.interceptors.request.use(
 );
 
 export default class API {
-  static async get(url: string): Promise<AxiosResponse> {
-    return Axios.get(url, {});
+  static async get(
+    url: string,
+    config?: AxiosRequestConfig
+  ): Promise<AxiosResponse> {
+    return Axios.get(url, config || {});
   }
 
   static async post<T>(
@@ -38,7 +43,10 @@ export default class API {
   static async put<T>(url: string, body: T): Promise<AxiosResponse> {
     return Axios.put(url, body);
   }
-  static async delete(url: string): Promise<AxiosResponse> {
-    return Axios.delete(url, {});
+  static async delete(
+    url: string,
+    config?: AxiosRequestConfig
+  ): Promise<AxiosResponse> {
+    return Axios.delete(url, config || {});
   }
 }

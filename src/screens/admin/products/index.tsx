@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { IColumn } from "../../../@types/table.types";
-import { IProduct } from "../../../@types/types";
+import { IProduct } from "../../../@types/products.types";
 import { Button } from "../../../components/Button/Button.style";
 import { Column } from "../../../components/GlobalStyles";
 import Table from "../../../components/Table";
@@ -160,6 +160,7 @@ const columns: IColumn[] = [
 ];
 
 const Products = () => {
+  //TODO: GET PRODUCTS
   return (
     <Container>
       <Typography variant="h2" color="text.primary">

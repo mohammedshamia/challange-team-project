@@ -1,25 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { autoPlay } from "react-swipeable-views-utils";
 import SwipeableViews from "react-swipeable-views";
-
 import { Button } from "../Button/Button.style";
 import { DataCatagorySlider } from "./sliderData";
-
 import { DotsItem } from "./style";
 import ProdectCard from "../ProdectCard";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../redux/actions/products.actions";
+import { AppState } from "../../redux/store";
+import { baseURL } from "../../api";
+import Loading from "../common/Loading";
+import { IProduct } from "../../@types/products.types";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 export default function SliderProduct() {
   const [activeStep, setActiveStep] = useState(0);
+  const dispatch = useDispatch();
+
+  const {
+    loading,
+    products: { products },
+  } = useSelector((state: AppState) => state.products);
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
 
   const handleChangeIndex = (index: number) => {
     setActiveStep(index);
   };
+
   const styles = {
     slideContainer: {
       padding: "0 60px",
     },
   };
+
   return (
     <>
       <SwipeableViews
@@ -37,9 +53,19 @@ export default function SliderProduct() {
               margin: "auto",
             }}
           >
-            {itempage.page.map((item) => (
-              <ProdectCard img={item.image} name={item.title} />
-            ))}
+            {loading ? (
+              <Loading />
+            ) : (
+              (products as IProduct[])
+                ?.slice(0, 3)
+                .map((product) => (
+                  <ProdectCard
+                    key={product._id}
+                    img={`${baseURL}${product.images?.[0]}` || ""}
+                    name={product.name}
+                  />
+                ))
+            )}
           </div>
         ))}
       </SwipeableViews>
