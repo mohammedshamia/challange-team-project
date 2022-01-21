@@ -73,39 +73,52 @@ margin-left:10%;
 `;*/
 
 import { Card } from "@mui/material";
-import styled from "styled-components";
+import { styled } from "@mui/material/styles";
 
 interface Iprpos {
-  width: string;
   borderRadius?: number;
-  background?: string;
-  height?: string;
-  padding?: string;
-  boxshadow?: string;
 }
 
 export const CardContainer = styled(Card)<Iprpos>((props) => ({
-  width: props.width,
-  height: props.height,
-  background: props.background,
-  padding: props.padding,
-  boxSizing: "border-box",
-  boxShadow: props.boxshadow,
+  borderRadius: props.borderRadius || "16px",
+  padding: "35px 0",
+  position: "relative",
+  width: "100%",
+  maxWidth: "520px",
+  margin: "auto",
+  backgroundColor: props.theme.palette.background.default,
 }));
 
-export const SittingContainer = styled.div`
+export const SittingContainer = styled("div")`
+  width: 90%;
+  margin: auto;
   display: flex;
   justify-content: center;
   gap: "16px";
-  
 `;
 
-export const SalaryContainer = styled.div`
+export const PriceContainer = styled("div")`
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   gap: 14px;
-  margin-block:16px;
-  
+  margin-block: 16px;
+`;
+export const ImagContainer = styled("img")`
+  height: 100%;
+  width: 100%;
 `;
 
+export const SalaryPercentage = styled("div")`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 87px;
+  height: 87px;
+  top: 20px;
+  right: 20px;
+  border-radius: 50%;
+  background-color: #fc4059;
+  color: white;
+`;
