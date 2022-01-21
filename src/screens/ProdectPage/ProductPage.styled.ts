@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 
-export const ProdectPageContier = styled.div`
+export const ProductPageContier = styled.div`
 width: 1920px;
 height: 3950px;
 `
 ;
 
 
-export const DetailesProdectContainer = styled.div`
+export const DetailesProductContainer = styled.div`
 width:86%;
 height:713px;
 display:flex;
@@ -30,7 +30,7 @@ margin-top:63px;
 `
 ;
 
-export const ProdectesContainer = styled.div`
+export const ProductesContainer = styled.div`
 width:85.5%;
 height:824px;
 background: ${props => props.theme.palette.background.paper}  0% 0% no-repeat padding-box;
@@ -114,7 +114,7 @@ margin-block:40px;
 `
 ;
 
-export const SizesOfProdectContiner = styled.div`
+export const SizesOfProductContiner = styled.div`
 width:100%;
 height:40px;
 margin-top:30px;

@@ -6,14 +6,14 @@ import Counter from "../../../components/Counter";
 import SummeryComponent from "../../../components/SummeryComponent";
 import {
   DetailesContiner,
-  DetailesProdectContainer,
+  DetailesProductContainer,
   DiscraptinsContiner,
   ImagesContiner,
   InformationsContiner,
   SizesOFimgContiner,
-  SizesOfProdectContiner,
+  SizesOfProductContiner,
   TitleInformationsContiner,
-} from "../ProdectPage.styled";
+} from "../ProductPage.styled";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { useTheme } from "styled-components";
 
@@ -43,7 +43,7 @@ export default function DetailesProdect({
   const theme = useTheme();
   return (
     <div>
-      <DetailesProdectContainer>
+      <DetailesProductContainer>
         <ImagesContiner>
           <img src={imgpropdect} alt="" width="100%" height={"65%"} />
           <SizesOFimgContiner>
@@ -81,7 +81,7 @@ export default function DetailesProdect({
 
             <Counter value={3} />
 
-            <SizesOfProdectContiner>
+            <SizesOfProductContiner>
               {colors && <SummeryComponent colors={colors} />}
               {sizes && <SummeryComponent sizes={sizes} />}
 
@@ -109,11 +109,11 @@ export default function DetailesProdect({
                   </Typography>
                 </Button>
               </SittingContainer>
-            </SizesOfProdectContiner>
+            </SizesOfProductContiner>
           </InformationsContiner>
           <DiscraptinsContiner>{detailsprodect}</DiscraptinsContiner>
         </DetailesContiner>
-      </DetailesProdectContainer>
+      </DetailesProductContainer>
     </div>
   );
 }

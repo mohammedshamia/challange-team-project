@@ -1,8 +1,7 @@
 
 import ReviewesProdect from './ReviewesContainer'
 import FeaturedProducts from './FeaturedProducts'
-import DetailesProdect from './DetailesProdect'
-import { ProdectPageContier } from './ProdectPage.styled'
+import DetailesProdect from './DetailesProduct'
 
 
 
@@ -24,7 +23,7 @@ interface Iprops{
 
 }
 
-export default function ProdectPage({nameProdect, priceProdect,imgpropdect,img1propdect,img2propdect,img3propdect, sizes,colors,detailsprodect}:Iprops) {
+export default function ProductPage({nameProdect, priceProdect,imgpropdect,img1propdect,img2propdect,img3propdect, sizes,colors,detailsprodect}:Iprops) {
    
    return (
       <>

@@ -2,7 +2,7 @@ import Typography from '@mui/material/Typography'
 import React from 'react'
 import ReviewsCard from '../../../components/ReviewsCard'
 import { Reviewer } from '../../../components/ReviewsCard/Review'
-import { ReviewesContainer } from '../ProdectPage.styled'
+import { ReviewesContainer } from '../ProductPage.styled'
 
 interface Iprops {
     reviewer:Reviewer[]
