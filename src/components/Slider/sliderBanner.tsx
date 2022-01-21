@@ -1,14 +1,17 @@
 import { Typography } from "@mui/material";
-import React, { useState } from "react";
-import { Button } from "../Button/Button.style";
-import { Stack, Contianer, Dots, DivImg, DotsItem } from "./style";
-import { DataBannerSlider } from "./sliderData";
+import { useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import { Button } from "../Button/Button.style";
+import { Stack, Contianer, DivImg, DotsItem } from "./style";
+import { IProduct } from "../../@types/products.types";
+import { DataBannerSlider } from "./sliderData";
+import { Link } from "react-router-dom";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-export default function Slider() {
+
+export default function Slider({ products }: { products: IProduct[] }) {
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
@@ -18,9 +21,11 @@ export default function Slider() {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+
   const handleChangeIndex = (index: number) => {
     setActiveStep(index);
   };
+
   return (
     <div>
       <AutoPlaySwipeableViews
@@ -29,26 +34,42 @@ export default function Slider() {
         index={activeStep}
         onChangeIndex={handleChangeIndex}
       >
-        {DataBannerSlider.map((item) => (
-          <Contianer>
+        {products.slice(0, 3).map((product) => (
+          <Contianer key={product._id}>
             <Stack spacing={5}>
               <Stack width="100%" spacing={1}>
-                <Typography variant="h3" color="text.primary">
-                  {item.topTitle}
-                </Typography>
+                {product.discount > 0 && (
+                  <Typography variant="h3" color="text.primary">
+                    {`Save up to $${product.discount}`}
+                  </Typography>
+                )}
                 <Typography variant="h1" color="text.primary">
-                  {item.mainTitle}
+                  {product.name}
                 </Typography>
-                <Typography variant="h3" color="text.primary">
-                  {item.subTitle}
+                <Typography variant="h5" color="text.primary">
+                  {product.description}
                 </Typography>
               </Stack>
-              <Button borderRadius="20px" width="38%">
+              <Button
+                as={Link}
+                borderRadius="20px"
+                width="38%"
+                to={`/product/${product._id}`}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
                 Shop now
               </Button>
             </Stack>
             <DivImg>
-              <img src={item.image} alt="slide" />
+              <img
+                // src={`${baseURL}${product.images?.[0]}` || "/static/img1.PNG"}
+                src={"/static/img1.PNG"}
+                alt="slide"
+              />
             </DivImg>
           </Contianer>
         ))}
