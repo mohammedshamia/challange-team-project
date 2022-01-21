@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { ThemeProvider as MuiTheme } from "@mui/material/styles";
-import Loading from "./components/Loading/loading";
+import Loading from "./components/Loading";
 import { AppState } from "./redux/store";
 import { lightTheme, darkTheme } from "./theme/theme";
 import RootRoutes from "./routes/RootRoutes";
