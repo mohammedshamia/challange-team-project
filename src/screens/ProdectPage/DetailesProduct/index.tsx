@@ -6,16 +6,16 @@ import Counter from "../../../components/Counter";
 import SummeryComponent from "../../../components/SummeryComponent";
 import {
   DetailesContiner,
-  DetailesProdectContainer,
+  DetailesProductContainer,
   DiscraptinsContiner,
   ImagesContiner,
   InformationsContiner,
   SizesOFimgContiner,
-  SizesOfProdectContiner,
-  SpicficationContiner,
+  SizesOfProductContiner,
   TitleInformationsContiner,
-} from "../ProdectPage.styled";
+} from "../ProductPage.styled";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import { useTheme } from "styled-components";
 
 interface Iprops {
   nameProdect: string;
@@ -40,29 +40,30 @@ export default function DetailesProdect({
   colors,
   detailsprodect,
 }: Iprops) {
+  const theme = useTheme();
   return (
     <div>
-      <DetailesProdectContainer>
+      <DetailesProductContainer>
         <ImagesContiner>
-          <img src={imgpropdect} alt="" width="501px  40%" height={"501px"} />
+          <img src={imgpropdect} alt="" width="100%" height={"65%"} />
           <SizesOFimgContiner>
             <img
               src={img1propdect}
               alt="nameprodect"
-              width="142px"
-              height={"142px"}
+              width="29%"
+              height={"100%"}
             />
             <img
               src={img2propdect}
               alt="nameprodect"
-              width="142px"
-              height={"142px"}
+              width="29%"
+              height={"100%"}
             />
             <img
               src={img3propdect}
               alt="nameprodect"
-              width="142px"
-              height={"142px"}
+              width="29%"
+              height={"100%"}
             />
           </SizesOFimgContiner>
         </ImagesContiner>
@@ -70,56 +71,49 @@ export default function DetailesProdect({
         <DetailesContiner>
           <InformationsContiner>
             <TitleInformationsContiner>
-              <Typography variant="h2" fontSize="30px">
+              <Typography variant="h3"  color='text.primary'>
                 {nameProdect}
               </Typography>
-              <Typography variant="h2" fontSize="35px">
+              <Typography variant="h2"   color='text.primary'>
                 {priceProdect}$
               </Typography>
             </TitleInformationsContiner>
 
             <Counter value={3} />
 
-            <SizesOfProdectContiner>
+            <SizesOfProductContiner>
               {colors && <SummeryComponent colors={colors} />}
-              <SpicficationContiner>
-                {sizes && <SummeryComponent sizes={sizes} />}
-                <SittingContainer style={{ gap: "14px" }}>
-                  <Button
-                    background="#f2f2f2"
-                    width="54px"
-                    height="62px"
-                    borderRadius="10px"
-                    border="1px solid #FCDD06"
+              {sizes && <SummeryComponent sizes={sizes} />}
+
+              <SittingContainer margin="-7% 40%">
+              <Button borderRadius="10px" width="38px">
+         
+                  <BookmarkBorderIcon
+                    sx={{ width: "30px", height: "28px", margin: "4px 6px " , color:'text.primary'}}
+                  />
+                </Button>
+                <Button
+                  width="324px"
+                  height="62px"
+                  borderRadius="10px"
+                  background={theme.palette.primary.main}
+                >
+                  <Typography
+                    color="text.primary"
+                    variant='h4'
+                    sx={{
+                      padding: "16px 39px",
+                    }}
                   >
-                    <BookmarkBorderIcon
-                      sx={{ width: "30px", height: "28px", margin: "4px 6px " }}
-                    />
-                  </Button>
-                  <Button
-                    width="324px"
-                    height="62px"
-                    borderRadius="10px"
-                    background="#FCDD06"
-                  >
-                    <Typography
-                      color="text.primary"
-                      sx={{
-                        font: "normal normal normal 24px/15px Muli",
-                        letterSpacing: "0.48px",
-                        padding: "16px 39px",
-                      }}
-                    >
-                      add to card
-                    </Typography>
-                  </Button>
-                </SittingContainer>
-              </SpicficationContiner>
-            </SizesOfProdectContiner>
+                    add to card
+                  </Typography>
+                </Button>
+              </SittingContainer>
+            </SizesOfProductContiner>
           </InformationsContiner>
           <DiscraptinsContiner>{detailsprodect}</DiscraptinsContiner>
         </DetailesContiner>
-      </DetailesProdectContainer>
+      </DetailesProductContainer>
     </div>
   );
 }

@@ -1,14 +1,10 @@
 import React from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik} from "formik";
 import * as Yup from "yup";
 import RatingComponent from "../../../Rating";
-import { Reviewer } from "../../Review";
 import Input from "@mui/material/Input";
-import { RatingContiner } from "../../Review/Review.styled";
 import { TextareaAutosize, Typography } from "@mui/material";
 import { AddReviewButton, FormContiner } from "./Form.styled";
-import { typography } from "@mui/system";
-import { Button } from "../../../Button/Button.style";
 
 const SignupSchema = Yup.object().shape({
   nameReviewer:
@@ -38,15 +34,16 @@ export const MainForm = () => (
           placeholder="your name:"
           name="nameReviewer"
           onChange={handleChange}
+          sx={{borderBottom:'1px solid gold', color:'white', paddingInline:'3%'}}
         />
         {errors.nameReviewer && touched.nameReviewer ? (
-          <Typography variant="h4" color="red" fontSize="10px">
+          <Typography variant="h4" color="red" fontSize="19px">
             {errors.nameReviewer}
           </Typography>
         ) : null}
-        <RatingComponent name="valueRating" value={3.5} />
+        <RatingComponent name="valueRating" value={1.5} />
         {errors.valueRating && touched.valueRating ? (
-          <Typography variant="h4" color="red" fontSize="10px">
+          <Typography variant="h4" color="red" >
             {errors.valueRating}
           </Typography>
         ) : null}
@@ -56,10 +53,10 @@ export const MainForm = () => (
           name="optionsReviewer"
           onChange={handleChange}
           maxRows={5}
-          minRows={3}
+          minRows={5}
         />
         {errors.optionsReviewer && touched.optionsReviewer ? (
-          <Typography variant="h4" color="red" fontSize="10px">
+          <Typography variant="h4" color="red">
             {errors.optionsReviewer}
           </Typography>
         ) : null}

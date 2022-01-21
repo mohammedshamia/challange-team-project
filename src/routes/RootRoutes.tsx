@@ -24,7 +24,7 @@ const ReviewOrder = lazy(() => import("../screens/payment"));
 const PaymentSuccess = lazy(() => import("../screens/payment/PaymentSuccess"));
 const ShoppingCart = lazy(() => import("../screens/ShoppingCart/ShoppingCart"));
 const SearchPage = lazy(() => import("../screens/landingPage/SearchPage"));
-const ProductDetails = lazy(() => import("../screens/home"));
+const ProductDetails = lazy(() => import("../screens/ProdectPage"));
 const Profile = lazy(() => import("../screens/profile"));
 
 const RootRoutes = {
@@ -52,8 +52,18 @@ const RootRoutes = {
       component: <SearchPage />,
     },
     {
-      path: "/productDetails/:id",
-      component: <ProductDetails />,
+      path: "/product/:id",
+      component: (
+        <ProductDetails
+          nameProdect={""}
+          priceProdect={0}
+          imgpropdect={""}
+          img1propdect={""}
+          img2propdect={""}
+          img3propdect={""}
+          detailsprodect={""}
+        />
+      ),
     },
     {
       path: "/profile",

@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { ThemeProvider as MuiTheme } from "@mui/material/styles";
@@ -12,11 +12,7 @@ import Header from "./components/common/Header";
 import { GlobalStyle } from "./components/GlobalStyles";
 import "react-toastify/dist/ReactToastify.css";
 
-
 function App() {
-  const dispatch = useDispatch();
-
-
   const { theme } = useSelector((state: AppState) => state);
   return (
     <Suspense fallback={<Loading />}>
