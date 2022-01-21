@@ -27,7 +27,7 @@ interface Iprops{
 export default function ProdectPage({nameProdect, priceProdect,imgpropdect,img1propdect,img2propdect,img3propdect, sizes,colors,detailsprodect}:Iprops) {
    
    return (
-      <ProdectPageContier>
+      <>
 
         <DetailesProdect nameProdect={nameProdect}
          priceProdect={priceProdect}
@@ -42,7 +42,7 @@ export default function ProdectPage({nameProdect, priceProdect,imgpropdect,img1p
          <ReviewesProdect reviewer={reviewer} />
 
        <FeaturedProducts />
-      </ProdectPageContier>
+      </>
    )
 }
 
