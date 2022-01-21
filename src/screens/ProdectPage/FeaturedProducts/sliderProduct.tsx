@@ -32,7 +32,7 @@ export default function SliderProduct() {
                           key={index} 
                            img={prodect.img} 
                            name={prodect.name} 
-                           salary={prodect.salary} 
+                           price={prodect.price} 
                            valueRating={prodect.valueRating}  
                              discountValue={prodect.discountValue}
                             />

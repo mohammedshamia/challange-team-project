@@ -30,6 +30,7 @@ export const DataBannerSlider: Idata[] = [
 ];
 
 interface IdataCatagory {
+  id: number;
   page: IData[];
 }
 
@@ -40,6 +41,7 @@ interface IData {
 
 export const DataCatagorySlider: IdataCatagory[] = [
   {
+    id: 1,
     page: [
       {
         title: "LAPTOP",
@@ -60,6 +62,7 @@ export const DataCatagorySlider: IdataCatagory[] = [
     ],
   },
   {
+    id: 2,
     page: [
       {
         title: "LAPTOP",
@@ -80,6 +83,7 @@ export const DataCatagorySlider: IdataCatagory[] = [
     ],
   },
   {
+    id: 3,
     page: [
       {
         title: "LAPTOP",
@@ -100,6 +104,7 @@ export const DataCatagorySlider: IdataCatagory[] = [
     ],
   },
   {
+    id: 4,
     page: [
       {
         title: "LAPTOP",
@@ -130,19 +135,19 @@ export const DataProdectSlider: IdataProdect[] = [
       {
         name: "Amazon Echo Dot 3rd Generation",
         img: "/static/prodect.PNG",
-        salary: 29.99,
+        price: 29.99,
         valueRating: 3.5,
       },
       {
         name: "LAPTOP",
         img: "/static/prodect.PNG",
-        salary: 345,
+        price: 345,
         discountValue: 30,
       },
       {
         name: "LAPTOP",
         img: "/static/prodect.PNG",
-        salary: 29.99,
+        price: 29.99,
         valueRating: 3.5,
       },
     ],
@@ -153,19 +158,19 @@ export const DataProdectSlider: IdataProdect[] = [
       {
         name: "Amazon Echo Dot 3rd Generation",
         img: "/static/prodect.PNG",
-        salary: 345,
+        price: 345,
         discountValue: 30,
       },
       {
         name: "LAPTOP",
         img: "/static/prodect.PNG",
-        salary: 345,
+        price: 345,
         discountValue: 30,
       },
       {
         name: "LAPTOP",
         img: "/static/img1.PNG",
-        salary: 345,
+        price: 345,
         discountValue: 30,
       },
     ],
@@ -175,19 +180,19 @@ export const DataProdectSlider: IdataProdect[] = [
       {
         name: "LAPTOP",
         img: "/static/prodect.PNG",
-        salary: 345,
+        price: 345,
         discountValue: 30,
       },
       {
         name: "LAPTOP",
         img: "/static/prodect.PNG",
-        salary: 345,
+        price: 345,
         discountValue: 30,
       },
       {
         name: "LAPTOP",
         img: "/static/prodect.PNG",
-        salary: 345,
+        price: 345,
         discountValue: 30,
       },
     ],

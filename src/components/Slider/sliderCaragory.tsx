@@ -3,7 +3,7 @@ import { autoPlay } from "react-swipeable-views-utils";
 import SwipeableViews from "react-swipeable-views";
 import { DataCatagorySlider } from "./sliderData";
 import CategroyCard from "../CategroyCard";
-// import { Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { DotsItem } from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../redux/store";
@@ -34,31 +34,34 @@ export default function SliderCatagory() {
   return (
     <>
       <AutoPlaySwipeableViews
-      interval={6000}
+        interval={6000}
         enableMouseEvents
         index={activeStep}
         slideStyle={styles.slideContainer}
         onChangeIndex={handleChangeIndex}
       >
-        {DataCatagorySlider.map((itempage) => (
-          <div
-            style={{
+        {DataCatagorySlider.map((item_) => (
+          <Grid
+            key={item_.id}
+            container
+            md={12}
+            sx={{
               display: "flex",
               justifyContent: "space-around",
-
+              alignItems: "center",
               margin: "auto",
             }}
           >
             {loading ? (
               <Loading />
             ) : (
-              (categories as ICategory[])
-                ?.slice(0, 4)
-                .map((item) => (
+              (categories as ICategory[])?.slice(0, 4).map((item) => (
+                <Grid key={item.name} item md={2.4}>
                   <CategroyCard img={item.image} name={item.name} />
-                ))
+                </Grid>
+              ))
             )}
-          </div>
+          </Grid>
         ))}
       </AutoPlaySwipeableViews>
       <div

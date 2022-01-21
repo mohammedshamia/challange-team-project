@@ -13,6 +13,19 @@ export const Stack = styled(Box)<Iprops>((props) => ({
   alignItems: "flex-start",
   width: props.width || "30%",
   justifyContent: "center",
+  [props.theme.breakpoints.down("lg")]: {
+    "& h1": {
+      fontSize:"3rem",
+    },
+    "& h3": {
+      fontSize:"1.3rem",
+    },
+  },
+  [props.theme.breakpoints.down("md")]: {
+    width:"80%",
+    alignItems:"center",
+    textAlign:"center",
+  }
 }));
 
 export const Dots = styled(MobileStepper)((props) => ({
@@ -24,8 +37,19 @@ export const Dots = styled(MobileStepper)((props) => ({
     height: "25px",
   },
 }));
-export const DivImg = styled("div")(() => ({
+export const DivImg = styled("div")(({ theme }) => ({
   zIndex: "0",
+  display: "flex",
+  alignItems: "flex-start",
+  justifyContent: "center",
+  [theme.breakpoints.down("md")]: {
+    display: "none",
+  },
+  "& img": {
+    [theme.breakpoints.down("lg")]: {
+      width: "80%",
+    },
+  },
 }));
 
 interface IpropsDots {

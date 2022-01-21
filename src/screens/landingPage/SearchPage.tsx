@@ -34,7 +34,7 @@ export default function SearchPage() {
               key={product._id}
               img={`${baseURL}${product.images?.[0]}` || ""}
               name={product.name}
-              salary={product.price}
+              price={product.price}
               valueRating={product.rating}
             />
           ))

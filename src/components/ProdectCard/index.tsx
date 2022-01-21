@@ -11,18 +11,17 @@ import { Card } from "../Card/Types";
 import RatingComponent from "../Rating";
 import { Button } from "../Button/Button.style";
 
-interface IProps extends Card {}
-
 export default function ProdectCard({
   img,
   name,
-  salary,
+  price,
   valueRating,
   discountValue,
-}: IProps) {
-  // const salaryAfterDiscount: number | undefined = salary;
+  borderRadius,
+  boxShadow,
+}: Card) {
   return (
-    <CardContainer>
+    <CardContainer boxShadow={boxShadow} borderRadius={borderRadius}>
       <Box width="98%" m="auto" height="350px">
         <ImagContainer src={img} alt="img" width="513px" height="342px" />
       </Box>
@@ -49,7 +48,11 @@ export default function ProdectCard({
               color: "#FC4059",
             }}
           >
-            {salary}$
+            {(
+              (price as number) -
+              (discountValue / 100) * (price as number)
+            ).toFixed(2)}
+            $
           </Typography>
         )}
 
@@ -61,17 +64,17 @@ export default function ProdectCard({
             textDecoration: discountValue ? "line-through" : "none",
           }}
         >
-          {salary}$
+          {price}$
         </Typography>
       </PriceContainer>
 
       <SittingContainer style={{ gap: "14px" }}>
-        <Button background="#F2F2F2" width="54px">
+        <Button background="secondary" width="54px">
           <BookmarkBorderIcon
             sx={{ width: "24px", height: "28px", margin: "15px 10px " }}
           />
         </Button>
-        <Button width="324px" background="#F2F2F2">
+        <Button width="324px" background="secondary">
           add to card
         </Button>
       </SittingContainer>
