@@ -10,24 +10,30 @@ import {
   SliderCaragory,
   SliderProduct,
 } from "../../components/Slider";
-import { getTopProducts } from "../../redux/actions/products.actions";
+import {
+  getTopProducts,
+  getProducts,
+} from "../../redux/actions/products.actions";
 import { AppState } from "../../redux/store";
 import { Banner, Categroy, FeaturedProducts, TopRateProducts } from "./styled";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const { loading, topProducts } = useSelector(
-    (state: AppState) => state.products
-  );
+  const {
+    loading,
+    topProducts,
+    products: { products },
+  } = useSelector((state: AppState) => state.products);
 
   useEffect(() => {
+    dispatch(getProducts());
     dispatch(getTopProducts());
   }, [dispatch]);
 
   return (
     <>
       <Banner>
-        <SliderBanner />
+        <SliderBanner products={products} />
       </Banner>
       <Categroy>
         <RowComponent
@@ -36,7 +42,6 @@ const HomePage = () => {
           width="90%"
           alignItems="flex-start"
         />
-
         <SliderCaragory />
       </Categroy>
       <FeaturedProducts>
