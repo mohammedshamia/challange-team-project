@@ -16,13 +16,13 @@ export default function Review({nameReviewer,valueRating,optionsReviewer,timeOfR
     return (
      <div>
         <ReviewContiner>
-           <Typography variant="h4"  fontSize='24px' color='black' >{nameReviewer}</Typography> 
+           <Typography variant="h4"   color='text.primary' >{nameReviewer}</Typography> 
             <RatingContiner>
               <RatingComponent  value={valueRating}  isReadOnly={true}  name={"disabled"} />
-               <Typography variant="h4" color='#707070'  fontSize='10px'> {timeOfReview}</Typography> 
+               <Typography variant="h6" color='text.disabled'  > {timeOfReview}</Typography> 
             </RatingContiner>
             <GrayText>
-              <Typography  variant="h4" fontSize='16px' lineHeight={1.5}  >{optionsReviewer}</Typography>
+              <Typography  variant="h4" fontSize='17px' lineHeight={1.5}  color='text.primary' >{optionsReviewer}</Typography>
             </GrayText>
         </ReviewContiner>
         <Line/>
