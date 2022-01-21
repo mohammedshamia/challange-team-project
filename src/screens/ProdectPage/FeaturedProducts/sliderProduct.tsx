@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { autoPlay } from "react-swipeable-views-utils";
+import { useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 import { DataProdectSlider } from "../../../components/Slider/sliderData";
 import ProdectCard from "../../../components/ProdectCard";
 import { DotsItem } from "../../../components/Slider/style";
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
 
 export default function SliderProduct() {
   const [activeStep, setActiveStep] = useState(0);
@@ -35,7 +34,7 @@ export default function SliderProduct() {
                            name={prodect.name} 
                            salary={prodect.salary} 
                            valueRating={prodect.valueRating}  
-                            // discountValue={prodect.discountValue}
+                             discountValue={prodect.discountValue}
                             />
             ))}
           </div>

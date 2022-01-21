@@ -33,7 +33,7 @@ margin-top:63px;
 export const ProdectesContainer = styled.div`
 width:85.5%;
 height:824px;
-background: #F7F8FC 0% 0% no-repeat padding-box;
+background: ${props => props.theme.palette.background.paper}  0% 0% no-repeat padding-box;
 margin:auto;
 
 
@@ -43,7 +43,7 @@ margin:auto;
 
 export const TitleContiner = styled.div`
 height:84px;
-border-bottom:1px solid #707070;
+border-bottom:1px solid ${props => props.theme.palette.text.secondary} ;
 
 ;
 `
@@ -51,7 +51,7 @@ border-bottom:1px solid #707070;
 export const BoldLine = styled.div`
 width:200px;
 height:7px;
- background:#FCDD06;
+ background: ${props => props.theme.palette.primary.main} ;  //#FCDD06;
  margin:auto;
 ;
 `
@@ -90,7 +90,7 @@ width:100%;
 height:309px;
 margin-top:169px;
 font-size:22px;
-color:#242424;
+color:${props => props.theme.palette.text.primary} ;
 letter-spacing: 0.32px;
 
 ;
@@ -134,7 +134,7 @@ export const SpicficationContiner = styled.div`
 ;
 export const FeaturedProductsContiner = styled.div`
 width:100%;
-background-color: #F7F8FC;
+background-color: ${props => props.theme.palette.background.paper} ;  // #F7F8FC;
 `
 ;
 

@@ -12,7 +12,6 @@ import {
   InformationsContiner,
   SizesOFimgContiner,
   SizesOfProdectContiner,
-  SpicficationContiner,
   TitleInformationsContiner,
 } from "../ProdectPage.styled";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
@@ -72,10 +71,10 @@ export default function DetailesProdect({
         <DetailesContiner>
           <InformationsContiner>
             <TitleInformationsContiner>
-              <Typography variant="h2" fontSize="30px" color='text.primary'>
+              <Typography variant="h3"  color='text.primary'>
                 {nameProdect}
               </Typography>
-              <Typography variant="h2" fontSize="35px"  color='text.primary'>
+              <Typography variant="h2"   color='text.primary'>
                 {priceProdect}$
               </Typography>
             </TitleInformationsContiner>
@@ -87,15 +86,10 @@ export default function DetailesProdect({
               {sizes && <SummeryComponent sizes={sizes} />}
 
               <SittingContainer margin="-7% 40%">
-                <Button
-                  background="#f2f2f2"
-                  width="54px"
-                  height="62px"
-                  borderRadius="10px"
-                  border="1px solid theme.palette.primary.main "
-                >
+              <Button borderRadius="10px" width="38px">
+         
                   <BookmarkBorderIcon
-                    sx={{ width: "30px", height: "28px", margin: "4px 6px " }}
+                    sx={{ width: "30px", height: "28px", margin: "4px 6px " , color:'text.primary'}}
                   />
                 </Button>
                 <Button
@@ -106,9 +100,8 @@ export default function DetailesProdect({
                 >
                   <Typography
                     color="text.primary"
+                    variant='h4'
                     sx={{
-                      font: "normal normal normal 24px/15px Muli",
-                      letterSpacing: "0.48px",
                       padding: "16px 39px",
                     }}
                   >

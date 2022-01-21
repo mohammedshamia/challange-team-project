@@ -10,11 +10,10 @@ interface Iprops {
 
 export default function ReviewesProdect({reviewer}:Iprops) {
     return (
-        
             <ReviewesContainer>
-            <Typography variant='h2' fontSize='30px'   sx={{margin:'auto',padding:'20px'}}>Reviews</Typography>
-             <ReviewsCard reviewer={reviewer} />
-         </ReviewesContainer>
+              <Typography variant='h2' fontSize='30px'   color='text.primary' sx={{margin:'auto',padding:'20px'}}>Reviews</Typography>
+              <ReviewsCard reviewer={reviewer} />
+            </ReviewesContainer>
     
     )
 }
