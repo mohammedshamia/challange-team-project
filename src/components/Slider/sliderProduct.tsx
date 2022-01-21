@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { autoPlay } from "react-swipeable-views-utils";
 import SwipeableViews from "react-swipeable-views";
-import { Button } from "../Button/Button.style";
 import { DataCatagorySlider } from "./sliderData";
 import { DotsItem } from "./style";
 import ProdectCard from "../ProdectCard";
@@ -38,7 +37,8 @@ export default function SliderProduct() {
 
   return (
     <>
-      <SwipeableViews
+      <AutoPlaySwipeableViews
+        interval={6000}
         enableMouseEvents
         index={activeStep}
         slideStyle={styles.slideContainer}
@@ -60,6 +60,7 @@ export default function SliderProduct() {
                 ?.slice(0, 3)
                 .map((product) => (
                   <ProdectCard
+                  discountValue={20}
                     key={product._id}
                     img={`${baseURL}${product.images?.[0]}` || ""}
                     name={product.name}
@@ -68,7 +69,7 @@ export default function SliderProduct() {
             )}
           </div>
         ))}
-      </SwipeableViews>
+      </AutoPlaySwipeableViews>
       <div
         style={{
           display: "flex",

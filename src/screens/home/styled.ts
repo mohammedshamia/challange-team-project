@@ -1,9 +1,10 @@
 import { styled } from "@mui/material/styles";
 
 export const Banner = styled("section")((props) => ({
-  background: props.theme.palette.secondary.main,
+  background: props.theme.palette.background.paper,
   padding: "60px 16px 16px",
   marginBottom: "44px",
+  boxShadow:"0px 0px 15px -5px "
 }));
 export const Categroy = styled("section")((props) => ({
   position: "relative",

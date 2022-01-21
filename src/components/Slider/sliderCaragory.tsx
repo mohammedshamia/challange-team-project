@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { autoPlay } from "react-swipeable-views-utils";
 import SwipeableViews from "react-swipeable-views";
-
-import { Button } from "../Button/Button.style";
 import { DataCatagorySlider } from "./sliderData";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import CategroyCard from "../CategroyCard";
-import { Grid } from "@mui/material";
+// import { Grid } from "@mui/material";
 import { DotsItem } from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../redux/store";
@@ -37,7 +33,8 @@ export default function SliderCatagory() {
   };
   return (
     <>
-      <SwipeableViews
+      <AutoPlaySwipeableViews
+      interval={6000}
         enableMouseEvents
         index={activeStep}
         slideStyle={styles.slideContainer}
@@ -63,7 +60,7 @@ export default function SliderCatagory() {
             )}
           </div>
         ))}
-      </SwipeableViews>
+      </AutoPlaySwipeableViews>
       <div
         style={{
           display: "flex",

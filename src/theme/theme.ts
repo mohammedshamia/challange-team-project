@@ -56,7 +56,7 @@ export const lightTheme = createTheme({
       disabled: "#979797",
     },
     background: {
-      paper: "#f7f8fc",
+      paper: "#f2f2f2",
       default: "#ffffff",
     },
   },
@@ -82,7 +82,7 @@ export const darkTheme = createTheme({
       disabled: "rgba(255,255,255,0.5)",
     },
     background: {
-      paper: "#282c34",
+      paper: "#242424",
       default: "#282c34",
     },
   },
