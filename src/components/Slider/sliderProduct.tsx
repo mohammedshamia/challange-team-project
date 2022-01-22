@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { autoPlay } from "react-swipeable-views-utils";
 import SwipeableViews from "react-swipeable-views";
-import { Button } from "../Button/Button.style";
 import { DataCatagorySlider } from "./sliderData";
 import { DotsItem } from "./style";
 import ProdectCard from "../ProdectCard";
@@ -11,6 +10,7 @@ import { AppState } from "../../redux/store";
 import { baseURL } from "../../api";
 import Loading from "../common/Loading";
 import { IProduct } from "../../@types/products.types";
+import { Grid } from "@mui/material";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 export default function SliderProduct() {
@@ -23,7 +23,9 @@ export default function SliderProduct() {
   } = useSelector((state: AppState) => state.products);
 
   useEffect(() => {
-    dispatch(getProducts());
+    if ((products as IProduct[])?.length === 0) {
+      dispatch(getProducts());
+    }
   }, [dispatch]);
 
   const handleChangeIndex = (index: number) => {
@@ -32,43 +34,49 @@ export default function SliderProduct() {
 
   const styles = {
     slideContainer: {
-      padding: "0 60px",
+      padding: "16px 60px",
     },
   };
 
   return (
     <>
-      <SwipeableViews
+      <AutoPlaySwipeableViews
+        interval={6000}
         enableMouseEvents
         index={activeStep}
         slideStyle={styles.slideContainer}
         onChangeIndex={handleChangeIndex}
       >
-        {DataCatagorySlider.map((itempage) => (
-          <div
+        {DataCatagorySlider.map((item) => (
+          <Grid
+            key={item.id}
+            container
+            md={11.2}
             style={{
               display: "flex",
               justifyContent: "space-around",
-
+              alignItems: "center",
               margin: "auto",
             }}
           >
             {loading ? (
               <Loading />
             ) : (
-              (products as IProduct[])
-                ?.slice(0, 3)
-                .map((product) => (
+              (products as IProduct[])?.slice(0, 3).map((product) => (
+                <Grid key={product._id} item md={3.8} sx={{ margin: "16px 0" }}>
                   <ProdectCard
-                    key={product._id}
+                    valueRating={product.rating}
+                    price={product.price}
+                    discountValue={20}
                     img={`${baseURL}${product.images?.[0]}` || ""}
                     name={product.name}
                   />
-                ))
+                </Grid>
+              ))
             )}
-          </div>
+          </Grid>
         ))}
-      </SwipeableViews>
+      </AutoPlaySwipeableViews>
       <div
         style={{
           display: "flex",

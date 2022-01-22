@@ -1,5 +1,4 @@
 import ReviewesProdect from "./ReviewesContainer";
-import FeaturedProducts from "./FeaturedProducts";
 import DetailesProdect from "./DetailesProduct";
 import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -8,6 +7,9 @@ import { AppState } from "../../redux/store";
 import { getProduct, clearProduct } from "../../redux/actions/products.actions";
 import { IProduct } from "../../@types/products.types";
 import Loading from "../../components/common/Loading";
+import RowComponent from "../../components/GlobalStyles/Row";
+import { SliderProduct } from "../../components/Slider";
+import { FeaturedProductsContiner } from "./ProductPage.styled";
 
 const reviewer = [
   {
@@ -67,8 +69,16 @@ export default function ProductPage() {
                 sizes={null}
                 colors={null}
               />
-              <ReviewesProdect reviewer={product.reviews} />
-              <FeaturedProducts />
+              <ReviewesProdect reviewer={[]} />
+              <FeaturedProductsContiner>
+                <RowComponent
+                  width="90%"
+                  title={"Featured Products"}
+                  widthDivider={"10%"}
+                  alignItems="center"
+                />
+                <SliderProduct />
+              </FeaturedProductsContiner>
             </>
           )}
         </>

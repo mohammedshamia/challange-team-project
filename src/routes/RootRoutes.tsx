@@ -1,7 +1,5 @@
-import React, { lazy } from "react";
+import { lazy } from "react";
 import { Navigate } from "react-router-dom";
-
-// import { roles } from "../utils/role";
 import AuthRoutes from "./AuthRoutes";
 import AdminRoutes from "./AdminRoutes";
 
@@ -15,7 +13,7 @@ const RedirectRoute = [
 const ErrorRoute = [
   {
     path: "*",
-    component: () => <Navigate to="/404" />,
+    component: <Navigate to="/404" />,
   },
 ];
 
@@ -26,6 +24,7 @@ const ShoppingCart = lazy(() => import("../screens/ShoppingCart/ShoppingCart"));
 const SearchPage = lazy(() => import("../screens/landingPage/SearchPage"));
 const ProductDetails = lazy(() => import("../screens/ProdectPage"));
 const Profile = lazy(() => import("../screens/profile"));
+const PageNotFound = lazy(() => import("../components/common/PageNotFound"));
 
 const RootRoutes = {
   routes: [
@@ -53,17 +52,11 @@ const RootRoutes = {
     },
     {
       path: "/product/:id",
-      component: (
-        <ProductDetails
-          nameProdect={""}
-          priceProdect={0}
-          imgpropdect={""}
-          img1propdect={""}
-          img2propdect={""}
-          img3propdect={""}
-          detailsprodect={""}
-        />
-      ),
+      component: <ProductDetails />,
+    },
+    {
+      path: "/404",
+      component: <PageNotFound />,
     },
     {
       path: "/profile",

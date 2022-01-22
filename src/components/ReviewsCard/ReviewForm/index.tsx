@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
@@ -12,17 +11,15 @@ import { ContainerReviewsForm } from "./ReviewForm.styled";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root": {
-    width: '1350px',
-    background:'black',
-    padding:'2%'
+    width: "1350px",
+    background: "black",
+    padding: "2%",
   },
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
-
   },
   "& .MuiDialogActions-root": {
     padding: theme.spacing(1),
- 
   },
 }));
 
@@ -73,8 +70,7 @@ export default function FormReview() {
         onClick={handleClickOpen}
         sx={{ color: "primary.main", border: "1px solid gold" }}
       >
-        
-        Add Anther Review
+        Add Review
       </Button>
       <BootstrapDialog
         onClose={handleClose}
@@ -86,10 +82,12 @@ export default function FormReview() {
           id="customized-dialog-title"
           onClose={handleClose}
         >
-         <Typography variant="h2" fontSize='25px'  color='primary.main'> Add Anther Review</Typography> 
+          <Typography variant="h2" fontSize="25px" color="primary.main">
+            {" "}
+            Add Review
+          </Typography>
         </BootstrapDialogTitle>
-        <MainForm/>
-
+        <MainForm />
       </BootstrapDialog>
     </ContainerReviewsForm>
   );

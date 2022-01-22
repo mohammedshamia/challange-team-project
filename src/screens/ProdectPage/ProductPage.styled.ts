@@ -96,4 +96,6 @@ export const ProductNotFound = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 62px 0;
+  background: ${(props) => props.theme.palette.secondary.light};
 `;

@@ -1,5 +1,4 @@
 import SimpleBottomNavigation from "./ButtonNavigation";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Stack } from "@mui/material";
@@ -26,14 +25,6 @@ export default function BottonNavigationGroup(props: Iprops) {
           }
           icon={<PersonIcon />}
           path=""
-        />
-      </Link>
-      <Link to={"/wishlist"}>
-        <SimpleBottomNavigation
-          path=""
-          label="Wishlist"
-          icon={<BookmarkIcon />}
-          badgeContent={props.wishlist}
         />
       </Link>
       <Link to={"/shopping-cart"}>

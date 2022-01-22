@@ -1,7 +1,9 @@
-import { Avatar, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import {
   CardContainer,
-  SalaryContainer,
+  ImagContainer,
+  PriceContainer,
+  SalaryPercentage,
   SittingContainer,
 } from "../Card/Card.style";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
@@ -9,116 +11,74 @@ import { Card } from "../Card/Types";
 import RatingComponent from "../Rating";
 import { Button } from "../Button/Button.style";
 
-interface IProps extends Card {}
-
 export default function ProdectCard({
   img,
   name,
-  salary,
+  price,
   valueRating,
   discountValue,
-}: IProps) {
-  const salaryAfterDiscount: number | undefined = salary;
+  borderRadius,
+  boxShadow,
+}: Card) {
   return (
-    <CardContainer
-      width="520px"
-      height="650px"
-      sx={{
-        background: "#fff",
-        borderRadius: "16px",
-        paddingTop: "35px",
-        boxSizing: "border-box",
-        position: "relative",
-      }}
-    >
-      <img src={img} alt="" width="513px" height="342px" />
+    <CardContainer boxShadow={boxShadow} borderRadius={borderRadius}>
+      <Box width="98%" m="auto" height="350px">
+        <ImagContainer src={img} alt="img" width="513px" height="342px" />
+      </Box>
 
       <Typography
         color="text.primary"
-        sx={{
-          textAlign: "center",
-          font: "normal normal normal 24px/15px Muli",
-          letterSpacing: "0.48px",
-          marginBlock: "16px",
-        }}
+        my="30px auto 15px"
+        fontSize="24px"
+        textAlign="center"
       >
         {name}
       </Typography>
 
-      <SalaryContainer>
+      <PriceContainer>
         <RatingComponent value={valueRating as number} isReadOnly={true} />
-      </SalaryContainer>
+      </PriceContainer>
 
-      <SalaryContainer>
+      <PriceContainer>
         {discountValue && (
           <Typography
+            fontWeight="bold"
+            fontSize="30px"
             sx={{
-              font: "normal normal bold 30px/15px Muli",
-              letterSpacing: "0.6px",
-              color: "red",
+              color: "#FC4059",
             }}
           >
-            {salary}$
+            {(
+              (price as number) -
+              (discountValue / 100) * (price as number)
+            ).toFixed(2)}
+            $
           </Typography>
         )}
 
         <Typography
+          fontWeight="bold"
+          fontSize="30px"
+          color=" text.primary"
           sx={{
-            font: "normal normal bold 30px/15px Muli",
-            letterSpacing: "0.6px",
-            color: " text.primary",
-            textDecoration: discountValue
-              ? "solid line-through black 4px"
-              : "none",
+            textDecoration: discountValue ? "line-through" : "none",
           }}
         >
-          {salaryAfterDiscount}$
+          {price}$
         </Typography>
-      </SalaryContainer>
+      </PriceContainer>
 
       <SittingContainer style={{ gap: "14px" }}>
-        <Button
-          background="#f2f2f2"
-          width="54px"
-          height="62px"
-          borderRadius="10px"
-        >
+        <Button background="secondary" width="54px">
           <BookmarkBorderIcon
             sx={{ width: "24px", height: "28px", margin: "15px 10px " }}
           />
         </Button>
-        <Button
-          width="324px"
-          height="62px"
-          borderRadius="10px"
-          background="#f2f2f2"
-        >
-          <Typography
-            color="text.primary"
-            sx={{
-              font: "normal normal normal 24px/15px Muli",
-              letterSpacing: "0.48px",
-              padding: "16px 39px",
-            }}
-          >
-            add to card
-          </Typography>
+        <Button width="324px" background="secondary">
+          add to card
         </Button>
       </SittingContainer>
-      {discountValue && (
-        <Avatar
-          sx={{
-            position: "absolute",
-            width: "80px",
-            height: "80px",
-            top: "19px",
-            left: "421px",
-            background: "red",
-          }}
-        >
-          -{discountValue}%
-        </Avatar>
-      )}
+      {discountValue && <SalaryPercentage>-{discountValue}%</SalaryPercentage>}
     </CardContainer>
   );
 }

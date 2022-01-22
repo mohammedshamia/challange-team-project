@@ -85,7 +85,7 @@ export default function DetailesProdect({
               </Typography>
             </TitleInformationsContiner>
 
-            <Counter value={3} />
+            <Counter value={1} />
 
             <SizesOfProductContiner>
               {colors && <SummeryComponent colors={colors} />}

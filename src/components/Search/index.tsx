@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Lable, SearchInput } from "./Search.style";
 import SearchIcon from "@mui/icons-material/Search";
 import { Button } from "../Button/Button.style";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface Iprops {
   width?: string;
@@ -11,7 +11,7 @@ interface Iprops {
 export default function Search(props: Iprops) {
   let [value, setValue] = useState<string>("");
   const ref: any = React.createRef();
-
+  const navigate = useNavigate();
   const handleValue = (e: React.FormEvent<HTMLInputElement>): void => {
     let val: string = e.currentTarget.value.trim();
     setValue(val);
@@ -23,18 +23,16 @@ export default function Search(props: Iprops) {
       ref.current.click();
     }
   };
-
+  const handleSearch = React.useCallback(() => {
+    if (value) navigate(`/search/${value}`);
+  }, [navigate, value]);
   return (
     <Lable width={props.width}>
       <SearchInput value={value} onChange={handleValue} onKeyUp={handleKey} />
-      {/* <Link
-        to={`${value.trim() !== "" ? `/search/${value}` : ""} `}
-        style={{ width: "22%", minWidth: "120px", textDecoration: "none" }}
-        > */}
+
       <Button
-        as={Link}
         ref={ref}
-        to={value && `/search/${value}`}
+        onClick={handleSearch}
         borderRadius="6px"
         sx={{
           width: "22%",
@@ -50,7 +48,6 @@ export default function Search(props: Iprops) {
       >
         <SearchIcon /> Search
       </Button>
-      {/* </Link> */}
     </Lable>
   );
 }
