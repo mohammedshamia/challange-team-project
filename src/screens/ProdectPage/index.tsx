@@ -10,6 +10,8 @@ import Loading from "../../components/common/Loading";
 import RowComponent from "../../components/GlobalStyles/Row";
 import { SliderProduct } from "../../components/Slider";
 import { FeaturedProductsContiner } from "./ProductPage.styled";
+import BasicBreadcrumbs from "../../components/Breadcrumbs";
+import { Box } from "@mui/material";
 
 const reviewer = [
   {
@@ -55,9 +57,12 @@ export default function ProductPage() {
       {loading ? (
         <Loading />
       ) : (
-        <>
+        <Box p={"0 7%"}>
           {product && (
             <>
+              <Box p={"30px 0"}>
+                <BasicBreadcrumbs itemName={product.name} />
+              </Box>
               <DetailesProdect
                 nameProdect={product.name}
                 priceProdect={product.price}
@@ -66,8 +71,8 @@ export default function ProductPage() {
                 img2propdect={product.images?.[2] as string}
                 img3propdect={product.images?.[3] as string}
                 detailsprodect={product.description}
-                sizes={null}
-                colors={null}
+                sizes={["1", "2", "3"]}
+                colors={["#999", "#000", "#bbe24f"]}
               />
               <ReviewesProdect reviewer={[]} />
               <FeaturedProductsContiner>
@@ -81,7 +86,7 @@ export default function ProductPage() {
               </FeaturedProductsContiner>
             </>
           )}
-        </>
+        </Box>
       )}
     </>
   );
