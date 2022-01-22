@@ -1,4 +1,4 @@
-import { Divider } from "@mui/material";
+import { Divider, Grid } from "@mui/material";
 import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -60,4 +60,26 @@ export const Divder = styled(Divider)<IpropsDivider>((props) => ({
   background: props.theme.palette.primary.main,
   marginTop: "22px",
   zIndex: 1,
+}));
+
+
+export const GridTopRateProducts = styled(Grid)((props) => ({
+  border: "1px solid #fcdd06",
+  borderRadius: "16px",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  margin: "auto",
+  padding: "6px",
+  [props.theme.breakpoints.down("xl")]: {
+    flexWrap: "wrap",
+  },
+  "& .MuiGrid-item": {
+    borderRight: `1px solid ${props.theme.palette.divider}`,
+    [props.theme.breakpoints.down("md")]: {
+      borderRight: "none",
+      borderTop: `1px solid ${props.theme.palette.divider}`,
+    },
+    "&:last-child": { borderRight: "none" },
+  },
 }));

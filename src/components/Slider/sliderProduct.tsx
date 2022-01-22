@@ -67,7 +67,7 @@ export default function SliderProduct() {
                   <ProdectCard
                     valueRating={product.rating}
                     price={product.price}
-                    discountValue={20}
+                    discountValue={product.discount}
                     img={`${baseURL}${product.images?.[0]}` || ""}
                     name={product.name}
                   />

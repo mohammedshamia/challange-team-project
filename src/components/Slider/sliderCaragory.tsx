@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { autoPlay } from "react-swipeable-views-utils";
 import SwipeableViews from "react-swipeable-views";
 import { DataCatagorySlider } from "./sliderData";
 import CategroyCard from "../CategroyCard";
 import { Grid } from "@mui/material";
-import { DotsItem } from "./style";
+import { DotGroup, DotsItem } from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../redux/store";
 import { getCategories } from "../../redux/actions/products.actions";
@@ -64,15 +64,7 @@ export default function SliderCatagory() {
           </Grid>
         ))}
       </AutoPlaySwipeableViews>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          position: "absolute",
-          top: "calc(10% - 7px)",
-          right: "4.8%",
-        }}
-      >
+      <DotGroup>
         {Array.from(Array(DataCatagorySlider.length)).map((_, index) => (
           <DotsItem
             active={activeStep === index}
@@ -83,7 +75,7 @@ export default function SliderCatagory() {
             key={index}
           />
         ))}
-      </div>
+      </DotGroup>
     </>
   );
 }
