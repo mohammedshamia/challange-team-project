@@ -2,8 +2,8 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import RatingComponent from "../../../Rating";
-import { TextareaAutosize, Typography } from "@mui/material";
-import { AddReviewButton, FormContiner } from "./Form.styled";
+import { Typography } from "@mui/material";
+import { AddReviewButton, FormContiner,TextArea } from "./Form.styled";
 
 const SignupSchema = Yup.object().shape({
   rating: Yup.string().required("Rating is Required"),
@@ -36,9 +36,10 @@ export const MainForm = ({ handleSubmit }: { handleSubmit: Function }) => (
           </Typography>
         ) : null}
         <label htmlFor="comment">Your comment: </label>
-        <TextareaAutosize
+        <TextArea
           id="comment"
           name="comment"
+          placeholder="write to comment"
           onChange={handleChange}
           minRows={5}
         />

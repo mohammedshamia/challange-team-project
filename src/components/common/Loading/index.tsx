@@ -1,7 +1,19 @@
 import CircularProgress from "@mui/material/CircularProgress";
 
 const Loading = () => {
-  return <CircularProgress size={50} />;
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "100vh",
+        justifyContent: "center",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <CircularProgress size={50} />;
+    </div>
+  );
 };
 
 export default Loading;

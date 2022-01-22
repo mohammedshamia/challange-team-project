@@ -40,7 +40,7 @@ export default function Review({
         <GrayText>
           <Typography
             variant="h4"
-            fontSize="17px"
+            fontSize="1rem"
             lineHeight={1.5}
             color="text.primary"
           >
