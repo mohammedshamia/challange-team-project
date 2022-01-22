@@ -5,7 +5,7 @@ const Loading = () => {
     <div
       style={{
         width: "100%",
-        height: "100vh",
+        height: "15vh",
         justifyContent: "center",
         display: "flex",
         alignItems: "center",

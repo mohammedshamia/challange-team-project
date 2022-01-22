@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import VerticalTabs from "../../components/Tabs";
 import { Typography } from "@mui/material";
 import Profile from "./tabs/profile";
@@ -39,26 +39,26 @@ const ProfilePage = () => {
             src={user.profileImage || "/static/avatar.jpg"}
             alt="avatar"
           />
-          <Typography variant="h2">{`${user.firstName} ${user.lastName}`}</Typography>
+          <Typography sx={{fontSize:"1.2rem"}} variant="h2">{`${user.firstName} ${user.lastName}`}</Typography>
         </WrapperAvatarTab>
       ),
       content: <Profile user={user} />,
     },
     {
-      label: <Typography variant="h3">My Orders</Typography>,
-      content: <Typography variant="h3">My Orders</Typography>,
+      label: (
+        <Typography variant="h4" sx={{ fontSize: "1.5rem" }}>
+          My Orders
+        </Typography>
+      ),
+      content: <Typography variant="h4">My Orders</Typography>,
     },
     {
-      label: <Typography variant="h3">Wishlist</Typography>,
-      content: <Typography variant="h3">Wishlist</Typography>,
-    },
-    {
-      label: <Typography variant="h3">Notifications</Typography>,
-      content: <Typography variant="h3">Notifications</Typography>,
-    },
-    {
-      label: <Typography variant="h3">Settings</Typography>,
-      content: <Typography variant="h3">Settings</Typography>,
+      label: (
+        <Typography variant="h4" sx={{ fontSize: "1.5rem" }}>
+          Create Products
+        </Typography>
+      ),
+      content: <Typography sx={{textAlign:"left"}} variant="h4">Create Products</Typography>,
     },
   ];
 
