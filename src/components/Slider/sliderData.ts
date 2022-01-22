@@ -133,18 +133,21 @@ export const DataProdectSlider: IdataProdect[] = [
   {
     page: [
       {
+        id: "",
         name: "Amazon Echo Dot 3rd Generation",
         img: "/static/prodect.PNG",
         price: 29.99,
         valueRating: 3.5,
       },
       {
+        id: "",
         name: "LAPTOP",
         img: "/static/prodect.PNG",
         price: 345,
         discountValue: 30,
       },
       {
+        id: "",
         name: "LAPTOP",
         img: "/static/prodect.PNG",
         price: 29.99,
@@ -156,18 +159,21 @@ export const DataProdectSlider: IdataProdect[] = [
   {
     page: [
       {
+        id: "",
         name: "Amazon Echo Dot 3rd Generation",
         img: "/static/prodect.PNG",
         price: 345,
         discountValue: 30,
       },
       {
+        id: "",
         name: "LAPTOP",
         img: "/static/prodect.PNG",
         price: 345,
         discountValue: 30,
       },
       {
+        id: "",
         name: "LAPTOP",
         img: "/static/img1.PNG",
         price: 345,
@@ -178,18 +184,21 @@ export const DataProdectSlider: IdataProdect[] = [
   {
     page: [
       {
+        id: "",
         name: "LAPTOP",
         img: "/static/prodect.PNG",
         price: 345,
         discountValue: 30,
       },
       {
+        id: "",
         name: "LAPTOP",
         img: "/static/prodect.PNG",
         price: 345,
         discountValue: 30,
       },
       {
+        id: "",
         name: "LAPTOP",
         img: "/static/prodect.PNG",
         price: 345,

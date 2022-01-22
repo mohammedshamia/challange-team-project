@@ -70,9 +70,12 @@ export default function FormReview() {
     setOpen(false);
   };
 
-  const handleSubmit = React.useCallback((values) => {
-    dispatch(addReview(product._id as string, values as IReview));
-  }, []);
+  const handleSubmit = React.useCallback(
+    (values) => {
+      dispatch(addReview(product._id as string, values as IReview));
+    },
+    [dispatch, product]
+  );
 
   return (
     <ContainerReviewsForm>

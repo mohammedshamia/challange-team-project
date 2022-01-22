@@ -65,6 +65,7 @@ export default function SliderProduct() {
               (products as IProduct[])?.slice(0, 3).map((product) => (
                 <Grid key={product._id} item md={3.8} sx={{ margin: "16px 0" }}>
                   <ProdectCard
+                    id={product._id as string}
                     valueRating={product.rating}
                     price={product.price}
                     discountValue={product.discount}

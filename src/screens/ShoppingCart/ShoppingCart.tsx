@@ -1,10 +1,8 @@
-import { useEffect } from "react";
-import { ReactNode } from "react";
+import { useEffect, useMemo } from "react";
 import { IProduct } from "../../@types/products.types";
 
-
 // material
-import { Grid, Typography,Box } from "@mui/material";
+import { Grid, Typography, Box } from "@mui/material";
 
 // Rudex
 import {
@@ -24,76 +22,46 @@ import RowComponent from "../../components/GlobalStyles/Row";
 import ProdectCard from "../../components/ProdectCard";
 import SubTotalCard from "../../components/SubTotalCard/SubTotalCard";
 
-
-interface ShoppingCartProps {
-  title: string;
-  counter: string;
-  price: string;
-  imgSrc?: string;
-  salePrice?: string;
-}
-const arr: Array<ShoppingCartProps> = [
-  // {
-  //   title: "one gjhv jkbnl kb bijb",
-  //   counter: "9",
-  //   price: "678",
-  //   imgSrc: "/static/img1.png",
-  // },
-  // {
-  //   title: "two lkn jn jbouhbjhnmkmn jhbjlkn ",
-  //   counter: "83",
-  //   price: "6782$",
-  //   imgSrc: "/static/headphones.jpg",
-  //   salePrice: "987$",
-  // },
-  // { title: "thre;loe", counter: "23", price: "82" },
-  // {
-  //   title: "one mn ljkk kn km ,mlknhjblkjnhhjb ijhb jn",
-  //   counter: "9",
-  //   price: "678$",
-  // },
-  // { title: "twfdoiojo", counter: "83", price: "6782" },
-  // { title: "ljnhkn jnkl", counter: "23", price: "82" },
-  // { title: "one", counter: "9", price: "678" },
-  // { title: "tw lkjn ghvhb o", counter: "83", price: "6782" },
-  // { title: "thrlikj ojiblkjn ee", counter: "23", price: "82" },
-];
-
 export default function ShoppingCartPage() {
   const dispatch = useDispatch();
   const {
-    loading,
-    topProducts,
-    products: { IProduct },
-  } = useSelector((state: AppState) => state.products);
+    products: {
+      loading,
+      topProducts,
+      products: { products },
+    },
+    cart: { cart },
+  } = useSelector((state: AppState) => state);
 
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getTopProducts());
   }, [dispatch]);
 
-  let cartItems = (): ReactNode => {
-    return arr.map((item: ShoppingCartProps) => {
-      return (
-        <Box mb="32px">
-          <ShoppingCart
-            title={item.title}
-            counter={item.counter}
-            price={item.price}
-            imgSrc={item.imgSrc || ""}
-            salePrice={item.salePrice || ""}
-          />
-        </Box>
+  const CartProducts = useMemo<IProduct[]>(() => {
+    if (Object.keys(cart).length > 0) {
+      return (products as IProduct[]).filter((product) =>
+        Object.keys(cart).includes(product._id as string)
       );
-    });
-  };
+    }
+    return [];
+  }, [cart, products]);
+
+  const totalPrice = useMemo<number>(() => {
+    if (Object.keys(cart).length > 0) {
+      return (products as IProduct[])
+        .filter((product) => Object.keys(cart).includes(product._id as string))
+        .reduce((acc, product) => product?.price + acc, 0);
+    }
+    return 0;
+  }, [cart, products]);
 
   return (
     <Box p={"0 7%"}>
       <Box p={"30px 0"}>
         <BasicBreadcrumbs itemName="Shopping Cart" />
       </Box>
-      {arr.length === 0 ? (
+      {Object.keys(cart).length === 0 ? (
         <>
           <div
             style={{
@@ -125,6 +93,7 @@ export default function ShoppingCartPage() {
                 (topProducts as IProduct[]).map((product) => (
                   <Grid key={product._id} item xs={12} md={6} lg={6} xl={4.5}>
                     <ProdectCard
+                      id={product._id as string}
                       discountValue={30}
                       boxShadow={"none"}
                       borderRadius="0"
@@ -142,13 +111,25 @@ export default function ShoppingCartPage() {
       ) : (
         <Grid container spacing={4}>
           <Grid item xs={12} lg={9}>
-            {cartItems()}
+            {CartProducts.map((item: IProduct) => (
+              <Box mb="32px" key={item._id as string}>
+                <ShoppingCart
+                  id={item?._id as string}
+                  title={item.name}
+                  counter={cart[item?._id as string].qty}
+                  price={item.price}
+                  imgSrc={item.images?.[0]}
+                  salePrice={item.price}
+                />
+              </Box>
+            ))}
           </Grid>
           <Grid item xs={12} lg={3} sx={{ order: { xs: -1, lg: 22 } }}>
             <SubTotalCard
-              priceAfterDiscount="$999.97"
+              priceAfterDiscount={`$${totalPrice}`}
+              // priceAfterDiscount={`$999.99`}
               priceBeforeDiscount="$989.97"
-              numberOfItems={arr.length}
+              numberOfItems={Object.keys(cart).length}
             />
           </Grid>
         </Grid>

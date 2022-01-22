@@ -4,11 +4,12 @@ import { Close, ImgContainer, WrapperCart } from "./ShoppingCart.style";
 import { Grid, Typography } from "@mui/material";
 
 interface IPropsShoppingCart {
+  id: string;
   imgSrc?: string;
   title: string;
-  counter: React.ReactNode;
-  price: string;
-  salePrice?: string;
+  counter: number;
+  price: number;
+  salePrice?: number;
 }
 
 export default function ShoppingCart(props: IPropsShoppingCart) {
@@ -39,7 +40,7 @@ export default function ShoppingCart(props: IPropsShoppingCart) {
         lg={3}
         sx={{ textAlign: { xs: "center", lg: "right" } }}
       >
-        <Counter value={5} />
+        <Counter value={props.counter} />
       </Grid>
       <Grid
         item

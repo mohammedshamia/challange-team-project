@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { ThemeReducer } from "./reducers/theme.reducers";
 import { AuthReducer } from "./reducers/auth.reducers";
 import { ProductsReducer } from "./reducers/products.reducers";
+import { cartReducer } from "./reducers/cart.reducers";
 
 declare global {
   interface Window {
@@ -14,6 +15,7 @@ const reducers = combineReducers({
   theme: ThemeReducer,
   auth: AuthReducer,
   products: ProductsReducer,
+  cart: cartReducer,
 });
 
 const middlewares = [thunk];

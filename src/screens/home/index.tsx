@@ -70,6 +70,7 @@ const HomePage = () => {
             (topProducts as IProduct[]).map((product) => (
               <Grid key={product._id} item xs={12} md={6} lg={6} xl={4.5}>
                 <ProdectCard
+                  id={product._id as string}
                   discountValue={product.discount}
                   boxShadow={"none"}
                   borderRadius="0"
