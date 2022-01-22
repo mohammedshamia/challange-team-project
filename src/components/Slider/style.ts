@@ -15,19 +15,25 @@ export const Stack = styled(Box)<Iprops>((props) => ({
   justifyContent: "center",
   [props.theme.breakpoints.down("lg")]: {
     "& h1": {
-      fontSize:"3rem",
+      fontSize: "3rem",
     },
     "& h3": {
-      fontSize:"1.3rem",
+      fontSize: "1.3rem",
     },
   },
   [props.theme.breakpoints.down("md")]: {
-    width:"80%",
-    alignItems:"center",
-    textAlign:"center",
-  }
+    width: "80%",
+    alignItems: "center",
+    textAlign: "center",
+  },
 }));
-
+export const DotGroup = styled("div")((props) => ({
+  display: "flex",
+  justifyContent: "center",
+  position: "absolute",
+  top: "50px",
+  right: "4.8%",
+}));
 export const Dots = styled(MobileStepper)((props) => ({
   margin: "auto",
   background: "none",

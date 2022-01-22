@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Chip, Typography } from "@mui/material";
 import {
   CardContainer,
   ImagContainer,
@@ -20,6 +20,9 @@ export default function ProdectCard({
   borderRadius,
   boxShadow,
 }: Card) {
+  const resulte =
+    (price as number) - ((discountValue as number) / 100) * (price as number);
+
   return (
     <CardContainer boxShadow={boxShadow} borderRadius={borderRadius}>
       <Box width="98%" m="auto" height="350px">
@@ -40,32 +43,41 @@ export default function ProdectCard({
       </PriceContainer>
 
       <PriceContainer>
-        {discountValue && (
-          <Typography
-            fontWeight="bold"
-            fontSize="30px"
-            sx={{
-              color: "#FC4059",
-            }}
-          >
-            {(
-              (price as number) -
-              (discountValue / 100) * (price as number)
-            ).toFixed(2)}
-            $
-          </Typography>
-        )}
+        {(discountValue as number) === 100 ? (
+          <>
+            <Chip
+              sx={{ fontSize: "1.4rem", padding: "0px 12px", height: "36px" }}
+              label="Free"
+              variant="outlined"
+              color="success"
+            />
+          </>
+        ) : (
+          <>
+            {(discountValue as number) > 0 && (
+              <Typography
+                fontWeight="bold"
+                fontSize="30px"
+                sx={{
+                  color: "#FC4059",
+                }}
+              >
+                {resulte.toFixed(2)}$
+              </Typography>
+            )}
 
-        <Typography
-          fontWeight="bold"
-          fontSize="30px"
-          color=" text.primary"
-          sx={{
-            textDecoration: discountValue ? "line-through" : "none",
-          }}
-        >
-          {price}$
-        </Typography>
+            <Typography
+              fontWeight="bold"
+              fontSize="30px"
+              color=" text.primary"
+              sx={{
+                textDecoration: discountValue ? "line-through" : "none",
+              }}
+            >
+              {price}$
+            </Typography>
+          </>
+        )}
       </PriceContainer>
 
       <SittingContainer style={{ gap: "14px" }}>
@@ -78,7 +90,9 @@ export default function ProdectCard({
           add to card
         </Button>
       </SittingContainer>
-      {discountValue && <SalaryPercentage>-{discountValue}%</SalaryPercentage>}
+      {(discountValue as number) > 0 && (
+        <SalaryPercentage>-{discountValue}%</SalaryPercentage>
+      )}
     </CardContainer>
   );
 }

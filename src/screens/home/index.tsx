@@ -5,6 +5,7 @@ import { IProduct } from "../../@types/products.types";
 import { baseURL } from "../../api";
 import Loading from "../../components/common/Loading";
 import RowComponent from "../../components/GlobalStyles/Row";
+import { GridTopRateProducts } from "../../components/GlobalStyles";
 import ProdectCard from "../../components/ProdectCard";
 import {
   SliderBanner,
@@ -16,13 +17,7 @@ import {
   getProducts,
 } from "../../redux/actions/products.actions";
 import { AppState } from "../../redux/store";
-import {
-  Banner,
-  Categroy,
-  FeaturedProducts,
-  TopRateProducts,
-  GridTopRateProducts,
-} from "./styled";
+import { Banner, Categroy, FeaturedProducts, TopRateProducts } from "./styled";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -71,9 +66,9 @@ const HomePage = () => {
             <Loading />
           ) : (
             (topProducts as IProduct[]).map((product) => (
-              <Grid key={product._id} item xs={12}  md={6} lg={6} xl={4.5}>
+              <Grid key={product._id} item xs={12} md={6} lg={6} xl={4.5}>
                 <ProdectCard
-                  discountValue={30}
+                  discountValue={product.discount}
                   boxShadow={"none"}
                   borderRadius="0"
                   img={`${baseURL}${product.images?.[0]}` || ""}
