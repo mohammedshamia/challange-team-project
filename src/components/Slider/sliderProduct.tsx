@@ -69,7 +69,7 @@ export default function SliderProduct() {
                     valueRating={product.rating}
                     price={product.price}
                     discountValue={product.discount}
-                    img={`${baseURL}${product.images?.[0]}` || ""}
+                    img={product.images?.[0] || ""}
                     name={product.name}
                   />
                 </Grid>

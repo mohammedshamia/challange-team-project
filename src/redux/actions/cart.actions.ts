@@ -11,10 +11,10 @@ export const addToCart =
       dispatch({
         type: CartConstants.ADD_TO_CART_START,
       });
-      //   const res = await API.post("/users/profile/cart", {
-      //     productId: productID,
-      //     qty,
-      //   });
+      // const res = await API.put("/users/profile/cart", {
+      //   productId: productID,
+      //   qty,
+      // });
       dispatch({
         type: CartConstants.ADD_TO_CART_SUCCESS,
         payload: { product: productID, qty },
@@ -34,7 +34,7 @@ export const removeFromCart =
       dispatch({
         type: CartConstants.REMOVE_FROM_CART_START,
       });
-      //   const res = await API.post("/users/profile/cart", {
+      //   const res = await API.delete("/users/profile/cart", {
       //     productId: productID,
       //     qty,
       //   });

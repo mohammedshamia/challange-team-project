@@ -1,7 +1,10 @@
-import * as React from "react";
+import { useCallback } from "react";
 import Counter from "../../Counter";
 import { Close, ImgContainer, WrapperCart } from "./ShoppingCart.style";
-import { Grid, Typography } from "@mui/material";
+import { Chip, Grid, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { addToCart, removeFromCart } from "../../../redux/actions/cart.actions";
+import { calculateDiscount } from "../../../utils/helpers";
 
 interface IPropsShoppingCart {
   id: string;
@@ -9,13 +12,26 @@ interface IPropsShoppingCart {
   title: string;
   counter: number;
   price: number;
-  salePrice?: number;
+  discount?: number;
 }
 
 export default function ShoppingCart(props: IPropsShoppingCart) {
+  const dispatch = useDispatch();
+
+  const handleDelete = useCallback(() => {
+    dispatch(removeFromCart(props.id as string));
+  }, [props, dispatch]);
+
+  const handleUpdate = useCallback(
+    (value: number) => {
+      dispatch(addToCart(props.id, value));
+    },
+    [props, dispatch]
+  );
+
   return (
     <WrapperCart container alignItems="center">
-      <Close onClick={() => console.log(props.title)} />
+      <Close onClick={handleDelete} />
       <ImgContainer item xs={12} lg={3}>
         <img height="100%" width="100%" src={props.imgSrc} alt={props.title} />
       </ImgContainer>
@@ -40,7 +56,7 @@ export default function ShoppingCart(props: IPropsShoppingCart) {
         lg={3}
         sx={{ textAlign: { xs: "center", lg: "right" } }}
       >
-        <Counter value={props.counter} />
+        <Counter value={props.counter} onChange={handleUpdate} />
       </Grid>
       <Grid
         item
@@ -48,19 +64,37 @@ export default function ShoppingCart(props: IPropsShoppingCart) {
         lg={2}
         sx={{ textAlign: { xs: "center", md: "left", lg: "right" } }}
       >
-        {props.salePrice && (
-          <Typography
-            variant="h6"
-            fontWeight="bold"
-            color="text.secondary"
-            sx={{ textDecoration: "line-through" }}
-          >
-            {props.salePrice}
+        {(props.discount as number) === 100 ? (
+          <>
+            <Chip
+              sx={{ fontSize: "1.4rem", padding: "0px 12px", height: "36px" }}
+              label="Free"
+              variant="outlined"
+              color="success"
+            />
+          </>
+        ) : (props.discount as number) > 0 ? (
+          <>
+            <Typography
+              variant="h6"
+              fontWeight="bold"
+              color="text.secondary"
+              sx={{ textDecoration: "line-through" }}
+            >
+              {props.price}
+            </Typography>
+            <Typography variant="h4" fontWeight="900" color="text.primary">
+              {calculateDiscount(
+                props.price as number,
+                props.discount as number
+              )?.toFixed(2)}
+            </Typography>
+          </>
+        ) : (
+          <Typography variant="h4" fontWeight="900" color="text.primary">
+            {props.price}
           </Typography>
         )}
-        <Typography variant="h4" fontWeight="900" color="text.primary">
-          {props.price}
-        </Typography>
       </Grid>
     </WrapperCart>
   );

@@ -118,11 +118,16 @@ export const getCategories = () => async (dispatch: Dispatch<ActionsType>) => {
 export const addReview =
   (productID: string, review: IReview) =>
   async (dispatch: Dispatch<ActionsType>) => {
+    const { comment, rating } = review;
     try {
       dispatch({
         type: ProductConstants.ADD_REVIEW_START,
       });
-      // const res = API.post<IReview>(`/products/${productID}/reviews`, review);
+      // const res = await API.post<IReview>(`/products/${productID}/reviews`, {
+      //   comment,
+      //   rating,
+      // });
+      // console.log(res.data);
       dispatch({
         type: ProductConstants.ADD_REVIEW_SUCCESS,
         payload: review,

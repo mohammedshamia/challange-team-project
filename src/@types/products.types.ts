@@ -32,8 +32,10 @@ export interface IProduct {
 }
 
 export interface IReview {
+  name?: string;
   rating: number;
   comment: string;
+  createdAt?: string;
 }
 
 export interface ICategory {

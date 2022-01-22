@@ -28,6 +28,7 @@ export default class Stepper extends PureComponent<IProps> {
             {this.props.steps.map((step, index) => (
               <MUIStep
                 key={step.text}
+                sx={{ fontFamily: "Mulish" }}
                 className={
                   this.props.defaultActive > index
                     ? "finished"

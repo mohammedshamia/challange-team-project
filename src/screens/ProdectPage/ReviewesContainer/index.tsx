@@ -2,7 +2,6 @@ import Typography from "@mui/material/Typography";
 import React from "react";
 import { IReview } from "../../../@types/products.types";
 import ReviewsCard from "../../../components/ReviewsCard";
-import { Reviewer } from "../../../components/ReviewsCard/Review";
 import { ReviewesContainer } from "../ProductPage.styled";
 
 interface Iprops {

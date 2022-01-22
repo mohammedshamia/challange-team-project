@@ -18,7 +18,7 @@ const Container = styled.div`
   padding: 0;
 `;
 
-const index = ({ next }: IProps) => {
+const ShippingAndPayment = ({ next }: IProps) => {
   return (
     <Container>
       <Formik initialValues={{}} onSubmit={() => {}}>
@@ -208,4 +208,4 @@ const index = ({ next }: IProps) => {
   );
 };
 
-export default index;
+export default ShippingAndPayment;

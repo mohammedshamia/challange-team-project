@@ -21,6 +21,7 @@ import { GridTopRateProducts } from "../../components/GlobalStyles";
 import RowComponent from "../../components/GlobalStyles/Row";
 import ProdectCard from "../../components/ProdectCard";
 import SubTotalCard from "../../components/SubTotalCard/SubTotalCard";
+import { calculateDiscount } from "../../utils/helpers";
 
 export default function ShoppingCartPage() {
   const dispatch = useDispatch();
@@ -51,7 +52,29 @@ export default function ShoppingCartPage() {
     if (Object.keys(cart).length > 0) {
       return (products as IProduct[])
         .filter((product) => Object.keys(cart).includes(product._id as string))
-        .reduce((acc, product) => product?.price + acc, 0);
+        .reduce(
+          (acc, product) =>
+            product?.price * cart[product?._id as string].qty + acc,
+          0
+        );
+    }
+    return 0;
+  }, [cart, products]);
+
+  const discountPrice = useMemo<number>(() => {
+    if (Object.keys(cart).length > 0) {
+      return (products as IProduct[])
+        .filter((product) => Object.keys(cart).includes(product._id as string))
+        .reduce(
+          (acc, product) =>
+            calculateDiscount(
+              product.price as number,
+              product.discount as number
+            ) *
+              cart[product?._id as string].qty +
+            acc,
+          0
+        );
     }
     return 0;
   }, [cart, products]);
@@ -119,16 +142,15 @@ export default function ShoppingCartPage() {
                   counter={cart[item?._id as string].qty}
                   price={item.price}
                   imgSrc={item.images?.[0]}
-                  salePrice={item.price}
+                  discount={item.discount}
                 />
               </Box>
             ))}
           </Grid>
           <Grid item xs={12} lg={3} sx={{ order: { xs: -1, lg: 22 } }}>
             <SubTotalCard
-              priceAfterDiscount={`$${totalPrice}`}
-              // priceAfterDiscount={`$999.99`}
-              priceBeforeDiscount="$989.97"
+              priceAfterDiscount={`$${totalPrice.toFixed(2)}`}
+              priceBeforeDiscount={`$${discountPrice.toFixed(2)}`}
               numberOfItems={Object.keys(cart).length}
             />
           </Grid>
