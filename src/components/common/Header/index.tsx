@@ -16,7 +16,10 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 export default function Header() {
   const dispatch = useDispatch();
 
-  const { theme } = useSelector((state: AppState) => state);
+  const {
+    theme,
+    cart: { cart },
+  } = useSelector((state: AppState) => state);
 
   const toggleTheme_ = React.useCallback(() => {
     dispatch(toggleTheme(theme === "light" ? "dark" : "light"));
@@ -72,7 +75,10 @@ export default function Header() {
           >
             <Search width=" max-content" />
             <FlexBox>
-              <BottonNavigationGroup wishlist={9} cartItems={98} />
+              <BottonNavigationGroup
+                wishlist={9}
+                cartItems={Object.keys(cart).length || 0}
+              />
               <ButtonIcon onClick={toggleTheme_} aria-label="toggle-theme">
                 {theme === "light" ? <Brightness4Icon /> : <Brightness7Icon />}
               </ButtonIcon>
@@ -93,7 +99,10 @@ export default function Header() {
           <Logo />
           <Search />
           <FlexBox>
-            <BottonNavigationGroup wishlist={9} cartItems={98} />
+            <BottonNavigationGroup
+              wishlist={9}
+              cartItems={Object.keys(cart).length || 0}
+            />
             <ButtonIcon onClick={toggleTheme_} aria-label="toggle-theme">
               {theme === "light" ? <Brightness4Icon /> : <Brightness7Icon />}
             </ButtonIcon>

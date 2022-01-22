@@ -32,7 +32,7 @@ const HomePage = () => {
     if ((topProducts as IProduct[]).length === 0) {
       dispatch(getTopProducts());
     }
-  }, [dispatch]);
+  }, [dispatch, topProducts]);
 
   return (
     <>
@@ -70,10 +70,11 @@ const HomePage = () => {
             (topProducts as IProduct[]).map((product) => (
               <Grid key={product._id} item xs={12} md={6} lg={6} xl={4.5}>
                 <ProdectCard
+                  id={product._id as string}
                   discountValue={product.discount}
                   boxShadow={"none"}
                   borderRadius="0"
-                  img={`${baseURL}${product.images?.[0]}` || ""}
+                  img={product.images?.[0] || ""}
                   name={product.name}
                   valueRating={product.rating}
                   price={product.price}

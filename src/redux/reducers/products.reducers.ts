@@ -120,7 +120,6 @@ export const ProductsReducer = (state = initial_state, action: ActionsType) => {
     case ProductConstants.ADD_REVIEW_START:
       return {
         ...state,
-        loading: true,
       };
     case ProductConstants.ADD_REVIEW_SUCCESS:
       return {

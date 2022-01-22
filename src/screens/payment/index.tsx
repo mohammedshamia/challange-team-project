@@ -12,6 +12,10 @@ const Payment = () => {
     setActive((prev) => prev + 1);
   }, []);
 
+  const back = useCallback(() => {
+    setActive((prev) => prev - 1);
+  }, []);
+
   const steps = useMemo<IStep[]>(
     () => [
       {
@@ -20,11 +24,11 @@ const Payment = () => {
       },
       {
         text: "Place an Order",
-        children: <PlaceOrder />,
+        children: <PlaceOrder back={back} />,
         last: true,
       },
     ],
-    [next]
+    [next, back]
   );
 
   return (

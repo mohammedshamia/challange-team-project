@@ -6,14 +6,14 @@ import { TextareaAutosize, Typography } from "@mui/material";
 import { AddReviewButton, FormContiner } from "./Form.styled";
 
 const SignupSchema = Yup.object().shape({
-  rating: Yup.string().required("Rating is Required"),
+  rating: Yup.string().required("Rating is Required").nullable(),
   comment: Yup.string().required("Comment is Required"),
 });
 
 export const MainForm = ({ handleSubmit }: { handleSubmit: Function }) => (
   <Formik
     initialValues={{
-      rating: 0,
+      rating: null,
       comment: "",
     }}
     validationSchema={SignupSchema}
