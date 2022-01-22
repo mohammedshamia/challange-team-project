@@ -1,66 +1,53 @@
 import React from "react";
-import { Formik} from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import RatingComponent from "../../../Rating";
-import Input from "@mui/material/Input";
 import { TextareaAutosize, Typography } from "@mui/material";
 import { AddReviewButton, FormContiner } from "./Form.styled";
 
 const SignupSchema = Yup.object().shape({
-  nameReviewer:
-    Yup.string()
-    .required("Required"),
-  valueRating:
-    Yup.string()
-    .required("Required"),
-  optionsReviewer: Yup.string().required("Required"),
+  rating: Yup.string().required("Rating is Required"),
+  comment: Yup.string().required("Comment is Required"),
 });
 
 export const MainForm = () => (
   <Formik
     initialValues={{
-      nameReviewer: "",
-      valueRating: 0,
-      optionsReviewer: "",
+      rating: 0,
+      comment: "",
     }}
     validationSchema={SignupSchema}
     onSubmit={(values) => {
       alert(JSON.stringify(values, null, 2));
     }}
   >
-    {({ errors, touched, handleChange }) => (
+    {({ values, errors, touched, handleChange, setFieldValue }) => (
       <FormContiner>
-        <Input
-          placeholder="your name:"
-          name="nameReviewer"
-          onChange={handleChange}
-          sx={{borderBottom:'1px solid gold', color:'white', paddingInline:'3%'}}
+        <label htmlFor="rating">Your rating: </label>
+        <RatingComponent
+          id="rating"
+          name="rating"
+          value={values.rating}
+          onChangeValue={(value: number) => setFieldValue("rating", value)}
         />
-        {errors.nameReviewer && touched.nameReviewer ? (
-          <Typography variant="h4" color="red" fontSize="19px">
-            {errors.nameReviewer}
+        {errors.rating && touched.rating ? (
+          <Typography variant="caption" color="red">
+            {errors.rating}
           </Typography>
         ) : null}
-        <RatingComponent name="valueRating" value={1.5} />
-        {errors.valueRating && touched.valueRating ? (
-          <Typography variant="h4" color="red" >
-            {errors.valueRating}
-          </Typography>
-        ) : null}
-        <label htmlFor="optionsReviewer">your opinine: </label>
+        <label htmlFor="comment">Your comment: </label>
         <TextareaAutosize
-          id="optionsReviewer"
-          name="optionsReviewer"
+          id="comment"
+          name="comment"
           onChange={handleChange}
-          maxRows={5}
           minRows={5}
         />
-        {errors.optionsReviewer && touched.optionsReviewer ? (
-          <Typography variant="h4" color="red">
-            {errors.optionsReviewer}
+        {errors.comment && touched.comment ? (
+          <Typography variant="caption" color="red">
+            {errors.comment}
           </Typography>
         ) : null}
-        <AddReviewButton type="submit">add anther reviewer</AddReviewButton>
+        <AddReviewButton type="submit">Add Review</AddReviewButton>
       </FormContiner>
     )}
   </Formik>

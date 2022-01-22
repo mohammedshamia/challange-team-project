@@ -28,8 +28,12 @@ const HomePage = () => {
   } = useSelector((state: AppState) => state.products);
 
   useEffect(() => {
-    dispatch(getProducts());
-    dispatch(getTopProducts());
+    if ((products as IProduct[]).length === 0) {
+      dispatch(getProducts());
+    }
+    if ((topProducts as IProduct[]).length === 0) {
+      dispatch(getTopProducts());
+    }
   }, [dispatch]);
 
   return (

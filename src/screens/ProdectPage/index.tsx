@@ -1,5 +1,12 @@
 import ReviewesProdect from "./ReviewesContainer";
 import DetailesProdect from "./DetailesProduct";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppState } from "../../redux/store";
+import { getProduct, clearProduct } from "../../redux/actions/products.actions";
+import { IProduct } from "../../@types/products.types";
+import Loading from "../../components/common/Loading";
 import RowComponent from "../../components/GlobalStyles/Row";
 import { SliderProduct } from "../../components/Slider";
 import { FeaturedProductsContiner } from "./ProductPage.styled";
@@ -28,52 +35,54 @@ const reviewer = [
   },
 ];
 
-interface Iprops {
-  nameProdect: string;
-  priceProdect: number;
-  imgpropdect: string;
-  img1propdect: string;
-  img2propdect: string;
-  img3propdect: string;
-  detailsprodect: string;
-  sizes?: string[];
-  colors?: string[];
-}
+export default function ProductPage() {
+  const { id } = useParams();
+  // const navigate = useNavigate();
+  const {
+    product,
+    loading,
+  }: { product: IProduct | undefined; loading: boolean } = useSelector(
+    (state: AppState) => state.products
+  );
+  const dispatch = useDispatch();
 
-export default function ProductPage({
-  nameProdect,
-  priceProdect,
-  imgpropdect,
-  img1propdect,
-  img2propdect,
-  img3propdect,
-  sizes,
-  colors,
-  detailsprodect,
-}: Iprops) {
+  useEffect(() => {
+    dispatch(getProduct(id as string));
+  }, [id, dispatch]);
+
   return (
     <>
-      <DetailesProdect
-        nameProdect={nameProdect}
-        priceProdect={priceProdect}
-        imgpropdect={imgpropdect}
-        img1propdect={img1propdect}
-        img2propdect={img2propdect}
-        img3propdect={img3propdect}
-        detailsprodect={detailsprodect}
-        sizes={sizes}
-        colors={colors}
-      />
-      <ReviewesProdect reviewer={reviewer} />
-      <FeaturedProductsContiner>
-        <RowComponent
-          width="90%"
-          title={"Featured Products"}
-          widthDivider={"10%"}
-          alignItems="center"
-        />
-        <SliderProduct />
-      </FeaturedProductsContiner>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          {product && (
+            <>
+              <DetailesProdect
+                nameProdect={product.name}
+                priceProdect={product.price}
+                imgpropdect={product.images?.[0] as string}
+                img1propdect={product.images?.[1] as string}
+                img2propdect={product.images?.[2] as string}
+                img3propdect={product.images?.[3] as string}
+                detailsprodect={product.description}
+                sizes={null}
+                colors={null}
+              />
+              <ReviewesProdect reviewer={[]} />
+              <FeaturedProductsContiner>
+                <RowComponent
+                  width="90%"
+                  title={"Featured Products"}
+                  widthDivider={"10%"}
+                  alignItems="center"
+                />
+                <SliderProduct />
+              </FeaturedProductsContiner>
+            </>
+          )}
+        </>
+      )}
     </>
   );
 }

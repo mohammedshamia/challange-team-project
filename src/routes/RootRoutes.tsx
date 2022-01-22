@@ -52,17 +52,7 @@ const RootRoutes = {
     },
     {
       path: "/product/:id",
-      component: (
-        <ProductDetails
-          nameProdect={""}
-          priceProdect={0}
-          imgpropdect={""}
-          img1propdect={""}
-          img2propdect={""}
-          img3propdect={""}
-          detailsprodect={""}
-        />
-      ),
+      component: <ProductDetails />,
     },
     {
       path: "/404",

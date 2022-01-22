@@ -23,7 +23,9 @@ export default function SliderProduct() {
   } = useSelector((state: AppState) => state.products);
 
   useEffect(() => {
-    dispatch(getProducts());
+    if ((products as IProduct[])?.length === 0) {
+      dispatch(getProducts());
+    }
   }, [dispatch]);
 
   const handleChangeIndex = (index: number) => {

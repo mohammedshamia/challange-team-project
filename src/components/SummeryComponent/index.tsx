@@ -46,7 +46,7 @@ export default function SummeryComponent(props: Iprops) {
             })}
           </ButtonGroup>
         </>
-      ) : (
+      ) : props.colors ? (
         <>
           <p style={{ color: "#707070", fontSize: "18px", fontWeight: "500" }}>
             Color :
@@ -65,6 +65,8 @@ export default function SummeryComponent(props: Iprops) {
             );
           })}
         </>
+      ) : (
+        <></>
       )}
     </div>
   );
