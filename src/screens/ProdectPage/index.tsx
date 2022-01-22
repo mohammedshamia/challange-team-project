@@ -69,7 +69,7 @@ export default function ProductPage() {
                 sizes={null}
                 colors={null}
               />
-              <ReviewesProdect reviewer={[]} />
+              <ReviewesProdect reviews={product.reviews || []} />
               <FeaturedProductsContiner>
                 <RowComponent
                   width="90%"

@@ -8,6 +8,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
 import { MainForm } from "./Form";
 import { ContainerReviewsForm } from "./ReviewForm.styled";
+import { useDispatch, useSelector } from "react-redux";
+import { addReview } from "../../../redux/actions/products.actions";
+import { IProduct, IReview } from "../../../@types/products.types";
+import { AppState } from "../../../redux/store";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root": {
@@ -55,13 +59,20 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
 
 export default function FormReview() {
   const [open, setOpen] = React.useState(false);
-
+  const dispatch = useDispatch();
+  const { product }: { product: IProduct } = useSelector(
+    (state: AppState) => state.products
+  );
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleSubmit = React.useCallback((values) => {
+    dispatch(addReview(product._id as string, values as IReview));
+  }, []);
 
   return (
     <ContainerReviewsForm>
@@ -87,7 +98,7 @@ export default function FormReview() {
             Add Review
           </Typography>
         </BootstrapDialogTitle>
-        <MainForm />
+        <MainForm handleSubmit={handleSubmit} />
       </BootstrapDialog>
     </ContainerReviewsForm>
   );

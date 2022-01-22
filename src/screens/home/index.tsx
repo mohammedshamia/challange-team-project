@@ -28,9 +28,7 @@ const HomePage = () => {
   } = useSelector((state: AppState) => state.products);
 
   useEffect(() => {
-    if ((products as IProduct[]).length === 0) {
-      dispatch(getProducts());
-    }
+    dispatch(getProducts());
     if ((topProducts as IProduct[]).length === 0) {
       dispatch(getTopProducts());
     }
