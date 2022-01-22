@@ -7,19 +7,15 @@ interface IProps extends Card {}
 export default function CategroyCard({ img, name }: IProps) {
   return (
     <CardContainer
-      width="380px"
-      height="410px"
       sx={{
         borderRadius: 0,
-        background: "white",
         paddingTop: "23px",
         boxSizing: "border-box",
         boxShadow: "none",
       }}
     >
       <CardContainer
-        height="346px"
-        width="380px"
+        background="paper"
         sx={{
           display: "flex",
           justifyContent: "center",
@@ -27,7 +23,13 @@ export default function CategroyCard({ img, name }: IProps) {
           boxShadow: "1px 2px px 1px rgba(0,0,0,0.2)",
         }}
       >
-        <img src={img} alt="img" />
+        <img
+          src={img}
+          alt="img"
+          width={"300px"}
+          height={"250px"}
+          style={{ objectFit: "contain" }}
+        />
       </CardContainer>
       <Typography
         variant="h2"

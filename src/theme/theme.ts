@@ -1,6 +1,15 @@
 import { createTheme } from "@mui/material/styles";
 
 const baseTheme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
   typography: {
     fontFamily: "Mulish, sans-serif",
     fontSize: 14,
@@ -45,6 +54,7 @@ export const lightTheme = createTheme({
     },
     secondary: {
       main: "#f2f2f2",
+      light:"#f7f8fc"
     },
     divider: "rgba(112,112,112,0.3)",
     success: {
@@ -56,8 +66,9 @@ export const lightTheme = createTheme({
       disabled: "#979797",
     },
     background: {
-      paper: "#f7f8fc",
+      paper: "#f2f2f2",
       default: "#ffffff",
+    
     },
   },
 });
@@ -71,6 +82,7 @@ export const darkTheme = createTheme({
     },
     secondary: {
       main: "#2f2f2f",
+      light:"#242424"
     },
     divider: "rgba(212,212,212,0.5)",
     success: {
@@ -82,7 +94,7 @@ export const darkTheme = createTheme({
       disabled: "rgba(255,255,255,0.5)",
     },
     background: {
-      paper: "#282c34",
+      paper: "#242424",
       default: "#282c34",
     },
   },

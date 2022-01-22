@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { autoPlay } from "react-swipeable-views-utils";
 import SwipeableViews from "react-swipeable-views";
-
-import { Button } from "../Button/Button.style";
 import { DataCatagorySlider } from "./sliderData";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import CategroyCard from "../CategroyCard";
 import { Grid } from "@mui/material";
 import { DotsItem } from "./style";
@@ -37,33 +33,37 @@ export default function SliderCatagory() {
   };
   return (
     <>
-      <SwipeableViews
+      <AutoPlaySwipeableViews
+        interval={6000}
         enableMouseEvents
         index={activeStep}
         slideStyle={styles.slideContainer}
         onChangeIndex={handleChangeIndex}
       >
-        {DataCatagorySlider.map((itempage) => (
-          <div
-            style={{
+        {DataCatagorySlider.map((item_) => (
+          <Grid
+            key={item_.id}
+            container
+            md={12}
+            sx={{
               display: "flex",
               justifyContent: "space-around",
-
+              alignItems: "center",
               margin: "auto",
             }}
           >
             {loading ? (
               <Loading />
             ) : (
-              (categories as ICategory[])
-                ?.slice(0, 4)
-                .map((item) => (
+              (categories as ICategory[])?.slice(0, 4).map((item) => (
+                <Grid key={item.name} item md={2.4}>
                   <CategroyCard img={item.image} name={item.name} />
-                ))
+                </Grid>
+              ))
             )}
-          </div>
+          </Grid>
         ))}
-      </SwipeableViews>
+      </AutoPlaySwipeableViews>
       <div
         style={{
           display: "flex",

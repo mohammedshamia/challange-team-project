@@ -87,8 +87,8 @@ export default function Slider({ products }: { products: IProduct[] }) {
           width="17px"
           background="none"
           size="small"
-          onClick={handleNext}
-          disabled={activeStep === DataBannerSlider.length - 1}
+          onClick={handleBack}
+          disabled={activeStep === 0}
         >
           <KeyboardArrowLeft
             sx={{
@@ -110,8 +110,8 @@ export default function Slider({ products }: { products: IProduct[] }) {
           width="17px"
           background="none"
           size="small"
-          onClick={handleBack}
-          disabled={activeStep === 0}
+          onClick={handleNext}
+          disabled={activeStep === DataBannerSlider.length - 1}
         >
           <KeyboardArrowRight
             sx={{

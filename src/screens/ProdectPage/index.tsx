@@ -1,6 +1,8 @@
 import ReviewesProdect from "./ReviewesContainer";
-import FeaturedProducts from "./FeaturedProducts";
 import DetailesProdect from "./DetailesProduct";
+import RowComponent from "../../components/GlobalStyles/Row";
+import { SliderProduct } from "../../components/Slider";
+import { FeaturedProductsContiner } from "./ProductPage.styled";
 
 const reviewer = [
   {
@@ -63,7 +65,15 @@ export default function ProductPage({
         colors={colors}
       />
       <ReviewesProdect reviewer={reviewer} />
-      <FeaturedProducts />
+      <FeaturedProductsContiner>
+        <RowComponent
+          width="90%"
+          title={"Featured Products"}
+          widthDivider={"10%"}
+          alignItems="center"
+        />
+        <SliderProduct />
+      </FeaturedProductsContiner>
     </>
   );
 }

@@ -7,7 +7,7 @@ interface Iprops {
   height?: string;
   width?: string;
   fontSize?: string;
-  background?: string;
+  background?: string | "secondary";
   unhover?: boolean;
   to?: string;
   color?: string;
@@ -15,7 +15,10 @@ interface Iprops {
 
 export const Button = styled(B)<Iprops>((props) => ({
   color: props.theme.palette.text.primary,
-  background: props.background || props.theme.palette.primary.main,
+  background:
+    props.background === "secondary"
+      ? props.theme.palette.secondary.main
+      : props.background || props.theme.palette.primary.main,
   borderRadius: props.borderRadius || "10px",
   fontSize: props.fontSize || "24px",
   border: props.border || "none",
@@ -23,9 +26,10 @@ export const Button = styled(B)<Iprops>((props) => ({
   height: props.height || "62px",
   width: props.width || "100%",
   "&:hover": !props.unhover && {
-    background: props.theme.palette.primary.main,
+    background:
+      props.background === "secondary"
+        ? props.theme.palette.secondary.main
+        : props.background || props.theme.palette.primary.main,
     opacity: "0.8",
-    // background: props.background || props.theme.palette.primary.main,
-    // backgroundColor: props.theme.palette.primary.main,
   },
 }));
