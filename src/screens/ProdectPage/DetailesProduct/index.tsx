@@ -5,6 +5,7 @@ import { SittingContainer } from "../../../components/Card/Card.style";
 import Counter from "../../../components/Counter";
 import SummeryComponent from "../../../components/SummeryComponent";
 import {
+  BoxSammary,
   DetailesContiner,
   DetailesProductContainer,
   DiscraptinsContiner,
@@ -14,7 +15,6 @@ import {
   SizesOfProductContiner,
   TitleInformationsContiner,
 } from "../ProductPage.styled";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { useTheme } from "styled-components";
 
 interface Iprops {
@@ -45,7 +45,7 @@ export default function DetailesProdect({
     <div>
       <DetailesProductContainer>
         <ImagesContiner>
-          <img src={imgpropdect} alt="" width="100%" height={"65%"} />
+          <img src={imgpropdect} alt="img" width="90%" />
           <SizesOFimgContiner>
             {img1propdect && (
               <img
@@ -80,7 +80,11 @@ export default function DetailesProdect({
               <Typography variant="h3" color="text.primary">
                 {nameProdect}
               </Typography>
-              <Typography variant="h2" color="text.primary">
+              <Typography
+                sx={{ fontWeight: "700" }}
+                variant="h2"
+                color="text.primary"
+              >
                 {priceProdect}$
               </Typography>
             </TitleInformationsContiner>
@@ -89,36 +93,19 @@ export default function DetailesProdect({
 
             <SizesOfProductContiner>
               {colors && <SummeryComponent colors={colors} />}
-              {sizes && <SummeryComponent sizes={sizes} />}
-
-              <SittingContainer margin="-7% 40%">
-                <Button borderRadius="10px" width="38px">
-                  <BookmarkBorderIcon
-                    sx={{
-                      width: "30px",
-                      height: "28px",
-                      margin: "4px 6px ",
-                      color: "text.primary",
-                    }}
-                  />
-                </Button>
-                <Button
-                  width="324px"
-                  height="62px"
-                  borderRadius="10px"
-                  background={theme.palette.primary.main}
-                >
-                  <Typography
-                    color="text.primary"
-                    variant="h4"
-                    sx={{
-                      padding: "16px 39px",
-                    }}
+              <BoxSammary>
+                {sizes && <SummeryComponent sizes={sizes} />}
+                <SittingContainer justifyContent={true}>
+                  <Button
+                    sx={{ maxWidth: "300px", fontSize: "1.5rem" }}
+                    height="62px"
+                    borderRadius="10px"
+                    background={theme.palette.primary.main}
                   >
                     add to card
-                  </Typography>
-                </Button>
-              </SittingContainer>
+                  </Button>
+                </SittingContainer>
+              </BoxSammary>
             </SizesOfProductContiner>
           </InformationsContiner>
           <DiscraptinsContiner>{detailsprodect}</DiscraptinsContiner>

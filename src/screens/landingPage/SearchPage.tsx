@@ -11,7 +11,6 @@ import { AppState } from "../../redux/store";
 
 export default function SearchPage() {
   const { keyword } = useParams();
-
   const dispatch = useDispatch();
 
   const {

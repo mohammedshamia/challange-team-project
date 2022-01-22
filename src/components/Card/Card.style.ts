@@ -24,14 +24,17 @@ export const CardContainer = styled(Card)<Iprpos>((props) => ({
 
 interface IpropsSittingContainer {
   margin?: string;
+  justifyContent?: boolean;
 }
 export const SittingContainer = styled("div")<IpropsSittingContainer>(
   (props) => ({
-    width: "90%",
-    margin: props.margin || "auto",
+    width: "100%",
     display: "flex",
-    justifyContent: "center",
+    justifyContent: props.justifyContent ? "flex-end" : "center",
     gap: "16px",
+    [props.theme.breakpoints.down("lg")]: {
+      justifyContent: props.justifyContent ? "flex-start" : "center",
+    },
   })
 );
 

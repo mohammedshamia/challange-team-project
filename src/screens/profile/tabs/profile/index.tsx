@@ -7,7 +7,6 @@ import {
   InfoUser,
   ChangePasswordBtn,
   AvatarTab,
-  WrapperAvatarTab,
 } from "./../../Profile.style";
 import { Button } from "../../../../components/Button/Button.style";
 import { IUser } from "../../../../@types/auth.types";

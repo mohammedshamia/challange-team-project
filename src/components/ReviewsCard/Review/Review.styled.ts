@@ -2,13 +2,11 @@ import styled from "styled-components";
 
 
 export const ReviewContiner = styled.div`
-width:1484px;
-height:224px;
-margin:auto;
+width:92%;
+margin:15px auto;
 `;
 
 export const GrayText= styled.div`
-width:1483px;
 background:${props => props.theme.palette.secondary.main} ;
 box-sizing:border-box;
 padding: 22px 35px ;
@@ -18,7 +16,6 @@ export const RatingContiner= styled.div`
 display:flex;
 justify-content:space-between;
 align-items:center;
-width:1483px;
 margin-block:16px ;
 height:20px;
 `;
