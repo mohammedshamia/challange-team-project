@@ -74,7 +74,7 @@ export default function ProductPage() {
                 sizes={["1", "2", "3"]}
                 colors={["#999", "#000", "#bbe24f"]}
               />
-              <ReviewesProdect reviewer={[]} />
+              <ReviewesProdect reviews={product.reviews || []} />
               <FeaturedProductsContiner>
                 <RowComponent
                   width="90%"

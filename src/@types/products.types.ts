@@ -25,10 +25,15 @@ export interface IProduct {
   categories?: string[];
   rating?: number;
   numReviews?: number;
-  reviews?: any[];
+  reviews?: IReview[];
   createdAt?: string;
   updatedAt?: string;
   __v?: number;
+}
+
+export interface IReview {
+  rating: number;
+  comment: string;
 }
 
 export interface ICategory {
@@ -91,12 +96,12 @@ export interface GET_PRODUCT_FAIL {
   payload: string;
 }
 
-export interface GET_CATEGORIES_START {
-  type: ProductConstants.GET_CATEGORIES_START;
-}
-
 export interface CLEAR_PRODUCT {
   type: ProductConstants.CLEAR_PRODUCT;
+}
+
+export interface GET_CATEGORIES_START {
+  type: ProductConstants.GET_CATEGORIES_START;
 }
 
 export interface GET_CATEGORIES_SUCCESS {
@@ -106,6 +111,20 @@ export interface GET_CATEGORIES_SUCCESS {
 
 export interface GET_CATEGORIES_FAIL {
   type: ProductConstants.GET_CATEGORIES_FAIL;
+  payload: string;
+}
+
+export interface ADD_REVIEW_START {
+  type: ProductConstants.ADD_REVIEW_START;
+}
+
+export interface ADD_REVIEW_SUCCESS {
+  type: ProductConstants.ADD_REVIEW_SUCCESS;
+  payload: IReview;
+}
+
+export interface ADD_REVIEW_FAIL {
+  type: ProductConstants.ADD_REVIEW_FAIL;
   payload: string;
 }
 
@@ -125,4 +144,7 @@ export type ActionsType =
   | GET_PRODUCT_START
   | GET_PRODUCT_SUCCESS
   | GET_PRODUCT_FAIL
-  | CLEAR_PRODUCT;
+  | CLEAR_PRODUCT
+  | ADD_REVIEW_START
+  | ADD_REVIEW_SUCCESS
+  | ADD_REVIEW_FAIL;

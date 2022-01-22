@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
-import { ActionsType } from "../../@types/products.types";
+import { ActionsType, IReview } from "../../@types/products.types";
 import { IProductForm } from "../../@types/products.types";
 import API from "../../api";
 import { createFormData, notify } from "../../utils/helpers";
@@ -114,3 +114,24 @@ export const getCategories = () => async (dispatch: Dispatch<ActionsType>) => {
     });
   }
 };
+
+export const addReview =
+  (productID: string, review: IReview) =>
+  async (dispatch: Dispatch<ActionsType>) => {
+    try {
+      dispatch({
+        type: ProductConstants.ADD_REVIEW_START,
+      });
+      // const res = API.post<IReview>(`/products/${productID}/reviews`, review);
+      dispatch({
+        type: ProductConstants.ADD_REVIEW_SUCCESS,
+        payload: review,
+      });
+    } catch (error: any) {
+      notify("error", error?.response?.data?.message || error.message);
+      dispatch({
+        type: ProductConstants.ADD_REVIEW_FAIL,
+        payload: error?.response?.data?.message || error.message,
+      });
+    }
+  };

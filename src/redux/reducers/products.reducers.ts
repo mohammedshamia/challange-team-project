@@ -117,6 +117,28 @@ export const ProductsReducer = (state = initial_state, action: ActionsType) => {
         loading: false,
         error: action.payload,
       };
+    case ProductConstants.ADD_REVIEW_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ProductConstants.ADD_REVIEW_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        product: {
+          ...state.product,
+          reviews: state.product?.reviews
+            ? [...state.product?.reviews, action.payload]
+            : [action.payload],
+        },
+      };
+    case ProductConstants.ADD_REVIEW_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }
