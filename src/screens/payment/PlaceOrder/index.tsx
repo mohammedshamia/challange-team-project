@@ -14,7 +14,11 @@ const Container = styled.div`
   padding: 0;
 `;
 
-const PlaceOrder = () => {
+interface IProps {
+  back: Function;
+}
+
+const PlaceOrder = ({ back }: IProps) => {
   const navigate = useNavigate();
 
   return (
@@ -76,7 +80,7 @@ const PlaceOrder = () => {
                   <Typography variant="h6" color="text.primary">
                     Payment Details
                   </Typography>
-                  <Link to={"/review-order"} color="text.secondary">
+                  <Link to={""} color="text.secondary" onClick={() => back()}>
                     Change
                   </Link>
                 </Column>

@@ -60,9 +60,11 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
 export default function FormReview() {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
-  const { product }: { product: IProduct } = useSelector(
-    (state: AppState) => state.products
-  );
+  const {
+    products: { product },
+    auth,
+  } = useSelector((state: AppState) => state);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -70,9 +72,19 @@ export default function FormReview() {
     setOpen(false);
   };
 
-  const handleSubmit = React.useCallback((values) => {
-    dispatch(addReview(product._id as string, values as IReview));
-  }, []);
+  const handleSubmit = React.useCallback(
+    (values) => {
+      const values_: IReview = {
+        ...values,
+        name: `${auth.user.firstName} ${auth.user.lastName}`,
+        createdAt: new Date().toString(),
+      };
+      dispatch(
+        addReview((product as IProduct)._id as string, values_ as IReview)
+      );
+    },
+    [dispatch, product, auth]
+  );
 
   return (
     <ContainerReviewsForm>

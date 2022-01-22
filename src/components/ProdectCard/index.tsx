@@ -10,8 +10,12 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { Card } from "../Card/Types";
 import RatingComponent from "../Rating";
 import { Button } from "../Button/Button.style";
+import { useCallback, useMemo } from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/actions/cart.actions";
 
 export default function ProdectCard({
+  id,
   img,
   name,
   price,
@@ -20,8 +24,16 @@ export default function ProdectCard({
   borderRadius,
   boxShadow,
 }: Card) {
-  const resulte =
-    (price as number) - ((discountValue as number) / 100) * (price as number);
+  const dispatch = useDispatch();
+  const result = useMemo(
+    () =>
+      (price as number) - ((discountValue as number) / 100) * (price as number),
+    [price, discountValue]
+  );
+
+  const AddToCart = useCallback(() => {
+    dispatch(addToCart(id as string));
+  }, [dispatch, id]);
 
   return (
     <CardContainer boxShadow={boxShadow} borderRadius={borderRadius}>
@@ -62,7 +74,7 @@ export default function ProdectCard({
                   color: "#FC4059",
                 }}
               >
-                {resulte.toFixed(2)}$
+                {result.toFixed(2)}$
               </Typography>
             )}
 
@@ -86,7 +98,7 @@ export default function ProdectCard({
             sx={{ width: "24px", height: "28px", margin: "15px 10px " }}
           />
         </Button>
-        <Button width="324px" background="secondary">
+        <Button width="324px" background="secondary" onClick={AddToCart}>
           add to card
         </Button>
       </SittingContainer>

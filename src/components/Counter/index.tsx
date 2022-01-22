@@ -9,13 +9,12 @@ interface Iprops {
   value: number;
   minValue?: number;
   maxValue?: number;
+  onChange?: (value: number) => void;
 }
 
-function Counter({ value, maxValue, minValue }: Iprops) {
-  const [counter, setCounter] = useState<number>(value);
-
+function Counter({ value, maxValue, minValue = 0, onChange }: Iprops) {
   const handleChangeCounter = (name: string) => {
-    name === "increment" ? setCounter(counter + 1) : setCounter(counter - 1);
+    name === "increment" ? onChange?.(value + 1) : onChange?.(value - 1);
   };
 
   return (
@@ -23,7 +22,7 @@ function Counter({ value, maxValue, minValue }: Iprops) {
       sx={{ width: "100%", maxWidth: "220px", }}
     >
       <Button
-        disabled={(counter === 0 || minValue === counter) && true}
+        disabled={minValue === value}
         onClick={() => {
           handleChangeCounter("decrement");
         }}
@@ -42,10 +41,10 @@ function Counter({ value, maxValue, minValue }: Iprops) {
         color="text.primary"
         sx={{ flexGrow: "99" }}
       >
-        {counter}
+        {value}
       </Typography>
       <Button
-        disabled={counter === maxValue && true}
+        disabled={value === maxValue}
         onClick={() => {
           handleChangeCounter("increment");
         }}

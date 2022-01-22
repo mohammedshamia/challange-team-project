@@ -3,6 +3,12 @@ import React from "react";
 import { Link } from "../Payment.styled";
 import { Column } from "../../../components/GlobalStyles";
 import Product from "./Product";
+import styled from "styled-components";
+
+const ProductsContainer = styled.div`
+  overflow-y: auto;
+  max-height: 500px;
+`;
 
 interface IProps {
   products: any[];
@@ -20,12 +26,13 @@ export default class OrderDetails extends React.PureComponent<IProps> {
             Change
           </Link>
         </Column>
-        <Product />
-        <Product />
-        <Product />
-        {/* {this.props.products.map((product, index) => (
-          <></>
-        ))} */}
+        <ProductsContainer>
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+        </ProductsContainer>
       </>
     );
   }

@@ -13,10 +13,12 @@ export default function ReviewsCard({ reviews }: Iprops) {
       {reviews.map((review, index) => (
         <Review
           key={`${index}`}
-          nameReviewer={"Test"}
+          nameReviewer={review.name as string}
           valueRating={review.rating}
           optionsReviewer={review.comment}
-          timeOfReview={""}
+          timeOfReview={
+            review.createdAt && new Date(review.createdAt).toLocaleDateString()
+          }
         />
       ))}
       <FormReview />

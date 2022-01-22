@@ -11,7 +11,7 @@ export type Name =
 
 interface Iprops {
   id?: string;
-  value: number;
+  value: number | null;
   precision?: number;
   isReadOnly?: boolean;
   isDisabled?: boolean;
