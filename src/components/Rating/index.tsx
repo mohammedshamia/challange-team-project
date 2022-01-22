@@ -10,6 +10,7 @@ export type Name =
   | "half-rating-read";
 
 interface Iprops {
+  id?: string;
   value: number;
   precision?: number;
   isReadOnly?: boolean;
@@ -20,6 +21,7 @@ interface Iprops {
 }
 
 function RatingComponent({
+  id,
   value,
   precision,
   isReadOnly,
@@ -31,6 +33,7 @@ function RatingComponent({
   return (
     <CounterRating padding={paddingRating}>
       <Rating
+        id={id}
         name={name}
         value={value}
         precision={precision}

@@ -72,6 +72,30 @@ export const getProducts =
     }
   };
 
+export const getProduct =
+  (id: string) => async (dispatch: Dispatch<ActionsType>) => {
+    try {
+      dispatch({
+        type: ProductConstants.GET_PRODUCT_START,
+      });
+      const { data }: AxiosResponse = await API.get(`/products/${id}`);
+      dispatch({
+        type: ProductConstants.GET_PRODUCT_SUCCESS,
+        payload: data,
+      });
+    } catch (error: any) {
+      notify("error", error?.response?.data?.message || error.message);
+      dispatch({
+        type: ProductConstants.GET_PRODUCT_FAIL,
+        payload: error?.response?.data?.message || error.message,
+      });
+    }
+  };
+
+export const clearProduct = () => ({
+  type: ProductConstants.CLEAR_PRODUCT,
+});
+
 export const getCategories = () => async (dispatch: Dispatch<ActionsType>) => {
   try {
     dispatch({ type: ProductConstants.GET_CATEGORIES_START });

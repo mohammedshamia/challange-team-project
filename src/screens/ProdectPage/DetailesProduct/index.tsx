@@ -25,8 +25,8 @@ interface Iprops {
   img2propdect: string;
   img3propdect: string;
   detailsprodect: string;
-  sizes?: string[];
-  colors?: string[];
+  sizes?: string[] | null;
+  colors?: string[] | null;
 }
 
 export default function DetailesProdect({
@@ -47,49 +47,59 @@ export default function DetailesProdect({
         <ImagesContiner>
           <img src={imgpropdect} alt="" width="100%" height={"65%"} />
           <SizesOFimgContiner>
-            <img
-              src={img1propdect}
-              alt="nameprodect"
-              width="29%"
-              height={"100%"}
-            />
-            <img
-              src={img2propdect}
-              alt="nameprodect"
-              width="29%"
-              height={"100%"}
-            />
-            <img
-              src={img3propdect}
-              alt="nameprodect"
-              width="29%"
-              height={"100%"}
-            />
+            {img1propdect && (
+              <img
+                src={img1propdect}
+                alt="nameprodect"
+                width="29%"
+                height={"100%"}
+              />
+            )}
+            {img2propdect && (
+              <img
+                src={img2propdect}
+                alt="nameprodect"
+                width="29%"
+                height={"100%"}
+              />
+            )}
+            {img3propdect && (
+              <img
+                src={img3propdect}
+                alt="nameprodect"
+                width="29%"
+                height={"100%"}
+              />
+            )}
           </SizesOFimgContiner>
         </ImagesContiner>
 
         <DetailesContiner>
           <InformationsContiner>
             <TitleInformationsContiner>
-              <Typography variant="h3"  color='text.primary'>
+              <Typography variant="h3" color="text.primary">
                 {nameProdect}
               </Typography>
-              <Typography variant="h2"   color='text.primary'>
+              <Typography variant="h2" color="text.primary">
                 {priceProdect}$
               </Typography>
             </TitleInformationsContiner>
 
-            <Counter value={3} />
+            <Counter value={1} />
 
             <SizesOfProductContiner>
               {colors && <SummeryComponent colors={colors} />}
               {sizes && <SummeryComponent sizes={sizes} />}
 
               <SittingContainer margin="-7% 40%">
-              <Button borderRadius="10px" width="38px">
-         
+                <Button borderRadius="10px" width="38px">
                   <BookmarkBorderIcon
-                    sx={{ width: "30px", height: "28px", margin: "4px 6px " , color:'text.primary'}}
+                    sx={{
+                      width: "30px",
+                      height: "28px",
+                      margin: "4px 6px ",
+                      color: "text.primary",
+                    }}
                   />
                 </Button>
                 <Button
@@ -100,7 +110,7 @@ export default function DetailesProdect({
                 >
                   <Typography
                     color="text.primary"
-                    variant='h4'
+                    variant="h4"
                     sx={{
                       padding: "16px 39px",
                     }}

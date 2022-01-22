@@ -33,8 +33,12 @@ const HomePage = () => {
   } = useSelector((state: AppState) => state.products);
 
   useEffect(() => {
-    dispatch(getProducts());
-    dispatch(getTopProducts());
+    if ((products as IProduct[]).length === 0) {
+      dispatch(getProducts());
+    }
+    if ((topProducts as IProduct[]).length === 0) {
+      dispatch(getTopProducts());
+    }
   }, [dispatch]);
 
   return (
@@ -71,7 +75,7 @@ const HomePage = () => {
             <Loading />
           ) : (
             (topProducts as IProduct[]).map((product) => (
-              <Grid key={product._id} item xs={12}  md={6} lg={6} xl={4.5}>
+              <Grid key={product._id} item xs={12} md={6} lg={6} xl={4.5}>
                 <ProdectCard
                   discountValue={30}
                   boxShadow={"none"}

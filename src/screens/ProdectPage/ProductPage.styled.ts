@@ -87,6 +87,15 @@ export const SpicficationContiner = styled.div`
   align-items: center; ;
 `;
 export const FeaturedProductsContiner = styled.div`
+  width: 100%;
+  background-color: ${(props) =>
+    props.theme.palette.background.paper}; // #F7F8FC;
+`;
+
+export const ProductNotFound = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 62px 0;
   background: ${(props) => props.theme.palette.secondary.light};
 `;
