@@ -1,14 +1,15 @@
 import Typography from "@mui/material/Typography";
 import React from "react";
+import { IReview } from "../../../@types/products.types";
 import ReviewsCard from "../../../components/ReviewsCard";
 import { Reviewer } from "../../../components/ReviewsCard/Review";
 import { ReviewesContainer } from "../ProductPage.styled";
 
 interface Iprops {
-  reviewer: Reviewer[];
+  reviews: IReview[];
 }
 
-export default function ReviewesProdect({ reviewer }: Iprops) {
+export default function ReviewesProdect({ reviews }: Iprops) {
   return (
     <ReviewesContainer>
       <Typography
@@ -19,7 +20,7 @@ export default function ReviewesProdect({ reviewer }: Iprops) {
       >
         Reviews
       </Typography>
-      <ReviewsCard reviewer={reviewer} />
+      <ReviewsCard reviews={reviews} />
     </ReviewesContainer>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Form } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
 import RatingComponent from "../../../Rating";
 import { TextareaAutosize, Typography } from "@mui/material";
@@ -10,7 +10,7 @@ const SignupSchema = Yup.object().shape({
   comment: Yup.string().required("Comment is Required"),
 });
 
-export const MainForm = () => (
+export const MainForm = ({ handleSubmit }: { handleSubmit: Function }) => (
   <Formik
     initialValues={{
       rating: 0,
@@ -18,7 +18,7 @@ export const MainForm = () => (
     }}
     validationSchema={SignupSchema}
     onSubmit={(values) => {
-      alert(JSON.stringify(values, null, 2));
+      handleSubmit(values);
     }}
   >
     {({ values, errors, touched, handleChange, setFieldValue }) => (
