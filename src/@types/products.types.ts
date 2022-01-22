@@ -77,8 +77,26 @@ export interface GET_PRODUCTS_FAIL {
   payload: string;
 }
 
+export interface GET_PRODUCT_START {
+  type: ProductConstants.GET_PRODUCT_START;
+}
+
+export interface GET_PRODUCT_SUCCESS {
+  type: ProductConstants.GET_PRODUCT_SUCCESS;
+  payload: IProduct;
+}
+
+export interface GET_PRODUCT_FAIL {
+  type: ProductConstants.GET_PRODUCT_FAIL;
+  payload: string;
+}
+
 export interface GET_CATEGORIES_START {
   type: ProductConstants.GET_CATEGORIES_START;
+}
+
+export interface CLEAR_PRODUCT {
+  type: ProductConstants.CLEAR_PRODUCT;
 }
 
 export interface GET_CATEGORIES_SUCCESS {
@@ -103,4 +121,8 @@ export type ActionsType =
   | GET_PRODUCTS_FAIL
   | GET_CATEGORIES_START
   | GET_CATEGORIES_SUCCESS
-  | GET_CATEGORIES_FAIL;
+  | GET_CATEGORIES_FAIL
+  | GET_PRODUCT_START
+  | GET_PRODUCT_SUCCESS
+  | GET_PRODUCT_FAIL
+  | CLEAR_PRODUCT;

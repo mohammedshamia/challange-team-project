@@ -5,6 +5,7 @@ interface IState {
   loading: boolean;
   error: string;
   topProducts: IProduct[];
+  product: IProduct | undefined;
   products: {
     page: number;
     pages: number;
@@ -23,6 +24,7 @@ const initial_state: IState = {
     products: [],
   },
   categories: [],
+  product: undefined,
 };
 
 export const ProductsReducer = (state = initial_state, action: ActionsType) => {
@@ -75,6 +77,28 @@ export const ProductsReducer = (state = initial_state, action: ActionsType) => {
         ...state,
         loading: false,
         error: action.payload,
+      };
+    case ProductConstants.GET_PRODUCT_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ProductConstants.GET_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        product: action.payload,
+      };
+    case ProductConstants.GET_PRODUCT_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case ProductConstants.CLEAR_PRODUCT:
+      return {
+        ...state,
+        product: undefined,
       };
     case ProductConstants.GET_CATEGORIES_START:
       return {
