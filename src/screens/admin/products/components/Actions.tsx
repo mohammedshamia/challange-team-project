@@ -32,12 +32,21 @@ const Edit = (props: ICellRendererParams) => {
   return (
     <>
       <Link to={`/products/${props.data._id}`}>
-        <Icon>
-          <EditIcon />
+        <Icon
+          sx={{
+            cursor: "pointer",
+            background: "#fff",
+            borderRadius: "6px",
+          }}
+        >
+          <EditIcon sx={{ color: "#000", marginBottom: "5px" }} />
         </Icon>
       </Link>
-      <Icon style={{ cursor: "pointer" }} onClick={() => setOpen(true)}>
-        <DeleteIcon />
+      <Icon
+        sx={{ cursor: "pointer", background: "#FC4059", borderRadius: "6px" }}
+        onClick={() => setOpen(true)}
+      >
+        <DeleteIcon sx={{ color: "#fff", marginBottom: "5px" }} />
       </Icon>
       <BootstrapDialog
         onClose={handleClose}
