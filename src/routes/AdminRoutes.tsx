@@ -15,6 +15,11 @@ const AdminRoutes = [
     path: "/products/new",
     component: <CreateNewProduct />,
   },
+  {
+    //For Update Products
+    path: "/products/:id",
+    component: <CreateNewProduct />,
+  },
 ];
 
 export default AdminRoutes;

@@ -7,7 +7,6 @@ import ProdectCard from "../ProdectCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/actions/products.actions";
 import { AppState } from "../../redux/store";
-import { baseURL } from "../../api";
 import Loading from "../common/Loading";
 import { IProduct } from "../../@types/products.types";
 import { Grid } from "@mui/material";
@@ -26,7 +25,7 @@ export default function SliderProduct() {
     if ((products as IProduct[])?.length === 0) {
       dispatch(getProducts());
     }
-  }, [dispatch]);
+  }, [dispatch, products]);
 
   const handleChangeIndex = (index: number) => {
     setActiveStep(index);

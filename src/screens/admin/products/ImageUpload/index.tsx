@@ -12,20 +12,20 @@ interface IProps {
 const ImageUpload = ({ values, errors }: IProps) => {
   return (
     <>
-      <Row justfiyContent="center" width="fit-content">
-        <Column justfiyContent="center" width="auto">
+      <Column justfiyContent="center" width="fit-content">
+        <Row justfiyContent="center" width="auto">
           <ImageContainer style={{ width: "300px", height: "300px" }}>
             <Image />
           </ImageContainer>
-        </Column>
-        <Column justfiyContent="center" width="auto">
+        </Row>
+        <Row justfiyContent="center" width="auto">
           <ImageContainer style={{ width: "99px", height: "99px" }}>
             {values["images"]?.[1] ? (
               <img
                 src={
-                  values["images"]?.[1]
+                  typeof values["images"]?.[1] === "object"
                     ? URL.createObjectURL(values["images"]?.[1])
-                    : ""
+                    : values["images"]?.[1]
                 }
                 alt="images"
                 style={{ maxWidth: "100%", maxHeight: "100%" }}
@@ -38,9 +38,9 @@ const ImageUpload = ({ values, errors }: IProps) => {
             {values["images"]?.[2] ? (
               <img
                 src={
-                  values["images"]?.[2]
+                  typeof values["images"]?.[2] === "object"
                     ? URL.createObjectURL(values["images"]?.[2])
-                    : ""
+                    : values["images"]?.[2]
                 }
                 alt="images"
                 style={{ maxWidth: "100%", maxHeight: "100%" }}
@@ -53,9 +53,9 @@ const ImageUpload = ({ values, errors }: IProps) => {
             {values["images"]?.[3] ? (
               <img
                 src={
-                  values["images"]?.[3]
+                  typeof values["images"]?.[3] === "object"
                     ? URL.createObjectURL(values["images"]?.[3])
-                    : ""
+                    : values["images"]?.[3]
                 }
                 alt="images"
                 style={{ maxWidth: "100%", maxHeight: "100%" }}
@@ -64,8 +64,8 @@ const ImageUpload = ({ values, errors }: IProps) => {
               <Add />
             )}
           </ImageContainer>
-        </Column>
-      </Row>
+        </Row>
+      </Column>
       {errors["images"] && (
         <Typography variant="caption" color="red">
           {errors["images"]}

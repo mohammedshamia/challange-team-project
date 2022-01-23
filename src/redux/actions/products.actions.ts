@@ -13,7 +13,7 @@ export const createProduct =
         type: ProductConstants.CREATE_PRODUCT_START,
       });
       const promises = [...data.images].map((image) => {
-        return API.post("/upload", createFormData(image));
+        return API.post("/upload", createFormData(image as File));
       });
       const urls = await Promise.all<AxiosResponse>(promises);
       const form = { ...data, images: [...urls.map((url) => url.data)] };
@@ -25,6 +25,28 @@ export const createProduct =
       notify("error", error?.response?.data?.message || error.message);
       dispatch({
         type: ProductConstants.CREATE_PRODUCT_FAIL,
+        payload: error?.response?.data?.message || error.message,
+      });
+    }
+  };
+
+export const deleteProduct =
+  (id: string, callback?: Function) =>
+  async (dispatch: Dispatch<ActionsType>) => {
+    try {
+      dispatch({
+        type: ProductConstants.DELETE_PRODUCT_START,
+      });
+      const res = await API.delete(`/products/${id}`);
+      callback?.();
+      dispatch({
+        type: ProductConstants.DELETE_PRODUCT_SUCCESS,
+        payload: id,
+      });
+    } catch (error: any) {
+      notify("error", error?.response?.data?.message || error.message);
+      dispatch({
+        type: ProductConstants.DELETE_PRODUCT_FAIL,
         payload: error?.response?.data?.message || error.message,
       });
     }
@@ -123,10 +145,10 @@ export const addReview =
       dispatch({
         type: ProductConstants.ADD_REVIEW_START,
       });
-      // const res = await API.post<IReview>(`/products/${productID}/reviews`, {
-      //   comment,
-      //   rating,
-      // });
+      const res = await API.post<IReview>(`/products/${productID}/reviews`, {
+        comment,
+        rating,
+      });
       // console.log(res.data);
       dispatch({
         type: ProductConstants.ADD_REVIEW_SUCCESS,

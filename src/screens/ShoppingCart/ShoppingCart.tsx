@@ -9,7 +9,6 @@ import {
   getTopProducts,
   getProducts,
 } from "../../redux/actions/products.actions";
-import { baseURL } from "../../api";
 import { AppState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -120,7 +119,7 @@ export default function ShoppingCartPage() {
                       discountValue={30}
                       boxShadow={"none"}
                       borderRadius="0"
-                      img={`${baseURL}${product.images?.[0]}` || ""}
+                      img={product.images?.[0] || ""}
                       name={product.name}
                       valueRating={product.rating}
                       price={product.price}

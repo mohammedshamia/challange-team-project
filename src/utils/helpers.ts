@@ -24,3 +24,9 @@ export const createFormData = (image: File) => {
 export const calculateDiscount = (price: number, discount: number): number => {
   return price - (discount / 100) * price;
 };
+
+export const minimizeID = (id: string) =>
+  id?.replace(/^61ec6095edddbd1f4c/g, "#");
+// ?.match(/^(\w{2})|-(\w{2})/g)
+// ?.join("")
+// ?.replace(/-/g, "");

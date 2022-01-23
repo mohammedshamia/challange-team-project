@@ -22,6 +22,9 @@ export const Section = styled.div`
   background-color: ${({ theme }) => theme.palette.secondary.main};
   width: 100%;
   border-radius: 16px;
+  ${(props) => props.theme.breakpoints.down("md")} {
+    width: 100% !important;
+  }
 `;
 
 interface Iprops {
@@ -30,38 +33,62 @@ interface Iprops {
   gap?: string;
   alignItems?: string;
   padding?: string;
+  flexDirection?: string;
+  wrap?: boolean;
+  reverse?: boolean;
 }
 
-export const Row = styled("div")<Iprops>((props) => ({
-  display: "flex",
-  justifyContent: props.justfiyContent || "flex-start",
-  flexDirection: "column",
-  width: props.width || "100%",
-  gap: props.gap || "2px",
-  alignItems: props.alignItems || "flex-start",
-  margin: "auto",
-  paddingTop:"16px",
-}));
+export const Row = styled.div<Iprops>`
+  display: flex;
+  justify-content: ${(props) => props.justfiyContent || "flex-start"};
+  width: ${(props) => props.width || "100%"};
+  gap: ${(props) => props.gap || "2px"};
+  align-items: ${(props) => props.alignItems || "flex-start"};
+  padding-top: "16px";
+  ${(props) =>
+    props.wrap
+      ? `${props.theme.breakpoints.down("md")} {
+        flex-direction: column;
+          & div{
+            width: 100%;
+            gap: 10px;
+          }
+        }`
+      : ""};
+  ${(props) =>
+    props.reverse
+      ? `${props.theme.breakpoints.down("md")} {
+        flex-direction: column-reverse;
+          & div{
+            width: 100%;
+            gap: 10px;
+          }
+        }`
+      : ""};
+`;
 
-export const Column = styled("div")<Iprops>((props) => ({
-  display: "flex",
-  justifyContent: props.justfiyContent || "flex-start",
-  width: props.width || "100%",
-  gap: props.gap || "2px",
-  alignItems: props.alignItems || "flex-start",
-}));
+export const Column = styled.div<Iprops>`
+  display: flex;
+  justify-content: ${(props) => props.justfiyContent || "flex-start"};
+  flex-direction: column;
+  width: ${(props) => props.width || "100%"};
+  gap: ${(props) => props.gap || "2px"};
+  align-items: ${(props) => props.alignItems || "flex-start"};
+  ${(props) => props.theme.breakpoints.down("md")} {
+    justify-content: flex-start;
+  }
+`;
 
 interface IpropsDivider {
   widthDivider: string;
 }
 export const Divder = styled(Divider)<IpropsDivider>((props) => ({
   width: props.widthDivider || "45%",
-  height: '7px',
+  height: "7px",
   background: props.theme.palette.primary.main,
   marginTop: "22px",
   zIndex: 1,
 }));
-
 
 export const GridTopRateProducts = styled(Grid)((props) => ({
   border: "1px solid #fcdd06",
