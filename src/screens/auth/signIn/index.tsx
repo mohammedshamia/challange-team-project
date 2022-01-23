@@ -58,7 +58,7 @@ const SignIn = () => {
         <Typography variant="h1" color="text.primary">
           Login.
         </Typography>
-        <Typography variant="h4" color="text.secondary">
+        <Typography variant="h4" my="50px" color="text.secondary">
           Login with your data that you entered during registration
         </Typography>
         <Formik
