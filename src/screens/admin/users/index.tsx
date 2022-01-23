@@ -101,26 +101,19 @@ const columns: IColumn[] = [
 ];
 
 function Users () {
-  // console.log(data,'data')
-
-    // const content = useSelector(AllUsers); //this hook gives us redux store state
-    // const users = useSelector((state) => state.content.users)
     // @ts-ignore
   const {
       users: { users },
   } = useSelector((state: AppState) => state.users);
 
-    console.log(users,'content')
     const dispatch = useDispatch();
       useEffect(() => {
         dispatch(getUsers());
-        // console.log(data);
       }, [dispatch]);
 
   return (
       <>
           {!users?<Loading/>:
-              users?
                <Container>
                 <Typography variant="h2" color="text.primary">
                   Users
@@ -129,8 +122,7 @@ function Users () {
                   <Table data={users} columns={columns} />
                 </div>
             </Container>
-        :
-               <p>YOO</p>
+
       }
       </>
 
