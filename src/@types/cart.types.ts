@@ -27,6 +27,10 @@ export interface ADD_TO_CART_FAIL {
   payload: string;
 }
 
+export interface CLEAR_CART {
+  type: CartConstants.CLEAR_CART;
+}
+
 export interface REMOVE_FROM_CART_START {
   type: CartConstants.REMOVE_FROM_CART_START;
 }
@@ -47,4 +51,5 @@ export type ActionsType =
   | ADD_TO_CART_FAIL
   | REMOVE_FROM_CART_START
   | REMOVE_FROM_CART_SUCCESS
-  | REMOVE_FROM_CART_FAIL;
+  | REMOVE_FROM_CART_FAIL
+  | CLEAR_CART;

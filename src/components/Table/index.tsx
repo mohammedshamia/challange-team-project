@@ -7,7 +7,14 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 interface IProps<T> {
   columns: IColumn[];
   data: T[];
+  frameworkComponents: {
+    [key: string]: any;
+  };
 }
+
+const onFirstDataRendered = (params: any) => {
+  params.api.sizeColumnsToFit();
+};
 
 export default class Table<T> extends React.PureComponent<IProps<T>> {
   render(): React.ReactNode {
@@ -23,6 +30,8 @@ export default class Table<T> extends React.PureComponent<IProps<T>> {
           rowData={this.props.data}
           pagination={true}
           paginationPageSize={10}
+          frameworkComponents={this.props.frameworkComponents}
+          onFirstDataRendered={onFirstDataRendered}
         >
           {this.props.columns.map((column: IColumn) => (
             <AgGridColumn

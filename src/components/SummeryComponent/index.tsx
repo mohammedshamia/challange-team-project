@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { useCallback, useState } from "react";
 import {
   ButtonGroup,
@@ -25,13 +26,15 @@ export default function SummeryComponent(props: Iprops) {
   }, []);
 
   return (
-    <div>
+    <div style={{width:"60%"}}>
       {props.sizes ? (
         <>
-          <p style={{ color: "#707070", fontSize: "18px", fontWeight: "500" }}>
-            Size :
-            <span style={{ color: "black", fontWeight: "700" }}>{value}</span>
-          </p>
+          <Typography
+            color="text.secondary"
+            sx={{ fontWeight: "500", margin: "10px 0" }}
+          >
+            Size : {value}
+          </Typography>
           <ButtonGroup>
             {arr.map((item: string) => {
               return (
@@ -48,10 +51,12 @@ export default function SummeryComponent(props: Iprops) {
         </>
       ) : props.colors ? (
         <>
-          <p style={{ color: "#707070", fontSize: "18px", fontWeight: "500" }}>
-            Color :
-            <span style={{ color: "black", fontWeight: "700" }}>{value}</span>
-          </p>
+          <Typography
+            color="text.secondary"
+            sx={{ fontSize: "18px", fontWeight: "500", margin: "10px 0" }}
+          >
+            Color : {value}
+          </Typography>
           {arr.map((item: string) => {
             return (
               <ColorOptional

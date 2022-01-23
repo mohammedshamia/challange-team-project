@@ -50,3 +50,7 @@ export const removeFromCart =
       });
     }
   };
+
+export const clearCart = () => ({
+  type: CartConstants.CLEAR_CART,
+});

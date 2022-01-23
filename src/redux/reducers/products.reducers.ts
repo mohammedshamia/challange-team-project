@@ -44,6 +44,28 @@ export const ProductsReducer = (state = initial_state, action: ActionsType) => {
         ...state,
         loading: false,
       };
+    case ProductConstants.DELETE_PRODUCT_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ProductConstants.DELETE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        products: {
+          ...state.products,
+          products: state.products.products.filter(
+            (product) => product._id !== action.payload
+          ),
+        },
+      };
+    case ProductConstants.DELETE_PRODUCT_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     case ProductConstants.GET_TOP_PRODUCTS_START:
       return {
         ...state,

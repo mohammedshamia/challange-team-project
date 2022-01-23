@@ -4,9 +4,10 @@ interface Iprops {
   height?: string;
   width?: string;
 }
-export const Container = styled.div`
-  margin: 214px 400px 140px 140px;
-`;
+export const Container = styled("div")((props) => ({
+  padding: "5% 7%",
+}));
+
 export const WrapperAvatarTab = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -32,15 +33,24 @@ export const AvatarTab = styled.img<Iprops>((props) => ({
   objectFit: "cover",
 }));
 
-export const LeftSide = styled.div``;
-export const RightSide = styled.div`
-  display: flex;
-  flex-direction: column;
-  & button {
-    margin-top: 50px;
-    text-transform: none !important;
-  }
+export const LeftSide = styled.div`
+  width: 50%;
 `;
+export const RightSide = styled("div")((props) => ({
+  display: "flex",
+  flexDirection: "column",
+  [props.theme.breakpoints.down("md")]: {
+    justifyContent: "space-between",
+    "& img": {
+      display: "none",
+    },
+  },
+  "& button": {
+    marginTop: "50px",
+    textTransform: "none",
+  },
+}));
+
 export const InfoUser = styled.div`
   margin-top: 65px;
   display: flex;
@@ -52,13 +62,12 @@ export const InfoUser = styled.div`
     width: 100%;
     & label {
       width: 100%;
-      min-width: 130px;
       color: ${(props) => props.theme.palette.text.secondary};
     }
     & p {
       width: 100%;
-      min-width: 247px;
       align-items: flex-start;
+      color: ${(props) => props.theme.palette.text.primary};
     }
   }
 `;

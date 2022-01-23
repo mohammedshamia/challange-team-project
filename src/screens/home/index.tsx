@@ -2,7 +2,6 @@ import { Grid } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IProduct } from "../../@types/products.types";
-import { baseURL } from "../../api";
 import Loading from "../../components/common/Loading";
 import RowComponent from "../../components/GlobalStyles/Row";
 import { GridTopRateProducts } from "../../components/GlobalStyles";

@@ -6,7 +6,7 @@ const user: string = localStorage.getItem("user-data") || "";
 const initial_state: IAuth = {
   loading: false,
   error: "",
-  isAuthenticated: Boolean(user),
+  isAuthenticated: false,
   user: (user && (JSON.parse(user) as IUser)) || {
     _id: "",
     firstName: "",

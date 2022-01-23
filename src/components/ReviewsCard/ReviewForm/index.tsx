@@ -13,11 +13,11 @@ import { addReview } from "../../../redux/actions/products.actions";
 import { IProduct, IReview } from "../../../@types/products.types";
 import { AppState } from "../../../redux/store";
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+export const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root": {
-    width: "1350px",
-    background: "black",
+    background: theme.palette.background.paper,
     padding: "2%",
+    width: "80%",
   },
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -33,7 +33,7 @@ export interface DialogTitleProps {
   onClose: () => void;
 }
 
-const BootstrapDialogTitle = (props: DialogTitleProps) => {
+export const BootstrapDialogTitle = (props: DialogTitleProps) => {
   const { children, onClose, ...other } = props;
 
   return (
@@ -99,13 +99,12 @@ export default function FormReview() {
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
-        sx={{ width: "1300px", maxWidth: "1300px" }}
       >
         <BootstrapDialogTitle
           id="customized-dialog-title"
           onClose={handleClose}
         >
-          <Typography variant="h2" fontSize="25px" color="primary.main">
+          <Typography variant="h2" fontSize="25px" color="text.primary">
             {" "}
             Add Review
           </Typography>
