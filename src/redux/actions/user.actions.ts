@@ -6,10 +6,10 @@ import { createFormData, notify } from "../../utils/helpers";
 import { UserConstants } from "../contants/user.constant";
 
 // export const editUser =
-//     (data: IUserForm) => async (dispatch: Dispatch<ActionsType>) => {
+//     (data: IUserForm) => async (dispatch: Dispatch<ActionTypes>) => {
 //         try {
 //             dispatch({
-//                 type: UserConstants.CREATE_USER_START,
+//                 type: UserConstants.EDIT_USER_START,
 //             });
 //             const promises = [...data.images].map((image) => {
 //                 return API.post("/upload", createFormData(image));
@@ -18,17 +18,17 @@ import { UserConstants } from "../contants/user.constant";
 //             const form = { ...data, images: [...urls.map((url) => url.data)] };
 //             await API.post("/products", form);
 //             dispatch({
-//                 type: UserConstants.CREATE_USER_START,
+//                 type: UserConstants.EDIT_USER_START,
 //             });
 //         } catch (error: any) {
 //             notify("error", error?.response?.data?.message || error.message);
 //             dispatch({
-//                 type: UserConstants.CREATE_USER_FAIL,
+//                 type: UserConstants.EDIT_USER_FAIL,
 //                 payload: error?.response?.data?.message || error.message,
 //             });
 //         }
 //     };
-
+//
 
 export const getUsers =
     (keyword: string = "", page: number = 1) =>

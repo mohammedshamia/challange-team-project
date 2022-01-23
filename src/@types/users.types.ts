@@ -15,13 +15,13 @@ export interface IUser{
 
 }
 export interface IUserForm {
-    _id: string;
     firstName: string;
     lastName: string;
     email: string;
+    password:string;
     isAdmin: boolean;
-    dateOfBirth?: string;
-    profileImage?: string;
+    dateOfBirth: string;
+    profileImage: string;
 }
 
 export interface GET_USER_START {
@@ -37,8 +37,25 @@ export interface GET_USER_FAIL {
     type: UserConstants.GET_USER_FAIL;
     payload: string;
 }
+
+export interface EDIT_USER_START {
+    type: UserConstants.EDIT_USER_START;
+}
+
+export interface EDIT_USER_SUCCESS {
+    type: UserConstants.EDIT_USER_SUCCESS;
+}
+
+export interface EDIT_USER_FAIL {
+    type: UserConstants.EDIT_USER_FAIL;
+    payload: string;
+}
+
 export type ActionTypes =
 
     | GET_USER_START
     | GET_USER_SUCCESS
-    | GET_USER_FAIL;
+    | GET_USER_FAIL
+    | EDIT_USER_START
+    | EDIT_USER_SUCCESS
+    | EDIT_USER_FAIL

@@ -40,7 +40,21 @@ export const UsersReducer = (state = initial_state, action: ActionTypes) => {
                 loading: false,
                 error: action.payload,
             };
-
+        case UserConstants.EDIT_USER_START:
+            return {
+                ...state,
+                loading: true,
+            };
+        case UserConstants.EDIT_USER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+            };
+        case UserConstants.EDIT_USER_FAIL:
+            return {
+                ...state,
+                loading: false,
+            };
         default:
             return state;
     }
