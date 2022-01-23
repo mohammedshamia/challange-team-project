@@ -19,6 +19,9 @@ export default function Header() {
   const {
     theme,
     cart: { cart },
+    auth: {
+      user: { isAdmin },
+    },
   } = useSelector((state: AppState) => state);
 
   const toggleTheme_ = React.useCallback(() => {
@@ -100,6 +103,7 @@ export default function Header() {
           <Search />
           <FlexBox>
             <BottonNavigationGroup
+            isAdmin={isAdmin}
               wishlist={9}
               cartItems={Object.keys(cart).length || 0}
             />

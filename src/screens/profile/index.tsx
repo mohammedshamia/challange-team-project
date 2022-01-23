@@ -52,14 +52,6 @@ const ProfilePage = () => {
       ),
       content: <Typography variant="h4">My Orders</Typography>,
     },
-    {
-      label: (
-        <Typography variant="h4" sx={{ fontSize: "1.5rem" }}>
-          Create Products
-        </Typography>
-      ),
-      content: <Typography sx={{textAlign:"left"}} variant="h4">Create Products</Typography>,
-    },
   ];
 
   return (

@@ -88,13 +88,13 @@ export default function FormReview() {
 
   return (
     <ContainerReviewsForm>
-      <Button
-        variant="outlined"
+      <Typography
+        color="primary.main"
         onClick={handleClickOpen}
-        sx={{ color: "primary.main", border: "1px solid gold" }}
+        sx={{ textDecoration: "underline" }}
       >
         Add Review
-      </Button>
+      </Typography>
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
