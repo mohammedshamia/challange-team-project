@@ -3,18 +3,25 @@ import { Button as Btn, Divider as Divider_ } from "@mui/material";
 import { Link as Link_ } from "react-router-dom";
 
 export const Container = styled.div`
+  min-height: 85vh;
   display: flex;
-  justify-content: space-between;
-  gap: 175px;
-  margin-inline: 140px;
+  align-items: center;
+  margin-inline: 7%;
   & img {
-    margin-block: auto;
-    width: 1000px;
+    width: 60%;
+    height: 800px;
   }
 
-  @media (min-width: 1500px) {
+  @media (max-width: 1500px) {
     & img {
-      width: 800px;
+      width: 55%;
+      height: 700px;
+    }
+  }
+  @media (max-width: 1200px) {
+    & img {
+      width: 55%;
+      height: 550px;
     }
   }
 
@@ -29,17 +36,24 @@ export const Container = styled.div`
 `;
 
 export const FormWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin-right: 5em;
+  margin-right: 14rem;
   gap: 50px;
-  margin-block: 2em;
+
   & form {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     gap: 10px;
+  }
+
+  @media (max-width: 1500px) {
+    width: 45%;
+    margin-right: 3em;
+  }
+
+  @media (max-width: 768px) {
+    margin: auto;
+    width: 80%;
   }
 `;
 

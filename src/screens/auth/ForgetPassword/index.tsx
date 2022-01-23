@@ -2,8 +2,8 @@ import { Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 import { useCallback } from "react";
 import FormInput from "../../../components/common/FormInput";
-import { Divider, Link } from "../signIn/SignIn.styled";
-import { Button, Container, FormWrapper } from "./ForgetPassword.styled";
+import { Container, Divider, FormWrapper, Link } from "../signIn/SignIn.styled";
+import { Button } from "./ForgetPassword.styled";
 import { formSchema } from "./ForgetPassword.validation";
 
 const ForgetPassword = () => {
@@ -15,7 +15,7 @@ const ForgetPassword = () => {
         <Typography variant="h2" color="text.primary">
           Forgot Your Password?
         </Typography>
-        <Typography variant="h6" color="text.primary">
+        <Typography variant="h6" color="text.primary" my={"50px"}>
           Enter your registered email below to receive password reset
           instruction
         </Typography>
