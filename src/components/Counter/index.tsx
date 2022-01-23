@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { CounterContainer } from "./Counter.styled";
 import AddIcon from "@mui/icons-material/Add";
 import { Typography } from "@mui/material";
@@ -18,9 +17,7 @@ function Counter({ value, maxValue, minValue = 0, onChange }: Iprops) {
   };
 
   return (
-    <CounterContainer
-      sx={{ width: "100%", maxWidth: "220px", }}
-    >
+    <CounterContainer sx={{ width: "100%", maxWidth: "220px" }}>
       <Button
         disabled={minValue === value}
         onClick={() => {

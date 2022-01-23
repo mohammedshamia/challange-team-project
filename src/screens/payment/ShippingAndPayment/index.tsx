@@ -1,15 +1,16 @@
 import styled from "styled-components";
 import { Typography } from "@mui/material";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { Form, Formik } from "formik";
 import { Row, Column } from "../../../components/GlobalStyles";
 import { Section } from "../../../components/GlobalStyles";
-import { Form, Formik } from "formik";
 import OrderDetails from "../OrderDetails";
 import FormInput from "../../../components/common/FormInput";
 import { Button } from "../../../components/Button/Button.style";
-import { useMemo } from "react";
 import { IProduct } from "../../../@types/products.types";
 import { AppState } from "../../../redux/store";
-import { useSelector } from "react-redux";
+import { calculateDiscount } from "../../../utils/helpers";
 
 interface IProps {
   next: Function;
@@ -49,9 +50,27 @@ const ShippingAndPayment = ({ next }: IProps) => {
     return [];
   }, [cart, products]);
 
+  const discountPrice = useMemo<number>(() => {
+    if (Object.keys(cart).length > 0) {
+      return (products as IProduct[])
+        .filter((product) => Object.keys(cart).includes(product._id as string))
+        .reduce(
+          (acc, product) =>
+            calculateDiscount(
+              product.price as number,
+              product.discount as number
+            ) *
+              cart[product?._id as string].qty +
+            acc,
+          0
+        );
+    }
+    return 0;
+  }, [cart, products]);
+
   return (
     <Container>
-      <Formik initialValues={{}} onSubmit={() => {}}>
+      <Formik initialValues={{}} onSubmit={() => next()}>
         {() => (
           <Form>
             <Row
@@ -176,7 +195,7 @@ const ShippingAndPayment = ({ next }: IProps) => {
                       Subtotal
                     </Typography>
                     <Typography variant="caption" color="text.secondary">
-                      $589.98
+                      ${discountPrice.toFixed(2)}
                     </Typography>
                   </Row>
                   <Row
@@ -188,7 +207,7 @@ const ShippingAndPayment = ({ next }: IProps) => {
                       Tax
                     </Typography>
                     <Typography variant="caption" color="text.secondary">
-                      $2.53
+                      $0.00
                     </Typography>
                   </Row>
                   <Row
@@ -212,14 +231,14 @@ const ShippingAndPayment = ({ next }: IProps) => {
                       Total
                     </Typography>
                     <Typography variant="caption" color="text.primary">
-                      $592.51
+                      ${discountPrice.toFixed(2)}
                     </Typography>
                   </Row>
                 </Column>
               </Section>
             </Row>
             <Container>
-              <Button onClick={() => next()}>
+              <Button type="submit">
                 <Typography
                   variant="h6"
                   style={{

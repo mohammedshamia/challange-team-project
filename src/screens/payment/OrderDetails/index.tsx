@@ -35,11 +35,14 @@ export default class OrderDetails extends React.PureComponent<IProps> {
           </Link>
         </Row>
         <ProductsContainer>
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
+          {this.props.products?.map((product) => {
+            return (
+              <Product
+                product={product}
+                qty={this.props.cart[product?._id as string].qty}
+              />
+            );
+          })}
         </ProductsContainer>
       </>
     );

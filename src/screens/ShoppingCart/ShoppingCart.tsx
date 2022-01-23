@@ -9,7 +9,6 @@ import {
   getTopProducts,
   getProducts,
 } from "../../redux/actions/products.actions";
-import { baseURL } from "../../api";
 import { AppState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 

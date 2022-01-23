@@ -7,6 +7,7 @@ import { IProduct } from "../../../@types/products.types";
 import { Button } from "../../../components/Button/Button.style";
 import { Column, Row, Section } from "../../../components/GlobalStyles";
 import { AppState } from "../../../redux/store";
+import { calculateDiscount } from "../../../utils/helpers";
 import OrderDetails from "../OrderDetails";
 import { Link } from "../Payment.styled";
 
@@ -41,6 +42,24 @@ const PlaceOrder = ({ back }: IProps) => {
       );
     }
     return [];
+  }, [cart, products]);
+
+  const discountPrice = useMemo<number>(() => {
+    if (Object.keys(cart).length > 0) {
+      return (products as IProduct[])
+        .filter((product) => Object.keys(cart).includes(product._id as string))
+        .reduce(
+          (acc, product) =>
+            calculateDiscount(
+              product.price as number,
+              product.discount as number
+            ) *
+              cart[product?._id as string].qty +
+            acc,
+          0
+        );
+    }
+    return 0;
   }, [cart, products]);
 
   return (
@@ -134,7 +153,7 @@ const PlaceOrder = ({ back }: IProps) => {
                   Subtotal
                 </Typography>
                 <Typography variant="caption" color="text.secondary">
-                  $589.98
+                  ${discountPrice.toFixed(2)}
                 </Typography>
               </Row>
               <Row
@@ -170,7 +189,7 @@ const PlaceOrder = ({ back }: IProps) => {
                   Total
                 </Typography>
                 <Typography variant="caption" color="text.primary">
-                  $592.51
+                  ${discountPrice.toFixed(2)}
                 </Typography>
               </Row>
             </Column>
