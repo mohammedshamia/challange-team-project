@@ -59,6 +59,10 @@ export const cartReducer = (
         loading: false,
         error: action.payload,
       };
+    case CartConstants.CLEAR_CART:
+      return {
+        ...initial_state,
+      };
     default:
       return state;
   }

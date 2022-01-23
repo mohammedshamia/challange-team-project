@@ -5,6 +5,11 @@ import { Link as Link_ } from "react-router-dom";
 export const Container = styled(Container_)`
   width: 100%;
   padding: 0;
+  ${(props) => props.theme.breakpoints.down("md")} {
+    & h2 {
+      margin-inline: 5%;
+    }
+  }
 `;
 
 export const ReviewOrderButton = styled(Button)`

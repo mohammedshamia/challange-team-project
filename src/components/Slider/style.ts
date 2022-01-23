@@ -31,7 +31,7 @@ export const DotGroup = styled("div")((props) => ({
   display: "flex",
   justifyContent: "center",
   position: "absolute",
-  top: "50px",
+  top: "40px",
   right: "4.8%",
 }));
 export const Dots = styled(MobileStepper)((props) => ({

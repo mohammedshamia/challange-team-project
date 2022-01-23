@@ -6,6 +6,10 @@ import { Form, Formik } from "formik";
 import OrderDetails from "../OrderDetails";
 import FormInput from "../../../components/common/FormInput";
 import { Button } from "../../../components/Button/Button.style";
+import { useMemo } from "react";
+import { IProduct } from "../../../@types/products.types";
+import { AppState } from "../../../redux/store";
+import { useSelector } from "react-redux";
 
 interface IProps {
   next: Function;
@@ -16,23 +20,50 @@ const Container = styled.div`
   flex-direction: column;
   margin-top: 1em;
   padding: 0;
+  & button {
+    width: 20%;
+    align-self: flex-end;
+  }
+  ${(props) => props.theme.breakpoints.down("md")} {
+    & button {
+      width: 100%;
+      margin: 0;
+    }
+  }
 `;
 
 const ShippingAndPayment = ({ next }: IProps) => {
+  const {
+    products: {
+      products: { products },
+    },
+    cart: { cart },
+  } = useSelector((state: AppState) => state);
+
+  const CartProducts = useMemo<IProduct[]>(() => {
+    if (Object.keys(cart).length > 0) {
+      return (products as IProduct[]).filter((product) =>
+        Object.keys(cart).includes(product._id as string)
+      );
+    }
+    return [];
+  }, [cart, products]);
+
   return (
     <Container>
       <Formik initialValues={{}} onSubmit={() => {}}>
         {() => (
           <Form>
-            <Column
+            <Row
               justfiyContent="stretch"
               width="100%"
               alignItems="stretch"
               gap="30px"
+              wrap
             >
               <Section style={{ padding: "45px 88px" }}>
-                <Row justfiyContent="flex-start" width="100%" gap="20px">
-                  <Row justfiyContent="flex-start" width="100%">
+                <Column justfiyContent="flex-start" width="100%" gap="20px">
+                  <Column justfiyContent="flex-start" width="100%">
                     <Typography
                       variant="h3"
                       color="text.primary"
@@ -40,42 +71,44 @@ const ShippingAndPayment = ({ next }: IProps) => {
                     >
                       Shipping Address
                     </Typography>
-                    <Row justfiyContent="flex-start" width="100%" gap="10px">
-                      <Column
+                    <Column justfiyContent="flex-start" width="100%" gap="10px">
+                      <Row
                         justfiyContent="space-between"
                         width="100%"
                         gap="54px"
+                        wrap
                       >
-                        <Row justfiyContent="flex-start" width="50%">
+                        <Column justfiyContent="flex-start" width="50%">
                           <FormInput name="country" label="Country" />
-                        </Row>
-                        <Row justfiyContent="flex-start" width="50%">
+                        </Column>
+                        <Column justfiyContent="flex-start" width="50%">
                           <FormInput name="city" label="City" />
-                        </Row>
-                      </Column>
-                      <Column
+                        </Column>
+                      </Row>
+                      <Row
                         justfiyContent="space-between"
                         width="100%"
                         gap="54px"
+                        wrap
                       >
-                        <Row justfiyContent="flex-start" width="50%">
+                        <Column justfiyContent="flex-start" width="50%">
                           <FormInput
                             type="number"
                             name="zipCode"
                             label="Zip Code"
                           />
-                        </Row>
-                        <Row justfiyContent="flex-start" width="50%">
+                        </Column>
+                        <Column justfiyContent="flex-start" width="50%">
                           <FormInput
                             name="streetAddress"
                             label="Street Address"
                           />
-                        </Row>
-                      </Column>
-                    </Row>
-                  </Row>
-                  <Row justfiyContent="flex-start" width="100%">
-                    <Row justfiyContent="flex-start" width="100%">
+                        </Column>
+                      </Row>
+                    </Column>
+                  </Column>
+                  <Column justfiyContent="flex-start" width="100%">
+                    <Column justfiyContent="flex-start" width="100%">
                       <Typography
                         variant="h3"
                         color="text.primary"
@@ -83,56 +116,58 @@ const ShippingAndPayment = ({ next }: IProps) => {
                       >
                         Payment Details
                       </Typography>
-                    </Row>
-                    <Row justfiyContent="flex-start" width="100%" gap="10px">
-                      <Column
+                    </Column>
+                    <Column justfiyContent="flex-start" width="100%" gap="10px">
+                      <Row
                         justfiyContent="space-between"
                         width="100%"
                         gap="54px"
+                        wrap
                       >
-                        <Row justfiyContent="flex-start" width="50%">
+                        <Column justfiyContent="flex-start" width="50%">
                           <FormInput name="name" label="Name on Card" />
-                        </Row>
-                        <Row justfiyContent="flex-start" width="50%">
+                        </Column>
+                        <Column justfiyContent="flex-start" width="50%">
                           <FormInput name="cardNumber" label="Card Number" />
-                        </Row>
-                      </Column>
-                      <Column
+                        </Column>
+                      </Row>
+                      <Row
                         justfiyContent="space-between"
                         width="100%"
                         gap="54px"
+                        wrap
                       >
-                        <Row justfiyContent="flex-start" width="50%">
+                        <Column justfiyContent="flex-start" width="50%">
                           <FormInput
                             type="date"
                             name="expirationDate"
                             label="Expiration Date"
                           />
-                        </Row>
-                        <Row justfiyContent="flex-start" width="50%">
+                        </Column>
+                        <Column justfiyContent="flex-start" width="50%">
                           <FormInput type="number" name="cvc" label="CVC" />
-                        </Row>
-                      </Column>
-                    </Row>
-                  </Row>
-                </Row>
+                        </Column>
+                      </Row>
+                    </Column>
+                  </Column>
+                </Column>
               </Section>
               <Section
                 style={{ width: "40%", height: "inherit", padding: "22px" }}
               >
-                <Row
+                <Column
                   justfiyContent="flex-start"
                   width="100%"
                   alignItems="center"
                 >
-                  <OrderDetails products={[]} />
-                </Row>
-                <Row
+                  <OrderDetails products={CartProducts} cart={cart} />
+                </Column>
+                <Column
                   justfiyContent="flex-start"
                   width="100%"
                   alignItems="center"
                 >
-                  <Column
+                  <Row
                     justfiyContent="space-between"
                     width="100%"
                     alignItems="center"
@@ -143,8 +178,8 @@ const ShippingAndPayment = ({ next }: IProps) => {
                     <Typography variant="caption" color="text.secondary">
                       $589.98
                     </Typography>
-                  </Column>
-                  <Column
+                  </Row>
+                  <Row
                     justfiyContent="space-between"
                     width="100%"
                     alignItems="center"
@@ -155,8 +190,8 @@ const ShippingAndPayment = ({ next }: IProps) => {
                     <Typography variant="caption" color="text.secondary">
                       $2.53
                     </Typography>
-                  </Column>
-                  <Column
+                  </Row>
+                  <Row
                     justfiyContent="space-between"
                     width="100%"
                     alignItems="center"
@@ -167,8 +202,8 @@ const ShippingAndPayment = ({ next }: IProps) => {
                     <Typography variant="caption" color="text.secondary">
                       $0.00
                     </Typography>
-                  </Column>
-                  <Column
+                  </Row>
+                  <Row
                     justfiyContent="space-between"
                     width="100%"
                     alignItems="center"
@@ -179,18 +214,12 @@ const ShippingAndPayment = ({ next }: IProps) => {
                     <Typography variant="caption" color="text.primary">
                       $592.51
                     </Typography>
-                  </Column>
-                </Row>
+                  </Row>
+                </Column>
               </Section>
-            </Column>
-            <div
-              style={{
-                width: "20%",
-                marginLeft: "80%",
-                display: "flex",
-              }}
-            >
-              <Button onClick={() => next()} style={{ margin: "0.5em" }}>
+            </Row>
+            <Container>
+              <Button onClick={() => next()}>
                 <Typography
                   variant="h6"
                   style={{
@@ -200,7 +229,7 @@ const ShippingAndPayment = ({ next }: IProps) => {
                   Review order
                 </Typography>
               </Button>
-            </div>
+            </Container>
           </Form>
         )}
       </Formik>

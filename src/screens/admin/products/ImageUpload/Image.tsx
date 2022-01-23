@@ -22,7 +22,9 @@ const Image = () => {
             {field.value && field.value?.[0] ? (
               <img
                 src={
-                  field.value?.[0] ? URL.createObjectURL(field.value?.[0]) : ""
+                  typeof field.value?.[0] === "object"
+                    ? URL.createObjectURL(field.value?.[0])
+                    : field.value?.[0]
                 }
                 alt="images"
                 style={{ maxWidth: "100%", maxHeight: "100%" }}

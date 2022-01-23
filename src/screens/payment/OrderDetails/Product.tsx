@@ -11,26 +11,22 @@ const Container = styled.div`
 const Product = () => {
   return (
     <Container>
-      <Column justfiyContent="flex-start" width="100%" gap="10px">
+      <Row justfiyContent="flex-start" width="100%" gap="10px">
         <img src={"/static/headphones.jpg"} alt="headphones" width={"90px"} />
-        <Row justfiyContent="flex-start" width="100%">
+        <Column justfiyContent="flex-start" width="100%">
           <Typography variant="caption" color="text.secondary">
             Apple Airpods Wireless Bluetooth Headset
           </Typography>
-          <Column
-            justfiyContent="space-between"
-            alignItems="center"
-            width="100%"
-          >
+          <Row justfiyContent="space-between" alignItems="center" width="100%">
             <Typography variant="caption" color="text.secondary">
               $499.99 x1
             </Typography>
             <Typography variant="h6" color="text.primary">
               $499.99
             </Typography>
-          </Column>
-        </Row>
-      </Column>
+          </Row>
+        </Column>
+      </Row>
     </Container>
   );
 };

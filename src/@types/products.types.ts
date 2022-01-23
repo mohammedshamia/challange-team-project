@@ -8,7 +8,7 @@ export interface IProductForm {
   description: string;
   ID: string;
   price: string;
-  images: File[];
+  images: File[] | string[];
 }
 
 export interface IProduct {
@@ -53,6 +53,20 @@ export interface CREATE_PRODUCT_SUCCESS {
 
 export interface CREATE_PRODUCT_FAIL {
   type: ProductConstants.CREATE_PRODUCT_FAIL;
+  payload: string;
+}
+
+export interface DELETE_PRODUCT_START {
+  type: ProductConstants.DELETE_PRODUCT_START;
+}
+
+export interface DELETE_PRODUCT_SUCCESS {
+  type: ProductConstants.DELETE_PRODUCT_SUCCESS;
+  payload: string;
+}
+
+export interface DELETE_PRODUCT_FAIL {
+  type: ProductConstants.DELETE_PRODUCT_FAIL;
   payload: string;
 }
 
@@ -134,6 +148,9 @@ export type ActionsType =
   | CREATE_PRODUCT_START
   | CREATE_PRODUCT_SUCCESS
   | CREATE_PRODUCT_FAIL
+  | DELETE_PRODUCT_START
+  | DELETE_PRODUCT_SUCCESS
+  | DELETE_PRODUCT_FAIL
   | GET_TOP_PRODUCTS_START
   | GET_TOP_PRODUCTS_SUCCESS
   | GET_TOP_PRODUCTS_FAIL

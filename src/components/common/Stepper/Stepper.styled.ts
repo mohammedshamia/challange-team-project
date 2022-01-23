@@ -21,6 +21,11 @@ export const Container = styled.div`
       color: ${(props) => props.theme.palette.text.secondary} !important;
     }
   }
+
+  @media (max-width: 800px) {
+    width: 80%;
+    margin-inline: 5%;
+  }
 `;
 
 export const StepIcon = styled.span`

@@ -13,11 +13,11 @@ import { addReview } from "../../../redux/actions/products.actions";
 import { IProduct, IReview } from "../../../@types/products.types";
 import { AppState } from "../../../redux/store";
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+export const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root": {
     background: theme.palette.background.paper,
     padding: "2%",
-    width:"80%"
+    width: "80%",
   },
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
@@ -33,7 +33,7 @@ export interface DialogTitleProps {
   onClose: () => void;
 }
 
-const BootstrapDialogTitle = (props: DialogTitleProps) => {
+export const BootstrapDialogTitle = (props: DialogTitleProps) => {
   const { children, onClose, ...other } = props;
 
   return (

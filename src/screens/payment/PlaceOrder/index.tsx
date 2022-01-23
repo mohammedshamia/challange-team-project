@@ -1,9 +1,12 @@
 import { Typography } from "@mui/material";
-import React from "react";
+import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { IProduct } from "../../../@types/products.types";
 import { Button } from "../../../components/Button/Button.style";
 import { Column, Row, Section } from "../../../components/GlobalStyles";
+import { AppState } from "../../../redux/store";
 import OrderDetails from "../OrderDetails";
 import { Link } from "../Payment.styled";
 
@@ -12,6 +15,9 @@ const Container = styled.div`
   flex-direction: column;
   margin-top: 1em;
   padding: 0;
+  ${(props) => props.theme.breakpoints.down("md")} {
+    width: 100% !important;
+  }
 `;
 
 interface IProps {
@@ -21,17 +27,34 @@ interface IProps {
 const PlaceOrder = ({ back }: IProps) => {
   const navigate = useNavigate();
 
+  const {
+    products: {
+      products: { products },
+    },
+    cart: { cart },
+  } = useSelector((state: AppState) => state);
+
+  const CartProducts = useMemo<IProduct[]>(() => {
+    if (Object.keys(cart).length > 0) {
+      return (products as IProduct[]).filter((product) =>
+        Object.keys(cart).includes(product._id as string)
+      );
+    }
+    return [];
+  }, [cart, products]);
+
   return (
     <Container>
-      <Column
+      <Row
         justfiyContent="stretch"
         width="100%"
         alignItems="stretch"
         gap="50px"
+        wrap
       >
         <Section style={{ padding: "40px 70px" }}>
-          <Row justfiyContent="flex-start" width="100%" gap="20px">
-            <Row justfiyContent="flex-start" width="100%">
+          <Column justfiyContent="flex-start" width="100%" gap="20px">
+            <Column justfiyContent="flex-start" width="100%">
               <Typography
                 variant="h6"
                 color="text.primary"
@@ -39,7 +62,7 @@ const PlaceOrder = ({ back }: IProps) => {
               >
                 Shipping Address
               </Typography>
-              <Row justfiyContent="flex-start" width="100%" gap="10px">
+              <Column justfiyContent="flex-start" width="100%" gap="10px">
                 <Typography
                   variant="body1"
                   color="text.primary"
@@ -47,8 +70,8 @@ const PlaceOrder = ({ back }: IProps) => {
                 >
                   John rose
                 </Typography>
-              </Row>
-              <Row justfiyContent="flex-start" width="100%" gap="10px">
+              </Column>
+              <Column justfiyContent="flex-start" width="100%" gap="10px">
                 <Typography
                   variant="caption"
                   color="text.secondary"
@@ -56,8 +79,8 @@ const PlaceOrder = ({ back }: IProps) => {
                 >
                   56051 Jones Falls, Philippines,
                 </Typography>
-              </Row>
-              <Row justfiyContent="flex-start" width="100%" gap="10px">
+              </Column>
+              <Column justfiyContent="flex-start" width="100%" gap="10px">
                 <Typography
                   variant="caption"
                   color="text.secondary"
@@ -65,14 +88,14 @@ const PlaceOrder = ({ back }: IProps) => {
                 >
                   Turkey - 62502
                 </Typography>
-              </Row>
-            </Row>
-            <Row justfiyContent="flex-start" width="100%">
-              <OrderDetails products={[]} />
-            </Row>
-            <Row justfiyContent="flex-start" width="100%">
-              <Row justfiyContent="flex-start" width="100%">
-                <Column
+              </Column>
+            </Column>
+            <Column justfiyContent="flex-start" width="100%">
+              <OrderDetails products={CartProducts} cart={cart} />
+            </Column>
+            <Column justfiyContent="flex-start" width="100%">
+              <Column justfiyContent="flex-start" width="100%">
+                <Row
                   justfiyContent="space-between"
                   width="100%"
                   alignItems="center"
@@ -83,12 +106,12 @@ const PlaceOrder = ({ back }: IProps) => {
                   <Link to={""} color="text.secondary" onClick={() => back()}>
                     Change
                   </Link>
-                </Column>
-              </Row>
-            </Row>
-          </Row>
+                </Row>
+              </Column>
+            </Column>
+          </Column>
         </Section>
-        <div>
+        <Container style={{ margin: 0, width: "40%" }}>
           <Section style={{ width: "100%", padding: "25px 40px" }}>
             <Typography
               variant="h5"
@@ -97,8 +120,12 @@ const PlaceOrder = ({ back }: IProps) => {
             >
               Order Details
             </Typography>
-            <Row justfiyContent="flex-start" width="100%" alignItems="center">
-              <Column
+            <Column
+              justfiyContent="flex-start"
+              width="100%"
+              alignItems="center"
+            >
+              <Row
                 justfiyContent="space-between"
                 width="100%"
                 alignItems="center"
@@ -109,8 +136,8 @@ const PlaceOrder = ({ back }: IProps) => {
                 <Typography variant="caption" color="text.secondary">
                   $589.98
                 </Typography>
-              </Column>
-              <Column
+              </Row>
+              <Row
                 justfiyContent="space-between"
                 width="100%"
                 alignItems="center"
@@ -121,8 +148,8 @@ const PlaceOrder = ({ back }: IProps) => {
                 <Typography variant="caption" color="text.secondary">
                   $2.53
                 </Typography>
-              </Column>
-              <Column
+              </Row>
+              <Row
                 justfiyContent="space-between"
                 width="100%"
                 alignItems="center"
@@ -133,8 +160,8 @@ const PlaceOrder = ({ back }: IProps) => {
                 <Typography variant="caption" color="text.secondary">
                   $0.00
                 </Typography>
-              </Column>
-              <Column
+              </Row>
+              <Row
                 justfiyContent="space-between"
                 width="100%"
                 alignItems="center"
@@ -145,11 +172,11 @@ const PlaceOrder = ({ back }: IProps) => {
                 <Typography variant="caption" color="text.primary">
                   $592.51
                 </Typography>
-              </Column>
-            </Row>
+              </Row>
+            </Column>
           </Section>
           <Button
-            style={{ width: "300px", marginTop: "1em" }}
+            style={{ width: "100%", marginTop: "1em" }}
             onClick={() => navigate("/payment-success")}
           >
             <Typography
@@ -159,8 +186,8 @@ const PlaceOrder = ({ back }: IProps) => {
               Place Order
             </Typography>
           </Button>
-        </div>
-      </Column>
+        </Container>
+      </Row>
     </Container>
   );
 };

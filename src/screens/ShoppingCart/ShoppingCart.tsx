@@ -120,7 +120,7 @@ export default function ShoppingCartPage() {
                       discountValue={30}
                       boxShadow={"none"}
                       borderRadius="0"
-                      img={`${baseURL}${product.images?.[0]}` || ""}
+                      img={product.images?.[0] || ""}
                       name={product.name}
                       valueRating={product.rating}
                       price={product.price}

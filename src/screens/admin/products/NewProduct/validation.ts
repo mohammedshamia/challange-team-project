@@ -16,7 +16,7 @@ export const formSchema = yup.object().shape({
     .typeError("Product Price is as number"),
   images: yup
     .array()
-    .of(yup.object())
+    .of(yup.mixed().oneOf([yup.string(), yup.object()], "Image is required"))
     .nullable()
     .length(1, "At least one Image is required"),
 });
