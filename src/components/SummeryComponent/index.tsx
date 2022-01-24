@@ -9,10 +9,12 @@ import {
 interface Iprops {
   sizes?: Array<string>;
   colors?: Array<string>;
+  value: string;
+  onChangeItem?: Function | undefined;
 }
 
 export default function SummeryComponent(props: Iprops) {
-  let [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>(props.value);
 
   let arr: string[] = props.colors
     ? [...props.colors]
@@ -20,13 +22,14 @@ export default function SummeryComponent(props: Iprops) {
     ? [...props.sizes]
     : [];
 
-  let onChangeValue = useCallback((item: string): void => {
+  const onChangeValue = useCallback((item: string): void => {
     let val: string = item;
     setValue(val);
-  }, []);
+    props?.onChangeItem?.(item);
+  }, [props]);
 
   return (
-    <div style={{width:"60%"}}>
+    <div style={{ width: "60%" }}>
       {props.sizes ? (
         <>
           <Typography
@@ -40,7 +43,9 @@ export default function SummeryComponent(props: Iprops) {
               return (
                 <SizeOptional
                   key={item}
-                  onClick={() => onChangeValue(item)}
+                  onClick={() => {
+                    onChangeValue(item);
+                  }}
                   active={value === item}
                 >
                   {item}

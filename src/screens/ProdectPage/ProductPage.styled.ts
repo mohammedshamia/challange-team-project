@@ -85,6 +85,7 @@ export const SpicficationContiner = styled.div`
 `;
 export const FeaturedProductsContiner = styled.div`
   width: 100%;
+  padding:30px 0;
   background-color: ${(props) =>
     props.theme.palette.background.paper}; // #F7F8FC;
 `;

@@ -35,7 +35,7 @@ const SignUp = () => {
         <Typography variant="h1" color="text.primary">
           Sign Up.
         </Typography>
-        <Typography variant="h3" color="text.secondary">
+        <Typography variant="h3" color="text.secondary" my={"50px"}>
           Sign up and get exclusive offers from us
         </Typography>
         <Formik

@@ -7,7 +7,7 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 interface IProps<T> {
   columns: IColumn[];
   data: T[];
-  frameworkComponents: {
+  frameworkComponents?: {
     [key: string]: any;
   };
 }

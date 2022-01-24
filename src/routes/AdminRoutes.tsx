@@ -13,7 +13,6 @@ const AdminRoutes = [
     path: "/products",
     component: <Products />,
   },
-
   {
     path: "/users",
     component: <Users />,
@@ -22,7 +21,6 @@ const AdminRoutes = [
     path: "/users/:id",
     component: <UserDetails />,
   },
-  //
   {
     //For Update Products
     path: "/products/:id",

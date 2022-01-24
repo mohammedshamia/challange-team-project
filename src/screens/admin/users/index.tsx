@@ -9,7 +9,6 @@ import {AppState} from "../../../redux/store";
 import Update from "./Update";
 
 const columns: IColumn[] = [
-
   {
     name: "firstName",
       cellRenderer: (params) => `${params.data?.firstName}`,
@@ -42,17 +41,17 @@ const columns: IColumn[] = [
 
 ];
 
-function Users () {
-    // @ts-ignore
+function Users() {
+  // @ts-ignore
   const {
-      users: { users },
+    users: { users },
   } = useSelector((state: AppState) => state.users);
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getUsers());
-      }, [dispatch]);
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
 
 
   return (

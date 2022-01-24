@@ -3,29 +3,90 @@ import { Formik, Form } from "formik";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "styled-components";
-import { IProduct, IProductForm } from "../../../../@types/products.types";
+import {
+  ICategory,
+  IProduct,
+  IProductForm,
+} from "../../../../@types/products.types";
 import { Button } from "../../../../components/Button/Button.style";
 import FormInput from "../../../../components/common/FormInput";
+import FormSelect from "../../../../components/common/FormSelect";
 import { Row, Column, Section } from "../../../../components/GlobalStyles";
-import { createProduct } from "../../../../redux/actions/products.actions";
+import {
+  createProduct,
+  updateProduct,
+} from "../../../../redux/actions/products.actions";
 import { AppState } from "../../../../redux/store";
+import { notify } from "../../../../utils/helpers";
 import ImageUpload from "../ImageUpload";
 import { formSchema } from "./validation";
 
 interface IProps {
   product?: IProduct;
+  categories?: ICategory[];
 }
 
-const NewProductForm = ({ product }: IProps) => {
+const colors = [
+  {
+    label: "White",
+    value: "White",
+  },
+  {
+    label: "Red",
+    value: "Red",
+  },
+  {
+    label: "Blue",
+    value: "Blue",
+  },
+  {
+    label: "Purple",
+    value: "Purple",
+  },
+  {
+    label: "Yellow",
+    value: "Yellow",
+  },
+  {
+    label: "Green",
+    value: "Green",
+  },
+  {
+    label: "Cyan",
+    value: "Cyan",
+  },
+  {
+    label: "Black",
+    value: "Black",
+  },
+];
+
+const NewProductForm = ({ product, categories }: IProps) => {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const { loading } = useSelector((state: AppState) => state.products);
+  const {
+    products: { loading },
+  } = useSelector((state: AppState) => state);
 
   const handleSubmit = useCallback(
     async (values: IProductForm) => {
-      dispatch(createProduct(values));
+      if (product) {
+        // Update Product
+        dispatch(
+          updateProduct(product._id as string, values, () => {
+            notify("success", "Product Updated successfully");
+          })
+        );
+      } else {
+        // Create Product
+        dispatch(
+          createProduct(values, () => {
+            notify("success", "Product Created successfully");
+          })
+        );
+      }
     },
-    [dispatch]
+    [dispatch, product]
   );
 
   return (
@@ -37,12 +98,13 @@ const NewProductForm = ({ product }: IProps) => {
         {
           name: product?.name || "",
           brand: product?.brand || "",
-          category: product?.categories?.[0] || "",
+          categories: product?.categories || [],
           countInStock: product?.countInStock || "",
           description: product?.description || "",
-          ID: product?._id || "",
-          price: product?.price || "",
+          price: product?.price.toFixed(2) || "",
+          discount: product?.discount.toFixed(2) || "",
           images: product?.images || [],
+          colors: product?.colors || [],
         } as IProductForm
       }
     >
@@ -72,10 +134,27 @@ const NewProductForm = ({ product }: IProps) => {
                   </Row>
                   <Row justfiyContent="flex-start" width="100%" gap="20%" wrap>
                     <Column justfiyContent="flex-start" width="100%">
-                      <FormInput name="ID" label="Product ID" />
+                      <FormSelect
+                        name="colors"
+                        label="Product Colors"
+                        data={colors}
+                        multiple
+                      />
                     </Column>
+                  </Row>
+                  <Row justfiyContent="flex-start" width="100%" gap="20%" wrap>
                     <Column justfiyContent="flex-start" width="100%">
-                      <FormInput name="category" label="Product Category" />
+                      <FormSelect
+                        name="categories"
+                        label="Product Categories"
+                        data={(categories as ICategory[])?.map(
+                          (category: ICategory) => ({
+                            label: category.name,
+                            value: category.name,
+                          })
+                        )}
+                        multiple
+                      />
                     </Column>
                   </Row>
                   <Row justfiyContent="flex-start" width="100%" gap="20%">
@@ -87,7 +166,7 @@ const NewProductForm = ({ product }: IProps) => {
                       />
                     </Column>
                   </Row>
-                  <Row justfiyContent="flex-start" width="100%" gap="20%" wrap>
+                  <Row justfiyContent="flex-start" width="100%" gap="5%" wrap>
                     <Column justfiyContent="flex-start" width="100%">
                       <FormInput
                         type="number"
@@ -97,6 +176,13 @@ const NewProductForm = ({ product }: IProps) => {
                     </Column>
                     <Column justfiyContent="flex-start" width="100%">
                       <FormInput type="number" name="price" label="Price" />
+                    </Column>
+                    <Column justfiyContent="flex-start" width="100%">
+                      <FormInput
+                        type="number"
+                        name="discount"
+                        label="discount"
+                      />
                     </Column>
                   </Row>
                 </Column>
