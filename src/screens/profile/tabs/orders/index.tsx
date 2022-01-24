@@ -7,17 +7,41 @@ import { AppState } from "../../../../redux/store";
 
 const columns: IColumn[] = [
   {
-    name: "ID",
+    name: "user",
   },
   {
-    name: "Product Name",
+    name: "orderItems",
   },
   {
-    name: "Price",
+    name: "shippingAddress",
   },
   {
-    name: "Category",
+    name: "paymentMethod",
   },
+  {
+    name: "clientSecret",
+  }, 
+   {
+    name: "taxPrice",
+  },
+  {
+    name: "shippingPrice",
+  },
+  {
+    name: "totalPrice",
+  },
+  {
+    name: "isPaid",
+  },
+  {
+    name: "paidAt",
+  },
+  {
+    name: "isDelivered",
+  },
+  {
+    name: "deliveredAt",
+  }
 ];
 
 export default function OrdersProduct() {
