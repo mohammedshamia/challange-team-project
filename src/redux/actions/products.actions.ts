@@ -171,7 +171,7 @@ export const getCategories = () => async (dispatch: Dispatch<ActionsType>) => {
 };
 
 export const addReview =
-  (productID: string, review: IReview) =>
+  (productID: string, review: IReview, callback?: Function) =>
   async (dispatch: Dispatch<ActionsType>) => {
     const { comment, rating } = review;
     try {
@@ -182,7 +182,7 @@ export const addReview =
         comment,
         rating,
       });
-      // console.log(res.data);
+      callback?.();
       dispatch({
         type: ProductConstants.ADD_REVIEW_SUCCESS,
         payload: review,

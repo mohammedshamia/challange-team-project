@@ -42,7 +42,6 @@ export default function BottonNavigationGroup(props: Iprops) {
             path="/products"
             label="Products"
             icon={<CategoryIcon />}
-            badgeContent={props.cartItems}
           />
         </Link>
       )}
