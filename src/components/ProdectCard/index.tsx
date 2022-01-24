@@ -42,7 +42,6 @@ export default function ProdectCard({
         <Box width="98%" m="auto" height="350px">
           <ImagContainer src={img} alt="img" width="513px" height="342px" />
         </Box>
-
         <Typography
           color="text.primary"
           my="30px auto 15px"
