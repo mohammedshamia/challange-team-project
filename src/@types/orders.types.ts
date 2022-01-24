@@ -1,4 +1,21 @@
+import { OrdersConstants } from "../redux/contants/orders.constants";
 import { IProduct } from "./products.types";
+
+export interface GET_ORDERS_START {
+  type: OrdersConstants.GET_ORDERS_START;
+}
+
+export interface GET_ORDERS_SUCCESS {
+  type: OrdersConstants.GET_ORDERS_SUCCESS;
+  payload: {};
+}
+
+export interface GET_ORDERS_FAIL {
+  type: OrdersConstants.GET_ORDERS_FAIL;
+  payload: string;
+}
+
+
 
 export interface IOrder {
   user: string;
@@ -23,5 +40,4 @@ export interface IOrder {
   isDelivered: boolean;
   deliveredAt: string;
 }
-
-export type ActionsType = null;
+export type ActionsType = GET_ORDERS_START | GET_ORDERS_SUCCESS | GET_ORDERS_FAIL;
