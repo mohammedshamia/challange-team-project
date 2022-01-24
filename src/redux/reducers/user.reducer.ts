@@ -5,6 +5,7 @@ import {ActionTypes} from "../../@types/users.types";
 interface IState {
     loading: boolean;
     error: string;
+    user: IUser |undefined;
     users: {
         page: number;
         pages: number;
@@ -15,14 +16,35 @@ interface IState {
 const initial_state: IState = {
     loading: false,
     error: "",
+    user:undefined,
     users: {
         page: 0,
         pages: 0,
         users: [],
     },
 };
+
 export const UsersReducer = (state = initial_state, action: ActionTypes) => {
     switch (action.type) {
+        case UserConstants.GET_USERS_START:
+            return {
+                ...state,
+                loading: true,
+            };
+        case UserConstants.GET_USERS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                users: action.payload,
+            };
+        case UserConstants.GET_USERS_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            };
+
+
         case UserConstants.GET_USER_START:
             return {
                 ...state,
@@ -32,7 +54,7 @@ export const UsersReducer = (state = initial_state, action: ActionTypes) => {
             return {
                 ...state,
                 loading: false,
-                users: action.payload,
+                user: action.payload,
             };
         case UserConstants.GET_USER_FAIL:
             return {
@@ -40,6 +62,8 @@ export const UsersReducer = (state = initial_state, action: ActionTypes) => {
                 loading: false,
                 error: action.payload,
             };
+
+
         case UserConstants.EDIT_USER_START:
             return {
                 ...state,
