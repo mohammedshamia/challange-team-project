@@ -4,7 +4,6 @@ export interface IUserForm {
     firstName: string;
     lastName: string;
     email: string;
-    // password:string;
     isAdmin: boolean;
     dateOfBirth: string;
     profileImage?: string;
@@ -18,7 +17,6 @@ export interface IUser{
     email: string;
     isAdmin: boolean;
     dateOfBirth?: string;
-    // password?:string;
     updatedAt?:string;
     __v?:number;
     _id:string;

@@ -1,0 +1,126 @@
+import Typography from "@mui/material/Typography";
+import React, {useCallback, useEffect, useState} from "react";
+import {Container} from "../../products/Products.styled";
+import {Column, Row, Section} from "../../../../components/GlobalStyles";
+import {Button} from "../../../../components/Button/Button.style";
+import {useDispatch, useSelector} from "react-redux";
+import {AppState} from "../../../../redux/store";
+import {Field, Form, Formik} from "formik";
+import {IUserForm} from "../../../../@types/users.types";
+import {updateUserSchema} from "./validation";
+import FormInput from "../../../../components/common/FormInput";
+import {useTheme} from "styled-components";
+import {useParams} from "react-router";
+import {getUser} from "../../../../redux/actions/user.actions";
+
+export default function UserDetails(){
+    const theme = useTheme();
+    const params = useParams();
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        if (params.id) {
+            dispatch(getUser(params.id as string));
+        }
+    }, []);
+
+    const { loading, user } = useSelector((state: AppState) => state.users);
+
+
+    const handleSubmit = useCallback(
+        async (values: IUserForm) => {
+            // dispatch(editUser(values));
+            alert(values)
+        },
+        [dispatch]
+    );
+
+    return(
+        <Container>
+            <Typography variant="h2" color="text.primary">
+                    Update User
+            </Typography>
+            <Formik
+                enableReinitialize
+                validationSchema={updateUserSchema}
+                onSubmit={handleSubmit}
+                initialValues={{
+                    firstName: (user as IUserForm)?.firstName || '',
+                    lastName: (user as IUserForm)?.lastName || '',
+                    email: (user as IUserForm)?.email || '',
+                    isAdmin: (user as IUserForm)?.isAdmin || false,
+                    profileImage: (user as IUserForm)?.profileImage || '',
+                    dateOfBirth: (user as IUserForm)?.dateOfBirth || '',
+                }}
+            >
+
+            {({ values, errors }) => (
+                <Form style={{ width: "100%" }}>
+                    <Section style={{ padding: "30px", marginBlock: "15px" }}>
+                        <Row justfiyContent="center" width="100%" gap="20px" wrap reverse>
+                            <Column justfiyContent="flex-start" width="100%">
+                                <Column justfiyContent="flex-start" width="100%" gap="2em">
+                                    <Row justfiyContent="flex-start" width="100%" gap="20%" wrap>
+                                        <Column justfiyContent="flex-start" width="100%">
+                                            <FormInput name="firstName" label="First name" />
+                                        </Column>
+                                        <Column justfiyContent="flex-start" width="100%">
+                                            <FormInput name="lastName" label="Last name" />
+                                        </Column>
+                                    </Row>
+                                    <Row justfiyContent="flex-start" width="100%" gap="20%" wrap>
+                                        <Column justfiyContent="flex-start" width="100%">
+                                            <FormInput name="email" label="Email" />
+                                        </Column>
+                                        <Column justfiyContent="flex-start" width="100%">
+                                            <FormInput name="dateOfBirth" label="Date Of Birth" type='date'/>
+                                        </Column>
+                                    </Row>
+                                    <Row justfiyContent="flex-start" width="100%" gap="20%" wrap>
+                                        <Column justfiyContent="flex-start" width="100%">
+                                            <div id="my-radio-group">Is Admin?</div>
+                                            <div role="group" aria-labelledby="my-radio-group">
+                                                <label>
+                                                    <Field type="radio" name="isAdmin" value="Yes" /> Yes
+                                                </label>
+                                                <label>
+                                                    <Field type="radio" name="isAdmin" value="No" />No
+                                                </label>
+                                            </div>
+                                           </Column>
+
+                                    </Row>
+                                </Column>
+                            </Column>
+                        </Row>
+                    </Section>
+                    <Row justfiyContent="flex-end" width="100%">
+                        <Button
+                            type="submit"
+                            background={theme.palette.success.main}
+                            sx={{
+                                width: "fit-content",
+                                height: "fit-content",
+                                padding: "10px",
+                                [theme.breakpoints.down("md")]: {
+                                    width: "100%",
+                                },
+                            }}
+                            disabled={loading}
+                        >
+                            <Typography
+                                variant="body2"
+                                color="#fff"
+                                sx={{ paddingInline: "2em", textTransform: "capitalize" }}
+                            >
+                                Updates
+                            </Typography>
+                        </Button>
+                    </Row>
+                </Form>
+            )}
+            </Formik>
+        </Container>
+    )
+}
