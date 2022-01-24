@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { ActionsType } from "../../@types/order.types";
+import { ActionsType } from "../../@types/orders.types";
 import API from "../../api";
 import { notify } from "../../utils/helpers";
 import { OrdersConstants } from '../contants/orders.constants';

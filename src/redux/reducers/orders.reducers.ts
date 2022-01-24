@@ -1,4 +1,4 @@
-import { ActionsType } from "../../@types/order.types";
+import { ActionsType } from "../../@types/orders.types";
 import { OrdersConstants } from "../contants/orders.constants";
 
 
