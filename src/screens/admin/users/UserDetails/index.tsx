@@ -31,7 +31,7 @@ export default function UserDetails(){
     const handleSubmit = useCallback(
         async (values: IUserForm) => {
             // dispatch(editUser(values));
-            alert(values)
+                    console.log(values,'val')
         },
         [dispatch]
     );

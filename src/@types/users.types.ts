@@ -5,7 +5,7 @@ export interface IUserForm {
     lastName: string;
     email: string;
     isAdmin: boolean;
-    dateOfBirth: string;
+    dateOfBirth: string | Date;
     profileImage?: string;
 
 }

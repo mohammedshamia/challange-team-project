@@ -30,3 +30,12 @@ export const minimizeID = (id: string) =>
 // ?.match(/^(\w{2})|-(\w{2})/g)
 // ?.join("")
 // ?.replace(/-/g, "");
+
+
+export const formatDate = (date_:Date) => {
+  date_ = new Date(date_);
+  const day = ("0" + date_.getDate()).slice(-2);
+  const month = ("0" + (date_.getMonth() + 1)).slice(-2);
+  const date = date_.getFullYear() + "-" + month + "-" + day ;
+  return date;
+}
