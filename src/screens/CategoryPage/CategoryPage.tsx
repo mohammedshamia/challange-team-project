@@ -1,8 +1,8 @@
 import { Box, Grid } from "@mui/material";
+import { useTheme } from "styled-components";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { useTheme } from "styled-components";
 import { IProduct } from "../../@types/products.types";
 import { baseURL } from "../../api";
 import Loading from "../../components/common/Loading";
@@ -11,7 +11,7 @@ import ProdectCard from "../../components/ProdectCard";
 import { getProducts } from "../../redux/actions/products.actions";
 import { AppState } from "../../redux/store";
 
-export default function SearchPage() {
+export default function CategoryPage() {
   const { keyword } = useParams();
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -28,7 +28,7 @@ export default function SearchPage() {
     <Box p={"0 7%"} sx={{ background: theme.palette.background.paper }}>
       <Box p="50px 0">
         <RowComponent
-          title="Featured Products"
+          title={`${keyword}`}
           widthDivider="200px"
           alignItems="center"
         />

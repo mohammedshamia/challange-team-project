@@ -13,6 +13,8 @@ export const Stack = styled(Box)<Iprops>((props) => ({
   alignItems: "flex-start",
   width: props.width || "30%",
   justifyContent: "center",
+  flexGrow: "999",
+  maxWidth: "550px",
   [props.theme.breakpoints.down("lg")]: {
     "& h1": {
       fontSize: "3rem",

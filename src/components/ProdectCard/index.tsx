@@ -37,74 +37,83 @@ export default function ProdectCard({
 
   return (
     <CardContainer boxShadow={boxShadow} borderRadius={borderRadius}>
-      <Box width="98%" m="auto" height="350px">
-        <ImagContainer src={img} alt="img" width="513px" height="342px" />
-      </Box>
-
-      <Typography
-        color="text.primary"
-        my="30px auto 15px"
-        fontSize="24px"
-        textAlign="center"
+      <Box
+        width="98%"
+        m="auto"
+        height="350px"
+        sx={{
+          maxHeight: { xs: "350px", md: "230px", lg: "350px" },
+        }}
       >
-        {name}
-      </Typography>
+        <ImagContainer src={img} alt="img" />
+      </Box>
+      <Box mx="5%">
+        <Typography
+          color="text.primary"
+          my="15px"
+          fontSize="24px"
+          textAlign="center"
+          height={"80px"}
+        >
+          {name}
+        </Typography>
 
-      <PriceContainer>
-        <RatingComponent value={valueRating as number} isReadOnly={true} />
-      </PriceContainer>
+        <PriceContainer>
+          <RatingComponent value={valueRating as number} isReadOnly={true} />
+        </PriceContainer>
 
-      <PriceContainer>
-        {(discountValue as number) === 100 ? (
-          <>
-            <Chip
-              sx={{ fontSize: "1.4rem", padding: "0px 12px", height: "36px" }}
-              label="Free"
-              variant="outlined"
-              color="success"
-            />
-          </>
-        ) : (
-          <>
-            {(discountValue as number) > 0 && (
+        <PriceContainer>
+          {(discountValue as number) === 100 ? (
+            <>
+              <Chip
+                sx={{ fontSize: "1.4rem", padding: "0px 12px", height: "36px" }}
+                label="Free"
+                variant="outlined"
+                color="success"
+              />
+            </>
+          ) : (
+            <>
+              {(discountValue as number) > 0 && (
+                <Typography
+                  fontWeight="bold"
+                  fontSize="30px"
+                  sx={{
+                    color: "#FC4059",
+                  }}
+                >
+                  {result.toFixed(2)}$
+                </Typography>
+              )}
+
               <Typography
                 fontWeight="bold"
                 fontSize="30px"
+                color=" text.primary"
                 sx={{
-                  color: "#FC4059",
+                  textDecoration: discountValue ? "line-through" : "none",
                 }}
               >
-                {result.toFixed(2)}$
+                {price}$
               </Typography>
-            )}
+            </>
+          )}
+        </PriceContainer>
 
-            <Typography
-              fontWeight="bold"
-              fontSize="30px"
-              color=" text.primary"
-              sx={{
-                textDecoration: discountValue ? "line-through" : "none",
-              }}
-            >
-              {price}$
-            </Typography>
-          </>
+        <SittingContainer style={{ gap: "14px" }}>
+          <Button background="secondary" width="54px">
+            <BookmarkBorderIcon
+              sx={{ width: "24px", height: "28px", margin: "15px 10px " }}
+            />
+          </Button>
+          <Button width="324px" background="secondary" onClick={AddToCart}>
+            add to card
+          </Button>
+        </SittingContainer>
+        {(discountValue as number) > 0 && (
+          <SalaryPercentage>-{discountValue}%</SalaryPercentage>
         )}
-      </PriceContainer>
-
-      <SittingContainer style={{ gap: "14px" }}>
-        <Button background="secondary" width="54px">
-          <BookmarkBorderIcon
-            sx={{ width: "24px", height: "28px", margin: "15px 10px " }}
-          />
-        </Button>
-        <Button width="324px" background="secondary" onClick={AddToCart}>
-          add to card
-        </Button>
-      </SittingContainer>
-      {(discountValue as number) > 0 && (
-        <SalaryPercentage>-{discountValue}%</SalaryPercentage>
-      )}
+      </Box>
     </CardContainer>
   );
 }
