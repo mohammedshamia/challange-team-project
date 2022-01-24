@@ -1,3 +1,4 @@
+import Typography from "@mui/material/Typography";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IColumn } from "../../../../@types/table.types";
@@ -55,6 +56,17 @@ export default function OrdersProduct() {
 
   return (
     <div style={{ width: "100%", margin: "auto" }}>
+         <Typography
+        variant="h2"
+        fontSize="1.5rem"
+        sx={{
+          marginBlock: "30px",
+
+          letterSpacing: "0.6px",
+        }}
+      >
+        ALL ORDERS 
+      </Typography>
       <Table data={orders} columns={columns} />
     </div>
   );
