@@ -46,7 +46,7 @@ const columns: IColumn[] = [
 ];
 
 export default function AllOrdersProduct() {
-  const { orders } = useSelector((state: AppState) => state.orders);
+  const { orders } = useSelector((state: AppState) => state.allOrder);
 
   const dispatch = useDispatch();
 
