@@ -25,6 +25,7 @@ const SearchPage = lazy(() => import("../screens/landingPage/SearchPage"));
 const ProductDetails = lazy(() => import("../screens/ProdectPage"));
 const Profile = lazy(() => import("../screens/profile"));
 const PageNotFound = lazy(() => import("../components/common/PageNotFound"));
+const CategoryPage = lazy(() => import("../screens/CategoryPage/CategoryPage"));
 
 const RootRoutes = {
   routes: [
@@ -53,6 +54,10 @@ const RootRoutes = {
     {
       path: "/product/:id",
       component: <ProductDetails />,
+    },
+    {
+      path: "/category/:keyword",
+      component: <CategoryPage />,
     },
     {
       path: "/404",
