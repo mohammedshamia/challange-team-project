@@ -1,9 +1,9 @@
-import { ActionsType, IOrders } from "../../@types/orders.types";
+import { ActionsType, IOrder } from "../../@types/orders.types";
 import { OrdersConstants } from "../contants/orders.constants";
 export interface IState {
   error: string;
   loading: boolean;
-  orders:IOrders[];
+  orders:IOrder[];
 
 }
 

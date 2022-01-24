@@ -21,7 +21,7 @@ const columns: IColumn[] = [
 ];
 
 export default function OrdersProduct() {
-  const { orders } = useSelector((state: AppState) => state);
+  const { orders } = useSelector((state: AppState) => state.orders);
 
   const dispatch = useDispatch();
 
