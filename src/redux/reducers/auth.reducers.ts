@@ -6,17 +6,19 @@ const user: string = localStorage.getItem("user-data") || "";
 const initial_state: IAuth = {
   loading: false,
   error: "",
-  isAuthenticated: false,
-  user: (user && (JSON.parse(user) as IUser)) || {
-    _id: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    isAdmin: false,
-    token: "",
-    dateOfBirth: "",
-    profileImage: "",
-  },
+  isAuthenticated: Boolean(user) || false,
+  user:
+    (user && (JSON.parse(user) as IUser)) ||
+    ({
+      _id: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      isAdmin: false,
+      token: "",
+      dateOfBirth: "",
+      profileImage: "",
+    } as IUser),
 };
 
 export const AuthReducer = (state = initial_state, action: ActionsType) => {
@@ -57,7 +59,21 @@ export const AuthReducer = (state = initial_state, action: ActionsType) => {
         error: action.payload,
       };
     case AuthConstants.LOG_OUT:
-      return initial_state;
+      return {
+        loading: false,
+        error: "",
+        isAuthenticated: false,
+        user: {
+          _id: "",
+          firstName: "",
+          lastName: "",
+          email: "",
+          isAdmin: false,
+          token: "",
+          dateOfBirth: "",
+          profileImage: "",
+        },
+      };
     default:
       return state;
   }

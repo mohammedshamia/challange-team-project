@@ -13,8 +13,6 @@ import { FeaturedProductsContiner } from "./ProductPage.styled";
 import BasicBreadcrumbs from "../../components/Breadcrumbs";
 import { Box } from "@mui/material";
 
-
-
 export default function ProductPage() {
   const { id } = useParams();
   const {
@@ -42,6 +40,7 @@ export default function ProductPage() {
                   <BasicBreadcrumbs itemName={product.name} />
                 </Box>
                 <DetailesProdect
+                  id={id}
                   nameProdect={product.name}
                   priceProdect={product.price}
                   imgpropdect={product.images?.[0] as string}

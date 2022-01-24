@@ -3,12 +3,13 @@ import { ProductConstants } from "../redux/contants/products.constants";
 export interface IProductForm {
   name: string;
   brand: string;
-  category: string;
+  category: string | string[];
   countInStock: string;
   description: string;
   ID: string;
   price: string;
   images: File[] | string[];
+  colors?: string[];
 }
 
 export interface IProduct {
@@ -50,10 +51,25 @@ export interface CREATE_PRODUCT_START {
 
 export interface CREATE_PRODUCT_SUCCESS {
   type: ProductConstants.CREATE_PRODUCT_SUCCESS;
+  payload: IProduct;
 }
 
 export interface CREATE_PRODUCT_FAIL {
   type: ProductConstants.CREATE_PRODUCT_FAIL;
+  payload: string;
+}
+
+export interface UPDATE_PRODUCT_START {
+  type: ProductConstants.UPDATE_PRODUCT_START;
+}
+
+export interface UPDATE_PRODUCT_SUCCESS {
+  type: ProductConstants.UPDATE_PRODUCT_SUCCESS;
+  payload: IProduct;
+}
+
+export interface UPDATE_PRODUCT_FAIL {
+  type: ProductConstants.UPDATE_PRODUCT_FAIL;
   payload: string;
 }
 
@@ -149,6 +165,9 @@ export type ActionsType =
   | CREATE_PRODUCT_START
   | CREATE_PRODUCT_SUCCESS
   | CREATE_PRODUCT_FAIL
+  | UPDATE_PRODUCT_START
+  | UPDATE_PRODUCT_SUCCESS
+  | UPDATE_PRODUCT_FAIL
   | DELETE_PRODUCT_START
   | DELETE_PRODUCT_SUCCESS
   | DELETE_PRODUCT_FAIL

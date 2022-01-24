@@ -17,14 +17,44 @@ export const createProduct =
       });
       const urls = await Promise.all<AxiosResponse>(promises);
       const form = { ...data, images: [...urls.map((url) => url.data)] };
-      await API.post("/products", form);
+      const res = await API.post("/products", form);
       dispatch({
-        type: ProductConstants.CREATE_PRODUCT_START,
+        type: ProductConstants.CREATE_PRODUCT_SUCCESS,
+        payload: res.data,
       });
     } catch (error: any) {
       notify("error", error?.response?.data?.message || error.message);
       dispatch({
         type: ProductConstants.CREATE_PRODUCT_FAIL,
+        payload: error?.response?.data?.message || error.message,
+      });
+    }
+  };
+
+export const updateProduct =
+  (productID: string, data: IProductForm) =>
+  async (dispatch: Dispatch<ActionsType>) => {
+    try {
+      dispatch({
+        type: ProductConstants.UPDATE_PRODUCT_START,
+      });
+      const images = [...data.images].filter(
+        (image) => typeof image !== "string"
+      );
+      const promises = images.map((image) => {
+        return API.post("/upload", createFormData(image as File));
+      });
+      const urls = await Promise.all<AxiosResponse>(promises);
+      const form = { ...data, images: [...urls.map((url) => url.data)] };
+      const res = await API.post(`/products/${productID}`, form);
+      dispatch({
+        type: ProductConstants.UPDATE_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    } catch (error: any) {
+      notify("error", error?.response?.data?.message || error.message);
+      dispatch({
+        type: ProductConstants.UPDATE_PRODUCT_FAIL,
         payload: error?.response?.data?.message || error.message,
       });
     }

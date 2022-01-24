@@ -27,8 +27,8 @@ const Container = styled.div`
   }
   ${(props) => props.theme.breakpoints.down("md")} {
     & button {
-      width: 100%;
-      margin: 0;
+      width: 90%;
+      margin: auto;
     }
   }
 `;

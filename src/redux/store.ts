@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { ThemeReducer } from "./reducers/theme.reducers";
 import { AuthReducer } from "./reducers/auth.reducers";
 import { ProductsReducer } from "./reducers/products.reducers";
+import {UsersReducer} from "./reducers/user.reducer";
 import { cartReducer } from "./reducers/cart.reducers";
 import { configReducer } from "./reducers/config.reducers";
 
@@ -16,6 +17,7 @@ const reducers = combineReducers({
   theme: ThemeReducer,
   auth: AuthReducer,
   products: ProductsReducer,
+  users:UsersReducer,
   cart: cartReducer,
   config: configReducer,
 });
