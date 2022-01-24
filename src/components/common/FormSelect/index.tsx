@@ -20,6 +20,7 @@ const FormSelect = (props: IProps) => {
           {props.label && <Label htmlFor={props.name}>{props.label}</Label>}
           <Select
             multiple={props?.multiple}
+            multiline
             displayEmpty
             value={field.value}
             onChange={(e) => form.setFieldValue(props.name, e.target.value)}

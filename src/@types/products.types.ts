@@ -3,11 +3,11 @@ import { ProductConstants } from "../redux/contants/products.constants";
 export interface IProductForm {
   name: string;
   brand: string;
-  category: string | string[];
+  categories: string | string[];
   countInStock: string;
   description: string;
-  ID: string;
   price: string;
+  discount: string;
   images: File[] | string[];
   colors?: string[];
 }

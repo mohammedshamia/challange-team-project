@@ -7,7 +7,8 @@ import { createFormData, notify } from "../../utils/helpers";
 import { ProductConstants } from "../contants/products.constants";
 
 export const createProduct =
-  (data: IProductForm) => async (dispatch: Dispatch<ActionsType>) => {
+  (data: IProductForm, callback?: Function) =>
+  async (dispatch: Dispatch<ActionsType>) => {
     try {
       dispatch({
         type: ProductConstants.CREATE_PRODUCT_START,
@@ -18,6 +19,7 @@ export const createProduct =
       const urls = await Promise.all<AxiosResponse>(promises);
       const form = { ...data, images: [...urls.map((url) => url.data)] };
       const res = await API.post("/products", form);
+      callback?.();
       dispatch({
         type: ProductConstants.CREATE_PRODUCT_SUCCESS,
         payload: res.data,
@@ -32,7 +34,7 @@ export const createProduct =
   };
 
 export const updateProduct =
-  (productID: string, data: IProductForm) =>
+  (productID: string, data: IProductForm, callback?: Function) =>
   async (dispatch: Dispatch<ActionsType>) => {
     try {
       dispatch({
@@ -46,7 +48,8 @@ export const updateProduct =
       });
       const urls = await Promise.all<AxiosResponse>(promises);
       const form = { ...data, images: [...urls.map((url) => url.data)] };
-      const res = await API.post(`/products/${productID}`, form);
+      const res = await API.put(`/products/${productID}`, form);
+      callback?.();
       dispatch({
         type: ProductConstants.UPDATE_PRODUCT_SUCCESS,
         payload: res.data,

@@ -17,11 +17,13 @@ import {
   updateProduct,
 } from "../../../../redux/actions/products.actions";
 import { AppState } from "../../../../redux/store";
+import { notify } from "../../../../utils/helpers";
 import ImageUpload from "../ImageUpload";
 import { formSchema } from "./validation";
 
 interface IProps {
   product?: IProduct;
+  categories?: ICategory[];
 }
 
 const colors = [
@@ -59,21 +61,29 @@ const colors = [
   },
 ];
 
-const NewProductForm = ({ product }: IProps) => {
+const NewProductForm = ({ product, categories }: IProps) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const {
-    products: { loading, categories },
+    products: { loading },
   } = useSelector((state: AppState) => state);
 
   const handleSubmit = useCallback(
     async (values: IProductForm) => {
       if (product) {
         // Update Product
-        dispatch(updateProduct(product._id as string, values));
+        dispatch(
+          updateProduct(product._id as string, values, () => {
+            notify("success", "Product Updated successfully");
+          })
+        );
       } else {
         // Create Product
-        dispatch(createProduct(values));
+        dispatch(
+          createProduct(values, () => {
+            notify("success", "Product Created successfully");
+          })
+        );
       }
     },
     [dispatch, product]
@@ -88,11 +98,11 @@ const NewProductForm = ({ product }: IProps) => {
         {
           name: product?.name || "",
           brand: product?.brand || "",
-          category: product?.categories || [],
+          categories: product?.categories || [],
           countInStock: product?.countInStock || "",
           description: product?.description || "",
-          ID: product?._id || "",
-          price: product?.price || "",
+          price: product?.price.toFixed(2) || "",
+          discount: product?.discount.toFixed(2) || "",
           images: product?.images || [],
           colors: product?.colors || [],
         } as IProductForm
@@ -131,9 +141,11 @@ const NewProductForm = ({ product }: IProps) => {
                         multiple
                       />
                     </Column>
+                  </Row>
+                  <Row justfiyContent="flex-start" width="100%" gap="20%" wrap>
                     <Column justfiyContent="flex-start" width="100%">
                       <FormSelect
-                        name="category"
+                        name="categories"
                         label="Product Categories"
                         data={(categories as ICategory[])?.map(
                           (category: ICategory) => ({
@@ -154,7 +166,7 @@ const NewProductForm = ({ product }: IProps) => {
                       />
                     </Column>
                   </Row>
-                  <Row justfiyContent="flex-start" width="100%" gap="20%" wrap>
+                  <Row justfiyContent="flex-start" width="100%" gap="5%" wrap>
                     <Column justfiyContent="flex-start" width="100%">
                       <FormInput
                         type="number"
@@ -164,6 +176,13 @@ const NewProductForm = ({ product }: IProps) => {
                     </Column>
                     <Column justfiyContent="flex-start" width="100%">
                       <FormInput type="number" name="price" label="Price" />
+                    </Column>
+                    <Column justfiyContent="flex-start" width="100%">
+                      <FormInput
+                        type="number"
+                        name="discount"
+                        label="discount"
+                      />
                     </Column>
                   </Row>
                 </Column>
