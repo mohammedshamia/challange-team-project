@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Typography } from "@mui/material";
 import { IProduct } from "../../../@types/products.types";
 import { calculateDiscount } from "../../../utils/helpers";
+
 const Container = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.palette.text.secondary};
   padding-block: 0.5em;
