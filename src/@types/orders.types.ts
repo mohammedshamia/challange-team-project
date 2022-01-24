@@ -6,9 +6,7 @@ export interface GET_ORDERS_START {
 
 export interface GET_ORDERS_SUCCESS {
   type: OrdersConstants.GET_ORDERS_SUCCESS;
-  payload: {
-    [key: string]: any;
-  };
+  payload: {};
 }
 
 export interface GET_ORDERS_FAIL {

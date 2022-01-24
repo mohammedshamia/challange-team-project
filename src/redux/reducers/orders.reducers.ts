@@ -1,14 +1,9 @@
 import { ActionsType } from "../../@types/orders.types";
 import { OrdersConstants } from "../contants/orders.constants";
-
-
-
-
 export interface IState {
   error: string;
   loading: boolean;
-  orders: {
-  };
+  orders: {};
 }
 
 const initial_state: IState = {
@@ -29,12 +24,14 @@ export const OrdersReducer = (state = initial_state, action: ActionsType) => {
         return {
           ...state,
           loading: false,
+          orders:action.payload
 
         };
       case OrdersConstants.GET_ORDERS_FAIL:
         return {
           ...state,
           loading: false,
+          error: action.payload,
         }}}
         
 
