@@ -44,9 +44,10 @@ export default function ProdectCard({
         </Box>
         <Typography
           color="text.primary"
-          my="30px auto 15px"
+          my="15px"
           fontSize="24px"
           textAlign="center"
+          height="75px"
         >
           {name}
         </Typography>
