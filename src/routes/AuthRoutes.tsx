@@ -1,4 +1,5 @@
 import React, { lazy } from "react";
+import { RequireAuth } from "../components/common/PrivateRouter";
 
 const SignUp = React.lazy(() => import("../screens/auth/SignUp"));
 
@@ -9,15 +10,27 @@ const ForgotPassword = lazy(() => import("../screens/auth/ForgetPassword"));
 const AuthRoutes = [
   {
     path: "/auth/signup",
-    component: <SignUp />,
+    component: (
+      <RequireAuth>
+        <SignUp />
+      </RequireAuth>
+    ),
   },
   {
     path: "/auth/login",
-    component: <SignIn />,
+    component: (
+      <RequireAuth>
+        <SignIn />
+      </RequireAuth>
+    ),
   },
   {
     path: "/auth/forgot-password",
-    component: <ForgotPassword />,
+    component: (
+      <RequireAuth>
+        <ForgotPassword />
+      </RequireAuth>
+    ),
   },
 ];
 
