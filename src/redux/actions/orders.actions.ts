@@ -10,7 +10,7 @@ export const getOrdersProdects = () => async (dispatch: Dispatch<ActionsType>) =
       dispatch({
         type: OrdersConstants.GET_ORDERS_START,
       });
-      const { data }:AxiosResponse  = await API.get("/Orders");
+      const { data }:AxiosResponse  = await API.get("/orders/myorders");
       dispatch({
         type: OrdersConstants.GET_ORDERS_SUCCESS,
         payload: data,
