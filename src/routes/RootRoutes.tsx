@@ -25,6 +25,8 @@ const SearchPage = lazy(() => import("../screens/landingPage/SearchPage"));
 const ProductDetails = lazy(() => import("../screens/ProdectPage"));
 const Profile = lazy(() => import("../screens/profile"));
 const PageNotFound = lazy(() => import("../components/common/PageNotFound"));
+const Orders = lazy(() => import("../screens/OrderPage"));
+
 
 const RootRoutes = {
   routes: [
@@ -61,6 +63,10 @@ const RootRoutes = {
     {
       path: "/profile",
       component: <Profile />,
+    },
+    {
+      path: "/orders",
+      component: <Orders />,
     },
     ...AdminRoutes,
     ...RedirectRoute,
