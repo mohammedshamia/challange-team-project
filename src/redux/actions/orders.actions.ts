@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import { Dispatch } from "react";
 import { ActionsType } from "../../@types/orders.types";
 import API from "../../api";
@@ -9,7 +10,7 @@ export const getOrdersProdects = () => async (dispatch: Dispatch<ActionsType>) =
       dispatch({
         type: OrdersConstants.GET_ORDERS_START,
       });
-      const { data }: any = await API.get("/Orders");
+      const { data }:AxiosResponse  = await API.get("/Orders");
       dispatch({
         type: OrdersConstants.GET_ORDERS_SUCCESS,
         payload: data,

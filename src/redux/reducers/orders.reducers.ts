@@ -1,15 +1,16 @@
-import { ActionsType } from "../../@types/orders.types";
+import { ActionsType, IOrders } from "../../@types/orders.types";
 import { OrdersConstants } from "../contants/orders.constants";
 export interface IState {
   error: string;
   loading: boolean;
-  orders: {};
+  orders:IOrders[];
+
 }
 
 const initial_state: IState = {
   error: "",
   loading: false,
-  orders: {},
+  orders: [],
 };
 
 
@@ -20,7 +21,7 @@ export const OrdersReducer = (state = initial_state, action: ActionsType) => {
           ...state,
           loading: true,
         };
-      case OrdersConstants.GET_ORDERS_SUCCESS:
+      case OrdersConstants.GET_ORDERS_SUCCESS: 
         return {
           ...state,
           loading: false,
