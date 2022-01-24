@@ -54,12 +54,22 @@ const Edit = (props: ICellRendererParams) => {
         open={open}
       >
         <BootstrapDialogTitle id="product-delete-dialog" onClose={handleClose}>
-          <Typography variant="h6" color="red" sx={{ marginBottom: "2em" }}>
+          <Typography
+            variant="h6"
+            color="#FC4059"
+            sx={{ marginBottom: "2em", textAlign: "center" }}
+          >
             Are you sure you want to delete {props.data.name} ?
           </Typography>
           <Row wrap gap="100px">
             <Button onClick={handleDelete}>Yes</Button>
-            <Button onClick={handleClose}>No</Button>
+            <Button
+              border={"1px solid #fcdd06"}
+              background="none"
+              onClick={handleClose}
+            >
+              No
+            </Button>
           </Row>
         </BootstrapDialogTitle>
       </BootstrapDialog>
