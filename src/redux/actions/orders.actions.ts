@@ -9,7 +9,7 @@ export const getOrdersProdects = () => async (dispatch: Dispatch<ActionsType>) =
       dispatch({
         type: OrdersConstants.GET_ORDERS_START,
       });
-      const { data }: any = await API.get("/products/top");
+      const { data }: any = await API.get("/Orders");
       dispatch({
         type: OrdersConstants.GET_ORDERS_SUCCESS,
         payload: data,
@@ -22,3 +22,7 @@ export const getOrdersProdects = () => async (dispatch: Dispatch<ActionsType>) =
       });
     }
   };
+
+
+
+
