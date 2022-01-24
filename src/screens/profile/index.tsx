@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../redux/actions/auth.actions";
 import { AppState } from "../../redux/store";
+import OrdersProduct from './tabs/orders/index';
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const ProfilePage = () => {
           My Orders
         </Typography>
       ),
-      content: <Typography variant="h4">My Orders</Typography>,
+      content: <OrdersProduct/>
     },
     {
       label: (
