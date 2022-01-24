@@ -4,12 +4,14 @@ import { Typography } from "@mui/material";
 import Profile from "./tabs/profile";
 import { Container, WrapperAvatarTab, AvatarTab } from "./Profile.style";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/actions/auth.actions";
 import { AppState } from "../../redux/store";
 import OrdersProduct from './tabs/orders/index';
+import { useTheme } from "styled-components";
 
 const ProfilePage = () => {
+  const theme = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -40,7 +42,10 @@ const ProfilePage = () => {
             src={user.profileImage || "/static/avatar.jpg"}
             alt="avatar"
           />
-          <Typography sx={{fontSize:"1.2rem"}} variant="h2">{`${user.firstName} ${user.lastName}`}</Typography>
+          <Typography
+            sx={{ fontSize: "1.2rem" }}
+            variant="h2"
+          >{`${user.firstName} ${user.lastName}`}</Typography>
         </WrapperAvatarTab>
       ),
       content: <Profile user={user} />,
@@ -52,6 +57,27 @@ const ProfilePage = () => {
         </Typography>
       ),
       content: <OrdersProduct/>
+    },
+    {
+      label: (
+        <Link
+          to={"/products"}
+          style={{ textDecoration: "none", color: theme.palette.text.primary }}
+        >
+          <Typography
+            // as={Link}
+            variant="h4"
+            sx={{ fontSize: "1.5rem" }}
+          >
+            Create Products
+          </Typography>
+        </Link>
+      ),
+      content: (
+        <Typography sx={{ textAlign: "left" }} variant="h4">
+          Create Products
+        </Typography>
+      ),
     },
   ];
 

@@ -12,10 +12,13 @@ const AdminRoutes = [
     path: "/products",
     component: <Products />,
   },
-
   {
     path: "/users",
     component: <Users />,
+  },
+  {
+    path: "/products/new",
+    component: <CreateNewProduct />,
   },
   {
     //For Update Products

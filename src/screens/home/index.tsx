@@ -31,7 +31,7 @@ const HomePage = () => {
     if ((topProducts as IProduct[]).length === 0) {
       dispatch(getTopProducts());
     }
-  }, [dispatch, topProducts]);
+  }, [dispatch]);
 
   return (
     <>
