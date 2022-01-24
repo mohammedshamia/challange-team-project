@@ -41,7 +41,6 @@ export default function SliderProduct() {
     <>
       <AutoPlaySwipeableViews
         interval={6000}
-        enableMouseEvents
         index={activeStep}
         slideStyle={styles.slideContainer}
         onChangeIndex={handleChangeIndex}
