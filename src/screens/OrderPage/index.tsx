@@ -1,10 +1,10 @@
-import Typography from "@mui/material/Typography";
+import { Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IColumn } from "../../../../@types/table.types";
-import Table from "../../../../components/Table";
-import { getOrdersProdects } from "../../../../redux/actions/orders.actions";
-import { AppState } from "../../../../redux/store";
+import { IColumn } from "../../@types/table.types";
+import Table from "../../components/Table";
+import { getAllOrdersProdects } from "../../redux/actions/allorders.actions";
+import { AppState } from "../../redux/store";
 
 const columns: IColumn[] = [
   {
@@ -45,18 +45,19 @@ const columns: IColumn[] = [
   }
 ];
 
-export default function OrdersProduct() {
-  const { orders } = useSelector((state: AppState) => state.orders);
+export default function AllOrdersProduct() {
+  const { orders } = useSelector((state: AppState) => state.allOrder);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getOrdersProdects());
+    dispatch(getAllOrdersProdects());
   }, [dispatch]);
 
   return (
-    <div style={{ width: "100%", margin: "auto" }}>
-         <Typography
+    <div style={{ width: "60%", margin: "auto" }}>
+        
+        <Typography
         variant="h2"
         fontSize="1.5rem"
         sx={{
