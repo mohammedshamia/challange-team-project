@@ -23,7 +23,8 @@ export const Section = styled.div`
   width: 100%;
   border-radius: 16px;
   ${(props) => props.theme.breakpoints.down("md")} {
-    width: 100% !important;
+    width: 90% !important;
+    margin: auto;
   }
 `;
 

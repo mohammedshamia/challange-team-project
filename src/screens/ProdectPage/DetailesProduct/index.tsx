@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import React from "react";
+import { useCallback, useState } from "react";
 import { Button } from "../../../components/Button/Button.style";
 import { SittingContainer } from "../../../components/Card/Card.style";
 import Counter from "../../../components/Counter";
@@ -16,6 +16,8 @@ import {
   TitleInformationsContiner,
 } from "../ProductPage.styled";
 import { useTheme } from "styled-components";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../redux/actions/cart.actions";
 
 interface Iprops {
   nameProdect: string;
@@ -27,8 +29,13 @@ interface Iprops {
   detailsprodect: string;
   sizes?: string[] | null;
   colors?: string[] | null;
+  id: string | undefined;
 }
-
+interface Istate {
+  counter: number;
+  color: string;
+  size: string;
+}
 export default function DetailesProdect({
   nameProdect,
   priceProdect,
@@ -39,8 +46,35 @@ export default function DetailesProdect({
   sizes,
   colors,
   detailsprodect,
+  id,
 }: Iprops) {
   const theme = useTheme();
+  const dispatch = useDispatch();
+  const [state, setState] = useState<Istate>({
+    counter: 1,
+    color: "",
+    size: "",
+  });
+  const handleCounter = (newValue: number) =>
+    setState((prev) => ({
+      ...prev,
+      counter: newValue,
+    }));
+  const handelChangeColor = (newValue: string) =>
+    setState((prev) => ({
+      ...prev,
+      color: newValue,
+    }));
+  const handelChangeSize = (newValue: string) =>
+    setState((prev) => ({
+      ...prev,
+      size: newValue,
+    }));
+  const AddToCart = useCallback(() => {
+    console.log(state?.counter);
+    dispatch(addToCart(id as string, state.counter));
+  }, [dispatch, id, state]);
+
   return (
     <div>
       <DetailesProductContainer>
@@ -89,14 +123,27 @@ export default function DetailesProdect({
               </Typography>
             </TitleInformationsContiner>
 
-            <Counter value={1} />
+            <Counter onChange={handleCounter} value={state.counter} />
 
             <SizesOfProductContiner>
-              {colors && <SummeryComponent colors={colors} />}
+              {colors && (
+                <SummeryComponent
+                  onChangeItem={handelChangeColor}
+                  value={state.color}
+                  colors={colors}
+                />
+              )}
               <BoxSammary>
-                {sizes && <SummeryComponent sizes={sizes} />}
+                {sizes && (
+                  <SummeryComponent
+                    onChangeItem={handelChangeSize}
+                    value={state.size}
+                    sizes={sizes}
+                  />
+                )}
                 <SittingContainer justifyContent={true}>
                   <Button
+                    onClick={AddToCart}
                     sx={{ maxWidth: "300px", fontSize: "1.5rem" }}
                     height="62px"
                     borderRadius="10px"

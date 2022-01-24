@@ -5,11 +5,12 @@ import { Stack } from "@mui/material";
 import { Link } from "./BottonNavigation.style";
 import { useSelector } from "react-redux";
 import { AppState } from "../../redux/store";
-
+import CategoryIcon from "@mui/icons-material/Category";
 interface Iprops {
   wishlist: number;
   cartItems: number;
   username?: string;
+  isAdmin?: boolean;
 }
 
 export default function BottonNavigationGroup(props: Iprops) {
@@ -35,6 +36,16 @@ export default function BottonNavigationGroup(props: Iprops) {
           badgeContent={props.cartItems}
         />
       </Link>
+      {props.isAdmin && (
+        <Link to={"/products"}>
+          <SimpleBottomNavigation
+            path="/products"
+            label="Products"
+            icon={<CategoryIcon />}
+            badgeContent={props.cartItems}
+          />
+        </Link>
+      )}
     </Stack>
   );
 }
