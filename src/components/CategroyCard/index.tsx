@@ -1,13 +1,18 @@
 import { Typography } from "@mui/material";
+import { MouseEventHandler } from "react";
 import { CardContainer } from "../Card/Card.style";
 import { Card } from "../Card/Types";
 
-interface IProps extends Card {}
+interface IProps extends Card {
+  onClick?: MouseEventHandler;
+}
 
-export default function CategroyCard({ img, name }: IProps) {
+export default function CategroyCard({ img, name, onClick }: IProps) {
   return (
     <CardContainer
+      onClick={onClick}
       sx={{
+        cursor: "pointer",
         borderRadius: 0,
         paddingTop: "23px",
         boxSizing: "border-box",
