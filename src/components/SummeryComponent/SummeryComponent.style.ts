@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 interface Iprpos {
   color: string;
   active?: boolean;
@@ -12,7 +11,7 @@ export const ColorOptional = styled.div<Iprpos>((props: Iprpos) => ({
   display: "inline-block",
   cursor: "pointer",
   borderRadius: "50%",
-  marginRight: "40px",
+  margin: "0 3%",
   outline: `2px solid ${props.active ? "black" : "transparent"} `,
   border: "5px solid white",
   backgroundColor: props.color,
@@ -28,7 +27,7 @@ export const ButtonGroup = styled("div")((props) => ({
 
 export const SizeOptional = styled.div<"div" | any | Iprpos | never>(
   (props) => ({
-    width: "135px",
+    padding: "0 20px",
     height: "40px",
     display: "flex",
     justifyContent: "center",
@@ -38,9 +37,7 @@ export const SizeOptional = styled.div<"div" | any | Iprpos | never>(
     fontSize: "20px",
     fontWeight: "bold",
     backgroundColor: `${props.active ? "#242424" : "#F5F5F5"}`,
-    [props.theme.breakpoints.down("lg")]: {
-      width: "100px",
-    },
+
     color: `${props.active ? "white" : "black"}`,
     "&:hover": { backgroundColor: `${props.active ? null : "#dedede"}` },
   })

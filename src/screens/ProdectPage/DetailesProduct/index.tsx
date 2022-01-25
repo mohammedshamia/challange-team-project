@@ -111,14 +111,15 @@ export default function DetailesProdect({
         <DetailesContiner>
           <InformationsContiner>
             <TitleInformationsContiner>
-              <Typography variant="h3" color="text.primary">
+              <Typography
+                variant="h3"
+                color="text.primary"
+                pr="35px"
+                fontWeight="bold"
+              >
                 {nameProdect}
               </Typography>
-              <Typography
-                sx={{ fontWeight: "700" }}
-                variant="h2"
-                color="text.primary"
-              >
+              <Typography variant="h2" color="text.primary" fontWeight="900">
                 {priceProdect}$
               </Typography>
             </TitleInformationsContiner>
@@ -144,7 +145,10 @@ export default function DetailesProdect({
                 <SittingContainer justifyContent={true}>
                   <Button
                     onClick={AddToCart}
-                    sx={{ maxWidth: "300px", fontSize: "1.5rem" }}
+                    sx={{
+                      maxWidth: "300px",
+                      fontSize: "1.5rem",
+                    }}
                     height="62px"
                     borderRadius="10px"
                     background={theme.palette.primary.main}

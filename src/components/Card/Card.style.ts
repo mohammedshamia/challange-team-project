@@ -28,7 +28,8 @@ interface IpropsSittingContainer {
 }
 export const SittingContainer = styled("div")<IpropsSittingContainer>(
   (props) => ({
-    width: "100%",
+    width: "90%",
+    margin: "auto",
     display: "flex",
     justifyContent: props.justifyContent ? "flex-end" : "center",
     gap: "16px",
