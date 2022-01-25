@@ -1,7 +1,6 @@
 import { AxiosPromise } from "axios";
 import { toast } from "react-toastify";
-import { ICart, Item } from "../@types/cart.types";
-import { Categories, ICategory } from "../@types/products.types";
+import { Categories, ICategory,Products,IProduct } from "../@types/products.types";
 import API from "../api";
 
 export type toastType = "info" | "success" | "warning" | "error" | "default";
@@ -48,6 +47,21 @@ export const formatCategory = (category: ICategory[]) => {
   return arr;
 };
 
+export const formatProducts = (data: IProduct[]) => {
+  let arr: Products[] = [];
+  data.forEach((c, index) => {
+    if (index % 3 === 0) {
+      arr.push({ id: arr.length, product: [] } as Products);
+    }
+    let current: Products = arr[arr.length - 1];
+    current = {
+      ...current,
+      product: [...(current as Products)?.product, c],
+    };
+    arr[arr.length - 1] = current;
+  });
+  return arr;
+};
 // export const formatCart = (cart: Cart) => {
 //   let cart_ = {};
 //   let cartItems: ICartItems = {};

@@ -32,7 +32,10 @@ export interface IProduct {
   __v?: number;
   qty?: number;
 }
-
+export interface Products {
+  id: number;
+  product: IProduct[];
+}
 export interface IReview {
   name?: string;
   rating: number;
@@ -112,7 +115,7 @@ export interface GET_PRODUCTS_START {
 
 export interface GET_PRODUCTS_SUCCESS {
   type: ProductConstants.GET_PRODUCTS_SUCCESS;
-  payload: IProduct[];
+  payload: Products[];
 }
 
 export interface GET_PRODUCTS_FAIL {
