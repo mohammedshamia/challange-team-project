@@ -3,6 +3,7 @@ import { RequireAdmin } from "../components/common/PrivateRouter";
 
 const Products = lazy(() => import("./../screens/admin/products/index"));
 const Users = lazy(() => import("../screens/admin/users"));
+const UserDetails = lazy(() => import( "../screens/admin/users/UserDetails"));
 
 const CreateNewProduct = lazy(
   () => import("./../screens/admin/products/NewProduct")
@@ -35,7 +36,6 @@ const AdminRoutes = [
       </RequireAdmin>
     ),
   },
-
   {
     path: "/products/new",
     component: (
