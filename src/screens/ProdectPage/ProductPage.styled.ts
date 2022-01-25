@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import styled from "styled-components";
 
 export const ProductPageContier = styled.div`
@@ -9,6 +10,10 @@ export const DetailesProductContainer = styled.div`
   display: flex;
   gap: 32px;
   margin: auto;
+  @media (max-width: 900px) {
+    display: block;
+    text-align: center;
+  }
 `;
 
 export const ReviewesContainer = styled.div`
@@ -40,6 +45,14 @@ export const ImagesContiner = styled.div`
 `;
 export const DetailesContiner = styled.div`
   width: 70%;
+  @media (max-width: 900px) {
+    width: 100%;
+    & * {
+      text-align: center !important;
+      margin: 10px auto;
+      justify-content: center !important;
+    }
+  }
 `;
 export const SizesOFimgContiner = styled.div`
   width: 99%;
@@ -47,10 +60,11 @@ export const SizesOFimgContiner = styled.div`
   display: flex;
   gap: 30px;
 `;
-export const DiscraptinsContiner = styled.div`
+export const DiscraptinsContiner = styled(Typography)`
   width: 100%;
   margin-top: 60px;
-  font-size: 22px;
+  font-size: 16px;
+  font-weight: 500px;
   color: ${(props) => props.theme.palette.text.primary};
   letter-spacing: 0.32px; ;
 `;
@@ -61,7 +75,10 @@ export const TitleInformationsContiner = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-block: 40px; ;
+  margin-block: 40px;
+  @media (max-width: 900px) {
+    display: block;
+  }
 `;
 
 export const SizesOfProductContiner = styled.div`
@@ -71,7 +88,7 @@ export const SizesOfProductContiner = styled.div`
 export const BoxSammary = styled("div")((props) => ({
   display: "flex",
   justifyContent: "space-between",
-  alignItems: "center",
+  alignItems: "end",
   [props.theme.breakpoints.down("lg")]: {
     flexDirection: "column",
     gap: "16px",
@@ -85,7 +102,7 @@ export const SpicficationContiner = styled.div`
 `;
 export const FeaturedProductsContiner = styled.div`
   width: 100%;
-  padding:30px 0;
+  padding: 30px 0;
   background-color: ${(props) =>
     props.theme.palette.background.paper}; // #F7F8FC;
 `;

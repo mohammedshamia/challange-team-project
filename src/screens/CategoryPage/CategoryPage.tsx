@@ -25,7 +25,7 @@ export default function CategoryPage() {
   }, [dispatch, keyword]);
 
   return (
-    <Box p={"0 7%"} sx={{ background: theme.palette.background.paper }}>
+    <Box p={"0 7% 70px"} sx={{ background: theme.palette.background.paper }}>
       <Box p="50px 0">
         <RowComponent
           title={`${keyword}`}
