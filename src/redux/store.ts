@@ -7,7 +7,6 @@ import { UsersReducer } from "./reducers/user.reducer";
 import { cartReducer } from "./reducers/cart.reducers";
 import { OrdersReducer } from "./reducers/orders.reducers";
 import { configReducer } from "./reducers/config.reducers";
-import { allOrdersReducer } from "./reducers/allorders.reducer";
 
 declare global {
   interface Window {
@@ -20,10 +19,9 @@ const reducers = combineReducers({
   auth: AuthReducer,
   products: ProductsReducer,
   users: UsersReducer,
-  cart: cartReducer,
   orders: OrdersReducer,
-  allOrder:allOrdersReducer,
   config: configReducer,
+  cart: cartReducer,
 });
 
 const middlewares = [thunk];

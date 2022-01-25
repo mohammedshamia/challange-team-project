@@ -1,10 +1,10 @@
 import { Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IColumn } from "../../@types/table.types";
-import Table from "../../components/Table";
-import { getAllOrders } from "../../redux/actions/orders.actions";
-import { AppState } from "../../redux/store";
+import { IColumn } from "../../../@types/table.types";
+import Table from "../../../components/Table";
+import { getAllOrders } from "../../../redux/actions/orders.actions";
+import { AppState } from "../../../redux/store";
 
 const columns: IColumn[] = [
   {
@@ -46,7 +46,7 @@ const columns: IColumn[] = [
 ];
 
 export default function AllOrdersProduct() {
-  const { orders } = useSelector((state: AppState) => state.allOrder);
+  const { orders } = useSelector((state: AppState) => state.orders);
 
   const dispatch = useDispatch();
 
