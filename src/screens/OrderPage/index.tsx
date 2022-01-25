@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IColumn } from "../../@types/table.types";
 import Table from "../../components/Table";
-import { getAllOrdersProdects } from "../../redux/actions/allorders.actions";
+import { getAllOrders } from "../../redux/actions/orders.actions";
 import { AppState } from "../../redux/store";
 
 const columns: IColumn[] = [
@@ -21,8 +21,8 @@ const columns: IColumn[] = [
   },
   {
     name: "clientSecret",
-  }, 
-   {
+  },
+  {
     name: "taxPrice",
   },
   {
@@ -42,7 +42,7 @@ const columns: IColumn[] = [
   },
   {
     name: "deliveredAt",
-  }
+  },
 ];
 
 export default function AllOrdersProduct() {
@@ -51,13 +51,12 @@ export default function AllOrdersProduct() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllOrdersProdects());
+    dispatch(getAllOrders());
   }, [dispatch]);
 
   return (
     <div style={{ width: "60%", margin: "auto" }}>
-        
-        <Typography
+      <Typography
         variant="h2"
         fontSize="1.5rem"
         sx={{
@@ -66,7 +65,7 @@ export default function AllOrdersProduct() {
           letterSpacing: "0.6px",
         }}
       >
-        ALL ORDERS 
+        ALL ORDERS
       </Typography>
       <Table data={orders} columns={columns} />
     </div>

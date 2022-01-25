@@ -7,13 +7,15 @@ import {
   ActionsType,
   IUser,
 } from "../../@types/auth.types";
+import { ICart, ActionsType as CartActionsType } from "../../@types/cart.types";
 import API from "../../api";
 import { notify } from "../../utils/helpers";
 import { AuthConstants } from "../contants/auth.constants";
+import { CartConstants } from "../contants/cart.constants";
 
 export const login =
   (data: ILogin, callback?: Function) =>
-  async (dispatch: Dispatch<ActionsType>) => {
+  async (dispatch: Dispatch<ActionsType | CartActionsType>) => {
     try {
       dispatch({
         type: AuthConstants.LOGIN_START,
@@ -22,10 +24,16 @@ export const login =
         "/users/login",
         data
       );
+
       localStorage.setItem("user-data", JSON.stringify(res.data));
       dispatch({
         type: AuthConstants.LOGIN_SUCCESS,
         payload: res.data,
+      });
+
+      dispatch({
+        type: CartConstants.GET_CART_SUCCESS,
+        payload: res.data.cart as ICart,
       });
       callback?.();
     } catch (error: any) {
@@ -62,13 +70,18 @@ export const createUser =
     }
   };
 
-export const logout = (callback?: Function) => {
-  localStorage.removeItem("user-data");
-  callback?.();
-  return {
-    type: AuthConstants.LOG_OUT,
+export const logout =
+  (callback?: Function) =>
+  (dispatch: Dispatch<ActionsType | CartActionsType>) => {
+    localStorage.removeItem("user-data");
+    callback?.();
+    dispatch({
+      type: CartConstants.CLEAR_CART,
+    });
+    dispatch({
+      type: AuthConstants.LOG_OUT,
+    });
   };
-};
 
 export const forgetPassword =
   (data: IForgetPassword) => (dispatch: Dispatch<ActionsType>) => {};

@@ -1,4 +1,5 @@
 import { AuthConstants } from "../redux/contants/auth.constants";
+import { ICart } from "./cart.types";
 
 export interface IAuth {
   loading: boolean;
@@ -33,6 +34,7 @@ export interface IUser {
   token: string;
   dateOfBirth?: string;
   profileImage?: string;
+  cart?: ICart;
 }
 
 export interface CREATE_USER_START {

@@ -11,13 +11,16 @@ export const addToCart =
       dispatch({
         type: CartConstants.ADD_TO_CART_START,
       });
-      const { data } = await API.put("/users/profile/cart", {
+      const {
+        data: { cart },
+      } = await API.put("/users/profile/cart", {
         productId: productID,
         qty,
       });
+
       dispatch({
         type: CartConstants.ADD_TO_CART_SUCCESS,
-        payload: data.cart,
+        payload: cart as ICart,
       });
     } catch (error: any) {
       notify("error", error?.response?.data?.message || error.message);
@@ -34,12 +37,12 @@ export const removeFromCart =
       dispatch({
         type: CartConstants.REMOVE_FROM_CART_START,
       });
-      await API.delete(`users/profile/cart`, {
+      const { data } = await API.delete(`users/profile/cart`, {
         params: { productId: productID },
       });
       dispatch({
         type: CartConstants.REMOVE_FROM_CART_SUCCESS,
-        payload: productID,
+        payload: data.cart as ICart,
       });
     } catch (error: any) {
       notify("error", error?.response?.data?.message || error.message);
@@ -55,14 +58,13 @@ export const getCart = () => async (dispatch: Dispatch<ActionsType>) => {
     dispatch({
       type: CartConstants.GET_CART_START,
     });
-
     const {
       data: { cart },
     } = await API.get("/users/profile");
 
     dispatch({
       type: CartConstants.GET_CART_SUCCESS,
-      payload: cart,
+      payload: cart as ICart,
     });
   } catch (error: any) {
     dispatch({
