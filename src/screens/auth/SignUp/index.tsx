@@ -31,10 +31,16 @@ const SignUp = () => {
   return (
     <Container>
       <FormWrapper>
-        <Typography variant="h1" color="text.primary">
+        <Typography variant="h1" color="text.primary" fontWeight="900">
           Sign Up.
         </Typography>
-        <Typography variant="h3" color="text.secondary" my={"50px"}>
+        <Typography
+          variant="h3"
+          color="text.secondary"
+          my={"50px"}
+          fontSize="32px"
+          fontWeight="500"
+        >
           Sign up and get exclusive offers from us
         </Typography>
         <Formik
@@ -68,7 +74,12 @@ const SignUp = () => {
                 label={"Confirm your password"}
               />
               <Button type="submit">
-                <Typography variant="h6" color="#000">
+                <Typography
+                  variant="h6"
+                  color="#000"
+                  fontSize="22px"
+                  fontWeight="500"
+                >
                   Sign up
                 </Typography>
               </Button>

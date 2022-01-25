@@ -12,10 +12,16 @@ const ForgetPassword = () => {
   return (
     <Container>
       <FormWrapper>
-        <Typography variant="h2" color="text.primary">
+        <Typography variant="h2" color="text.primary" fontWeight="900">
           Forgot Your Password?
         </Typography>
-        <Typography variant="h6" color="text.primary" my={"50px"}>
+        <Typography
+          variant="h6"
+          color="text.primary"
+          my={"50px"}
+          fontSize="32px"
+          fontWeight="500"
+        >
           Enter your registered email below to receive password reset
           instruction
         </Typography>
@@ -34,7 +40,12 @@ const ForgetPassword = () => {
                 label={"Enter your email address"}
               />
               <Button type="submit" onClick={() => {}}>
-                <Typography variant="h6" color="#000">
+                <Typography
+                  variant="h6"
+                  color="#000"
+                  fontSize="22px"
+                  fontWeight="500"
+                >
                   Send
                 </Typography>
               </Button>

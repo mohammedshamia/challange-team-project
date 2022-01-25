@@ -55,10 +55,16 @@ const SignIn = () => {
   return (
     <Container>
       <FormWrapper>
-        <Typography variant="h1" color="text.primary">
+        <Typography variant="h1" color="text.primary" fontWeight="900">
           Login.
         </Typography>
-        <Typography variant="h4" my="50px" color="text.secondary">
+        <Typography
+          variant="h4"
+          my="50px"
+          color="text.secondary"
+          fontSize="32px"
+          fontWeight="500"
+        >
           Login with your data that you entered during registration
         </Typography>
         <Formik
@@ -85,7 +91,12 @@ const SignIn = () => {
                 label={"Enter your password"}
               />
               <Button type="submit" disabled={loading}>
-                <Typography variant="h6" color="#000">
+                <Typography
+                  variant="h6"
+                  color="#000"
+                  fontSize="22px"
+                  fontWeight="500"
+                >
                   Login
                 </Typography>
               </Button>
@@ -94,9 +105,12 @@ const SignIn = () => {
                 type="checkbox"
                 label={"Remember me"}
               />
-              <Link to={"/auth/forgot-password"}>Forgot your password?</Link>
+              <Typography textAlign="center">
+                <Link to={"/auth/forgot-password"}>Forgot your password?</Link>
+              </Typography>
+
               <Divider />
-              <SignUpButton to="/auth/signup">
+              <SignUpButton to="/auth/signup" style={{ padding: "14px 35px" }}>
                 <Typography variant="h6" color="text.primary">
                   Sign up now
                 </Typography>
