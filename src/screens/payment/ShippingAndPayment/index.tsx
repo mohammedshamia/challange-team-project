@@ -1,16 +1,19 @@
 import styled from "styled-components";
 import { Typography } from "@mui/material";
-import { useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { Form, Formik } from "formik";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { Row, Column } from "../../../components/GlobalStyles";
 import { Section } from "../../../components/GlobalStyles";
-import OrderDetails from "../OrderDetails";
 import FormInput from "../../../components/common/FormInput";
 import { Button } from "../../../components/Button/Button.style";
+import OrderDetails from "../OrderDetails";
 import { IProduct } from "../../../@types/products.types";
-import { AppState } from "../../../redux/store";
 import { calculateDiscount } from "../../../utils/helpers";
+import { AppState } from "../../../redux/store";
+import { formSchema } from "./validation";
+import { loadStripe } from "@stripe/stripe-js";
 
 interface IProps {
   next: Function;
@@ -35,11 +38,27 @@ const Container = styled.div`
 
 const ShippingAndPayment = ({ next }: IProps) => {
   const {
-    products: {
-      products: { products },
-    },
     cart: { cart },
   } = useSelector((state: AppState) => state);
+
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const [isProcessing, setProcessingTo] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string>();
+
+  const handlePayment = useCallback(
+    (values) => {
+      const cardElement = elements?.getElement("card");
+    },
+    [cart]
+  );
+
+  const handleCardDetailsChange = (ev: any) => {
+    ev.error
+      ? setCheckoutError(ev.error.message as string)
+      : setCheckoutError("");
+  };
 
   // const CartProducts = useMemo<IProduct[]>(() => {
   //   if (Object.keys(cart).length > 0) {
@@ -70,7 +89,11 @@ const ShippingAndPayment = ({ next }: IProps) => {
 
   return (
     <Container>
-      <Formik initialValues={{}} onSubmit={() => next()}>
+      <Formik
+        validationSchema={formSchema}
+        initialValues={{}}
+        onSubmit={handlePayment}
+      >
         {() => (
           <Form>
             <Row
@@ -147,7 +170,7 @@ const ShippingAndPayment = ({ next }: IProps) => {
                           <FormInput name="name" label="Name on Card" />
                         </Column>
                         <Column justfiyContent="flex-start" width="50%">
-                          <FormInput name="cardNumber" label="Card Number" />
+                          <CardElement onChange={handleCardDetailsChange} />
                         </Column>
                       </Row>
                       <Row
