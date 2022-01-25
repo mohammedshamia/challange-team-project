@@ -9,6 +9,7 @@ export const getConfig = () => async (dispatch: Dispatch<ActionsType>) => {
       type: configConstants.GET_CONFIG_START,
     });
     const { data } = await API.get("/config/stripe_key");
+    console.log(data);
     dispatch({
       type: configConstants.GET_CONFIG_SUCCESS,
       payload: data,

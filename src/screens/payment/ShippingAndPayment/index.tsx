@@ -1,19 +1,23 @@
 import styled from "styled-components";
 import { Typography } from "@mui/material";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { Form, Formik } from "formik";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import {
+  useStripe,
+  useElements,
+  CardNumberElement,
+  CardCvcElement,
+  CardExpiryElement,
+} from "@stripe/react-stripe-js";
+
 import { Row, Column } from "../../../components/GlobalStyles";
 import { Section } from "../../../components/GlobalStyles";
 import FormInput from "../../../components/common/FormInput";
 import { Button } from "../../../components/Button/Button.style";
-import OrderDetails from "../OrderDetails";
-import { IProduct } from "../../../@types/products.types";
-import { calculateDiscount } from "../../../utils/helpers";
 import { AppState } from "../../../redux/store";
 import { formSchema } from "./validation";
-import { loadStripe } from "@stripe/stripe-js";
+import { Label } from "../../../components/common/FormInput/FormInput.styled";
 
 interface IProps {
   next: Function;
@@ -49,43 +53,12 @@ const ShippingAndPayment = ({ next }: IProps) => {
 
   const handlePayment = useCallback(
     (values) => {
-      const cardElement = elements?.getElement("card");
+      const cardNumberElement = elements?.getElement("cardNumber");
+      const cvcElement = elements?.getElement("cardCvc");
+      const expiryElement = elements?.getElement("cardExpiry");
     },
-    [cart]
+    [cart, elements]
   );
-
-  const handleCardDetailsChange = (ev: any) => {
-    ev.error
-      ? setCheckoutError(ev.error.message as string)
-      : setCheckoutError("");
-  };
-
-  // const CartProducts = useMemo<IProduct[]>(() => {
-  //   if (Object.keys(cart).length > 0) {
-  //     return (products as IProduct[]).filter((product) =>
-  //       Object.keys(cart).includes(product._id as string)
-  //     );
-  //   }
-  //   return [];
-  // }, [cart, products]);
-
-  // const discountPrice = useMemo<number>(() => {
-  //   if (Object.keys(cart).length > 0) {
-  //     return (products as IProduct[])
-  //       .filter((product) => Object.keys(cart).includes(product._id as string))
-  //       .reduce(
-  //         (acc, product) =>
-  //           calculateDiscount(
-  //             product.price as number,
-  //             product.discount as number
-  //           ) *
-  //             cart[product?._id as string].qty +
-  //           acc,
-  //         0
-  //       );
-  //   }
-  //   return 0;
-  // }, [cart, products]);
 
   return (
     <Container>
@@ -170,7 +143,8 @@ const ShippingAndPayment = ({ next }: IProps) => {
                           <FormInput name="name" label="Name on Card" />
                         </Column>
                         <Column justfiyContent="flex-start" width="50%">
-                          <CardElement onChange={handleCardDetailsChange} />
+                          <Label>Card Number</Label>
+                          <CardNumberElement className="stripe" />
                         </Column>
                       </Row>
                       <Row
@@ -180,14 +154,12 @@ const ShippingAndPayment = ({ next }: IProps) => {
                         wrap
                       >
                         <Column justfiyContent="flex-start" width="50%">
-                          <FormInput
-                            type="date"
-                            name="expirationDate"
-                            label="Expiration Date"
-                          />
+                          <Label>Expiry Date</Label>
+                          <CardExpiryElement className="stripe" />
                         </Column>
                         <Column justfiyContent="flex-start" width="50%">
-                          <FormInput type="number" name="cvc" label="CVC" />
+                          <Label>CVC</Label>
+                          <CardCvcElement className="stripe" />
                         </Column>
                       </Row>
                     </Column>

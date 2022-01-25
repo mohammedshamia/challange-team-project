@@ -10,6 +10,8 @@ interface IProps<T> {
   frameworkComponents?: {
     [key: string]: any;
   };
+  paginationPageSize?: number;
+  onPaginationChanged?: Function;
 }
 
 const onFirstDataRendered = (params: any) => {
@@ -29,7 +31,8 @@ export default class Table<T> extends React.PureComponent<IProps<T>> {
         <AgGridReact
           rowData={this.props.data}
           pagination={true}
-          paginationPageSize={10}
+          paginationPageSize={this.props.paginationPageSize || 10}
+          onPaginationChanged={(e) => console.log(e)}
           frameworkComponents={this.props.frameworkComponents}
           onFirstDataRendered={onFirstDataRendered}
         >
