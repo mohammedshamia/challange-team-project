@@ -67,7 +67,7 @@ export const InfoUser = styled.div`
     & p {
       width: 100%;
       align-items: flex-start;
-      color: ${(props) => props.theme.palette.text.primary};
+     
     }
   }
 `;
