@@ -21,10 +21,12 @@ const HomePage = lazy(() => import("../screens/home"));
 const ReviewOrder = lazy(() => import("../screens/payment"));
 const PaymentSuccess = lazy(() => import("../screens/payment/PaymentSuccess"));
 const ShoppingCart = lazy(() => import("../screens/ShoppingCart/ShoppingCart"));
-const SearchPage = lazy(() => import("../screens/landingPage/SearchPage"));
+const SearchPage = lazy(() => import("../screens/SearchPage"));
 const ProductDetails = lazy(() => import("../screens/ProdectPage"));
 const Profile = lazy(() => import("../screens/profile"));
 const PageNotFound = lazy(() => import("../components/common/PageNotFound"));
+
+const CategoryPage = lazy(() => import("../screens/CategoryPage"));
 
 const RootRoutes = {
   routes: [
@@ -55,6 +57,10 @@ const RootRoutes = {
       component: <ProductDetails />,
     },
     {
+      path: "/category/:keyword",
+      component: <CategoryPage />,
+    },
+    {
       path: "/404",
       component: <PageNotFound />,
     },
@@ -62,6 +68,7 @@ const RootRoutes = {
       path: "/profile",
       component: <Profile />,
     },
+
     ...AdminRoutes,
     ...RedirectRoute,
     ...ErrorRoute,

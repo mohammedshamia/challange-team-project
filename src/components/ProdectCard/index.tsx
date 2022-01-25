@@ -1,4 +1,4 @@
-import { Box, Chip, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import {
   CardContainer,
   ImagContainer,
@@ -13,6 +13,7 @@ import { Button } from "../Button/Button.style";
 import { useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/cart.actions";
+import { useNavigate } from "react-router-dom";
 
 export default function ProdectCard({
   id,
@@ -25,9 +26,10 @@ export default function ProdectCard({
   boxShadow,
 }: Card) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const result = useMemo(
-    () =>
-      (price as number) - ((discountValue as number) / 100) * (price as number),
+    () => ((discountValue as number) / (price as number)) * 100,
     [price, discountValue]
   );
 
@@ -35,37 +37,29 @@ export default function ProdectCard({
     dispatch(addToCart(id as string));
   }, [dispatch, id]);
 
+  const handleClick = () => navigate(`/product/${id}`);
+
   return (
     <CardContainer boxShadow={boxShadow} borderRadius={borderRadius}>
-      <Box width="98%" m="auto" height="350px">
-        <ImagContainer src={img} alt="img" width="513px" height="342px" />
-      </Box>
+      <div style={{ cursor: "pointer" }} onClick={handleClick}>
+        <Box width="98%" m="auto" height="350px">
+          <ImagContainer src={img} alt={name} width="513px" height="342px" />
+        </Box>
+        <div style={{ padding: "0 5%" }}>
+          <Typography
+            color="text.primary"
+            my="15px"
+            fontSize="24px"
+            textAlign="center"
+            height="75px"
+          >
+            {name}
+          </Typography>
+          <PriceContainer>
+            <RatingComponent value={valueRating as number} isReadOnly={true} />
+          </PriceContainer>
 
-      <Typography
-        color="text.primary"
-        my="30px auto 15px"
-        fontSize="24px"
-        textAlign="center"
-      >
-        {name}
-      </Typography>
-
-      <PriceContainer>
-        <RatingComponent value={valueRating as number} isReadOnly={true} />
-      </PriceContainer>
-
-      <PriceContainer>
-        {(discountValue as number) === 100 ? (
-          <>
-            <Chip
-              sx={{ fontSize: "1.4rem", padding: "0px 12px", height: "36px" }}
-              label="Free"
-              variant="outlined"
-              color="success"
-            />
-          </>
-        ) : (
-          <>
+          <PriceContainer>
             {(discountValue as number) > 0 && (
               <Typography
                 fontWeight="bold"
@@ -74,7 +68,7 @@ export default function ProdectCard({
                   color: "#FC4059",
                 }}
               >
-                {result.toFixed(2)}$
+                {(price as number) - (discountValue as number)}$
               </Typography>
             )}
 
@@ -88,10 +82,9 @@ export default function ProdectCard({
             >
               {price}$
             </Typography>
-          </>
-        )}
-      </PriceContainer>
-
+          </PriceContainer>
+        </div>
+      </div>
       <SittingContainer style={{ gap: "14px" }}>
         <Button background="secondary" width="54px">
           <BookmarkBorderIcon
@@ -102,8 +95,9 @@ export default function ProdectCard({
           add to card
         </Button>
       </SittingContainer>
+
       {(discountValue as number) > 0 && (
-        <SalaryPercentage>-{discountValue}%</SalaryPercentage>
+        <SalaryPercentage>- {result.toFixed(0)}%</SalaryPercentage>
       )}
     </CardContainer>
   );

@@ -32,7 +32,7 @@ export default function RowComponent({
       >
         {title}
       </Typography>
-      <Divder widthDivider={widthDivider} />
+      <Divder widthDivider={"200px"} />
     </Row>
   );
 }

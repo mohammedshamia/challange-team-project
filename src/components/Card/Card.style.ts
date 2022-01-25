@@ -9,7 +9,7 @@ interface Iprpos {
 
 export const CardContainer = styled(Card)<Iprpos>((props) => ({
   borderRadius: props.borderRadius || "16px",
-  padding: "35px 0",
+  padding: "25px 0",
   position: "relative",
   width: "100%",
   maxWidth: "520px",
@@ -28,7 +28,8 @@ interface IpropsSittingContainer {
 }
 export const SittingContainer = styled("div")<IpropsSittingContainer>(
   (props) => ({
-    width: "100%",
+    width: "90%",
+    margin: "auto",
     display: "flex",
     justifyContent: props.justifyContent ? "flex-end" : "center",
     gap: "16px",
@@ -47,6 +48,7 @@ export const PriceContainer = styled("div")`
 `;
 export const ImagContainer = styled("img")`
   height: 100%;
+  object-fit: contain;
   width: 100%;
 `;
 

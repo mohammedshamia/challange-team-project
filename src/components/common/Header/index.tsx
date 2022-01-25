@@ -12,6 +12,7 @@ import { toggleTheme } from "../../../redux/actions/theme.actions";
 import { ButtonIcon, FlexBox, HeaderBox, Toolbar } from "./Header.style";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
+import { Item } from "../../../@types/cart.types";
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -78,10 +79,7 @@ export default function Header() {
           >
             <Search width=" max-content" />
             <FlexBox>
-              <BottonNavigationGroup
-                wishlist={9}
-                cartItems={Object.keys(cart).length || 0}
-              />
+              <BottonNavigationGroup wishlist={9} cartItems={0} />
               <ButtonIcon onClick={toggleTheme_} aria-label="toggle-theme">
                 {theme === "light" ? <Brightness4Icon /> : <Brightness7Icon />}
               </ButtonIcon>
@@ -103,9 +101,9 @@ export default function Header() {
           <Search />
           <FlexBox>
             <BottonNavigationGroup
-            isAdmin={isAdmin}
+              isAdmin={isAdmin}
               wishlist={9}
-              cartItems={Object.keys(cart).length || 0}
+              cartItems={Object.keys(cart.items as Item[]).length || 0}
             />
             <ButtonIcon onClick={toggleTheme_} aria-label="toggle-theme">
               {theme === "light" ? <Brightness4Icon /> : <Brightness7Icon />}

@@ -3,8 +3,9 @@ import thunk from "redux-thunk";
 import { ThemeReducer } from "./reducers/theme.reducers";
 import { AuthReducer } from "./reducers/auth.reducers";
 import { ProductsReducer } from "./reducers/products.reducers";
-import {UsersReducer} from "./reducers/user.reducer";
+import { UsersReducer } from "./reducers/user.reducer";
 import { cartReducer } from "./reducers/cart.reducers";
+import { OrdersReducer } from "./reducers/orders.reducers";
 import { configReducer } from "./reducers/config.reducers";
 
 declare global {
@@ -17,9 +18,10 @@ const reducers = combineReducers({
   theme: ThemeReducer,
   auth: AuthReducer,
   products: ProductsReducer,
-  users:UsersReducer,
-  cart: cartReducer,
+  users: UsersReducer,
+  orders: OrdersReducer,
   config: configReducer,
+  cart: cartReducer,
 });
 
 const middlewares = [thunk];

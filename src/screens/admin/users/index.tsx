@@ -1,12 +1,12 @@
 import { Typography } from "@mui/material";
 import { IColumn } from "../../../@types/table.types";
 import Table from "../../../components/Table";
-import {Container} from "../products/Products.styled";
-import {useEffect} from "react";
-import { getUsers} from "../../../redux/actions/user.actions";
-import {useDispatch, useSelector} from "react-redux";
-import {AppState} from "../../../redux/store";
-import Update from "./Update";
+import { Container } from "../products/Products.styled";
+import { useEffect } from "react";
+import { getUsers } from "../../../redux/actions/user.actions";
+import { useDispatch, useSelector } from "react-redux";
+import { AppState } from "../../../redux/store";
+import { ICellRendererParams } from "ag-grid-community";
 
 const columns: IColumn[] = [
   {
@@ -20,23 +20,14 @@ const columns: IColumn[] = [
   }
   ,{
     name: "email",
-      cellRenderer: (params) => `${params.data?.email}`,
-  }
-  // ,{
-  //   name: "password",
-  //     cellRenderer: (params) => `${params.data?.password}`,
-  // }
-  ,{
+  },
+  {
     name: "isAdmin",
-      cellRenderer: (params) => `${params.data?.isAdmin}`,
+    cellRenderer: "AdminRenderer",
   },
   {
     name: "dateOfBirth",
-    cellRenderer: (params) => `${params.data?.dateOfBirth}`,
-  },
-  {
-    name: "actions",
-    cellRenderer: "ActionsRenderer",
+    cellRenderer: (params) => new Date(params.value).toLocaleDateString(),
   },
 
 ];
@@ -67,7 +58,6 @@ function Users() {
              />
           </div>
       </Container>
-
   );
 };
 
