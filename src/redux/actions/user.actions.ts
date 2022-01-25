@@ -40,10 +40,12 @@ export const editUser =
         type: UserConstants.EDIT_USER_START,
       });
       let profileImage: string = "";
+
       if (typeof user.profileImage === "object") {
         const { data } = await uploadPhoto(user.profileImage as File);
         profileImage = data;
       }
+
       const { data } = await API.put(`/users/${id}`, {
         ...user,
         profileImage: profileImage || user.profileImage,
