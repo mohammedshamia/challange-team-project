@@ -25,7 +25,7 @@ export const createFormData = (image: File) => {
 };
 
 export const calculateDiscount = (price: number, discount: number): number => {
-  return price - (discount / 100) * price;
+  return price - discount ;
 };
 
 export const minimizeID = (id: string) =>
