@@ -15,21 +15,23 @@ export interface GET_ORDERS_FAIL {
   payload: string;
 }
 
+export interface IShoppingAddress {
+  address: string;
+  city: string;
+  postalCode: string;
+  country: string;
+}
 
+export interface IOrderItems {
+  itemTotalPrice: number;
+  qty: number;
+  product: IProduct;
+}
 
 export interface IOrder {
   user: string;
-  orderItems: {
-    itemTotalPrice: number;
-    qty: number;
-    product: IProduct;
-  }[];
-  shippingAddress: {
-    address: string;
-    city: string;
-    postalCode: string;
-    country: string;
-  };
+  orderItems: IOrderItems[];
+  shippingAddress: IShoppingAddress;
   paymentMethod: string;
   clientSecret?: string;
   taxPrice: number;
@@ -40,4 +42,8 @@ export interface IOrder {
   isDelivered: boolean;
   deliveredAt: string;
 }
-export type ActionsType = GET_ORDERS_START | GET_ORDERS_SUCCESS | GET_ORDERS_FAIL;
+
+export type ActionsType =
+  | GET_ORDERS_START
+  | GET_ORDERS_SUCCESS
+  | GET_ORDERS_FAIL;

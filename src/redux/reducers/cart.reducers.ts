@@ -4,15 +4,13 @@ import { CartConstants } from "../contants/cart.constants";
 export interface IState {
   error: string;
   loading: boolean;
-  cart: {
-    [key: string]: ICart;
-  };
+  cart: ICart;
 }
 
 const initial_state: IState = {
   error: "",
   loading: false,
-  cart: {},
+  cart: { items: [], totalPrice: 0, totalQty: 0 },
 };
 
 export const cartReducer = (
@@ -29,12 +27,26 @@ export const cartReducer = (
       return {
         ...state,
         loading: false,
-        cart: {
-          ...state.cart,
-          [action.payload.product]: action.payload,
-        },
+        cart: action.payload,
       };
     case CartConstants.ADD_TO_CART_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case CartConstants.GET_CART_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case CartConstants.GET_CART_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        cart: action.payload,
+      };
+    case CartConstants.GET_CART_FAIL:
       return {
         ...state,
         loading: false,
@@ -46,12 +58,10 @@ export const cartReducer = (
         loading: true,
       };
     case CartConstants.REMOVE_FROM_CART_SUCCESS:
-      let cart = state.cart;
-      delete cart[action.payload.product];
       return {
         ...state,
         loading: false,
-        cart: { ...cart },
+        cart: action.payload,
       };
     case CartConstants.REMOVE_FROM_CART_FAIL:
       return {

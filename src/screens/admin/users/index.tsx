@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { getUsers } from "../../../redux/actions/user.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../../redux/store";
+import { ICellRendererParams } from "ag-grid-community";
 
 const columns: IColumn[] = [
   {
@@ -18,15 +19,18 @@ const columns: IColumn[] = [
     name: "email",
   },
   {
-    name: "password",
-  },
-  {
     name: "isAdmin",
+    cellRenderer: "AdminRenderer",
   },
   {
     name: "dateOfBirth",
+    cellRenderer: (params) => new Date(params.value).toLocaleDateString(),
   },
 ];
+
+// const Admin = (props: ICellRendererParams) => {
+//   return <></>;
+// };
 
 function Users() {
   // @ts-ignore
@@ -40,14 +44,19 @@ function Users() {
     dispatch(getUsers());
   }, [dispatch]);
 
-  console.log(users, "users");
   return (
     <Container>
       <Typography variant="h2" color="text.primary">
         Users
       </Typography>
       <div style={{ width: "100%", margin: "auto" }}>
-        <Table data={users} columns={columns} />
+        <Table
+          data={users}
+          columns={columns}
+          // frameworkComponents={{
+          //   AdminRenderer: Admin,
+          // }}
+        />
       </div>
     </Container>
   );

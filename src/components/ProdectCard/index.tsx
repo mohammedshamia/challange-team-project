@@ -26,7 +26,8 @@ export default function ProdectCard({
   boxShadow,
 }: Card) {
   const dispatch = useDispatch();
-  const navgation = useNavigate();
+  const navigate = useNavigate();
+
   const result = useMemo(
     () => ((discountValue as number) / (price as number)) * 100,
     [price, discountValue]
@@ -35,12 +36,14 @@ export default function ProdectCard({
   const AddToCart = useCallback(() => {
     dispatch(addToCart(id as string));
   }, [dispatch, id]);
-  const handleClick = () => navgation(`/product/${id}`);
+
+  const handleClick = () => navigate(`/product/${id}`);
+
   return (
     <CardContainer boxShadow={boxShadow} borderRadius={borderRadius}>
       <div style={{ cursor: "pointer" }} onClick={handleClick}>
         <Box width="98%" m="auto" height="350px">
-          <ImagContainer src={img} alt="img" width="513px" height="342px" />
+          <ImagContainer src={img} alt={name} width="513px" height="342px" />
         </Box>
         <Typography
           color="text.primary"

@@ -20,63 +20,31 @@ import { GridTopRateProducts } from "../../components/GlobalStyles";
 import RowComponent from "../../components/GlobalStyles/Row";
 import ProdectCard from "../../components/ProdectCard";
 import SubTotalCard from "../../components/SubTotalCard/SubTotalCard";
-import { calculateDiscount } from "../../utils/helpers";
+import { getCart } from "../../redux/actions/cart.actions";
+import { ICart, Item } from "../../@types/cart.types";
 
 export default function ShoppingCartPage() {
   const dispatch = useDispatch();
   const {
-    products: {
-      loading,
-      topProducts,
-      products: { products },
-    },
+    products: { loading, topProducts },
     cart: { cart },
   } = useSelector((state: AppState) => state);
 
   useEffect(() => {
+    dispatch(getCart());
     dispatch(getProducts());
     dispatch(getTopProducts());
   }, [dispatch]);
 
-  const CartProducts = useMemo<IProduct[]>(() => {
-    if (Object.keys(cart).length > 0) {
-      return (products as IProduct[]).filter((product) =>
-        Object.keys(cart).includes(product._id as string)
-      );
-    }
-    return [];
-  }, [cart, products]);
-
-  const totalPrice = useMemo<number>(() => {
-    if (Object.keys(cart).length > 0) {
-      return (products as IProduct[])
-        .filter((product) => Object.keys(cart).includes(product._id as string))
-        .reduce(
-          (acc, product) =>
-            product?.price * cart[product?._id as string].qty + acc,
-          0
-        );
-    }
-    return 0;
-  }, [cart, products]);
-
-  const discountPrice = useMemo<number>(() => {
-    if (Object.keys(cart).length > 0) {
-      return (products as IProduct[])
-        .filter((product) => Object.keys(cart).includes(product._id as string))
-        .reduce(
-          (acc, product) =>
-            calculateDiscount(
-              product.price as number,
-              product.discount as number
-            ) *
-              cart[product?._id as string].qty +
-            acc,
-          0
-        );
-    }
-    return 0;
-  }, [cart, products]);
+  const allDiscount = useMemo(() => {
+    return (
+      (cart as ICart).totalPrice -
+      (cart as ICart).items.reduce(
+        (acc, { product }) => (product.discount as number) + acc,
+        0
+      )
+    );
+  }, [cart]);
 
   return (
     <Box p={"0 7%"}>
@@ -133,24 +101,26 @@ export default function ShoppingCartPage() {
       ) : (
         <Grid container spacing={4}>
           <Grid item xs={12} lg={9}>
-            {CartProducts.map((item: IProduct) => (
-              <Box mb="32px" key={item._id as string}>
-                <ShoppingCart
-                  id={item?._id as string}
-                  title={item.name}
-                  counter={cart[item?._id as string].qty}
-                  price={item.price}
-                  imgSrc={item.images?.[0]}
-                  discount={item.discount}
-                />
-              </Box>
-            ))}
+            {(cart as ICart).items.map(
+              ({ product, qty, itemTotalPrice }: Item) => (
+                <Box mb="32px" key={product?._id as string}>
+                  <ShoppingCart
+                    id={product?._id as string}
+                    title={product.name}
+                    counter={qty}
+                    price={itemTotalPrice}
+                    imgSrc={product.images?.[0]}
+                    discount={product.discount}
+                  />
+                </Box>
+              )
+            )}
           </Grid>
           <Grid item xs={12} lg={3} sx={{ order: { xs: -1, lg: 22 } }}>
             <SubTotalCard
-              priceAfterDiscount={`$${totalPrice.toFixed(2)}`}
-              priceBeforeDiscount={`$${discountPrice.toFixed(2)}`}
-              numberOfItems={Object.keys(cart).length}
+              priceAfterDiscount={`$${allDiscount.toFixed(2)}`}
+              priceBeforeDiscount={`$${(cart as ICart).totalPrice.toFixed(2)}`}
+              numberOfItems={(cart as ICart).totalQty}
             />
           </Grid>
         </Grid>
