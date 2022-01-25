@@ -8,7 +8,7 @@ export interface IUserForm {
     dateOfBirth: string | Date;
     profileImage?: string;
     _id?:string;
-
+    password?:string
 }
 export interface IUser{
     createdAt?:string;

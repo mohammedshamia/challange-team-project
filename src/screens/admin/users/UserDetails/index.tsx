@@ -26,21 +26,20 @@ export default function UserDetails(){
     }, []);
 
     const { loading, user } = useSelector((state: AppState) => state.users);
-
-    const handleSubmit =  useCallback(
-        async (values: IUserForm) => {
-             console.log(values,'va')
-
-            dispatch(editUser((user as IUserForm)._id as string , values, ()=>{
-                    notify("success", "User Updated successfully");
-                }));
-        }, [dispatch, user]);
-        // (values: IUserForm) => {
-        //
-        // dispatch(editUser((user as IUserForm)._id as string , values, ()=>{
-        //         notify("success", "User Updated successfully");
-        //     }));
-    // }
+    // useCallback(
+    //         async (values: IUserForm) => {
+    //              console.log(values,'va')
+    //
+    //             dispatch(editUser((user as IUserForm)._id as string , values, ()=>{
+    //                     notify("success", "User Updated successfully");
+    //                 }));
+    //         }, [dispatch, user]);
+    const handleSubmit = (values: IUserForm) => {
+        console.log('values', values)
+        dispatch(editUser((user as IUserForm)._id as string , values, ()=>{
+                notify("success", "User Updated successfully");
+            }));
+    }
 
 
 
@@ -65,7 +64,8 @@ export default function UserDetails(){
             >
 
             {({ values, errors }) => (
-                <Form style={{ width: "100%" }}>
+                <Form style={{ width: "100%" }} >
+                    {console.log(errors,'errors')}
                     <Section style={{ padding: "30px", marginBlock: "15px" }}>
                         <Row justfiyContent="center" width="100%" gap="20px" wrap reverse>
                             <Column justfiyContent="flex-start" width="100%">
@@ -83,20 +83,23 @@ export default function UserDetails(){
                                             <FormInput name="email" label="Email" />
                                         </Column>
                                         <Column justfiyContent="flex-start" width="100%">
-                                            <FormInput name="dateOfBirth" label="Date Of Birth" type='date'/>
+                                            <FormInput name="password" label="Password" type='password'/>
                                         </Column>
                                     </Row>
                                     <Row justfiyContent="flex-start" width="100%" gap="20%" wrap>
                                         <Column justfiyContent="flex-start" width="100%">
-                                            <div id="my-radio-group">Is Admin?</div>
-                                            <div role="group" aria-labelledby="my-radio-group">
-                                                <label>
-                                                    <Field type="radio" name="isAdmin" value="Yes" /> Yes
-                                                </label>
-                                                <label>
-                                                    <Field type="radio" name="isAdmin" value="No" />No
-                                                </label>
-                                            </div>
+                                            <FormInput name="dateOfBirth" label="Date Of Birth" type='date'/>
+                                        </Column>
+                                        <Column justfiyContent="flex-start" width="100%">
+                                            <FormInput name="isAdmin" label="Is Admin?" type='radio'/>
+
+                                            {/*<div id="my-radio-group">Is Admin?</div>*/}
+                                            {/*<div role="group" aria-labelledby="my-radio-group">*/}
+                                            {/*    <label>*/}
+                                            {/*        <Field type="radio" name="isAdmin" value={true}/> Yes*/}
+                                            {/*        <Field type="radio" name="isAdmin" value={false}/>No*/}
+                                            {/*    </label>*/}
+                                            {/*</div>*/}
                                            </Column>
 
                                     </Row>

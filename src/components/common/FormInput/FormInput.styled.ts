@@ -2,10 +2,18 @@ import {
   Input as MUIinput,
   Checkbox as ChkBox,
   TextareaAutosize,
+  Radio as RadioInput
 } from "@mui/material";
 import styled from "styled-components";
 
 export const Checkbox = styled(ChkBox)`
+  color: ${(props) => props.theme.palette.text.primary};
+  background-color: inherit;
+  &.MuiFormControlLabel-label {
+    color: ${(props) => props.theme.palette.text.primary};
+  }
+`;
+export const Radio =  styled(RadioInput)`
   color: ${(props) => props.theme.palette.text.primary};
   background-color: inherit;
   &.MuiFormControlLabel-label {
