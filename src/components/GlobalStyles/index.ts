@@ -78,6 +78,15 @@ export const Column = styled.div<Iprops>`
   ${(props) => props.theme.breakpoints.down("md")} {
     justify-content: flex-start;
   }
+  .stripe {
+    border: 1px solid ${(props) => props.theme.palette.text.primary};
+    width: 100%;
+    padding-inline: 11px;
+    height: 40px;
+    border-radius: 6px;
+    color: ${(props) => props.theme.palette.text.secondary};
+    padding: 10px;
+  }
 `;
 
 interface IpropsDivider {

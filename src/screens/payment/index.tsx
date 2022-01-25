@@ -4,17 +4,9 @@ import ShippingAndPayment from "./ShippingAndPayment";
 import PlaceOrder from "./PlaceOrder";
 import { useCallback, useMemo, useState } from "react";
 import { Container } from "./Payment.styled";
-import { useSelector } from "react-redux";
-import { AppState } from "../../redux/store";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
 
 const Payment = () => {
   const [active, setActive] = useState<number>(0);
-
-  const {
-    config: { config },
-  } = useSelector((state: AppState) => state);
 
   const next = useCallback(() => {
     setActive((prev) => prev + 1);
@@ -23,8 +15,6 @@ const Payment = () => {
   const back = useCallback(() => {
     setActive((prev) => prev - 1);
   }, []);
-
-  const stripePromise = loadStripe(config?.publishableKey || "");
 
   const steps = useMemo<IStep[]>(
     () => [
@@ -42,18 +32,16 @@ const Payment = () => {
   );
 
   return (
-    <Elements stripe={stripePromise}>
-      <Container sx={{ marginTop: "2em", padding: "0" }}>
-        <Typography
-          variant="h2"
-          color="text.primary"
-          sx={{ marginBottom: "1em" }}
-        >
-          Review Order
-        </Typography>
-        <Stepper defaultActive={active} steps={steps} />
-      </Container>
-    </Elements>
+    <Container sx={{ marginTop: "2em", padding: "0" }}>
+      <Typography
+        variant="h2"
+        color="text.primary"
+        sx={{ marginBottom: "1em" }}
+      >
+        Review Order
+      </Typography>
+      <Stepper defaultActive={active} steps={steps} />
+    </Container>
   );
 };
 
