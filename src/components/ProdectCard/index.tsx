@@ -42,45 +42,46 @@ export default function ProdectCard({
         <Box width="98%" m="auto" height="350px">
           <ImagContainer src={img} alt="img" width="513px" height="342px" />
         </Box>
-        <Typography
-          color="text.primary"
-          my="15px"
-          fontSize="24px"
-          textAlign="center"
-          height="75px"
-        >
-          {name}
-        </Typography>
-        <PriceContainer>
-          <RatingComponent value={valueRating as number} isReadOnly={true} />
-        </PriceContainer>
+        <div style={{ padding: "0 5%" }}>
+          <Typography
+            color="text.primary"
+            my="15px"
+            fontSize="24px"
+            textAlign="center"
+            height="75px"
+          >
+            {name}
+          </Typography>
+          <PriceContainer>
+            <RatingComponent value={valueRating as number} isReadOnly={true} />
+          </PriceContainer>
 
-        <PriceContainer>
-          {(discountValue as number) > 0 && (
+          <PriceContainer>
+            {(discountValue as number) > 0 && (
+              <Typography
+                fontWeight="bold"
+                fontSize="30px"
+                sx={{
+                  color: "#FC4059",
+                }}
+              >
+                {(price as number) - (discountValue as number)}$
+              </Typography>
+            )}
+
             <Typography
               fontWeight="bold"
               fontSize="30px"
+              color=" text.primary"
               sx={{
-                color: "#FC4059",
+                textDecoration: discountValue ? "line-through" : "none",
               }}
             >
-              {(price as number) - (discountValue as number)}$
+              {price}$
             </Typography>
-          )}
-
-          <Typography
-            fontWeight="bold"
-            fontSize="30px"
-            color=" text.primary"
-            sx={{
-              textDecoration: discountValue ? "line-through" : "none",
-            }}
-          >
-            {price}$
-          </Typography>
-        </PriceContainer>
+          </PriceContainer>
+        </div>
       </div>
-
       <SittingContainer style={{ gap: "14px" }}>
         <Button background="secondary" width="54px">
           <BookmarkBorderIcon
@@ -91,6 +92,7 @@ export default function ProdectCard({
           add to card
         </Button>
       </SittingContainer>
+
       {(discountValue as number) > 0 && (
         <SalaryPercentage>- {result.toFixed(0)}%</SalaryPercentage>
       )}
