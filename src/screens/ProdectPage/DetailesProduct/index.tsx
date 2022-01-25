@@ -79,7 +79,7 @@ export default function DetailesProdect({
     <div>
       <DetailesProductContainer>
         <ImagesContiner>
-          <img src={imgpropdect} alt="img" width="90%" />
+          <img src={imgpropdect} alt={nameProdect} width="90%" />
           <SizesOFimgContiner>
             {img1propdect && (
               <img

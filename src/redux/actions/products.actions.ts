@@ -170,6 +170,26 @@ export const getCategories = () => async (dispatch: Dispatch<ActionsType>) => {
   }
 };
 
+export const getCategoryProducts =
+  (keyword: string) => async (dispatch: Dispatch<ActionsType>) => {
+    try {
+      dispatch({
+        type: ProductConstants.GET_CATEGORY_PRODUCTS_START,
+      });
+      const { data } = await API.get(`/products/category/${keyword}`);
+      dispatch({
+        type: ProductConstants.GET_CATEGORY_PRODUCTS_SUCCESS,
+        payload: data?.products,
+      });
+    } catch (error: any) {
+      console.error(error?.response?.data?.message || error.message);
+      dispatch({
+        type: ProductConstants.GET_CATEGORY_PRODUCTS_FAIL,
+        payload: error?.response?.data?.message || error.message,
+      });
+    }
+  };
+
 export const addReview =
   (productID: string, review: IReview, callback?: Function) =>
   async (dispatch: Dispatch<ActionsType>) => {

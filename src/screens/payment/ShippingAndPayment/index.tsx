@@ -41,32 +41,32 @@ const ShippingAndPayment = ({ next }: IProps) => {
     cart: { cart },
   } = useSelector((state: AppState) => state);
 
-  const CartProducts = useMemo<IProduct[]>(() => {
-    if (Object.keys(cart).length > 0) {
-      return (products as IProduct[]).filter((product) =>
-        Object.keys(cart).includes(product._id as string)
-      );
-    }
-    return [];
-  }, [cart, products]);
+  // const CartProducts = useMemo<IProduct[]>(() => {
+  //   if (Object.keys(cart).length > 0) {
+  //     return (products as IProduct[]).filter((product) =>
+  //       Object.keys(cart).includes(product._id as string)
+  //     );
+  //   }
+  //   return [];
+  // }, [cart, products]);
 
-  const discountPrice = useMemo<number>(() => {
-    if (Object.keys(cart).length > 0) {
-      return (products as IProduct[])
-        .filter((product) => Object.keys(cart).includes(product._id as string))
-        .reduce(
-          (acc, product) =>
-            calculateDiscount(
-              product.price as number,
-              product.discount as number
-            ) *
-              cart[product?._id as string].qty +
-            acc,
-          0
-        );
-    }
-    return 0;
-  }, [cart, products]);
+  // const discountPrice = useMemo<number>(() => {
+  //   if (Object.keys(cart).length > 0) {
+  //     return (products as IProduct[])
+  //       .filter((product) => Object.keys(cart).includes(product._id as string))
+  //       .reduce(
+  //         (acc, product) =>
+  //           calculateDiscount(
+  //             product.price as number,
+  //             product.discount as number
+  //           ) *
+  //             cart[product?._id as string].qty +
+  //           acc,
+  //         0
+  //       );
+  //   }
+  //   return 0;
+  // }, [cart, products]);
 
   return (
     <Container>
@@ -179,7 +179,7 @@ const ShippingAndPayment = ({ next }: IProps) => {
                   width="100%"
                   alignItems="center"
                 >
-                  <OrderDetails products={CartProducts} cart={cart} />
+                  {/* <OrderDetails products={CartProducts} cart={cart} /> */}
                 </Column>
                 <Column
                   justfiyContent="flex-start"
@@ -194,9 +194,9 @@ const ShippingAndPayment = ({ next }: IProps) => {
                     <Typography variant="caption" color="text.secondary">
                       Subtotal
                     </Typography>
-                    <Typography variant="caption" color="text.secondary">
+                    {/* <Typography variant="caption" color="text.secondary">
                       ${discountPrice.toFixed(2)}
-                    </Typography>
+                    </Typography> */}
                   </Row>
                   <Row
                     justfiyContent="space-between"
@@ -230,9 +230,9 @@ const ShippingAndPayment = ({ next }: IProps) => {
                     <Typography variant="caption" color="text.primary">
                       Total
                     </Typography>
-                    <Typography variant="caption" color="text.primary">
+                    {/* <Typography variant="caption" color="text.primary">
                       ${discountPrice.toFixed(2)}
-                    </Typography>
+                    </Typography> */}
                   </Row>
                 </Column>
               </Section>

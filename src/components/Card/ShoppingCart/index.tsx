@@ -24,9 +24,11 @@ export default function ShoppingCart(props: IPropsShoppingCart) {
 
   const handleUpdate = useCallback(
     (value: number) => {
-      dispatch(addToCart(props.id, value));
+      if (props.id) {
+        dispatch(addToCart(props.id, value));
+      }
     },
-    [props, dispatch]
+    [props.id, dispatch]
   );
 
   return (

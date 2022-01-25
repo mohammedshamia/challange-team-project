@@ -3,6 +3,7 @@ import { Formik, Form } from "formik";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "styled-components";
+import { useNavigate } from "react-router-dom";
 import {
   ICategory,
   IProduct,
@@ -63,6 +64,7 @@ const colors = [
 
 const NewProductForm = ({ product, categories }: IProps) => {
   const theme = useTheme();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
     products: { loading },
@@ -75,6 +77,7 @@ const NewProductForm = ({ product, categories }: IProps) => {
         dispatch(
           updateProduct(product._id as string, values, () => {
             notify("success", "Product Updated successfully");
+            navigate("/products");
           })
         );
       } else {
@@ -86,7 +89,7 @@ const NewProductForm = ({ product, categories }: IProps) => {
         );
       }
     },
-    [dispatch, product]
+    [dispatch, navigate, product]
   );
 
   return (

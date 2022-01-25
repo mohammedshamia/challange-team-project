@@ -16,10 +16,10 @@ export default function SubTotalCard(props: IProps) {
         Subtotal ({props.numberOfItems}) items
       </Typography>
       <Typography color="text.secondary" weight="800" fs="24px" mb="10px" dec>
-        {props.priceAfterDiscount}
+        {props.priceBeforeDiscount}
       </Typography>
       <Typography color="text.primary" weight="900" fs="38px" mb="50px">
-        {props.priceBeforeDiscount}
+        {props.priceAfterDiscount}
       </Typography>
       <Divider sx={{ margin: "30px -30px" }} />
       <Link to="/review-order" style={{ textDecoration: "none" }}>

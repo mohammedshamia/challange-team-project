@@ -8,20 +8,20 @@ import { baseURL } from "../../api";
 import Loading from "../../components/common/Loading";
 import RowComponent from "../../components/GlobalStyles/Row";
 import ProdectCard from "../../components/ProdectCard";
-import { getProducts } from "../../redux/actions/products.actions";
+import { getCategoryProducts } from "../../redux/actions/products.actions";
 import { AppState } from "../../redux/store";
 
 export default function CategoryPage() {
   const { keyword } = useParams();
   const dispatch = useDispatch();
   const theme = useTheme();
-  const {
-    loading,
-    products: { products },
-  } = useSelector((state: AppState) => state.products);
+
+  const { loading, categoryProducts } = useSelector(
+    (state: AppState) => state.products
+  );
 
   useEffect(() => {
-    dispatch(getProducts(keyword as string));
+    dispatch(getCategoryProducts(keyword as string));
   }, [dispatch, keyword]);
 
   return (
@@ -37,12 +37,12 @@ export default function CategoryPage() {
         {loading ? (
           <Loading />
         ) : (
-          (products as IProduct[]).map((product) => (
+          (categoryProducts as IProduct[]).map((product) => (
             <Grid item xs={12} md={6} lg={4}>
               <ProdectCard
                 key={product._id}
                 id={product._id as string}
-                img={`${baseURL}${product.images?.[0]}` || ""}
+                img={product.images?.[0] || ""}
                 name={product.name}
                 price={product.price}
                 valueRating={product.rating}

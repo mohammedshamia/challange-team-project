@@ -147,6 +147,20 @@ export interface GET_CATEGORIES_FAIL {
   payload: string;
 }
 
+export interface GET_CATEGORY_PRODUCTS_START {
+  type: ProductConstants.GET_CATEGORY_PRODUCTS_START;
+}
+
+export interface GET_CATEGORY_PRODUCTS_SUCCESS {
+  type: ProductConstants.GET_CATEGORY_PRODUCTS_SUCCESS;
+  payload: IProduct[];
+}
+
+export interface GET_CATEGORY_PRODUCTS_FAIL {
+  type: ProductConstants.GET_CATEGORY_PRODUCTS_FAIL;
+  payload: string;
+}
+
 export interface ADD_REVIEW_START {
   type: ProductConstants.ADD_REVIEW_START;
 }
@@ -180,6 +194,9 @@ export type ActionsType =
   | GET_CATEGORIES_START
   | GET_CATEGORIES_SUCCESS
   | GET_CATEGORIES_FAIL
+  | GET_CATEGORY_PRODUCTS_START
+  | GET_CATEGORY_PRODUCTS_SUCCESS
+  | GET_CATEGORY_PRODUCTS_FAIL
   | GET_PRODUCT_START
   | GET_PRODUCT_SUCCESS
   | GET_PRODUCT_FAIL
