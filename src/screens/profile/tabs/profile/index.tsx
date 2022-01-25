@@ -19,31 +19,57 @@ const Profile = ({ user }: IProps) => {
   return (
     <WrapperAvatar>
       <LeftSide>
-        <Typography variant="h2">My Profile</Typography>
+        <Typography
+          color="text.secondary"
+          fontSize="32px"
+          fontWeight="800"
+          variant="h2"
+        >
+          My Profile
+        </Typography>
         <InfoUser>
           <div>
-            <label>First Name</label>
-            <p>{user?.firstName}</p>
+            <Typography color="text.secondary" fontSize="24px" fontWeight="500">
+              First Name
+            </Typography>
+            <Typography color="text.primary" fontWeight="500" fontSize="24px">
+              {user?.firstName}
+            </Typography>
           </div>
           <div>
-            <label>Last Name</label>
-            <p>{user.lastName}</p>
+            <Typography color="text.secondary" fontSize="24px" fontWeight="500">
+              Last Name
+            </Typography>
+            <Typography color="text.primary" fontWeight="500" fontSize="24px">
+              {user.lastName}
+            </Typography>
           </div>
           <div>
-            <label>Email</label>
-            <p>{user.email}</p>
+            <Typography color="text.secondary" fontSize="24px" fontWeight="500">
+              Email
+            </Typography>
+            <Typography color="text.primary" fontWeight="500" fontSize="24px">
+              {user.email}
+            </Typography>
           </div>
           <div>
-            <label>Birthday</label>
-            <p>
+            <Typography color="text.secondary" fontSize="24px" fontWeight="500">
+              Birthday
+            </Typography>
+            <Typography color="text.primary" fontWeight="500" fontSize="24px">
               {(user.dateOfBirth &&
                 new Date(user.dateOfBirth).toLocaleDateString()) ||
                 "-"}
-            </p>
+            </Typography>
           </div>
         </InfoUser>
         <ChangePasswordBtn>
-          <Button width="153" height="40px" fontSize="13px">
+          <Button
+            fontSize="13px"
+            width="198px"
+            height="40px"
+            style={{ fontWeight: "500" }}
+          >
             Change Password
           </Button>
         </ChangePasswordBtn>
@@ -55,7 +81,12 @@ const Profile = ({ user }: IProps) => {
           width="198px"
           height="198px"
         />
-        <Button width="153" height="40px" fontSize="13px">
+        <Button
+          width="153"
+          height="40px"
+          fontSize="13px"
+          style={{ fontWeight: "500" }}
+        >
           Upload new photo
         </Button>
       </RightSide>
