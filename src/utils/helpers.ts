@@ -1,4 +1,7 @@
+import { AxiosPromise } from "axios";
 import { toast } from "react-toastify";
+import { ICart, Item } from "../@types/cart.types";
+import API from "../api";
 
 export type toastType = "info" | "success" | "warning" | "error" | "default";
 
@@ -27,6 +30,28 @@ export const calculateDiscount = (price: number, discount: number): number => {
 
 export const minimizeID = (id: string) =>
   id?.replace(/^61ec6095edddbd1f4c/g, "#");
-// ?.match(/^(\w{2})|-(\w{2})/g)
-// ?.join("")
-// ?.replace(/-/g, "");
+
+// export const formatCart = (cart: Cart) => {
+//   let cart_ = {};
+//   let cartItems: ICartItems = {};
+
+//   (cart.items as Item[]).forEach((item: Item) => {
+//     cartItems[item.product?._id as string] = item;
+//   });
+
+//   const sorted = Object.entries(cartItems).sort((a, b) =>
+//     a > b ? 1 : b > a ? -1 : 0
+//   );
+
+//   cart_ = {
+//     ...cart,
+//     items: Object.fromEntries(sorted),
+//   };
+
+//   return cart_ as ICart;
+// };
+
+export const uploadPhoto = (image: File): AxiosPromise<string> => {
+  const formData = createFormData(image);
+  return API.post("/upload", formData) as AxiosPromise<string>;
+};
