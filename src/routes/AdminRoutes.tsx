@@ -8,6 +8,8 @@ const CreateNewProduct = lazy(
   () => import("./../screens/admin/products/NewProduct")
 );
 
+const Orders = lazy(() => import("../screens/admin/orders"));
+
 const AdminRoutes = [
   {
     path: "/products",
@@ -25,6 +27,15 @@ const AdminRoutes = [
       </RequireAdmin>
     ),
   },
+  {
+    path: "/orders",
+    component: (
+      <RequireAdmin>
+        <Orders />
+      </RequireAdmin>
+    ),
+  },
+
   {
     path: "/products/new",
     component: (

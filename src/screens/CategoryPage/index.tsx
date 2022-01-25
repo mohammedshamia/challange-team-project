@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { IProduct } from "../../@types/products.types";
-import { baseURL } from "../../api";
 import Loading from "../../components/common/Loading";
 import RowComponent from "../../components/GlobalStyles/Row";
 import ProdectCard from "../../components/ProdectCard";
