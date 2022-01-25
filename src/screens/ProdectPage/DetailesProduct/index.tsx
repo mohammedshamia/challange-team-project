@@ -148,6 +148,7 @@ export default function DetailesProdect({
                     sx={{
                       maxWidth: "300px",
                       fontSize: "1.5rem",
+                      fontWeight: "500",
                     }}
                     height="62px"
                     borderRadius="10px"

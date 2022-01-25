@@ -14,7 +14,8 @@ export const Checkbox = styled(ChkBox)`
 `;
 
 export const Label = styled("label")`
-  font-size: 16px;
+  font-size: 22px;
+  font-weight: 500;
   font-family: "Mulish";
   color: ${(props) => props.theme.palette.text.primary};
   margin-block: 5px;
