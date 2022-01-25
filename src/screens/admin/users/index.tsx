@@ -11,11 +11,14 @@ import { ICellRendererParams } from "ag-grid-community";
 const columns: IColumn[] = [
   {
     name: "firstName",
+      cellRenderer: (params) => `${params.data?.firstName}`,
+
   },
   {
     name: "lastName",
-  },
-  {
+    cellRenderer: (params) => `${params.data?.lastName}`,
+  }
+  ,{
     name: "email",
   },
   {
@@ -26,11 +29,8 @@ const columns: IColumn[] = [
     name: "dateOfBirth",
     cellRenderer: (params) => new Date(params.value).toLocaleDateString(),
   },
-];
 
-// const Admin = (props: ICellRendererParams) => {
-//   return <></>;
-// };
+];
 
 function Users() {
   // @ts-ignore
@@ -44,22 +44,21 @@ function Users() {
     dispatch(getUsers());
   }, [dispatch]);
 
+
   return (
-    <Container>
-      <Typography variant="h2" color="text.primary">
-        Users
-      </Typography>
-      <div style={{ width: "100%", margin: "auto" }}>
-        <Table
-          data={users}
-          columns={columns}
-          // frameworkComponents={{
-          //   AdminRenderer: Admin,
-          // }}
-        />
-      </div>
-    </Container>
+         <Container>
+          <Typography variant="h2" color="text.primary">
+            Users
+          </Typography>
+          <div style={{ width: "100%", margin: "auto" }}>
+            <Table data={users} columns={columns}
+                   frameworkComponents={{
+                     ActionsRenderer: Update,
+                   }}
+             />
+          </div>
+      </Container>
   );
-}
+};
 
 export default Users;

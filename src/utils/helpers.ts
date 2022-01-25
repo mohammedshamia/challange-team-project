@@ -31,6 +31,7 @@ export const calculateDiscount = (price: number, discount: number): number => {
 export const minimizeID = (id: string) =>
   id?.replace(/^61ec6095edddbd1f4c/g, "#");
 
+
 // export const formatCart = (cart: Cart) => {
 //   let cart_ = {};
 //   let cartItems: ICartItems = {};
