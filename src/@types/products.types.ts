@@ -45,6 +45,11 @@ export interface ICategory {
   image: string;
 }
 
+export interface Categories {
+  id: number;
+  categories: ICategory[];
+}
+
 export interface CREATE_PRODUCT_START {
   type: ProductConstants.CREATE_PRODUCT_START;
 }
@@ -139,7 +144,7 @@ export interface GET_CATEGORIES_START {
 
 export interface GET_CATEGORIES_SUCCESS {
   type: ProductConstants.GET_CATEGORIES_SUCCESS;
-  payload: ICategory[];
+  payload: Categories[];
 }
 
 export interface GET_CATEGORIES_FAIL {

@@ -56,18 +56,29 @@ const ShippingAndPayment = ({ next }: IProps) => {
       const cardNumberElement = elements?.getElement("cardNumber");
       const cvcElement = elements?.getElement("cardCvc");
       const expiryElement = elements?.getElement("cardExpiry");
+      next();
     },
     [cart, elements]
   );
+
+  const handleChange = useCallback((e) => {
+    console.log(e);
+  }, []);
 
   return (
     <Container>
       <Formik
         validationSchema={formSchema}
-        initialValues={{}}
+        initialValues={{
+          country: "",
+          city: "",
+          name: "",
+          zipCode: "",
+          streetAddress: "",
+        }}
         onSubmit={handlePayment}
       >
-        {() => (
+        {({ errors }) => (
           <Form>
             <Row
               justfiyContent="stretch"
@@ -144,7 +155,10 @@ const ShippingAndPayment = ({ next }: IProps) => {
                         </Column>
                         <Column justfiyContent="flex-start" width="50%">
                           <Label>Card Number</Label>
-                          <CardNumberElement className="stripe" />
+                          <CardNumberElement
+                            className="stripe"
+                            onChange={handleChange}
+                          />
                         </Column>
                       </Row>
                       <Row
@@ -155,11 +169,17 @@ const ShippingAndPayment = ({ next }: IProps) => {
                       >
                         <Column justfiyContent="flex-start" width="50%">
                           <Label>Expiry Date</Label>
-                          <CardExpiryElement className="stripe" />
+                          <CardExpiryElement
+                            className="stripe"
+                            onChange={handleChange}
+                          />
                         </Column>
                         <Column justfiyContent="flex-start" width="50%">
                           <Label>CVC</Label>
-                          <CardCvcElement className="stripe" />
+                          <CardCvcElement
+                            className="stripe"
+                            onChange={handleChange}
+                          />
                         </Column>
                       </Row>
                     </Column>
