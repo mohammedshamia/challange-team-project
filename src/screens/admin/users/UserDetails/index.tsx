@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect} from "react";
 import {Container} from "../../products/Products.styled";
 import {Column, Row, Section} from "../../../../components/GlobalStyles";
 import {Button} from "../../../../components/Button/Button.style";
@@ -11,13 +11,13 @@ import {updateUserSchema} from "./validation";
 import FormInput from "../../../../components/common/FormInput";
 import {useTheme} from "styled-components";
 import {useParams} from "react-router";
-import {getUser} from "../../../../redux/actions/user.actions";
+import {editUser, getUser} from "../../../../redux/actions/user.actions";
+import {notify} from "../../../../utils/helpers";
 
 export default function UserDetails(){
     const theme = useTheme();
     const params = useParams();
     const dispatch = useDispatch();
-
 
     useEffect(() => {
         if (params.id) {
@@ -27,14 +27,23 @@ export default function UserDetails(){
 
     const { loading, user } = useSelector((state: AppState) => state.users);
 
-
-    const handleSubmit = useCallback(
+    const handleSubmit =  useCallback(
         async (values: IUserForm) => {
-            // dispatch(editUser(values));
-                    console.log(values,'val')
-        },
-        [dispatch]
-    );
+             console.log(values,'va')
+
+            dispatch(editUser((user as IUserForm)._id as string , values, ()=>{
+                    notify("success", "User Updated successfully");
+                }));
+        }, [dispatch, user]);
+        // (values: IUserForm) => {
+        //
+        // dispatch(editUser((user as IUserForm)._id as string , values, ()=>{
+        //         notify("success", "User Updated successfully");
+        //     }));
+    // }
+
+
+
 
     return(
         <Container>

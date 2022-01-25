@@ -7,6 +7,7 @@ export interface IUserForm {
     isAdmin: boolean;
     dateOfBirth: string | Date;
     profileImage?: string;
+    _id?:string;
 
 }
 export interface IUser{
