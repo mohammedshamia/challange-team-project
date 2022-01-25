@@ -51,7 +51,6 @@ export default function ProdectCard({
         >
           {name}
         </Typography>
-
         <PriceContainer>
           <RatingComponent value={valueRating as number} isReadOnly={true} />
         </PriceContainer>
