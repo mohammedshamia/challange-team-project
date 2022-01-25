@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Typography } from "@mui/material";
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { Form, Formik } from "formik";
 import {
@@ -17,7 +17,12 @@ import FormInput from "../../../components/common/FormInput";
 import { Button } from "../../../components/Button/Button.style";
 import { AppState } from "../../../redux/store";
 import { formSchema } from "./validation";
-import { Label } from "../../../components/common/FormInput/FormInput.styled";
+import {
+  ErrorMessage,
+  Label,
+} from "../../../components/common/FormInput/FormInput.styled";
+import { Item } from "../../../@types/cart.types";
+import OrderDetails from "../OrderDetails";
 
 interface IProps {
   next: Function;
@@ -48,22 +53,22 @@ const ShippingAndPayment = ({ next }: IProps) => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const [isProcessing, setProcessingTo] = useState(false);
-  const [checkoutError, setCheckoutError] = useState<string>();
-
   const handlePayment = useCallback(
-    (values) => {
-      const cardNumberElement = elements?.getElement("cardNumber");
-      const cvcElement = elements?.getElement("cardCvc");
-      const expiryElement = elements?.getElement("cardExpiry");
+    async (values) => {
       next();
     },
-    [cart, elements]
+    [next]
   );
 
-  const handleChange = useCallback((e) => {
-    console.log(e);
-  }, []);
+  const allDiscount = useMemo(() => {
+    return Math.round(
+      cart.totalPrice -
+        (cart.items as Item[]).reduce(
+          (acc, { product }: Item) => (product.discount as number) + acc,
+          0
+        )
+    ).toFixed(2);
+  }, [cart]);
 
   return (
     <Container>
@@ -75,10 +80,13 @@ const ShippingAndPayment = ({ next }: IProps) => {
           name: "",
           zipCode: "",
           streetAddress: "",
+          hasNumber: "",
+          hasExpiry: "",
+          hasCvc: "",
         }}
         onSubmit={handlePayment}
       >
-        {({ errors }) => (
+        {({ errors, setFieldValue }) => (
           <Form>
             <Row
               justfiyContent="stretch"
@@ -157,8 +165,13 @@ const ShippingAndPayment = ({ next }: IProps) => {
                           <Label>Card Number</Label>
                           <CardNumberElement
                             className="stripe"
-                            onChange={handleChange}
+                            onChange={(e) =>
+                              setFieldValue("hasNumber", e.complete)
+                            }
                           />
+                          {errors["hasNumber"] && (
+                            <ErrorMessage>{errors["hasNumber"]}</ErrorMessage>
+                          )}
                         </Column>
                       </Row>
                       <Row
@@ -171,15 +184,25 @@ const ShippingAndPayment = ({ next }: IProps) => {
                           <Label>Expiry Date</Label>
                           <CardExpiryElement
                             className="stripe"
-                            onChange={handleChange}
+                            onChange={(e) =>
+                              setFieldValue("hasExpiry", e.complete)
+                            }
                           />
+                          {errors["hasExpiry"] && (
+                            <ErrorMessage>{errors["hasExpiry"]}</ErrorMessage>
+                          )}
                         </Column>
                         <Column justfiyContent="flex-start" width="50%">
                           <Label>CVC</Label>
                           <CardCvcElement
                             className="stripe"
-                            onChange={handleChange}
+                            onChange={(e) =>
+                              setFieldValue("hasCvc", e.complete)
+                            }
                           />
+                          {errors["hasCvc"] && (
+                            <ErrorMessage>{errors["hasCvc"]}</ErrorMessage>
+                          )}
                         </Column>
                       </Row>
                     </Column>
@@ -194,7 +217,7 @@ const ShippingAndPayment = ({ next }: IProps) => {
                   width="100%"
                   alignItems="center"
                 >
-                  {/* <OrderDetails products={CartProducts} cart={cart} /> */}
+                  <OrderDetails products={cart.items} cart={cart} />
                 </Column>
                 <Column
                   justfiyContent="flex-start"
@@ -209,9 +232,9 @@ const ShippingAndPayment = ({ next }: IProps) => {
                     <Typography variant="caption" color="text.secondary">
                       Subtotal
                     </Typography>
-                    {/* <Typography variant="caption" color="text.secondary">
-                      ${discountPrice.toFixed(2)}
-                    </Typography> */}
+                    <Typography variant="caption" color="text.secondary">
+                      ${allDiscount}
+                    </Typography>
                   </Row>
                   <Row
                     justfiyContent="space-between"
@@ -245,9 +268,9 @@ const ShippingAndPayment = ({ next }: IProps) => {
                     <Typography variant="caption" color="text.primary">
                       Total
                     </Typography>
-                    {/* <Typography variant="caption" color="text.primary">
-                      ${discountPrice.toFixed(2)}
-                    </Typography> */}
+                    <Typography variant="caption" color="text.primary">
+                      ${allDiscount}
+                    </Typography>
                   </Row>
                 </Column>
               </Section>

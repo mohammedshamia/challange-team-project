@@ -162,7 +162,7 @@ export const getCategories = () => async (dispatch: Dispatch<ActionsType>) => {
     }: AxiosResponse = await API.get("/products/category/all");
     dispatch({
       type: ProductConstants.GET_CATEGORIES_SUCCESS,
-      payload: formatCategory(categories as ICategory[]),
+      payload: categories, //formatCategory( as ICategory[]),
     });
   } catch (error: any) {
     console.error(error?.response?.data?.message || error.message);
