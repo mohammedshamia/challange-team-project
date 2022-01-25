@@ -41,11 +41,11 @@ export default function ShoppingCartPage() {
 
   const allDiscount = useMemo(() => {
     return (
-      totalPrice -
+      (Math.round(totalPrice -
       (items as Item[]).reduce(
         (acc, { product }: Item) => (product.discount as number) + acc,
         0
-      )
+      ))).toFixed(2)
     );
   }, [items, totalPrice]);
 
@@ -119,8 +119,8 @@ export default function ShoppingCartPage() {
           </Grid>
           <Grid item xs={12} lg={3} sx={{ order: { xs: -1, lg: 22 } }}>
             <SubTotalCard
-              priceAfterDiscount={`$${allDiscount.toFixed(2)}`}
-              priceBeforeDiscount={`$${(totalPrice as number)?.toFixed(2)}`}
+              priceAfterDiscount={`$${allDiscount}`}
+              priceBeforeDiscount={`$${(Math.round(totalPrice as number)).toFixed(2)}`}
               numberOfItems={totalQty}
             />
           </Grid>

@@ -17,7 +17,6 @@ export const addToCart =
         productId: productID,
         qty,
       });
-
       dispatch({
         type: CartConstants.ADD_TO_CART_SUCCESS,
         payload: cart as ICart,
