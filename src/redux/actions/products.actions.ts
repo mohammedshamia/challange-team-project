@@ -1,9 +1,14 @@
 import { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
-import { ActionsType, IReview } from "../../@types/products.types";
+import { ActionsType, ICategory, IReview } from "../../@types/products.types";
 import { IProductForm } from "../../@types/products.types";
 import API from "../../api";
-import { createFormData, notify, uploadPhoto } from "../../utils/helpers";
+import {
+  createFormData,
+  formatCategory,
+  notify,
+  uploadPhoto,
+} from "../../utils/helpers";
 import { ProductConstants } from "../contants/products.constants";
 
 export const createProduct =
@@ -157,10 +162,10 @@ export const getCategories = () => async (dispatch: Dispatch<ActionsType>) => {
     }: AxiosResponse = await API.get("/products/category/all");
     dispatch({
       type: ProductConstants.GET_CATEGORIES_SUCCESS,
-      payload: categories,
+      payload: formatCategory(categories as ICategory[]),
     });
   } catch (error: any) {
-    notify("error", error?.response?.data?.message || error.message);
+    console.error(error?.response?.data?.message || error.message);
     dispatch({
       type: ProductConstants.GET_CATEGORIES_FAIL,
       payload: error?.response?.data?.message || error.message,

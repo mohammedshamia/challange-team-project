@@ -8,11 +8,11 @@ export const getConfig = () => async (dispatch: Dispatch<ActionsType>) => {
     dispatch({
       type: configConstants.GET_CONFIG_START,
     });
-    const { data } = await API.get("/config/stripe_key");
-    console.log(data);
+    const res = await API.get("/config/stripe_key");
+    console.log(res);
     dispatch({
       type: configConstants.GET_CONFIG_SUCCESS,
-      payload: data,
+      payload: res.data,
     });
   } catch (error: any) {
     console.error(error?.response?.data?.message || error.message);
