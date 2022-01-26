@@ -91,3 +91,10 @@ export const uploadPhoto = (image: File): AxiosPromise<string> => {
   const formData = createFormData(image);
   return API.post("/upload", formData) as AxiosPromise<string>;
 };
+export const formatDate = (date_:Date) => {
+  date_ = new Date(date_);
+  const day = ("0" + date_.getDate()).slice(-2);
+  const month = ("0" + (date_.getMonth() + 1)).slice(-2);
+  const date = date_.getFullYear() + "-" + month + "-" + day ;
+  return date;
+}

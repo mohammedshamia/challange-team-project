@@ -13,7 +13,7 @@ import {
   TextArea,
 } from "./FormInput.styled";
 import { CSSProperties, default as React } from "react";
-
+import {formatDate} from "../../../utils/helpers";
 export interface IFormInputProps {
   name: string;
   label: string;
@@ -108,7 +108,7 @@ const FormInput = ({
                 onBlur={(e) => {
                   field.onBlur(e);
                 }}
-                value={field.value}
+                value={type === 'date' ? formatDate(field.value): field.value }
                 placeholder={placeholder}
               />
             </>
