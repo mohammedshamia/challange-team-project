@@ -5,12 +5,13 @@ import { Button } from "../../../components/Button/Button.style";
 import { Row } from "../../../components/GlobalStyles";
 import Table from "../../../components/Table";
 import { Container } from "./Products.styled";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../../redux/store";
 import { getProducts } from "../../../redux/actions/products.actions";
 import Actions from "./components/Actions";
-import { minimizeID } from "../../../utils/helpers";
+import { fetchAllProducts, minimizeID } from "../../../utils/helpers";
+import { IProduct } from "../../../@types/products.types";
 
 const columns: IColumn[] = [
   {
@@ -39,14 +40,18 @@ const columns: IColumn[] = [
 const Products = () => {
   const {
     products: {
-      products: { products },
+      products: { pages },
     },
   } = useSelector((state: AppState) => state);
+
+  const [products, setProducts] = useState<IProduct[]>([]);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProducts());
+    (async () => {
+      setProducts(await fetchAllProducts(pages || 10));
+    })();
   }, [dispatch]);
 
   return (
@@ -76,7 +81,7 @@ const Products = () => {
           frameworkComponents={{
             ActionsRenderer: Actions,
           }}
-          paginationPageSize={6}
+          paginationPageSize={10}
         />
       </div>
     </Container>

@@ -69,11 +69,7 @@ export default function Slider({ products }: { products: IProduct[] }) {
               </Button>
             </Stack>
             <DivImg>
-              <img
-                // src={`${baseURL}${product.images?.[0]}` || "/static/img1.PNG"}
-                src={"/static/img1.PNG"}
-                alt="slide"
-              />
+              <img src={"/static/img1.PNG"} alt="slide" loading="lazy" />
             </DivImg>
           </Contianer>
         ))}
