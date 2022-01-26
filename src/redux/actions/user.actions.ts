@@ -72,19 +72,17 @@ export const getUsers =
   async (dispatch: Dispatch<ActionTypes>) => {
     try {
       dispatch({
-        type: UserConstants.GET_USER_START,
+        type: UserConstants.GET_USERS_START,
       });
-      const { data }: AxiosResponse = await API.get("/users", {
-        params: { keyword: keyword, page: page },
-      });
+      const { data }: AxiosResponse = await API.get("/users");
       dispatch({
-        type: UserConstants.GET_USER_SUCCESS,
+        type: UserConstants.GET_USERS_SUCCESS,
         payload: data,
       });
     } catch (error: any) {
       notify("error", error?.response?.data?.message || error.message);
       dispatch({
-        type: UserConstants.GET_USER_FAIL,
+        type: UserConstants.GET_USERS_FAIL,
         payload: error?.response?.data?.message || error.message,
       });
     }

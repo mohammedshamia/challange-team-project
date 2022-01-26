@@ -1,5 +1,6 @@
-import { AxiosPromise } from "axios";
+import { AxiosPromise, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
+import { IUser } from "../@types/auth.types";
 import {
   Categories,
   ICategory,
@@ -67,25 +68,40 @@ export const formatProducts = (data: IProduct[]) => {
   });
   return arr;
 };
-// export const formatCart = (cart: Cart) => {
-//   let cart_ = {};
-//   let cartItems: ICartItems = {};
 
-//   (cart.items as Item[]).forEach((item: Item) => {
-//     cartItems[item.product?._id as string] = item;
-//   });
+export const fetchAllProducts = async (maxPages: number) => {
+  const promises: any[] = Array(maxPages)
+    .fill("")
+    .map((product, index) =>
+      API.get("/products", { params: { pageNumber: index + 1 } })
+    );
 
-//   const sorted = Object.entries(cartItems).sort((a, b) =>
-//     a > b ? 1 : b > a ? -1 : 0
-//   );
+  const allProducts: AxiosResponse[] = await Promise.all<AxiosResponse>(
+    promises
+  );
 
-//   cart_ = {
-//     ...cart,
-//     items: Object.fromEntries(sorted),
-//   };
+  const products: IProduct[] = allProducts
+    .map((product: AxiosResponse) => product.data.products)
+    .flat();
 
-//   return cart_ as ICart;
-// };
+  return products;
+};
+
+export const fetchAllUsers = async (maxPages: number) => {
+  const promises: any[] = Array(maxPages)
+    .fill("")
+    .map((user, index) =>
+      API.get("/users", { params: { pageNumber: index + 1 } })
+    );
+
+  const allUsers: AxiosResponse[] = await Promise.all<AxiosResponse>(promises);
+
+  const users: IUser[] = allUsers
+    .map((user: AxiosResponse) => user.data.users)
+    .flat();
+
+  return users;
+};
 
 export const uploadPhoto = (image: File): AxiosPromise<string> => {
   const formData = createFormData(image);
