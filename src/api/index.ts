@@ -40,7 +40,7 @@ export default class API {
     return Axios.post(url, body, config || {});
   }
 
-  static async put<T>(url: string, body: T): Promise<AxiosResponse> {
+  static async put<T>(url: string, body?: T): Promise<AxiosResponse> {
     return Axios.put(url, body);
   }
   static async delete(

@@ -68,3 +68,24 @@ export const createOrder =
       });
     }
   };
+
+export const deliverOrder =
+  (id: string, callback?: Function) =>
+  async (dispatch: Dispatch<ActionsType>) => {
+    try {
+      dispatch({
+        type: OrdersConstants.DELIVER_ORDER_START,
+      });
+      const res = await API.put(`/orders/${id}/deliver`);
+      dispatch({
+        type: OrdersConstants.DELIVER_ORDER_SUCCESS,
+      });
+      callback?.(res.data as IOrderResponse);
+    } catch (error: any) {
+      notify("error", error?.response?.data?.message || error.message);
+      dispatch({
+        type: OrdersConstants.DELIVER_ORDER_FAIL,
+        payload: error?.response?.data?.message || error.message,
+      });
+    }
+  };

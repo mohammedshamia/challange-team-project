@@ -50,7 +50,7 @@ const Products = () => {
 
   useEffect(() => {
     (async () => {
-      setProducts(await fetchAllProducts(10));
+      setProducts(await fetchAllProducts(pages || 10));
     })();
   }, [dispatch]);
 

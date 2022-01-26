@@ -1,6 +1,7 @@
 import { AxiosPromise, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { IUser } from "../@types/auth.types";
+import { IOrder } from "../@types/orders.types";
 import {
   Categories,
   ICategory,
@@ -101,6 +102,22 @@ export const fetchAllUsers = async (maxPages: number) => {
     .flat();
 
   return users;
+};
+
+export const fetchAllOrders = async (maxPages: number) => {
+  const promises: any[] = Array(maxPages)
+    .fill("")
+    .map((order, index) =>
+      API.get("/orders", { params: { pageNumber: index + 1 } })
+    );
+
+  const allOrders: AxiosResponse[] = await Promise.all<AxiosResponse>(promises);
+
+  const Orders: IOrder[] = allOrders
+    .map((order: AxiosResponse) => order.data.orders)
+    .flat();
+
+  return Orders;
 };
 
 export const uploadPhoto = (image: File): AxiosPromise<string> => {

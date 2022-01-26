@@ -3,12 +3,13 @@ import { IColumn } from "../../../@types/table.types";
 import Table from "../../../components/Table";
 import { Container } from "../products/Products.styled";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IUser } from "../../../@types/auth.types";
 import { ICellRendererParams } from "ag-grid-community";
 import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import { fetchAllUsers } from "../../../utils/helpers";
+import { AppState } from "../../../redux/store";
 
 const columns: IColumn[] = [
   {
@@ -52,13 +53,19 @@ const Actions = (props: ICellRendererParams) => {
 };
 
 function Users() {
+  const {
+    users: {
+      users: { pages },
+    },
+  } = useSelector((state: AppState) => state);
+
   const [users, setUsers] = useState<IUser[]>([]);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
-      setUsers(await fetchAllUsers(10));
+      setUsers(await fetchAllUsers(pages || 10));
     })();
   }, [dispatch]);
 
