@@ -1,5 +1,6 @@
 import SimpleBottomNavigation from "./ButtonNavigation";
 import PersonIcon from "@mui/icons-material/Person";
+import GroupIcon from '@mui/icons-material/Group';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Stack } from "@mui/material";
 import { Link } from "./BottonNavigation.style";
@@ -43,6 +44,14 @@ export default function BottonNavigationGroup(props: Iprops) {
         />
       </Link>
       {props.isAdmin && (
+        <>
+         <Link to={"/users"}>
+         <SimpleBottomNavigation
+           path="/users"
+           label="Users"
+           icon={<GroupIcon />}
+         />
+       </Link>
         <Link to={"/products"}>
           <SimpleBottomNavigation
             path="/products"
@@ -50,6 +59,7 @@ export default function BottonNavigationGroup(props: Iprops) {
             icon={<CategoryIcon />}
           />
         </Link>
+        </>
       )}
     </Stack>
   );
