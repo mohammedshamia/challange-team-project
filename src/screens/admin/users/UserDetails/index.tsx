@@ -1,14 +1,15 @@
 import Typography from "@mui/material/Typography";
-import React, {useCallback, useEffect} from "react";
-import {Container} from "../../products/Products.styled";
-import {Column, Row, Section} from "../../../../components/GlobalStyles";
-import {Button} from "../../../../components/Button/Button.style";
-import {useDispatch, useSelector} from "react-redux";
-import {AppState} from "../../../../redux/store";
-import {Field, Form, Formik} from "formik";
-import {IUserForm} from "../../../../@types/users.types";
-import {updateUserSchema} from "./validation";
+import React, { useCallback, useEffect } from "react";
+import { Container } from "../../products/Products.styled";
+import { Column, Row, Section } from "../../../../components/GlobalStyles";
+import { Button } from "../../../../components/Button/Button.style";
+import { useDispatch, useSelector } from "react-redux";
+import { AppState } from "../../../../redux/store";
+import { Field, Form, Formik } from "formik";
+import { IUserForm } from "../../../../@types/users.types";
+import { updateUserSchema } from "./validation";
 import FormInput from "../../../../components/common/FormInput";
+
 import {useTheme} from "styled-components";
 import {useParams} from "react-router";
 import {editUser, getUser} from "../../../../redux/actions/user.actions";
@@ -26,24 +27,13 @@ export default function UserDetails(){
     }, []);
 
     const { loading, user } = useSelector((state: AppState) => state.users);
-    // useCallback(
-    //         async (values: IUserForm) => {
-    //              console.log(values,'va')
-    //
-    //             dispatch(editUser((user as IUserForm)._id as string , values, ()=>{
-    //                     notify("success", "User Updated successfully");
-    //                 }));
-    //         }, [dispatch, user]);
+
     const handleSubmit = (values: IUserForm) => {
         console.log('values', values)
         dispatch(editUser((user as IUserForm)._id as string , values, ()=>{
                 notify("success", "User Updated successfully");
             }));
     }
-
-
-
-
     return(
         <Container>
             <Typography variant="h2" color="text.primary">
@@ -101,38 +91,37 @@ export default function UserDetails(){
                                             {/*    </label>*/}
                                             {/*</div>*/}
                                            </Column>
-
-                                    </Row>
-                                </Column>
-                            </Column>
-                        </Row>
-                    </Section>
-                    <Row justfiyContent="flex-end" width="100%">
-                        <Button
-                            type="submit"
-                            background={theme.palette.success.main}
-                            sx={{
-                                width: "fit-content",
-                                height: "fit-content",
-                                padding: "10px",
-                                [theme.breakpoints.down("md")]: {
-                                    width: "100%",
-                                },
-                            }}
-                            disabled={loading}
-                        >
-                            <Typography
-                                variant="body2"
-                                color="#fff"
-                                sx={{ paddingInline: "2em", textTransform: "capitalize" }}
-                            >
-                                Updates
-                            </Typography>
-                        </Button>
                     </Row>
-                </Form>
-            )}
-            </Formik>
-        </Container>
-    )
+                  </Column>
+                </Column>
+              </Row>
+            </Section>
+            <Row justfiyContent="flex-end" width="100%">
+              <Button
+                type="submit"
+                background={theme.palette.success.main}
+                sx={{
+                  width: "fit-content",
+                  height: "fit-content",
+                  padding: "10px",
+                  [theme.breakpoints.down("md")]: {
+                    width: "100%",
+                  },
+                }}
+                disabled={loading}
+              >
+                <Typography
+                  variant="body2"
+                  color="#fff"
+                  sx={{ paddingInline: "2em", textTransform: "capitalize" }}
+                >
+                  Updates
+                </Typography>
+              </Button>
+            </Row>
+          </Form>
+        )}
+      </Formik>
+    </Container>
+  );
 }

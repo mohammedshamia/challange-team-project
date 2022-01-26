@@ -1,6 +1,6 @@
 import { AxiosPromise } from "axios";
 import { toast } from "react-toastify";
-import { ICart, Item } from "../@types/cart.types";
+import { Categories, ICategory,Products,IProduct } from "../@types/products.types";
 import API from "../api";
 
 export type toastType = "info" | "success" | "warning" | "error" | "default";
@@ -25,13 +25,43 @@ export const createFormData = (image: File) => {
 };
 
 export const calculateDiscount = (price: number, discount: number): number => {
-  return price - (discount / 100) * price;
+  return price - discount ;
 };
 
 export const minimizeID = (id: string) =>
   id?.replace(/^61ec6095edddbd1f4c/g, "#");
 
+export const formatCategory = (category: ICategory[]) => {
+  let arr: Categories[] = [];
+  category.forEach((c, index) => {
+    if (index % 4 === 0) {
+      arr.push({ id: arr.length, categories: [] } as Categories);
+    }
+    let current: Categories = arr[arr.length - 1];
+    current = {
+      ...current,
+      categories: [...(current as Categories)?.categories, c],
+    };
+    arr[arr.length - 1] = current;
+  });
+  return arr;
+};
 
+export const formatProducts = (data: IProduct[]) => {
+  let arr: Products[] = [];
+  data.forEach((c, index) => {
+    if (index % 3 === 0) {
+      arr.push({ id: arr.length, product: [] } as Products);
+    }
+    let current: Products = arr[arr.length - 1];
+    current = {
+      ...current,
+      product: [...(current as Products)?.product, c],
+    };
+    arr[arr.length - 1] = current;
+  });
+  return arr;
+};
 // export const formatCart = (cart: Cart) => {
 //   let cart_ = {};
 //   let cartItems: ICartItems = {};

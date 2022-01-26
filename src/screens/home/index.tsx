@@ -17,6 +17,7 @@ import {
 } from "../../redux/actions/products.actions";
 import { AppState } from "../../redux/store";
 import { Banner, Categroy, FeaturedProducts, TopRateProducts } from "./styled";
+import { getConfig } from "../../redux/actions/config.actions";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const HomePage = () => {
   } = useSelector((state: AppState) => state.products);
 
   useEffect(() => {
+    dispatch(getConfig());
     dispatch(getProducts());
     if ((topProducts as IProduct[]).length === 0) {
       dispatch(getTopProducts());

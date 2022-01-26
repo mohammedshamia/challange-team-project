@@ -29,6 +29,7 @@ export default function CategroyCard({ img, name, onClick }: IProps) {
         }}
       >
         <img
+          loading="lazy"
           src={img}
           alt="img"
           width={"300px"}

@@ -30,8 +30,10 @@ class ShoppingCartCard extends PureComponent<IPropsShoppingCart> {
 
   render(): ReactNode {
     return (
-      <WrapperCart container alignItems="center">
-        <Close onClick={this.RemoveFromCart.bind(this, this.props.id)} />
+      <WrapperCart id={this.props.id} container alignItems="center">
+        <Close 
+        onClick={this.RemoveFromCart.bind(this, this.props.id)}
+         />
         <ImgContainer item xs={12} lg={3}>
           <img
             height="100%"
@@ -72,16 +74,7 @@ class ShoppingCartCard extends PureComponent<IPropsShoppingCart> {
           lg={2}
           sx={{ textAlign: { xs: "center", md: "left", lg: "right" } }}
         >
-          {(this.props.discount as number) === 100 ? (
-            <>
-              <Chip
-                sx={{ fontSize: "1.4rem", padding: "0px 12px", height: "36px" }}
-                label="Free"
-                variant="outlined"
-                color="success"
-              />
-            </>
-          ) : (this.props.discount as number) > 0 ? (
+          {(this.props.discount as number) > 0 ? (
             <>
               <Typography
                 variant="h6"
@@ -100,7 +93,7 @@ class ShoppingCartCard extends PureComponent<IPropsShoppingCart> {
             </>
           ) : (
             <Typography variant="h4" fontWeight="900" color="text.primary">
-              {this.props.price}
+              {(this.props.price).toFixed(2)}
             </Typography>
           )}
         </Grid>

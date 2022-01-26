@@ -5,7 +5,7 @@ import { Row } from "../../../components/GlobalStyles";
 import Product from "./Product";
 import styled from "styled-components";
 import { IProduct } from "../../../@types/products.types";
-import { ICart } from "../../../@types/cart.types";
+import { ICart, Item } from "../../../@types/cart.types";
 
 const ProductsContainer = styled.div`
   overflow-y: auto;
@@ -16,10 +16,8 @@ const ProductsContainer = styled.div`
 `;
 
 interface IProps {
-  products: IProduct[];
-  cart: {
-    [key: string]: ICart;
-  };
+  products: Item[];
+  cart: ICart;
 }
 
 export default class OrderDetails extends React.PureComponent<IProps> {
@@ -35,14 +33,9 @@ export default class OrderDetails extends React.PureComponent<IProps> {
           </Link>
         </Row>
         <ProductsContainer>
-          {/* {this.props.products?.map((product) => {
-            return (
-              <Product
-                product={product}
-                qty={this.props.cart[product?._id as string].qty}
-              />
-            );
-          })} */}
+          {this.props.products?.map((product) => {
+            return <Product product={product.product} qty={product.qty} />;
+          })}
         </ProductsContainer>
       </>
     );

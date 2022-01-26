@@ -55,10 +55,14 @@ export const DetailesContiner = styled.div`
   }
 `;
 export const SizesOFimgContiner = styled.div`
-  width: 99%;
+  width: 90%;
   height: 142px;
   display: flex;
-  gap: 30px;
+  justify-content: space-between;
+  margin: 60px 0;
+  @media (max-width: 900px) {
+    margin: 40px auto;
+  }
 `;
 export const DiscraptinsContiner = styled(Typography)`
   width: 100%;

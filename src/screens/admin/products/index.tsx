@@ -76,6 +76,7 @@ const Products = () => {
           frameworkComponents={{
             ActionsRenderer: Actions,
           }}
+          paginationPageSize={6}
         />
       </div>
     </Container>

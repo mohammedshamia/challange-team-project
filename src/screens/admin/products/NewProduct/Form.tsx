@@ -85,6 +85,7 @@ const NewProductForm = ({ product, categories }: IProps) => {
         dispatch(
           createProduct(values, () => {
             notify("success", "Product Created successfully");
+            navigate("/products");
           })
         );
       }

@@ -11,6 +11,10 @@ import { ToastContainer } from "react-toastify";
 import Header from "./components/common/Header";
 import { GlobalStyle } from "./components/GlobalStyles";
 import "react-toastify/dist/ReactToastify.css";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe("pk_test_kvaWWuoOUKU8FfTgtn5U2LVC00If7nyUo0");
 
 function App() {
   const { theme } = useSelector((state: AppState) => state);
@@ -18,14 +22,20 @@ function App() {
     <Suspense fallback={<Loading />}>
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <MuiTheme theme={theme === "light" ? lightTheme : darkTheme}>
-          <GlobalStyle />
-          <Header />
-          <Routes>
-            {RootRoutes.routes.map((route, Index) => (
-              <Route path={route.path} element={route.component} key={Index} />
-            ))}
-          </Routes>
-          <ToastContainer autoClose={3000} />
+          <Elements stripe={stripePromise}>
+            <GlobalStyle />
+            <Header />
+            <Routes>
+              {RootRoutes.routes.map((route, Index) => (
+                <Route
+                  path={route.path}
+                  element={route.component}
+                  key={Index}
+                />
+              ))}
+            </Routes>
+            <ToastContainer autoClose={3000} />
+          </Elements>
         </MuiTheme>
       </ThemeProvider>
     </Suspense>

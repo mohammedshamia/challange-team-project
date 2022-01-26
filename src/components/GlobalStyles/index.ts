@@ -16,6 +16,27 @@ body{
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
 }
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px grey; 
+  border-radius: 3px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #707070; 
+  border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #707070; 
+}
 `;
 
 export const Section = styled.div`
@@ -77,6 +98,15 @@ export const Column = styled.div<Iprops>`
   align-items: ${(props) => props.alignItems || "flex-start"};
   ${(props) => props.theme.breakpoints.down("md")} {
     justify-content: flex-start;
+  }
+  .stripe {
+    border: 1px solid ${(props) => props.theme.palette.text.primary};
+    width: 100%;
+    padding-inline: 11px;
+    height: 40px;
+    border-radius: 6px;
+    color: ${(props) => props.theme.palette.text.secondary};
+    padding: 10px;
   }
 `;
 

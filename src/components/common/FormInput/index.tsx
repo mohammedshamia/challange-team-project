@@ -11,6 +11,7 @@ import {
 import {CSSProperties, default as React} from "react";
 import {formatDate} from "../../../utils/helpers";
 
+
 export interface IFormInputProps {
   name: string;
   label: string;
@@ -89,24 +90,23 @@ const FormInput = ({
                 </RadioGroup>
               </FormControl>
           ) : (
-              <>
-                <Input
-                    name={name}
-                    type={type}
-                    onFocus={() => {
-                      form.getFieldHelpers(name).setTouched(true);
-                    }}
-                    onChange={(e) => {
-                      form.setFieldValue(name, e.target.value);
-                    }}
-                    onBlur={(e) => {
-                      field.onBlur(e);
-                    }}
-                    value={type === 'date' ? formatDate(field.value): field.value }
-                    placeholder={placeholder}
-                />
-              </>
-
+            <>
+              <Input
+                name={name}
+                type={type}
+                onFocus={() => {
+                  form.getFieldHelpers(name).setTouched(true);
+                }}
+                onChange={(e) => {
+                  form.setFieldValue(name, e.target.value);
+                }}
+                onBlur={(e) => {
+                  field.onBlur(e);
+                }}
+                value={field.value}
+                placeholder={placeholder}
+              />
+            </>
           )}
         </div>
         {meta.touched && meta.error && (

@@ -1,5 +1,8 @@
+import { IUser } from "../../@types/auth.types";
 import { ActionsType, ICart } from "../../@types/cart.types";
 import { CartConstants } from "../contants/cart.constants";
+
+const user: string = localStorage.getItem("user-data") || "";
 
 export interface IState {
   error: string;
@@ -10,7 +13,11 @@ export interface IState {
 const initial_state: IState = {
   error: "",
   loading: false,
-  cart: { items: [], totalPrice: 0, totalQty: 0 },
+  cart: (user && (JSON.parse(user) as IUser).cart) || {
+    items: [],
+    totalPrice: 0,
+    totalQty: 0,
+  },
 };
 
 export const cartReducer = (

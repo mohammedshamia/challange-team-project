@@ -79,7 +79,12 @@ export default function DetailesProdect({
     <div>
       <DetailesProductContainer>
         <ImagesContiner>
-          <img src={imgpropdect} alt={nameProdect} width="90%" />
+          <img
+            src={imgpropdect}
+            alt={nameProdect}
+            width="90%"
+            style={{ objectFit: "contain" }}
+          />
           <SizesOFimgContiner>
             {img1propdect && (
               <img
@@ -87,6 +92,7 @@ export default function DetailesProdect({
                 alt="nameprodect"
                 width="29%"
                 height={"100%"}
+                style={{ objectFit: "contain" }}
               />
             )}
             {img2propdect && (
@@ -95,6 +101,7 @@ export default function DetailesProdect({
                 alt="nameprodect"
                 width="29%"
                 height={"100%"}
+                style={{ objectFit: "contain" }}
               />
             )}
             {img3propdect && (
@@ -103,6 +110,7 @@ export default function DetailesProdect({
                 alt="nameprodect"
                 width="29%"
                 height={"100%"}
+                style={{ objectFit: "contain" }}
               />
             )}
           </SizesOFimgContiner>
@@ -148,6 +156,7 @@ export default function DetailesProdect({
                     sx={{
                       maxWidth: "300px",
                       fontSize: "1.5rem",
+                      fontWeight: "500",
                     }}
                     height="62px"
                     borderRadius="10px"

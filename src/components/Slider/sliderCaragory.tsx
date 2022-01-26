@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../redux/store";
 import { getCategories } from "../../redux/actions/products.actions";
 import Loading from "../common/Loading";
-import { ICategory } from "../../@types/products.types";
+import { Categories, ICategory } from "../../@types/products.types";
 import { useNavigate } from "react-router-dom";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -42,7 +42,7 @@ export default function SliderCatagory() {
         slideStyle={styles.slideContainer}
         onChangeIndex={handleChangeIndex}
       >
-        {DataCatagorySlider.map((item_) => (
+        {(categories as Categories[]).map((item_) => (
           <Grid
             key={item_.id}
             container
@@ -57,7 +57,7 @@ export default function SliderCatagory() {
             {loading ? (
               <Loading />
             ) : (
-              (categories as ICategory[])?.slice(0, 4).map((item) => (
+              (item_.categories as ICategory[]).map((item) => (
                 <Grid key={item.name} item md={2.4}>
                   <CategroyCard
                     onClick={() => handleNavgateCategory(item.name as string)}
