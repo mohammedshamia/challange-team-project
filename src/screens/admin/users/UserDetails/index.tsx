@@ -1,14 +1,15 @@
 import Typography from "@mui/material/Typography";
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Container } from "../../products/Products.styled";
 import { Column, Row, Section } from "../../../../components/GlobalStyles";
 import { Button } from "../../../../components/Button/Button.style";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../../../redux/store";
-import { Field, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import { IUserForm } from "../../../../@types/users.types";
 import { updateUserSchema } from "./validation";
 import FormInput from "../../../../components/common/FormInput";
+
 import { useTheme } from "styled-components";
 import { useParams } from "react-router";
 import { editUser, getUserByID } from "../../../../redux/actions/user.actions";
@@ -23,26 +24,17 @@ export default function UserDetails() {
     if (params.id) {
       dispatch(getUserByID(params.id as string));
     }
-  }, [dispatch]);
+  }, [dispatch, params]);
 
   const { loading, user } = useSelector((state: AppState) => state.users);
 
-  const handleSubmit = useCallback(
-    async (values: IUserForm) => {
-      //   dispatch(
-      //     editUser((user as IUserForm)._id as string, values, () => {
-      //       notify("success", "User Updated successfully");
-      //     })
-      //   );
-    },
-    [dispatch, user]
-  );
-  // (values: IUserForm) => {
-  //
-  // dispatch(editUser((user as IUserForm)._id as string , values, ()=>{
-  //         notify("success", "User Updated successfully");
-  //     }));
-  // }
+  const handleSubmit = (values: IUserForm) => {
+    dispatch(
+      editUser((user as IUserForm)._id as string, values, () => {
+        notify("success", "User Updated successfully");
+      })
+    );
+  };
 
   return (
     <Container>
@@ -53,19 +45,18 @@ export default function UserDetails() {
         enableReinitialize
         validationSchema={updateUserSchema}
         onSubmit={handleSubmit}
-        initialValues={
-          {
-            firstName: (user as IUserForm)?.firstName || "",
-            lastName: (user as IUserForm)?.lastName || "",
-            email: (user as IUserForm)?.email || "",
-            isAdmin: (user as IUserForm)?.isAdmin || false,
-            profileImage: (user as IUserForm)?.profileImage || "",
-            dateOfBirth: (user as IUserForm)?.dateOfBirth || "",
-          } as IUserForm
-        }
+        initialValues={{
+          firstName: (user as IUserForm)?.firstName || "",
+          lastName: (user as IUserForm)?.lastName || "",
+          email: (user as IUserForm)?.email || "",
+          isAdmin: (user as IUserForm)?.isAdmin || false,
+          profileImage: (user as IUserForm)?.profileImage || "",
+          dateOfBirth: (user as IUserForm)?.dateOfBirth || "",
+        }}
       >
         {({ values, errors }) => (
           <Form style={{ width: "100%" }}>
+            {console.log(errors, "errors")}
             <Section style={{ padding: "30px", marginBlock: "15px" }}>
               <Row justfiyContent="center" width="100%" gap="20px" wrap reverse>
                 <Column justfiyContent="flex-start" width="100%">
@@ -94,9 +85,9 @@ export default function UserDetails() {
                       </Column>
                       <Column justfiyContent="flex-start" width="100%">
                         <FormInput
-                          name="dateOfBirth"
-                          label="Date Of Birth"
-                          type="date"
+                          name="password"
+                          label="Password"
+                          type="password"
                         />
                       </Column>
                     </Row>
@@ -107,17 +98,18 @@ export default function UserDetails() {
                       wrap
                     >
                       <Column justfiyContent="flex-start" width="100%">
-                        <div id="my-radio-group">Is Admin?</div>
-                        <div role="group" aria-labelledby="my-radio-group">
-                          <label>
-                            <Field type="radio" name="isAdmin" value="Yes" />{" "}
-                            Yes
-                          </label>
-                          <label>
-                            <Field type="radio" name="isAdmin" value="No" />
-                            No
-                          </label>
-                        </div>
+                        <FormInput
+                          name="dateOfBirth"
+                          label="Date Of Birth"
+                          type="date"
+                        />
+                      </Column>
+                      <Column justfiyContent="flex-start" width="100%">
+                        <FormInput
+                          name="isAdmin"
+                          label="Is Admin?"
+                          type="radio"
+                        />
                       </Column>
                     </Row>
                   </Column>

@@ -1,15 +1,24 @@
-import { Typography } from "@mui/material";
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
+import { CircularProgress, Typography } from "@mui/material";
+import {
+  CardNumberElement,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
+import { StripeCardNumberElement, StripeError } from "@stripe/stripe-js";
+import { useCallback, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { IProduct } from "../../../@types/products.types";
+import { Item } from "../../../@types/cart.types";
+import { IOrderResponse, IShoppingAddress } from "../../../@types/orders.types";
 import { Button } from "../../../components/Button/Button.style";
 import { Column, Row, Section } from "../../../components/GlobalStyles";
+import { createOrder } from "../../../redux/actions/orders.actions";
 import { AppState } from "../../../redux/store";
-import { calculateDiscount } from "../../../utils/helpers";
+import { notify } from "../../../utils/helpers";
 import OrderDetails from "../OrderDetails";
 import { Link } from "../Payment.styled";
+import { IPayment } from "../ShippingAndPayment/validation";
 
 const Container = styled.div`
   display: flex;
@@ -23,44 +32,74 @@ const Container = styled.div`
 
 interface IProps {
   back: Function;
+  paymentDetails: IPayment | undefined;
 }
 
-const PlaceOrder = ({ back }: IProps) => {
+const PlaceOrder = ({ back, paymentDetails }: IProps) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const stripe = useStripe();
+  const elements = useElements();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
-    products: {
-      products: { products },
-    },
     cart: { cart },
   } = useSelector((state: AppState) => state);
 
-  // const CartProducts = useMemo<IProduct[]>(() => {
-  //   if (Object.keys(cart).length > 0) {
-  //     return (products as IProduct[]).filter((product) =>
-  //       Object.keys(cart).includes(product._id as string)
-  //     );
-  //   }
-  //   return [];
-  // }, [cart, products]);
+  const allDiscount = useMemo(() => {
+    return Math.round(
+      cart.totalPrice -
+        (cart.items as Item[]).reduce(
+          (acc, { product }: Item) => (product.discount as number) + acc,
+          0
+        )
+    ).toFixed(2);
+  }, [cart]);
 
-  // const discountPrice = useMemo<number>(() => {
-  //   if (Object.keys(cart).length > 0) {
-  //     return (products as IProduct[])
-  //       .filter((product) => Object.keys(cart).includes(product._id as string))
-  //       .reduce(
-  //         (acc, product) =>
-  //           calculateDiscount(
-  //             product.price as number,
-  //             product.discount as number
-  //           ) *
-  //             cart[product?._id as string].qty +
-  //           acc,
-  //         0
-  //       );
-  //   }
-  //   return 0;
-  // }, [cart, products]);
+  const handlePlaceOrder = useCallback(() => {
+    try {
+      setLoading(true);
+      if (!stripe || !elements) {
+        setLoading(false);
+        return;
+      }
+      const { country, city, postalCode, address } = paymentDetails as IPayment;
+      const ShippingAddress: IShoppingAddress = {
+        address,
+        city,
+        country,
+        postalCode,
+      };
+      dispatch(
+        createOrder(ShippingAddress, async (res: IOrderResponse) => {
+          try {
+            const { error, paymentIntent } = await stripe.confirmCardPayment(
+              res.clientSecret,
+              {
+                payment_method: {
+                  card: elements.getElement(
+                    CardNumberElement
+                  ) as StripeCardNumberElement,
+                },
+              }
+            );
+            if (error) {
+              throw error;
+            }
+            if (paymentIntent?.status === "succeeded") {
+              navigate("/payment-success");
+            }
+          } catch (error: StripeError | any) {
+            notify("error", error.message || "Failed to process payment");
+          }
+        })
+      );
+    } catch (error: any) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }, [paymentDetails, stripe, elements, dispatch, navigate]);
 
   return (
     <Container>
@@ -87,7 +126,7 @@ const PlaceOrder = ({ back }: IProps) => {
                   color="text.primary"
                   sx={{ marginBottom: "0.5em" }}
                 >
-                  John rose
+                  {(paymentDetails as IPayment)?.city}
                 </Typography>
               </Column>
               <Column justfiyContent="flex-start" width="100%" gap="10px">
@@ -96,7 +135,7 @@ const PlaceOrder = ({ back }: IProps) => {
                   color="text.secondary"
                   sx={{ marginBottom: "0.5em" }}
                 >
-                  56051 Jones Falls, Philippines,
+                  {`${(paymentDetails as IPayment)?.address},`}
                 </Typography>
               </Column>
               <Column justfiyContent="flex-start" width="100%" gap="10px">
@@ -105,12 +144,14 @@ const PlaceOrder = ({ back }: IProps) => {
                   color="text.secondary"
                   sx={{ marginBottom: "0.5em" }}
                 >
-                  Turkey - 62502
+                  {`${(paymentDetails as IPayment)?.country} - ${
+                    (paymentDetails as IPayment)?.postalCode
+                  }`}
                 </Typography>
               </Column>
             </Column>
             <Column justfiyContent="flex-start" width="100%">
-              {/* <OrderDetails products={CartProducts} cart={cart} /> */}
+              <OrderDetails products={cart.items} cart={cart} />
             </Column>
             <Column justfiyContent="flex-start" width="100%">
               <Column justfiyContent="flex-start" width="100%">
@@ -152,9 +193,9 @@ const PlaceOrder = ({ back }: IProps) => {
                 <Typography variant="caption" color="text.secondary">
                   Subtotal
                 </Typography>
-                {/* <Typography variant="caption" color="text.secondary">
-                  ${discountPrice.toFixed(2)}
-                </Typography> */}
+                <Typography variant="caption" color="text.secondary">
+                  ${allDiscount}
+                </Typography>
               </Row>
               <Row
                 justfiyContent="space-between"
@@ -165,7 +206,7 @@ const PlaceOrder = ({ back }: IProps) => {
                   Tax
                 </Typography>
                 <Typography variant="caption" color="text.secondary">
-                  $2.53
+                  $0.00
                 </Typography>
               </Row>
               <Row
@@ -188,22 +229,27 @@ const PlaceOrder = ({ back }: IProps) => {
                 <Typography variant="caption" color="text.primary">
                   Total
                 </Typography>
-                {/* <Typography variant="caption" color="text.primary">
-                  ${discountPrice.toFixed(2)}
-                </Typography> */}
+                <Typography variant="caption" color="text.primary">
+                  ${allDiscount}
+                </Typography>
               </Row>
             </Column>
           </Section>
           <Button
             style={{ width: "100%", marginTop: "1em" }}
-            onClick={() => navigate("/payment-success")}
+            onClick={handlePlaceOrder}
+            disabled={loading}
           >
-            <Typography
-              variant="h6"
-              style={{ textTransform: "capitalize", paddingInline: "50px" }}
-            >
-              Place Order
-            </Typography>
+            {loading ? (
+              <CircularProgress size={14} style={{ color: "#000" }} />
+            ) : (
+              <Typography
+                variant="h6"
+                style={{ textTransform: "capitalize", paddingInline: "50px" }}
+              >
+                Place Order
+              </Typography>
+            )}
           </Button>
         </Container>
       </Row>

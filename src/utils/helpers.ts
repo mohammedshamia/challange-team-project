@@ -1,6 +1,11 @@
 import { AxiosPromise } from "axios";
 import { toast } from "react-toastify";
-import { Categories, ICategory,Products,IProduct } from "../@types/products.types";
+import {
+  Categories,
+  ICategory,
+  Products,
+  IProduct,
+} from "../@types/products.types";
 import API from "../api";
 
 export type toastType = "info" | "success" | "warning" | "error" | "default";
@@ -25,7 +30,7 @@ export const createFormData = (image: File) => {
 };
 
 export const calculateDiscount = (price: number, discount: number): number => {
-  return price - discount ;
+  return price - discount;
 };
 
 export const minimizeID = (id: string) =>
@@ -51,12 +56,12 @@ export const formatProducts = (data: IProduct[]) => {
   let arr: Products[] = [];
   data.forEach((c, index) => {
     if (index % 3 === 0) {
-      arr.push({ id: arr.length, product: [] } as Products);
+      arr.push({ id: arr.length, products: [] } as Products);
     }
     let current: Products = arr[arr.length - 1];
     current = {
       ...current,
-      product: [...(current as Products)?.product, c],
+      products: [...(current as Products)?.products, c],
     };
     arr[arr.length - 1] = current;
   });

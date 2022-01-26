@@ -8,45 +8,26 @@ import { AppState } from "../../../../redux/store";
 
 const columns: IColumn[] = [
   {
-    name: "user",
-  },
-  {
     name: "orderItems",
-  },
-  {
-    name: "shippingAddress",
+    cellRenderer: (params) => `${params.value?.length} Items`,
   },
   {
     name: "paymentMethod",
   },
   {
-    name: "clientSecret",
-  },
-  {
-    name: "taxPrice",
-  },
-  {
-    name: "shippingPrice",
-  },
-  {
     name: "totalPrice",
+    cellRenderer: (params) => `$${params.value?.toFixed(2)}`,
   },
   {
     name: "isPaid",
   },
   {
-    name: "paidAt",
-  },
-  {
     name: "isDelivered",
-  },
-  {
-    name: "deliveredAt",
   },
 ];
 
 export default function OrdersProduct() {
-  const { orders } = useSelector((state: AppState) => state.orders);
+  const { myOrders } = useSelector((state: AppState) => state.orders);
 
   const dispatch = useDispatch();
 
@@ -67,7 +48,7 @@ export default function OrdersProduct() {
       >
         ALL ORDERS
       </Typography>
-      <Table data={orders} columns={columns} />
+      <Table data={myOrders} columns={columns} />
     </div>
   );
 }

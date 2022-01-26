@@ -4,9 +4,11 @@ import ShippingAndPayment from "./ShippingAndPayment";
 import PlaceOrder from "./PlaceOrder";
 import { useCallback, useMemo, useState } from "react";
 import { Container } from "./Payment.styled";
+import { IPayment } from "./ShippingAndPayment/validation";
 
 const Payment = () => {
   const [active, setActive] = useState<number>(0);
+  const [state, setState] = useState<IPayment>();
 
   const next = useCallback(() => {
     setActive((prev) => prev + 1);
@@ -20,15 +22,21 @@ const Payment = () => {
     () => [
       {
         text: "Shipping and Payment",
-        children: <ShippingAndPayment next={next} />,
+        children: (
+          <ShippingAndPayment
+            next={next}
+            paymentDetails={state}
+            setPaymentDetails={setState}
+          />
+        ),
       },
       {
         text: "Place an Order",
-        children: <PlaceOrder back={back} />,
+        children: <PlaceOrder back={back} paymentDetails={state} />,
         last: true,
       },
     ],
-    [next, back]
+    [next, back, state]
   );
 
   return (

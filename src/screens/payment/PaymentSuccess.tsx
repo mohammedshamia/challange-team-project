@@ -1,11 +1,23 @@
 import { Typography } from "@mui/material";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { IOrderResponse } from "../../@types/orders.types";
 import { Button } from "../../components/Button/Button.style";
 import { Row, Section, Column } from "../../components/GlobalStyles";
+import { getCart } from "../../redux/actions/cart.actions";
+import { AppState } from "../../redux/store";
 import { Container } from "./Payment.styled";
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { order } = useSelector((state: AppState) => state.orders);
+
+  useEffect(() => {
+    dispatch(getCart());
+  }, [dispatch]);
+
   return (
     <Container style={{ marginTop: "2em" }}>
       <Section style={{ padding: "50px" }}>
@@ -22,7 +34,7 @@ const PaymentSuccess = () => {
             </Column>
             <Column justfiyContent="flex-start" width="100%">
               <Typography variant="body1" color="text.secondary">
-                65AS1D56ASD156DS
+                {(order as IOrderResponse).order._id}
               </Typography>
             </Column>
           </Row>
@@ -35,7 +47,16 @@ const PaymentSuccess = () => {
             </Column>
             <Column justfiyContent="flex-start" width="100%">
               <Typography variant="body1" color="text.secondary">
-                56051 Jones Falls, Philippines, Turkey - 62502
+                {(() => {
+                  return `${
+                    (order as IOrderResponse).order.shippingAddress.address
+                  }, ${(order as IOrderResponse).order.shippingAddress.city}, ${
+                    (order as IOrderResponse).order.shippingAddress.country
+                  } - ${
+                    (order as IOrderResponse).order.shippingAddress.postalCode
+                  }`;
+                })()}
+                {/* 56051 Jones Falls, Philippines, Turkey - 62502 */}
               </Typography>
             </Column>
           </Row>

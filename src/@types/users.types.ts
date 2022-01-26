@@ -1,9 +1,15 @@
+import { UserConstants } from "../redux/contants/user.constant";
 
-import {UserConstants} from "../redux/contants/user.constant";
-
-
-
-
+export interface IUserForm {
+  firstName: string;
+  lastName: string;
+  email: string;
+  isAdmin: boolean;
+  dateOfBirth: string | Date;
+  profileImage?: string;
+  _id?: string;
+  password?: string;
+}
 export interface IUser {
   createdAt?: string;
   profileImage?: string;
@@ -12,20 +18,9 @@ export interface IUser {
   email: string;
   isAdmin: boolean;
   dateOfBirth?: string;
-  password?: string;
   updatedAt?: string;
   __v?: number;
   _id: string;
-}
-
-export interface IUserForm {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  isAdmin: boolean;
-  dateOfBirth: string | Date;
-  profileImage: string | File;
 }
 
 export interface GET_USERS_START {
@@ -37,10 +32,9 @@ export interface GET_USERS_SUCCESS {
   payload: IUser[];
 }
 
-
 export interface GET_USERS_FAIL {
-    type: UserConstants.GET_USERS_FAIL;
-    payload: string;
+  type: UserConstants.GET_USERS_FAIL;
+  payload: string;
 }
 export interface GET_USER_START {
   type: UserConstants.GET_USER_START;
@@ -96,4 +90,3 @@ export type ActionTypes =
   | DELETE_USER_START
   | DELETE_USER_SUCCESS
   | DELETE_USER_FAIL;
-
