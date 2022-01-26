@@ -1,22 +1,27 @@
 
 import {UserConstants} from "../redux/contants/user.constant";
 
-
-
-
-export interface IUser {
-  createdAt?: string;
-  profileImage?: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  isAdmin: boolean;
-  dateOfBirth?: string;
-  password?: string;
-  updatedAt?: string;
-  __v?: number;
-  _id: string;
+export interface IUserForm {
+    firstName: string;
+    lastName: string;
+    email: string;
+    isAdmin: boolean;
+    dateOfBirth: string | Date;
+    profileImage?: string;
+    _id?:string;
+    password?:string
 }
+export interface IUser{
+    createdAt?:string;
+    profileImage?: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    isAdmin: boolean;
+    dateOfBirth?: string;
+    updatedAt?:string;
+    __v?:number;
+    _id:string;
 
 export interface IUserForm {
   firstName: string;

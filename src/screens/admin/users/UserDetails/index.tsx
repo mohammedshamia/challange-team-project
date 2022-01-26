@@ -9,116 +9,88 @@ import { Field, Form, Formik } from "formik";
 import { IUserForm } from "../../../../@types/users.types";
 import { updateUserSchema } from "./validation";
 import FormInput from "../../../../components/common/FormInput";
-import { useTheme } from "styled-components";
-import { useParams } from "react-router";
-import { editUser, getUserByID } from "../../../../redux/actions/user.actions";
-import { notify } from "../../../../utils/helpers";
 
-export default function UserDetails() {
-  const theme = useTheme();
-  const params = useParams();
-  const dispatch = useDispatch();
+import {useTheme} from "styled-components";
+import {useParams} from "react-router";
+import {editUser, getUser} from "../../../../redux/actions/user.actions";
+import {notify} from "../../../../utils/helpers";
 
-  useEffect(() => {
-    if (params.id) {
-      dispatch(getUserByID(params.id as string));
-    }
-  }, [dispatch]);
+export default function UserDetails(){
+    const theme = useTheme();
+    const params = useParams();
+    const dispatch = useDispatch();
 
-  const { loading, user } = useSelector((state: AppState) => state.users);
-
-  const handleSubmit = useCallback(
-    async (values: IUserForm) => {
-      //   dispatch(
-      //     editUser((user as IUserForm)._id as string, values, () => {
-      //       notify("success", "User Updated successfully");
-      //     })
-      //   );
-    },
-    [dispatch, user]
-  );
-  // (values: IUserForm) => {
-  //
-  // dispatch(editUser((user as IUserForm)._id as string , values, ()=>{
-  //         notify("success", "User Updated successfully");
-  //     }));
-  // }
-
-  return (
-    <Container>
-      <Typography variant="h2" color="text.primary">
-        Update User
-      </Typography>
-      <Formik
-        enableReinitialize
-        validationSchema={updateUserSchema}
-        onSubmit={handleSubmit}
-        initialValues={
-          {
-            firstName: (user as IUserForm)?.firstName || "",
-            lastName: (user as IUserForm)?.lastName || "",
-            email: (user as IUserForm)?.email || "",
-            isAdmin: (user as IUserForm)?.isAdmin || false,
-            profileImage: (user as IUserForm)?.profileImage || "",
-            dateOfBirth: (user as IUserForm)?.dateOfBirth || "",
-          } as IUserForm
+    useEffect(() => {
+        if (params.id) {
+            dispatch(getUser(params.id as string));
         }
-      >
-        {({ values, errors }) => (
-          <Form style={{ width: "100%" }}>
-            <Section style={{ padding: "30px", marginBlock: "15px" }}>
-              <Row justfiyContent="center" width="100%" gap="20px" wrap reverse>
-                <Column justfiyContent="flex-start" width="100%">
-                  <Column justfiyContent="flex-start" width="100%" gap="2em">
-                    <Row
-                      justfiyContent="flex-start"
-                      width="100%"
-                      gap="20%"
-                      wrap
-                    >
-                      <Column justfiyContent="flex-start" width="100%">
-                        <FormInput name="firstName" label="First name" />
-                      </Column>
-                      <Column justfiyContent="flex-start" width="100%">
-                        <FormInput name="lastName" label="Last name" />
-                      </Column>
-                    </Row>
-                    <Row
-                      justfiyContent="flex-start"
-                      width="100%"
-                      gap="20%"
-                      wrap
-                    >
-                      <Column justfiyContent="flex-start" width="100%">
-                        <FormInput name="email" label="Email" />
-                      </Column>
-                      <Column justfiyContent="flex-start" width="100%">
-                        <FormInput
-                          name="dateOfBirth"
-                          label="Date Of Birth"
-                          type="date"
-                        />
-                      </Column>
-                    </Row>
-                    <Row
-                      justfiyContent="flex-start"
-                      width="100%"
-                      gap="20%"
-                      wrap
-                    >
-                      <Column justfiyContent="flex-start" width="100%">
-                        <div id="my-radio-group">Is Admin?</div>
-                        <div role="group" aria-labelledby="my-radio-group">
-                          <label>
-                            <Field type="radio" name="isAdmin" value="Yes" />{" "}
-                            Yes
-                          </label>
-                          <label>
-                            <Field type="radio" name="isAdmin" value="No" />
-                            No
-                          </label>
-                        </div>
-                      </Column>
+    }, []);
+
+    const { loading, user } = useSelector((state: AppState) => state.users);
+
+    const handleSubmit = (values: IUserForm) => {
+        console.log('values', values)
+        dispatch(editUser((user as IUserForm)._id as string , values, ()=>{
+                notify("success", "User Updated successfully");
+            }));
+    }
+    return(
+        <Container>
+            <Typography variant="h2" color="text.primary">
+                    Update User
+            </Typography>
+            <Formik
+                enableReinitialize
+                validationSchema={updateUserSchema}
+                onSubmit={handleSubmit}
+                initialValues={{
+                    firstName: (user as IUserForm)?.firstName || '',
+                    lastName: (user as IUserForm)?.lastName || '',
+                    email: (user as IUserForm)?.email || '',
+                    isAdmin: (user as IUserForm)?.isAdmin || false,
+                    profileImage: (user as IUserForm)?.profileImage || '',
+                    dateOfBirth: (user as IUserForm)?.dateOfBirth || '',
+                }}
+            >
+
+            {({ values, errors }) => (
+                <Form style={{ width: "100%" }} >
+                    {console.log(errors,'errors')}
+                    <Section style={{ padding: "30px", marginBlock: "15px" }}>
+                        <Row justfiyContent="center" width="100%" gap="20px" wrap reverse>
+                            <Column justfiyContent="flex-start" width="100%">
+                                <Column justfiyContent="flex-start" width="100%" gap="2em">
+                                    <Row justfiyContent="flex-start" width="100%" gap="20%" wrap>
+                                        <Column justfiyContent="flex-start" width="100%">
+                                            <FormInput name="firstName" label="First name" />
+                                        </Column>
+                                        <Column justfiyContent="flex-start" width="100%">
+                                            <FormInput name="lastName" label="Last name" />
+                                        </Column>
+                                    </Row>
+                                    <Row justfiyContent="flex-start" width="100%" gap="20%" wrap>
+                                        <Column justfiyContent="flex-start" width="100%">
+                                            <FormInput name="email" label="Email" />
+                                        </Column>
+                                        <Column justfiyContent="flex-start" width="100%">
+                                            <FormInput name="password" label="Password" type='password'/>
+                                        </Column>
+                                    </Row>
+                                    <Row justfiyContent="flex-start" width="100%" gap="20%" wrap>
+                                        <Column justfiyContent="flex-start" width="100%">
+                                            <FormInput name="dateOfBirth" label="Date Of Birth" type='date'/>
+                                        </Column>
+                                        <Column justfiyContent="flex-start" width="100%">
+                                            <FormInput name="isAdmin" label="Is Admin?" type='radio'/>
+
+                                            {/*<div id="my-radio-group">Is Admin?</div>*/}
+                                            {/*<div role="group" aria-labelledby="my-radio-group">*/}
+                                            {/*    <label>*/}
+                                            {/*        <Field type="radio" name="isAdmin" value={true}/> Yes*/}
+                                            {/*        <Field type="radio" name="isAdmin" value={false}/>No*/}
+                                            {/*    </label>*/}
+                                            {/*</div>*/}
+                                           </Column>
                     </Row>
                   </Column>
                 </Column>
