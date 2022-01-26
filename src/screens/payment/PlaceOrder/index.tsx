@@ -3,13 +3,13 @@ import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { IProduct } from "../../../@types/products.types";
+import { Item } from "../../../@types/cart.types";
 import { Button } from "../../../components/Button/Button.style";
 import { Column, Row, Section } from "../../../components/GlobalStyles";
 import { AppState } from "../../../redux/store";
-import { calculateDiscount } from "../../../utils/helpers";
 import OrderDetails from "../OrderDetails";
 import { Link } from "../Payment.styled";
+import { IPayment } from "../ShippingAndPayment/validation";
 
 const Container = styled.div`
   display: flex;
@@ -23,44 +23,25 @@ const Container = styled.div`
 
 interface IProps {
   back: Function;
+  paymentDetails: IPayment | undefined;
 }
 
-const PlaceOrder = ({ back }: IProps) => {
+const PlaceOrder = ({ back, paymentDetails }: IProps) => {
   const navigate = useNavigate();
 
   const {
-    products: {
-      products: { products },
-    },
     cart: { cart },
   } = useSelector((state: AppState) => state);
 
-  // const CartProducts = useMemo<IProduct[]>(() => {
-  //   if (Object.keys(cart).length > 0) {
-  //     return (products as IProduct[]).filter((product) =>
-  //       Object.keys(cart).includes(product._id as string)
-  //     );
-  //   }
-  //   return [];
-  // }, [cart, products]);
-
-  // const discountPrice = useMemo<number>(() => {
-  //   if (Object.keys(cart).length > 0) {
-  //     return (products as IProduct[])
-  //       .filter((product) => Object.keys(cart).includes(product._id as string))
-  //       .reduce(
-  //         (acc, product) =>
-  //           calculateDiscount(
-  //             product.price as number,
-  //             product.discount as number
-  //           ) *
-  //             cart[product?._id as string].qty +
-  //           acc,
-  //         0
-  //       );
-  //   }
-  //   return 0;
-  // }, [cart, products]);
+  const allDiscount = useMemo(() => {
+    return Math.round(
+      cart.totalPrice -
+        (cart.items as Item[]).reduce(
+          (acc, { product }: Item) => (product.discount as number) + acc,
+          0
+        )
+    ).toFixed(2);
+  }, [cart]);
 
   return (
     <Container>
@@ -87,7 +68,7 @@ const PlaceOrder = ({ back }: IProps) => {
                   color="text.primary"
                   sx={{ marginBottom: "0.5em" }}
                 >
-                  John rose
+                  {(paymentDetails as IPayment)?.city}
                 </Typography>
               </Column>
               <Column justfiyContent="flex-start" width="100%" gap="10px">
@@ -96,7 +77,7 @@ const PlaceOrder = ({ back }: IProps) => {
                   color="text.secondary"
                   sx={{ marginBottom: "0.5em" }}
                 >
-                  56051 Jones Falls, Philippines,
+                  {`${(paymentDetails as IPayment)?.streetAddress},`}
                 </Typography>
               </Column>
               <Column justfiyContent="flex-start" width="100%" gap="10px">
@@ -105,12 +86,14 @@ const PlaceOrder = ({ back }: IProps) => {
                   color="text.secondary"
                   sx={{ marginBottom: "0.5em" }}
                 >
-                  Turkey - 62502
+                  {`${(paymentDetails as IPayment)?.country} - ${
+                    (paymentDetails as IPayment)?.zipCode
+                  }`}
                 </Typography>
               </Column>
             </Column>
             <Column justfiyContent="flex-start" width="100%">
-              {/* <OrderDetails products={CartProducts} cart={cart} /> */}
+              <OrderDetails products={cart.items} cart={cart} />
             </Column>
             <Column justfiyContent="flex-start" width="100%">
               <Column justfiyContent="flex-start" width="100%">
@@ -152,9 +135,9 @@ const PlaceOrder = ({ back }: IProps) => {
                 <Typography variant="caption" color="text.secondary">
                   Subtotal
                 </Typography>
-                {/* <Typography variant="caption" color="text.secondary">
-                  ${discountPrice.toFixed(2)}
-                </Typography> */}
+                <Typography variant="caption" color="text.secondary">
+                  ${allDiscount}
+                </Typography>
               </Row>
               <Row
                 justfiyContent="space-between"
@@ -165,7 +148,7 @@ const PlaceOrder = ({ back }: IProps) => {
                   Tax
                 </Typography>
                 <Typography variant="caption" color="text.secondary">
-                  $2.53
+                  $0.00
                 </Typography>
               </Row>
               <Row
@@ -188,9 +171,9 @@ const PlaceOrder = ({ back }: IProps) => {
                 <Typography variant="caption" color="text.primary">
                   Total
                 </Typography>
-                {/* <Typography variant="caption" color="text.primary">
-                  ${discountPrice.toFixed(2)}
-                </Typography> */}
+                <Typography variant="caption" color="text.primary">
+                  ${allDiscount}
+                </Typography>
               </Row>
             </Column>
           </Section>

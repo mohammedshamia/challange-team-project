@@ -1,16 +1,18 @@
 import { Field, FieldProps } from "formik";
-import {FormControl, FormControlLabel, FormLabel, RadioGroup} from "@mui/material";
+import {
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  RadioGroup,
+} from "@mui/material";
 import {
   Checkbox,
   ErrorMessage,
   Label,
   Input,
   TextArea,
-  Radio,
 } from "./FormInput.styled";
-import {CSSProperties, default as React} from "react";
-import {formatDate} from "../../../utils/helpers";
-
+import { CSSProperties, default as React } from "react";
 
 export interface IFormInputProps {
   name: string;
@@ -18,8 +20,8 @@ export interface IFormInputProps {
   type?: string;
   placeholder?: string;
   style?: CSSProperties;
-  firstValue?:string | boolean;
-  secondValue? : string | boolean;
+  firstValue?: string | boolean;
+  secondValue?: string | boolean;
   firstLabel?: string | number | React.ReactElement;
   secondLabel?: string | number | React.ReactElement;
 }
@@ -33,7 +35,7 @@ const FormInput = ({
   firstValue,
   secondValue,
   firstLabel,
-  secondLabel
+  secondLabel,
 }: IFormInputProps) => (
   <Field name={name} style={{ ...style }}>
     {({
@@ -76,19 +78,22 @@ const FormInput = ({
               label={<Label>{label}</Label>}
             />
           ) : type === "radio" ? (
-              <FormControl>
-                <FormLabel id="demo-controlled-radio-buttons-group">{label}</FormLabel>
-                <RadioGroup
-                    aria-labelledby="demo-controlled-radio-buttons-group"
-                    name="controlled-radio-buttons-group"
-                    value={field.value}
-                    onChange={(e) => {
-                      form.setFieldValue(name, e.target.value);
-                    }} >
-                  {/*<FormControlLabel value={firstValue} control={<Radio />} label={firstLabel} />*/}
-                  {/*<FormControlLabel value={secondValue} control={<Radio />} label={secondLabel} />*/}
-                </RadioGroup>
-              </FormControl>
+            <FormControl>
+              <FormLabel id="demo-controlled-radio-buttons-group">
+                {label}
+              </FormLabel>
+              <RadioGroup
+                aria-labelledby="demo-controlled-radio-buttons-group"
+                name="controlled-radio-buttons-group"
+                value={field.value}
+                onChange={(e) => {
+                  form.setFieldValue(name, e.target.value);
+                }}
+              >
+                {/*<FormControlLabel value={firstValue} control={<Radio />} label={firstLabel} />*/}
+                {/*<FormControlLabel value={secondValue} control={<Radio />} label={secondLabel} />*/}
+              </RadioGroup>
+            </FormControl>
           ) : (
             <>
               <Input
