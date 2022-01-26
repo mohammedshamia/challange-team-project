@@ -29,6 +29,14 @@ const AdminRoutes = [
     ),
   },
   {
+    path: "/user/:id",
+    component: (
+        <RequireAdmin>
+          <UserDetails />
+        </RequireAdmin>
+    ),
+  },
+  {
     path: "/orders",
     component: (
       <RequireAdmin>
