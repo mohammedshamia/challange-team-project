@@ -14,7 +14,7 @@ import { useCallback, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/cart.actions";
 import { useNavigate } from "react-router-dom";
-
+import Img from "../common/Img";
 export default function ProdectCard({
   id,
   img,
@@ -43,7 +43,7 @@ export default function ProdectCard({
     <CardContainer boxShadow={boxShadow} borderRadius={borderRadius}>
       <div style={{ cursor: "pointer" }} onClick={handleClick}>
         <Box width="98%" m="auto" height="350px">
-          <ImagContainer src={img} alt={name} width="513px" height="342px" />
+          <Img src={img} alt={name} width="100%" height="100%" />
         </Box>
         <div style={{ padding: "0 5%" }}>
           <Typography

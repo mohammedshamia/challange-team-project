@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { autoPlay } from "react-swipeable-views-utils";
 import SwipeableViews from "react-swipeable-views";
 import { DataCatagorySlider } from "./sliderData";
@@ -8,8 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/actions/products.actions";
 import { AppState } from "../../redux/store";
 import Loading from "../common/Loading";
-import { IProduct } from "../../@types/products.types";
+import { IProduct, Products } from "../../@types/products.types";
 import { Grid } from "@mui/material";
+import { formatProducts } from "../../utils/helpers";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 export default function SliderProduct() {
@@ -30,7 +31,11 @@ export default function SliderProduct() {
   const handleChangeIndex = (index: number) => {
     setActiveStep(index);
   };
-
+  const NewProduct = useMemo(() => {
+    return (
+     formatProducts(products)
+    );
+  }, [products]);
   const styles = {
     slideContainer: {
       padding: "16px 60px",
@@ -45,7 +50,7 @@ export default function SliderProduct() {
         slideStyle={styles.slideContainer}
         onChangeIndex={handleChangeIndex}
       >
-        {DataCatagorySlider.map((item) => (
+        {(NewProduct as Products[]).map((item) => (
           <Grid
             key={item.id}
             container
@@ -60,7 +65,7 @@ export default function SliderProduct() {
             {loading ? (
               <Loading />
             ) : (
-              (products as IProduct[])?.slice(0, 3).map((product) => (
+              (item.product as IProduct[])?.map((product) => (
                 <Grid key={product._id} item md={3.8} sx={{ margin: "16px 0" }}>
                   <ProdectCard
                     id={product._id as string}
