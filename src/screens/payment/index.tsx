@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import Stepper, { IStep } from "../../components/common/Stepper";
 import ShippingAndPayment from "./ShippingAndPayment";
 import PlaceOrder from "./PlaceOrder";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Container } from "./Payment.styled";
 import { IPayment } from "./ShippingAndPayment/validation";
 
@@ -18,16 +18,16 @@ const Payment = () => {
     setActive((prev) => prev - 1);
   }, []);
 
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
-
   const steps = useMemo<IStep[]>(
     () => [
       {
         text: "Shipping and Payment",
         children: (
-          <ShippingAndPayment next={next} setPaymentDetails={setState} />
+          <ShippingAndPayment
+            next={next}
+            paymentDetails={state}
+            setPaymentDetails={setState}
+          />
         ),
       },
       {
@@ -36,7 +36,7 @@ const Payment = () => {
         last: true,
       },
     ],
-    [next, back]
+    [next, back, state]
   );
 
   return (
