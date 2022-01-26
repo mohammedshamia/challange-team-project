@@ -54,7 +54,6 @@ export default function SliderProduct() {
         slideStyle={styles.slideContainer}
         onChangeIndex={handleChangeIndex}
       >
-
         {(formattedProducts as Products[]).map((item) => (
           <Grid
             key={item.id}
