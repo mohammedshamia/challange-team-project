@@ -14,4 +14,4 @@ export const formSchema = yup.object().shape({
   hasExpiry: yup.boolean().required("Expiry Date is required"),
   hasCvc: yup.boolean().required("CVC is required"),
 });
-export interface Payment extends yup.InferType<typeof formSchema> {}
+export interface IPayment extends yup.InferType<typeof formSchema> {}

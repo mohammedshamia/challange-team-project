@@ -16,7 +16,7 @@ import { Section } from "../../../components/GlobalStyles";
 import FormInput from "../../../components/common/FormInput";
 import { Button } from "../../../components/Button/Button.style";
 import { AppState } from "../../../redux/store";
-import { formSchema } from "./validation";
+import { formSchema, IPayment } from "./validation";
 import {
   ErrorMessage,
   Label,
@@ -26,6 +26,7 @@ import OrderDetails from "../OrderDetails";
 
 interface IProps {
   next: Function;
+  setPaymentDetails: Function;
 }
 
 const Container = styled.div`
@@ -45,7 +46,7 @@ const Container = styled.div`
   }
 `;
 
-const ShippingAndPayment = ({ next }: IProps) => {
+const ShippingAndPayment = ({ next, setPaymentDetails }: IProps) => {
   const {
     cart: { cart },
   } = useSelector((state: AppState) => state);
@@ -55,6 +56,7 @@ const ShippingAndPayment = ({ next }: IProps) => {
 
   const handlePayment = useCallback(
     async (values) => {
+      setPaymentDetails(values as IPayment);
       next();
     },
     [next]

@@ -2,11 +2,13 @@ import { Typography } from "@mui/material";
 import Stepper, { IStep } from "../../components/common/Stepper";
 import ShippingAndPayment from "./ShippingAndPayment";
 import PlaceOrder from "./PlaceOrder";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Container } from "./Payment.styled";
+import { IPayment } from "./ShippingAndPayment/validation";
 
 const Payment = () => {
   const [active, setActive] = useState<number>(0);
+  const [state, setState] = useState<IPayment>();
 
   const next = useCallback(() => {
     setActive((prev) => prev + 1);
@@ -16,15 +18,21 @@ const Payment = () => {
     setActive((prev) => prev - 1);
   }, []);
 
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
+
   const steps = useMemo<IStep[]>(
     () => [
       {
         text: "Shipping and Payment",
-        children: <ShippingAndPayment next={next} />,
+        children: (
+          <ShippingAndPayment next={next} setPaymentDetails={setState} />
+        ),
       },
       {
         text: "Place an Order",
-        children: <PlaceOrder back={back} />,
+        children: <PlaceOrder back={back} paymentDetails={state} />,
         last: true,
       },
     ],

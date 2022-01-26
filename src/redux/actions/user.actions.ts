@@ -34,7 +34,8 @@ export const editProfile =
   };
 
 export const editUser =
-  (id: string, user: IUserForm) => async (dispatch: Dispatch<ActionTypes>) => {
+  (id: string, user: IUserForm, callback?: Function) =>
+  async (dispatch: Dispatch<ActionTypes>) => {
     try {
       dispatch({
         type: UserConstants.EDIT_USER_START,
@@ -50,6 +51,8 @@ export const editUser =
         ...user,
         profileImage: profileImage || user.profileImage,
       });
+
+      callback?.();
 
       dispatch({
         type: UserConstants.EDIT_USER_SUCCESS,
