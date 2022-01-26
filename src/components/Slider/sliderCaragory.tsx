@@ -64,6 +64,7 @@ export default function SliderCatagory() {
               <Loading />
             ) : (
               (item_.categories as ICategory[])?.map((item) => (
+
                 <Grid key={item.name} item md={2.4}>
                   <CategroyCard
                     onClick={() => handleNavgateCategory(item.name as string)}
