@@ -1,5 +1,4 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -80,7 +79,13 @@ export default function FormReview() {
         createdAt: new Date().toString(),
       };
       dispatch(
-        addReview((product as IProduct)._id as string, values_ as IReview)
+        addReview(
+          (product as IProduct)._id as string,
+          values_ as IReview,
+          () => {
+            handleClose();
+          }
+        )
       );
     },
     [dispatch, product, auth]

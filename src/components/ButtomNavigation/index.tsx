@@ -14,7 +14,13 @@ interface Iprops {
 }
 
 export default function BottonNavigationGroup(props: Iprops) {
-  const { auth } = useSelector((state: AppState) => state);
+  const {
+    auth,
+    cart: {
+      cart: { items },
+    },
+  } = useSelector((state: AppState) => state);
+
   return (
     <Stack direction="row">
       <Link to={auth.isAuthenticated ? "/profile" : "/auth/login"}>
@@ -33,7 +39,7 @@ export default function BottonNavigationGroup(props: Iprops) {
           path="/shopping-cart"
           label="Cart"
           icon={<ShoppingCartIcon />}
-          badgeContent={props.cartItems}
+          badgeContent={Object.keys(items).length}
         />
       </Link>
       {props.isAdmin && (
@@ -42,7 +48,6 @@ export default function BottonNavigationGroup(props: Iprops) {
             path="/products"
             label="Products"
             icon={<CategoryIcon />}
-            badgeContent={props.cartItems}
           />
         </Link>
       )}

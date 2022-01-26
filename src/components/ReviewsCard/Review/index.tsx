@@ -23,7 +23,12 @@ export default function Review({
   return (
     <div>
       <ReviewContiner>
-        <Typography variant="h4" color="text.primary">
+        <Typography
+          variant="h4"
+          color="text.primary"
+          fontWeight="bold"
+          fontSize="24px"
+        >
           {nameReviewer}
         </Typography>
         <RatingContiner>
@@ -32,7 +37,12 @@ export default function Review({
             isReadOnly={true}
             name={"disabled"}
           />
-          <Typography variant="h6" color="text.disabled">
+          <Typography
+            variant="h6"
+            color="text.disabled"
+            fontWeight="bold"
+            fontSize="16px"
+          >
             {" "}
             {timeOfReview}
           </Typography>
@@ -40,9 +50,10 @@ export default function Review({
         <GrayText>
           <Typography
             variant="h4"
-            fontSize="1rem"
             lineHeight={1.5}
             color="text.primary"
+            fontWeight="500"
+            fontSize="16px"
           >
             {optionsReviewer}
           </Typography>

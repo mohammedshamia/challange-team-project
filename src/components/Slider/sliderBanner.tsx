@@ -43,7 +43,11 @@ export default function Slider({ products }: { products: IProduct[] }) {
                     {`Save up to $${product.discount}`}
                   </Typography>
                 )}
-                <Typography variant="h1" color="text.primary">
+                <Typography
+                  variant="h1"
+                  color="text.primary"
+                  fontWeight={"900"}
+                >
                   {product.name}
                 </Typography>
                 <Typography variant="h5" color="text.primary">
@@ -53,7 +57,7 @@ export default function Slider({ products }: { products: IProduct[] }) {
               <Button
                 as={Link}
                 borderRadius="20px"
-                width="38%"
+                width="200px"
                 to={`/product/${product._id}`}
                 sx={{
                   display: "flex",

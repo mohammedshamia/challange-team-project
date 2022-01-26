@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 import { ActionsType, IReview } from "../../@types/products.types";
 import { IProductForm } from "../../@types/products.types";
 import API from "../../api";
-import { createFormData, notify } from "../../utils/helpers";
+import { createFormData, notify, uploadPhoto } from "../../utils/helpers";
 import { ProductConstants } from "../contants/products.constants";
 
 export const createProduct =
@@ -43,9 +43,7 @@ export const updateProduct =
       const images = [...data.images].filter(
         (image) => typeof image !== "string"
       );
-      const promises = images.map((image) => {
-        return API.post("/upload", createFormData(image as File));
-      });
+      const promises = images.map((image) => uploadPhoto(image as File));
       const urls = await Promise.all<AxiosResponse>(promises);
       const form = { ...data, images: [...urls.map((url) => url.data)] };
       const res = await API.put(`/products/${productID}`, form);
@@ -170,8 +168,28 @@ export const getCategories = () => async (dispatch: Dispatch<ActionsType>) => {
   }
 };
 
+export const getCategoryProducts =
+  (keyword: string) => async (dispatch: Dispatch<ActionsType>) => {
+    try {
+      dispatch({
+        type: ProductConstants.GET_CATEGORY_PRODUCTS_START,
+      });
+      const { data } = await API.get(`/products/category/${keyword}`);
+      dispatch({
+        type: ProductConstants.GET_CATEGORY_PRODUCTS_SUCCESS,
+        payload: data?.products,
+      });
+    } catch (error: any) {
+      console.error(error?.response?.data?.message || error.message);
+      dispatch({
+        type: ProductConstants.GET_CATEGORY_PRODUCTS_FAIL,
+        payload: error?.response?.data?.message || error.message,
+      });
+    }
+  };
+
 export const addReview =
-  (productID: string, review: IReview) =>
+  (productID: string, review: IReview, callback?: Function) =>
   async (dispatch: Dispatch<ActionsType>) => {
     const { comment, rating } = review;
     try {
@@ -182,7 +200,7 @@ export const addReview =
         comment,
         rating,
       });
-      // console.log(res.data);
+      callback?.();
       dispatch({
         type: ProductConstants.ADD_REVIEW_SUCCESS,
         payload: review,

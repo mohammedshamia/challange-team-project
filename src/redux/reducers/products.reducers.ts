@@ -12,6 +12,7 @@ interface IState {
     products: IProduct[];
   };
   categories: ICategory[];
+  categoryProducts: IProduct[];
 }
 
 const initial_state: IState = {
@@ -24,6 +25,7 @@ const initial_state: IState = {
     products: [],
   },
   categories: [],
+  categoryProducts: [],
   product: undefined,
 };
 
@@ -134,6 +136,23 @@ export const ProductsReducer = (state = initial_state, action: ActionsType) => {
         categories: action.payload,
       };
     case ProductConstants.GET_CATEGORIES_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case ProductConstants.GET_CATEGORY_PRODUCTS_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ProductConstants.GET_CATEGORY_PRODUCTS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        categoryProducts: action.payload,
+      };
+    case ProductConstants.GET_CATEGORY_PRODUCTS_FAIL:
       return {
         ...state,
         loading: false,

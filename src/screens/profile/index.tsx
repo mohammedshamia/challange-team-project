@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/actions/auth.actions";
 import { AppState } from "../../redux/store";
+import OrdersProduct from './tabs/orders/index';
 import { useTheme } from "styled-components";
 
 const ProfilePage = () => {
@@ -55,13 +56,19 @@ const ProfilePage = () => {
           My Orders
         </Typography>
       ),
-      content: <Typography variant="h4">My Orders</Typography>,
+      content: <OrdersProduct/>
     },
+  ];
+
+  const AdminTabs = [
     {
       label: (
         <Link
           to={"/products"}
-          style={{ textDecoration: "none", color: theme.palette.text.primary }}
+          style={{
+            textDecoration: "none",
+            color: theme.palette.text.primary,
+          }}
         >
           <Typography
             // as={Link}
@@ -83,8 +90,12 @@ const ProfilePage = () => {
   return (
     <Container>
       <VerticalTabs
-        labels={Tabs.map((label) => label.label)}
-        content={Tabs.map((content) => content.content)}
+        labels={[...Tabs, ...((user.isAdmin && AdminTabs) || [])].map(
+          (label) => label?.label
+        )}
+        content={[...Tabs, ...((user.isAdmin && AdminTabs) || [])].map(
+          (content) => content?.content
+        )}
         button="Log out"
         buttonClick={() => handleLogout()}
       />

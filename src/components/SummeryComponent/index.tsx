@@ -22,19 +22,23 @@ export default function SummeryComponent(props: Iprops) {
     ? [...props.sizes]
     : [];
 
-  const onChangeValue = useCallback((item: string): void => {
-    let val: string = item;
-    setValue(val);
-    props?.onChangeItem?.(item);
-  }, [props]);
+  const onChangeValue = useCallback(
+    (item: string): void => {
+      let val: string = item;
+      setValue(val);
+      props?.onChangeItem?.(item);
+    },
+    [props]
+  );
 
   return (
-    <div style={{ width: "60%" }}>
+    <div>
       {props.sizes ? (
         <>
           <Typography
             color="text.secondary"
             sx={{ fontWeight: "500", margin: "10px 0" }}
+            fontSize="24px"
           >
             Size : {value}
           </Typography>
@@ -58,7 +62,7 @@ export default function SummeryComponent(props: Iprops) {
         <>
           <Typography
             color="text.secondary"
-            sx={{ fontSize: "18px", fontWeight: "500", margin: "10px 0" }}
+            sx={{ fontSize: "24px", fontWeight: "500", margin: "10px 0" }}
           >
             Color : {value}
           </Typography>

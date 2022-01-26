@@ -1,10 +1,10 @@
-import Typography from "@mui/material/Typography";
+import { Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IColumn } from "../../../../@types/table.types";
-import Table from "../../../../components/Table";
-import { getMyOrders } from "../../../../redux/actions/orders.actions";
-import { AppState } from "../../../../redux/store";
+import { IColumn } from "../../../@types/table.types";
+import Table from "../../../components/Table";
+import { getAllOrders } from "../../../redux/actions/orders.actions";
+import { AppState } from "../../../redux/store";
 
 const columns: IColumn[] = [
   {
@@ -45,17 +45,17 @@ const columns: IColumn[] = [
   },
 ];
 
-export default function OrdersProduct() {
+export default function AllOrdersProduct() {
   const { orders } = useSelector((state: AppState) => state.orders);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getMyOrders());
+    dispatch(getAllOrders());
   }, [dispatch]);
 
   return (
-    <div style={{ width: "100%", margin: "auto" }}>
+    <div style={{ width: "60%", margin: "auto" }}>
       <Typography
         variant="h2"
         fontSize="1.5rem"
