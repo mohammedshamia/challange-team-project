@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { autoPlay } from "react-swipeable-views-utils";
 import SwipeableViews from "react-swipeable-views";
 import { DataCatagorySlider } from "./sliderData";
@@ -11,6 +11,7 @@ import { getCategories } from "../../redux/actions/products.actions";
 import Loading from "../common/Loading";
 import { Categories, ICategory } from "../../@types/products.types";
 import { useNavigate } from "react-router-dom";
+import { formatCategory } from "../../utils/helpers";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 export default function SliderCatagory() {
@@ -34,6 +35,11 @@ export default function SliderCatagory() {
   };
   const handleNavgateCategory = (keyword: string) =>
     navgate(`/category/${keyword}`);
+
+  const formattedCategories = useMemo(() => {
+    return formatCategory(categories as ICategory[]);
+  }, [categories]);
+
   return (
     <>
       <AutoPlaySwipeableViews
@@ -42,7 +48,7 @@ export default function SliderCatagory() {
         slideStyle={styles.slideContainer}
         onChangeIndex={handleChangeIndex}
       >
-        {DataCatagorySlider.map((item_) => (
+        {(formattedCategories as Categories[]).map((item_) => (
           <Grid
             key={item_.id}
             container
@@ -57,7 +63,7 @@ export default function SliderCatagory() {
             {loading ? (
               <Loading />
             ) : (
-              (categories as ICategory[]).slice(0, 4).map((item) => (
+              (item_.categories as ICategory[]).slice(0, 4).map((item) => (
                 <Grid key={item.name} item md={2.4}>
                   <CategroyCard
                     onClick={() => handleNavgateCategory(item.name as string)}

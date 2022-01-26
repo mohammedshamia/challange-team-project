@@ -34,7 +34,7 @@ export interface IProduct {
 }
 export interface Products {
   id: number;
-  product: IProduct[];
+  products: IProduct[];
 }
 export interface IReview {
   name?: string;

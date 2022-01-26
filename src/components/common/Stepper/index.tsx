@@ -46,7 +46,16 @@ export default class Stepper extends PureComponent<IProps> {
             ))}
           </MUIStepper>
         </Container>
-        {this.props.steps[this.props.defaultActive]?.children}
+        {this.props.steps.map((step: IStep, index) => (
+          <div
+            key={index}
+            style={{
+              display: this.props.defaultActive === index ? "block" : "none",
+            }}
+          >
+            {step.children}
+          </div>
+        ))}
       </>
     );
   }

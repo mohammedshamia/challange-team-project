@@ -1,4 +1,4 @@
-import { ActionsType, IOrder } from "../../@types/orders.types";
+import { ActionsType, IOrder, IOrderResponse } from "../../@types/orders.types";
 import { OrdersConstants } from "../contants/orders.constants";
 
 export interface IState {
@@ -6,6 +6,7 @@ export interface IState {
   loading: boolean;
   myOrders: IOrder[];
   orders: IOrder[];
+  order: IOrderResponse | undefined;
 }
 
 const initial_state: IState = {
@@ -13,6 +14,7 @@ const initial_state: IState = {
   loading: false,
   orders: [],
   myOrders: [],
+  order: undefined,
 };
 
 export const OrdersReducer = (state = initial_state, action: ActionsType) => {
@@ -46,6 +48,23 @@ export const OrdersReducer = (state = initial_state, action: ActionsType) => {
         orders: action.payload,
       };
     case OrdersConstants.GET_ORDERS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case OrdersConstants.CREATE_ORDER_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case OrdersConstants.CREATE_ORDER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        order: action.payload,
+      };
+    case OrdersConstants.CREATE_ORDER_FAIL:
       return {
         ...state,
         loading: false,
