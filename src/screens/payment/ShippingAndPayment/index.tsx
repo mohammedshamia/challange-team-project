@@ -16,7 +16,7 @@ import { Section } from "../../../components/GlobalStyles";
 import FormInput from "../../../components/common/FormInput";
 import { Button } from "../../../components/Button/Button.style";
 import { AppState } from "../../../redux/store";
-import { formSchema } from "./validation";
+import { formSchema, IPayment } from "./validation";
 import {
   ErrorMessage,
   Label,
@@ -26,6 +26,8 @@ import OrderDetails from "../OrderDetails";
 
 interface IProps {
   next: Function;
+  setPaymentDetails: Function;
+  paymentDetails?: IPayment;
 }
 
 const Container = styled.div`
@@ -45,19 +47,21 @@ const Container = styled.div`
   }
 `;
 
-const ShippingAndPayment = ({ next }: IProps) => {
+const ShippingAndPayment = ({
+  next,
+  setPaymentDetails,
+  paymentDetails,
+}: IProps) => {
   const {
     cart: { cart },
   } = useSelector((state: AppState) => state);
 
-  const stripe = useStripe();
-  const elements = useElements();
-
   const handlePayment = useCallback(
     async (values) => {
+      setPaymentDetails(values as IPayment);
       next();
     },
-    [next]
+    [next, setPaymentDetails]
   );
 
   const allDiscount = useMemo(() => {
@@ -73,13 +77,14 @@ const ShippingAndPayment = ({ next }: IProps) => {
   return (
     <Container>
       <Formik
+        enableReinitialize
         validationSchema={formSchema}
         initialValues={{
-          country: "",
-          city: "",
-          name: "",
-          zipCode: "",
-          streetAddress: "",
+          country: paymentDetails?.country || "",
+          city: paymentDetails?.city || "",
+          name: paymentDetails?.name || "",
+          postalCode: paymentDetails?.postalCode || "",
+          address: paymentDetails?.address || "",
           hasNumber: "",
           hasExpiry: "",
           hasCvc: "",
@@ -128,15 +133,12 @@ const ShippingAndPayment = ({ next }: IProps) => {
                         <Column justfiyContent="flex-start" width="50%">
                           <FormInput
                             type="number"
-                            name="zipCode"
+                            name="postalCode"
                             label="Zip Code"
                           />
                         </Column>
                         <Column justfiyContent="flex-start" width="50%">
-                          <FormInput
-                            name="streetAddress"
-                            label="Street Address"
-                          />
+                          <FormInput name="address" label="Street Address" />
                         </Column>
                       </Row>
                     </Column>
@@ -166,7 +168,7 @@ const ShippingAndPayment = ({ next }: IProps) => {
                           <CardNumberElement
                             className="stripe"
                             onChange={(e) =>
-                              setFieldValue("hasNumber", e.complete)
+                              setFieldValue("hasNumber", !e.empty && e.complete)
                             }
                           />
                           {errors["hasNumber"] && (
@@ -185,7 +187,7 @@ const ShippingAndPayment = ({ next }: IProps) => {
                           <CardExpiryElement
                             className="stripe"
                             onChange={(e) =>
-                              setFieldValue("hasExpiry", e.complete)
+                              setFieldValue("hasExpiry", !e.empty && e.complete)
                             }
                           />
                           {errors["hasExpiry"] && (
@@ -197,7 +199,7 @@ const ShippingAndPayment = ({ next }: IProps) => {
                           <CardCvcElement
                             className="stripe"
                             onChange={(e) =>
-                              setFieldValue("hasCvc", e.complete)
+                              setFieldValue("hasCvc", !e.empty && e.complete)
                             }
                           />
                           {errors["hasCvc"] && (

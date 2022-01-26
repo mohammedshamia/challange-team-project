@@ -42,6 +42,10 @@ export default function SliderProduct() {
     },
   };
 
+  const formattedProducts = useMemo(() => {
+    return formatProducts(products as IProduct[]);
+  }, [products]);
+
   return (
     <>
       <AutoPlaySwipeableViews
@@ -50,7 +54,8 @@ export default function SliderProduct() {
         slideStyle={styles.slideContainer}
         onChangeIndex={handleChangeIndex}
       >
-        {(NewProduct as Products[]).map((item) => (
+
+        {(formattedProducts as Products[]).map((item) => (
           <Grid
             key={item.id}
             container
@@ -65,7 +70,7 @@ export default function SliderProduct() {
             {loading ? (
               <Loading />
             ) : (
-              (item.product as IProduct[])?.map((product) => (
+              (item.products as IProduct[]).map((product) => (
                 <Grid key={product._id} item md={3.8} sx={{ margin: "16px 0" }}>
                   <ProdectCard
                     id={product._id as string}
@@ -88,16 +93,18 @@ export default function SliderProduct() {
           padding: "20px 0",
         }}
       >
-        {Array.from(Array(DataCatagorySlider.length)).map((_, index) => (
-          <DotsItem
-            active={activeStep === index && true}
-            onClick={() => handleChangeIndex(index)}
-            width="15px"
-            height="15px"
-            margin="5px"
-            key={index}
-          />
-        ))}
+        {Array.from(Array((formattedProducts as Products[]).length)).map(
+          (_, index) => (
+            <DotsItem
+              active={activeStep === index && true}
+              onClick={() => handleChangeIndex(index)}
+              width="15px"
+              height="15px"
+              margin="5px"
+              key={index}
+            />
+          )
+        )}
       </div>
     </>
   );

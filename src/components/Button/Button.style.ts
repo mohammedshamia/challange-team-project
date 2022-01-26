@@ -32,4 +32,12 @@ export const Button = styled(B)<Iprops>((props) => ({
         : props.background || props.theme.palette.primary.main,
     opacity: "0.8",
   },
+  "&:disabled": {
+    background:
+      props.background === "secondary"
+        ? props.theme.palette.secondary.main
+        : props.background || props.theme.palette.primary.main,
+    opacity: "0.8",
+    cursor: "pointer",
+  },
 }));
