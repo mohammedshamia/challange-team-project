@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import { Formik, Form } from "formik";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -216,7 +216,13 @@ const NewProductForm = ({ product, categories }: IProps) => {
                 color="#fff"
                 sx={{ paddingInline: "2em", textTransform: "capitalize" }}
               >
-                {Boolean(product) ? "Update Product" : "Create New Product"}
+                {loading ? (
+                  <CircularProgress size={'20px'} color="inherit" />
+                ) : Boolean(product) ? (
+                  "Update Product"
+                ) : (
+                  "Create New Product"
+                )}
               </Typography>
             </Button>
           </Row>

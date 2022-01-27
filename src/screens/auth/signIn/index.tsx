@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import { Typography } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 import { formSchema } from "./signIn.validation";
 import FormInput from "../../../components/common/FormInput";
 import { useNavigate } from "react-router-dom";
@@ -91,14 +92,18 @@ const SignIn = () => {
                 label={"Enter your password"}
               />
               <Button type="submit" disabled={loading}>
-                <Typography
-                  variant="h6"
-                  color="#000"
-                  fontSize="22px"
-                  fontWeight="500"
-                >
-                  Login
-                </Typography>
+                {!loading ? (
+                  <Typography
+                    variant="h6"
+                    color="#000"
+                    fontSize="22px"
+                    fontWeight="500"
+                  >
+                    Login
+                  </Typography>
+                ) : (
+                  <CircularProgress color="inherit" />
+                )}
               </Button>
               <FormInput
                 name="remember_me"

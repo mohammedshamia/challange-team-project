@@ -1,4 +1,5 @@
 import { Typography } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 import { Link } from "react-router-dom";
 import { IColumn } from "../../../@types/table.types";
 import { Button } from "../../../components/Button/Button.style";
@@ -40,6 +41,7 @@ const columns: IColumn[] = [
 const Products = () => {
   const {
     products: {
+      loading,
       products: { pages },
     },
   } = useSelector((state: AppState) => state);
@@ -61,17 +63,22 @@ const Products = () => {
       </Typography>
       <Row justfiyContent="flex-end" width="100%">
         <Button
+          disabled={loading}
           as={Link}
           sx={{ width: "fit-content", height: "fit-content", padding: "10px" }}
           to={"/products/new"}
         >
-          <Typography
-            variant="body2"
-            color="text.primary"
-            sx={{ paddingInline: "2em", textTransform: "capitalize" }}
-          >
-            Create Product
-          </Typography>
+          {!loading ? (
+            <Typography
+              variant="body2"
+              color="text.primary"
+              sx={{ paddingInline: "2em", textTransform: "capitalize" }}
+            >
+              Create Product
+            </Typography>
+          ) : (
+            <CircularProgress color="inherit" />
+          )}
         </Button>
       </Row>
       <div style={{ width: "100%", margin: "auto" }}>
