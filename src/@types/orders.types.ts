@@ -111,6 +111,19 @@ export interface CREATE_ORDER_FAIL {
   payload: string;
 }
 
+export interface DELIVER_ORDER_START {
+  type: OrdersConstants.DELIVER_ORDER_START;
+}
+
+export interface DELIVER_ORDER_SUCCESS {
+  type: OrdersConstants.DELIVER_ORDER_SUCCESS;
+}
+
+export interface DELIVER_ORDER_FAIL {
+  type: OrdersConstants.DELIVER_ORDER_FAIL;
+  payload: string;
+}
+
 export type ActionsType =
   | GET_MY_ORDERS_START
   | GET_MY_ORDERS_SUCCESS
@@ -120,4 +133,7 @@ export type ActionsType =
   | GET_ORDERS_FAIL
   | CREATE_ORDER_START
   | CREATE_ORDER_SUCCESS
-  | CREATE_ORDER_FAIL;
+  | CREATE_ORDER_FAIL
+  | DELIVER_ORDER_START
+  | DELIVER_ORDER_SUCCESS
+  | DELIVER_ORDER_FAIL;

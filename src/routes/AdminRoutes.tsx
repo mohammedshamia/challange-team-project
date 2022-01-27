@@ -29,11 +29,12 @@ const AdminRoutes = [
     ),
   },
   {
-    path: "/user/:id",
+
+    path: "/users/:id",
     component: (
-        <RequireAdmin>
-          <UserDetails />
-        </RequireAdmin>
+      <RequireAdmin>
+        <UserDetails />
+      </RequireAdmin>
     ),
   },
   {

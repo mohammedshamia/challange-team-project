@@ -115,7 +115,7 @@ export const getProducts =
         type: ProductConstants.GET_PRODUCTS_START,
       });
       const { data }: AxiosResponse = await API.get("/products", {
-        params: { keyword: keyword, page: page },
+        params: { keyword: keyword, pageNumber: page },
       });
       dispatch({
         type: ProductConstants.GET_PRODUCTS_SUCCESS,

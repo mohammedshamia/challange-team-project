@@ -1,13 +1,14 @@
-import { Typography } from "@mui/material";
+import { Icon, Typography } from "@mui/material";
 import { IColumn } from "../../../@types/table.types";
 import Table from "../../../components/Table";
 import { Container } from "../products/Products.styled";
-import { useEffect } from "react";
-import { getUsers } from "../../../redux/actions/user.actions";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppState } from "../../../redux/store";
+import { IUser } from "../../../@types/auth.types";
 import { ICellRendererParams } from "ag-grid-community";
 import Edit from "./Update";
+import { fetchAllUsers } from "../../../utils/helpers";
+import { AppState } from "../../../redux/store";
 
 const columns: IColumn[] = [
   {
@@ -23,7 +24,6 @@ const columns: IColumn[] = [
   },
   {
     name: "isAdmin",
-    cellRenderer: "AdminRenderer",
   },
   {
     name: "dateOfBirth",
@@ -35,16 +35,37 @@ const columns: IColumn[] = [
   },
 ];
 
+const Actions = (props: ICellRendererParams) => {
+  return (
+    <Link to={`/users/${props.data._id}`}>
+      <Icon
+        sx={{
+          cursor: "pointer",
+          background: "#fff",
+          borderRadius: "6px",
+        }}
+      >
+        <EditIcon sx={{ color: "#000", marginBottom: "5px" }} />
+      </Icon>
+    </Link>
+  );
+};
+
 function Users() {
-  // @ts-ignore
   const {
-    users: { users },
-  } = useSelector((state: AppState) => state.users);
+    users: {
+      users: { pages },
+    },
+  } = useSelector((state: AppState) => state);
+
+  const [users, setUsers] = useState<IUser[]>([]);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUsers());
+    (async () => {
+      setUsers(await fetchAllUsers(pages || 10));
+    })();
   }, [dispatch]);
   console.log(users,'us')
   return (
@@ -57,6 +78,8 @@ function Users() {
                frameworkComponents={{
                  ActionsRenderer: Edit,
                }}
+
+          paginationPageSize={10}
         />
       </div>
     </Container>

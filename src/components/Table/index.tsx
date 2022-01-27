@@ -19,6 +19,32 @@ const onFirstDataRendered = (params: any) => {
 };
 
 export default class Table<T> extends React.PureComponent<IProps<T>> {
+  state = {
+    gridApi: null,
+  };
+
+  onGridReady(params: any) {
+    this.setState((prev) => ({
+      gridApi: params.api,
+    }));
+  }
+
+  // componentDidUpdate() {
+  //   if (this.state.gridApi) {
+  //     const dataSource = {
+  //       getRows: (params: any) => {
+  //         // Use startRow and endRow for sending pagination to Backend
+  //         // params.startRow : Start Page
+  //         // params.endRow : End Page
+
+  //         const page = (params.endRow /
+  //           this.props.paginationPageSize) as number;
+  //       },
+  //     };
+  //     this.state.gridApi?.setDatasource(dataSource);
+  //   }
+  // }
+
   render(): React.ReactNode {
     return (
       <div
@@ -32,9 +58,13 @@ export default class Table<T> extends React.PureComponent<IProps<T>> {
           rowData={this.props.data}
           pagination={true}
           paginationPageSize={this.props.paginationPageSize || 10}
-          onPaginationChanged={(e) => console.log(e)}
+          onPaginationChanged={(e) =>
+            this.props?.onPaginationChanged?.(e.api.paginationGetCurrentPage())
+          }
           frameworkComponents={this.props.frameworkComponents}
           onFirstDataRendered={onFirstDataRendered}
+          cacheBlockSize={this.props.paginationPageSize || 10}
+          onGridReady={this.onGridReady.bind(this)}
         >
           {this.props.columns.map((column: IColumn) => (
             <AgGridColumn

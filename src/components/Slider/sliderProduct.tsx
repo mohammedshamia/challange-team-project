@@ -31,7 +31,11 @@ export default function SliderProduct() {
   const handleChangeIndex = (index: number) => {
     setActiveStep(index);
   };
-
+  const NewProduct = useMemo(() => {
+    return (
+     formatProducts(products)
+    );
+  }, [products]);
   const styles = {
     slideContainer: {
       padding: "16px 60px",

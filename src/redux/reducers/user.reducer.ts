@@ -3,25 +3,25 @@ import { UserConstants } from "../contants/user.constant";
 import { ActionTypes } from "../../@types/users.types";
 
 interface IState {
-    loading: boolean;
-    error: string;
-    user: IUser |undefined;
-    users: {
-        page: number;
-        pages: number;
-        users: IUser[];
-    };
+  loading: boolean;
+  error: string;
+  user: IUser | undefined;
+  users: {
+    page: number;
+    pages: number;
+    users: IUser[];
+  };
 }
 
 const initial_state: IState = {
-    loading: false,
-    error: "",
-    user:undefined,
-    users: {
-        page: 0,
-        pages: 0,
-        users: [],
-    },
+  loading: false,
+  error: "",
+  user: undefined,
+  users: {
+    page: 0,
+    pages: 0,
+    users: [],
+  },
 };
 
 export const UsersReducer = (state = initial_state, action: ActionTypes) => {
