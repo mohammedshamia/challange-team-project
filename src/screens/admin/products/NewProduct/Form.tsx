@@ -124,7 +124,11 @@ const NewProductForm = ({ product, categories }: IProps) => {
                 <ImageUpload values={values} errors={errors} />
               </Column>
               <Column justfiyContent="flex-start" width="100%">
-                <Typography variant="h6" color="text.primary">
+                <Typography
+                  variant="h4"
+                  color="text.primary"
+                  fontWeight={"500"}
+                >
                   Product Details
                 </Typography>
                 <Column justfiyContent="flex-start" width="100%" gap="2em">

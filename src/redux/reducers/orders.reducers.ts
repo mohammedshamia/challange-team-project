@@ -5,14 +5,14 @@ export interface IState {
   error: string;
   loading: boolean;
   myOrders: IOrder[];
-  orders: IOrder[];
+  orders: { orders: IOrder[]; page: number; pages: number };
   order: IOrderResponse | undefined;
 }
 
 const initial_state: IState = {
   error: "",
   loading: false,
-  orders: [],
+  orders: { orders: [], page: 0, pages: 0 },
   myOrders: [],
   order: undefined,
 };
@@ -65,6 +65,22 @@ export const OrdersReducer = (state = initial_state, action: ActionsType) => {
         order: action.payload,
       };
     case OrdersConstants.CREATE_ORDER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case OrdersConstants.DELIVER_ORDER_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case OrdersConstants.DELIVER_ORDER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case OrdersConstants.DELIVER_ORDER_FAIL:
       return {
         ...state,
         loading: false,

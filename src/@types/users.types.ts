@@ -10,6 +10,7 @@ export interface IUserForm {
   _id?: string;
   password?: string;
 }
+
 export interface IUser {
   createdAt?: string;
   profileImage?: string;

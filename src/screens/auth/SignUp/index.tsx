@@ -49,17 +49,27 @@ const SignUp = () => {
         </Typography>
         <Formik
           initialValues={{
-            name: "",
+            firstName: "",
+            lastName: "",
             email: "",
             password: "",
-            confirmPassword: "",
+            passwordConfirmation: "",
           }}
           validationSchema={formSchema}
           onSubmit={handleSubmit}
         >
           {() => (
             <Form>
-              <FormInput name="name" placeholder="Your name" label={"Name"} />
+              <FormInput
+                name="firstName"
+                placeholder="Your First name"
+                label={"First Name"}
+              />
+              <FormInput
+                name="lastName"
+                placeholder="Your Last name"
+                label={"Last Name"}
+              />
               <FormInput
                 name="email"
                 placeholder="name@example.com"
@@ -72,7 +82,7 @@ const SignUp = () => {
                 label={"Enter your password"}
               />
               <FormInput
-                name="confirmPassword"
+                name="passwordConfirmation"
                 type="password"
                 placeholder="******"
                 label={"Confirm your password"}

@@ -17,6 +17,7 @@ export default function Img({ src, alt, width, height }: Iprops) {
           width={width}
           height={height}
           onError={() => setImageError(true)}
+          loading="lazy"
         />
       )}
     </>
