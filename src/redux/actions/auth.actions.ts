@@ -48,7 +48,7 @@ export const login =
 
 export const createUser =
   (data: ISignUp, callback?: Function) =>
-  async (dispatch: Dispatch<ActionsType>) => {
+  async (dispatch: Dispatch<ActionsType | CartActionsType>) => {
     try {
       dispatch({
         type: AuthConstants.CREATE_USER_START,
@@ -57,10 +57,19 @@ export const createUser =
         "/users/signup",
         data
       );
+
+      localStorage.setItem("user-data", JSON.stringify(res.data));
+
       dispatch({
         type: AuthConstants.CREATE_USER_SUCCESS,
         payload: res.data,
       });
+
+      dispatch({
+        type: CartConstants.GET_CART_SUCCESS,
+        payload: res.data.cart as ICart,
+      });
+
       callback?.();
     } catch (error: any) {
       dispatch({
