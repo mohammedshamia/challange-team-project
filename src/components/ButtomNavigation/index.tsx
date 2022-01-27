@@ -1,12 +1,10 @@
 import SimpleBottomNavigation from "./ButtonNavigation";
-import PersonIcon from "@mui/icons-material/Person";
-import GroupIcon from '@mui/icons-material/Group';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Stack } from "@mui/material";
 import { Link } from "./BottonNavigation.style";
 import { useSelector } from "react-redux";
 import { AppState } from "../../redux/store";
-import CategoryIcon from "@mui/icons-material/Category";
+import Dropdown from "../common/Header/Dropdown";
 interface Iprops {
   wishlist: number;
   cartItems: number;
@@ -24,42 +22,16 @@ export default function BottonNavigationGroup(props: Iprops) {
 
   return (
     <Stack direction="row">
-      <Link to={auth.isAuthenticated ? "/profile" : "/auth/login"}>
-        <SimpleBottomNavigation
-          label={
-            (auth.isAuthenticated &&
-              `${auth.user.firstName} ${auth.user.lastName}`) ||
-            "Login / Sign up"
-          }
-          icon={<PersonIcon />}
-          path=""
-        />
-      </Link>
-      <Link to={"/shopping-cart"}>
-        <SimpleBottomNavigation
-          path="/shopping-cart"
-          label="Cart"
-          icon={<ShoppingCartIcon />}
-          badgeContent={Object.keys(items).length}
-        />
-      </Link>
-      {props.isAdmin && (
-        <>
-         <Link to={"/users"}>
-         <SimpleBottomNavigation
-           path="/users"
-           label="Users"
-           icon={<GroupIcon />}
-         />
-       </Link>
-        <Link to={"/products"}>
+      <Dropdown auth={auth} />
+      {auth.isAuthenticated && (
+        <Link to={"/shopping-cart"}>
           <SimpleBottomNavigation
-            path="/products"
-            label="Products"
-            icon={<CategoryIcon />}
+            path="/shopping-cart"
+            label="Cart"
+            icon={<ShoppingCartIcon />}
+            badgeContent={Object.keys(items).length}
           />
         </Link>
-        </>
       )}
     </Stack>
   );

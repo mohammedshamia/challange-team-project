@@ -1,4 +1,5 @@
 import { Divider, Grid } from "@mui/material";
+import { Link } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
@@ -141,3 +142,14 @@ export const GridTopRateProducts = styled(Grid)((props) => ({
     "&:last-child": { borderRight: "none" },
   },
 }));
+
+
+export const CustomLink = styled(Link)((props)=>({
+  color:props.theme.palette.text.primary,
+  textDecoration:"none",
+  padding:0,
+  margin:0,
+  fontFamily:"Mulish",
+  cursor: "pointer",
+
+}))

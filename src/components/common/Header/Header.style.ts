@@ -13,10 +13,12 @@ export const HeaderBox = styled("div")`
   color: white;
   z-index: 999;
 `;
-
-export const ButtonIcon = styled(IconButton)(({ theme }) => ({
+interface Iprops {
+  border?: string;
+}
+export const ButtonIcon = styled(IconButton)<Iprops>((props) => ({
   borderRadius: "7px",
-  border: "1px solid #707070",
+  border: props.border || "1px solid #707070",
   color: "#fff",
   marginLeft: "10px",
 }));

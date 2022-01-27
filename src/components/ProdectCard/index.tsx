@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import {
   CardContainer,
-  ImagContainer,
   PriceContainer,
   SalaryPercentage,
   SittingContainer,
@@ -11,10 +10,12 @@ import { Card } from "../Card/Types";
 import RatingComponent from "../Rating";
 import { Button } from "../Button/Button.style";
 import { useCallback, useMemo } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/actions/cart.actions";
 import { useNavigate } from "react-router-dom";
 import Img from "../common/Img";
+import { AppState } from "../../redux/store";
+import { notify } from "../../utils/helpers";
 export default function ProdectCard({
   id,
   img,
@@ -27,15 +28,20 @@ export default function ProdectCard({
 }: Card) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const { auth } = useSelector((state: AppState) => state);
   const result = useMemo(
     () => ((discountValue as number) / (price as number)) * 100,
     [price, discountValue]
   );
 
   const AddToCart = useCallback(() => {
-    dispatch(addToCart(id as string));
-  }, [dispatch, id]);
+    if (auth.isAuthenticated) {
+      dispatch(addToCart(id as string));
+      return;
+    }
+
+    notify("warning", "Please Login to add Item to The Cart");
+  }, [dispatch, id, auth.isAuthenticated]);
 
   const handleClick = () => navigate(`/product/${id}`);
 

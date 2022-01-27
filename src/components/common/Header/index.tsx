@@ -13,10 +13,11 @@ import { ButtonIcon, FlexBox, HeaderBox, Toolbar } from "./Header.style";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import { Item } from "../../../@types/cart.types";
+import { useLocation } from "react-router-dom";
 
 export default function Header() {
   const dispatch = useDispatch();
-
+  const { pathname } = useLocation();
   const {
     theme,
     cart: { cart },
@@ -24,7 +25,7 @@ export default function Header() {
       user: { isAdmin },
     },
   } = useSelector((state: AppState) => state);
-
+  const isAuth = pathname.includes("auth");
   const toggleTheme_ = React.useCallback(() => {
     dispatch(toggleTheme(theme === "light" ? "dark" : "light"));
   }, [theme, dispatch]);
@@ -40,7 +41,7 @@ export default function Header() {
   const handleCloseNavMenu = React.useCallback(() => {
     setAnchorElNav(null);
   }, []);
-
+  console.log(pathname);
   return (
     <HeaderBox>
       <Toolbar disableGutters>
@@ -77,9 +78,13 @@ export default function Header() {
               display: { xs: "block", lg: "none" },
             }}
           >
-            <Search width=" max-content" />
+            <Search width="100%" />
             <FlexBox>
-              <BottonNavigationGroup wishlist={9} cartItems={0} />
+              <BottonNavigationGroup
+                isAdmin={isAdmin}
+                wishlist={9}
+                cartItems={Object.keys(cart.items as Item[]).length || 0}
+              />
               <ButtonIcon onClick={toggleTheme_} aria-label="toggle-theme">
                 {theme === "light" ? <Brightness4Icon /> : <Brightness7Icon />}
               </ButtonIcon>
@@ -98,13 +103,15 @@ export default function Header() {
           }}
         >
           <Logo />
-          <Search />
+          {!isAuth && <Search />}
           <FlexBox>
-            <BottonNavigationGroup
-              isAdmin={isAdmin}
-              wishlist={9}
-              cartItems={Object.keys(cart.items as Item[]).length || 0}
-            />
+            {!isAuth && (
+              <BottonNavigationGroup
+                isAdmin={isAdmin}
+                wishlist={9}
+                cartItems={Object.keys(cart.items as Item[]).length || 0}
+              />
+            )}
             <ButtonIcon onClick={toggleTheme_} aria-label="toggle-theme">
               {theme === "light" ? <Brightness4Icon /> : <Brightness7Icon />}
             </ButtonIcon>
