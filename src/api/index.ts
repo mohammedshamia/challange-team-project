@@ -1,8 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { IUser } from "../@types/auth.types";
 
-const user = localStorage.getItem("user-data") || "";
-
 export const baseURL = "https://prohop-express.herokuapp.com";
 
 const Axios: AxiosInstance = axios.create({
@@ -11,6 +9,7 @@ const Axios: AxiosInstance = axios.create({
 
 Axios.interceptors.request.use(
   (config: AxiosRequestConfig) => {
+    const user = localStorage.getItem("user-data") || "";
     const { token } = (user && (JSON.parse(user) as IUser)) || { token: "" };
     if (token) {
       config.headers = {
