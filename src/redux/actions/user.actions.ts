@@ -77,7 +77,6 @@ export const getUsers =
       const { data }: AxiosResponse = await API.get("/users", {
         params: { keyword: keyword, page: page },
       });
-      const { data }: AxiosResponse = await API.get("/users");
       dispatch({
         type: UserConstants.GET_USERS_SUCCESS,
         payload: data,
