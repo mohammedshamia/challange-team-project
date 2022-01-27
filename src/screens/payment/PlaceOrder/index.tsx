@@ -240,15 +240,15 @@ const PlaceOrder = ({ back, paymentDetails }: IProps) => {
             onClick={handlePlaceOrder}
             disabled={loading}
           >
-            {loading ? (
-              <CircularProgress size={14} style={{ color: "#000" }} />
-            ) : (
+            {!loading ? (
               <Typography
                 variant="h6"
                 style={{ textTransform: "capitalize", paddingInline: "50px" }}
               >
                 Place Order
               </Typography>
+            ) : (
+              <CircularProgress color="inherit" />
             )}
           </Button>
         </Container>
