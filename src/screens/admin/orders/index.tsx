@@ -116,6 +116,7 @@ export default function AllOrdersProduct() {
   return (
     <div style={{ width: "60%", margin: "auto" }}>
       <Typography
+        color="text.primary"
         variant="h2"
         fontSize="1.5rem"
         sx={{

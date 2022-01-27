@@ -12,6 +12,7 @@ export default function Img({ src, alt, width, height }: Iprops) {
       {" "}
       {src && !imageError && (
         <img
+          style={{ objectFit: "contain" }}
           src={src}
           alt={alt}
           width={width}

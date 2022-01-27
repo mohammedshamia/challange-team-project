@@ -16,8 +16,10 @@ import {
   TitleInformationsContiner,
 } from "../ProductPage.styled";
 import { useTheme } from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../redux/actions/cart.actions";
+import { AppState } from "../../../redux/store";
+import { notify } from "../../../utils/helpers";
 
 interface Iprops {
   nameProdect: string;
@@ -48,6 +50,7 @@ export default function DetailesProdect({
   detailsprodect,
   id,
 }: Iprops) {
+  const { auth } = useSelector((state: AppState) => state);
   const theme = useTheme();
   const dispatch = useDispatch();
   const [state, setState] = useState<Istate>({
@@ -71,9 +74,13 @@ export default function DetailesProdect({
       size: newValue,
     }));
   const AddToCart = useCallback(() => {
-    console.log(state?.counter);
-    dispatch(addToCart(id as string, state.counter));
-  }, [dispatch, id, state]);
+    if (auth.isAuthenticated) {
+      dispatch(addToCart(id as string, state.counter));
+      return;
+    }
+
+    notify("warning", "Please Login to add Item to The Cart");
+  }, [dispatch, id, state, auth.isAuthenticated]);
 
   return (
     <div>

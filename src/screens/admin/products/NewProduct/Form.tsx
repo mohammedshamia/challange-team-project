@@ -217,7 +217,7 @@ const NewProductForm = ({ product, categories }: IProps) => {
                 sx={{ paddingInline: "2em", textTransform: "capitalize" }}
               >
                 {loading ? (
-                  <CircularProgress size={'20px'} color="inherit" />
+                  <CircularProgress size={20} color="inherit" />
                 ) : Boolean(product) ? (
                   "Update Product"
                 ) : (
