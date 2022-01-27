@@ -32,6 +32,7 @@ export const AuthReducer = (state = initial_state, action: ActionsType) => {
       return {
         ...state,
         loading: false,
+        isAuthenticated: true,
         user: action.payload,
       };
     case AuthConstants.CREATE_USER_FAIL:

@@ -68,7 +68,7 @@ export default function ProdectCard({
                   color: "#FC4059",
                 }}
               >
-                {(price as number) - (discountValue as number)}$
+                {((price as number) - (discountValue as number)).toFixed(2)}$
               </Typography>
             )}
 
@@ -80,7 +80,7 @@ export default function ProdectCard({
                 textDecoration: discountValue ? "line-through" : "none",
               }}
             >
-              {price}$
+              {price?.toFixed(2)}$
             </Typography>
           </PriceContainer>
         </div>

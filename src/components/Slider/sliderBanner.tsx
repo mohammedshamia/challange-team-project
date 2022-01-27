@@ -9,9 +9,11 @@ import { Stack, Contianer, DivImg, DotsItem } from "./style";
 import { IProduct } from "../../@types/products.types";
 import { DataBannerSlider } from "./sliderData";
 import { Link } from "react-router-dom";
+import { useTheme } from "styled-components";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 export default function Slider({ products }: { products: IProduct[] }) {
+  const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
@@ -63,13 +65,18 @@ export default function Slider({ products }: { products: IProduct[] }) {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  fontFamily: theme.typography.fontFamily,
                 }}
               >
                 Shop now
               </Button>
             </Stack>
             <DivImg>
-              <img src={"/static/img1.PNG"} alt="slide" loading="lazy" />
+              <img
+                src={product.images?.[0] || "/static/img1.PNG"}
+                alt="slide"
+                loading="lazy"
+              />
             </DivImg>
           </Contianer>
         ))}

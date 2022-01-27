@@ -18,6 +18,7 @@ export default function SliderCatagory() {
   const [activeStep, setActiveStep] = useState(0);
   const dispatch = useDispatch();
   const navgate = useNavigate();
+
   const { loading, categories } = useSelector(
     (state: AppState) => state.products
   );
@@ -25,6 +26,7 @@ export default function SliderCatagory() {
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
+
   const handleChangeIndex = (index: number) => {
     setActiveStep(index);
   };
@@ -64,7 +66,6 @@ export default function SliderCatagory() {
               <Loading />
             ) : (
               (item_.categories as ICategory[])?.map((item) => (
-
                 <Grid key={item.name} item md={2.4}>
                   <CategroyCard
                     onClick={() => handleNavgateCategory(item.name as string)}

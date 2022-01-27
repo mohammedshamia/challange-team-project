@@ -20,6 +20,7 @@ import { Banner, Categroy, FeaturedProducts, TopRateProducts } from "./styled";
 
 const HomePage = () => {
   const dispatch = useDispatch();
+
   const {
     loading,
     topProducts,
@@ -29,7 +30,7 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getTopProducts());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

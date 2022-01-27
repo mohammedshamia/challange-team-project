@@ -26,15 +26,13 @@ export default function SliderProduct() {
     if ((products as IProduct[])?.length === 0) {
       dispatch(getProducts());
     }
-  }, [dispatch, products]);
+  }, [dispatch]);
 
   const handleChangeIndex = (index: number) => {
     setActiveStep(index);
   };
   const NewProduct = useMemo(() => {
-    return (
-     formatProducts(products)
-    );
+    return formatProducts(products);
   }, [products]);
   const styles = {
     slideContainer: {
