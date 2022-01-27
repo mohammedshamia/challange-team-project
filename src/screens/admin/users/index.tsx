@@ -6,8 +6,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IUser } from "../../../@types/auth.types";
 import { ICellRendererParams } from "ag-grid-community";
-import { Link } from "react-router-dom";
-import EditIcon from "@mui/icons-material/Edit";
+import Edit from "./Update";
 import { fetchAllUsers } from "../../../utils/helpers";
 import { AppState } from "../../../redux/store";
 
@@ -32,7 +31,7 @@ const columns: IColumn[] = [
   },
   {
     name: "actions",
-    cellRenderer: "UsersActions",
+    cellRenderer: "ActionsRenderer",
   },
 ];
 
@@ -68,19 +67,18 @@ function Users() {
       setUsers(await fetchAllUsers(pages || 10));
     })();
   }, [dispatch]);
-
+  console.log(users,'us')
   return (
     <Container>
       <Typography variant="h2" color="text.primary">
         Users
       </Typography>
       <div style={{ width: "100%", margin: "auto" }}>
-        <Table
-          data={users as IUser[]}
-          columns={columns}
-          frameworkComponents={{
-            UsersActions: Actions,
-          }}
+        <Table data={users} columns={columns}
+               frameworkComponents={{
+                 ActionsRenderer: Edit,
+               }}
+
           paginationPageSize={10}
         />
       </div>

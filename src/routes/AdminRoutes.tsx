@@ -29,6 +29,7 @@ const AdminRoutes = [
     ),
   },
   {
+
     path: "/users/:id",
     component: (
       <RequireAdmin>

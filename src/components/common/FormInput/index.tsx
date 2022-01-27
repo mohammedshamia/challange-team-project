@@ -10,10 +10,10 @@ import {
   ErrorMessage,
   Label,
   Input,
-  TextArea,
+  TextArea, Radio,
 } from "./FormInput.styled";
 import { CSSProperties, default as React } from "react";
-
+import {formatDate} from "../../../utils/helpers";
 export interface IFormInputProps {
   name: string;
   label: string;
@@ -22,8 +22,10 @@ export interface IFormInputProps {
   style?: CSSProperties;
   firstValue?: string | boolean;
   secondValue?: string | boolean;
-  firstLabel?: string | number | React.ReactElement;
-  secondLabel?: string | number | React.ReactElement;
+  firstLabel?: | number
+      | string;
+  secondLabel?: | number
+      | string;
 }
 
 const FormInput = ({
@@ -79,9 +81,6 @@ const FormInput = ({
             />
           ) : type === "radio" ? (
             <FormControl>
-              <FormLabel id="demo-controlled-radio-buttons-group">
-                {label}
-              </FormLabel>
               <RadioGroup
                 aria-labelledby="demo-controlled-radio-buttons-group"
                 name="controlled-radio-buttons-group"
@@ -90,8 +89,8 @@ const FormInput = ({
                   form.setFieldValue(name, e.target.value);
                 }}
               >
-                {/*<FormControlLabel value={firstValue} control={<Radio />} label={firstLabel} />*/}
-                {/*<FormControlLabel value={secondValue} control={<Radio />} label={secondLabel} />*/}
+                <FormControlLabel value={firstValue} control={<Radio />} label='Admin' />
+                <FormControlLabel value={secondValue} control={<Radio />} label='Not Admin' />
               </RadioGroup>
             </FormControl>
           ) : (
@@ -108,7 +107,7 @@ const FormInput = ({
                 onBlur={(e) => {
                   field.onBlur(e);
                 }}
-                value={field.value}
+                value={type === 'date' ? formatDate(field.value): field.value }
                 placeholder={placeholder}
               />
             </>

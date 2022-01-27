@@ -10,7 +10,7 @@ const Edit = (props: ICellRendererParams) => {
     console.log(props,'props1')
     return (
         <>
-            <Link to={`/users/${props.data._id}`}>
+            <Link to={`/user/${props.data._id}`}>
                 <Icon>
                     <EditIcon />
                 </Icon>

@@ -24,7 +24,7 @@ export default function UserDetails() {
     if (params.id) {
       dispatch(getUserByID(params.id as string));
     }
-  }, [dispatch, params]);
+  }, []);
 
   const { loading, user } = useSelector((state: AppState) => state.users);
 
@@ -109,6 +109,8 @@ export default function UserDetails() {
                           name="isAdmin"
                           label="Is Admin?"
                           type="radio"
+                          firstValue={true}
+                          secondValue={false}
                         />
                       </Column>
                     </Row>
