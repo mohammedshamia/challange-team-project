@@ -1,7 +1,7 @@
 import { PureComponent, ReactNode } from "react";
 import Counter from "../../Counter";
 import { Close, ImgContainer, WrapperCart } from "./ShoppingCart.style";
-import { Chip, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { ConnectedProps, connect } from "react-redux";
 import { addToCart, removeFromCart } from "../../../redux/actions/cart.actions";
 import { calculateDiscount } from "../../../utils/helpers";
@@ -82,7 +82,7 @@ class ShoppingCartCard extends PureComponent<IPropsShoppingCart> {
                 color="text.secondary"
                 sx={{ textDecoration: "line-through" }}
               >
-                {this.props.price}
+                {(this.props.price)?.toFixed(2)}
               </Typography>
               <Typography variant="h4" fontWeight="900" color="text.primary">
                 {calculateDiscount(

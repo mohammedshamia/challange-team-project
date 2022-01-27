@@ -11,20 +11,21 @@ import { updateUserSchema } from "./validation";
 import FormInput from "../../../../components/common/FormInput";
 
 import { useTheme } from "styled-components";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { editUser, getUserByID } from "../../../../redux/actions/user.actions";
 import { notify } from "../../../../utils/helpers";
+import { CircularProgress } from "@mui/material";
 
 export default function UserDetails() {
   const theme = useTheme();
   const params = useParams();
   const dispatch = useDispatch();
-
+  const navgate = useNavigate();
   useEffect(() => {
     if (params.id) {
       dispatch(getUserByID(params.id as string));
     }
-  }, []);
+  }, [dispatch, params.id]);
 
   const { loading, user } = useSelector((state: AppState) => state.users);
 
@@ -32,6 +33,7 @@ export default function UserDetails() {
     dispatch(
       editUser((user as IUserForm)._id as string, values, () => {
         notify("success", "User Updated successfully");
+        navgate("/users");
       })
     );
   };
@@ -132,13 +134,17 @@ export default function UserDetails() {
                 }}
                 disabled={loading}
               >
-                <Typography
-                  variant="body2"
-                  color="#fff"
-                  sx={{ paddingInline: "2em", textTransform: "capitalize" }}
-                >
-                  Updates
-                </Typography>
+                {!loading ? (
+                  <Typography
+                    variant="body2"
+                    color="#fff"
+                    sx={{ paddingInline: "2em", textTransform: "capitalize" }}
+                  >
+                    Updates
+                  </Typography>
+                ) : (
+                  <CircularProgress size={20} color="inherit" />
+                )}
               </Button>
             </Row>
           </Form>
