@@ -91,7 +91,7 @@ const ShippingAndPayment = ({
         }}
         onSubmit={handlePayment}
       >
-        {({ errors, setFieldValue }) => (
+        {({ errors, touched, setFieldValue, setFieldTouched }) => (
           <Form>
             <Row
               justfiyContent="stretch"
@@ -167,11 +167,12 @@ const ShippingAndPayment = ({
                           <Label>Card Number</Label>
                           <CardNumberElement
                             className="stripe"
+                            onFocus={() => setFieldTouched("hasNumber", true)}
                             onChange={(e) =>
                               setFieldValue("hasNumber", !e.empty && e.complete)
                             }
                           />
-                          {errors["hasNumber"] && (
+                          {errors["hasNumber"] && touched["hasNumber"] && (
                             <ErrorMessage>{errors["hasNumber"]}</ErrorMessage>
                           )}
                         </Column>
@@ -186,11 +187,12 @@ const ShippingAndPayment = ({
                           <Label>Expiry Date</Label>
                           <CardExpiryElement
                             className="stripe"
+                            onFocus={() => setFieldTouched("hasExpiry", true)}
                             onChange={(e) =>
                               setFieldValue("hasExpiry", !e.empty && e.complete)
                             }
                           />
-                          {errors["hasExpiry"] && (
+                          {errors["hasExpiry"] && touched["hasExpiry"] && (
                             <ErrorMessage>{errors["hasExpiry"]}</ErrorMessage>
                           )}
                         </Column>
@@ -198,11 +200,12 @@ const ShippingAndPayment = ({
                           <Label>CVC</Label>
                           <CardCvcElement
                             className="stripe"
+                            onFocus={() => setFieldTouched("hasCvc", true)}
                             onChange={(e) =>
                               setFieldValue("hasCvc", !e.empty && e.complete)
                             }
                           />
-                          {errors["hasCvc"] && (
+                          {errors["hasCvc"] && touched["hasCvc"] && (
                             <ErrorMessage>{errors["hasCvc"]}</ErrorMessage>
                           )}
                         </Column>

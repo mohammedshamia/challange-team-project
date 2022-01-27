@@ -30,7 +30,7 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getTopProducts());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
