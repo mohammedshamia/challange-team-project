@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AppState } from "../../../redux/store";
 
 import {
   Button,
@@ -10,6 +11,7 @@ import {
   Link,
 } from "../signIn/SignIn.styled";
 import { Typography } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 import { Form, Formik } from "formik";
 import { formSchema } from "./signUp.validation";
 import FormInput from "../../../components/common/FormInput";
@@ -18,6 +20,8 @@ import { createUser } from "../../../redux/actions/auth.actions";
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { loading } = useSelector((state: AppState) => state.auth);
+
   const handleSubmit = useCallback(
     (values, FormikHelpers) => {
       dispatch(
@@ -73,15 +77,19 @@ const SignUp = () => {
                 placeholder="******"
                 label={"Confirm your password"}
               />
-              <Button type="submit">
-                <Typography
-                  variant="h6"
-                  color="#000"
-                  fontSize="22px"
-                  fontWeight="500"
-                >
-                  Sign up
-                </Typography>
+              <Button type="submit" disabled={loading}>
+                {!loading ? (
+                  <Typography
+                    variant="h6"
+                    color="#000"
+                    fontSize="22px"
+                    fontWeight="500"
+                  >
+                    Sign up
+                  </Typography>
+                ) : (
+                  <CircularProgress color="inherit" />
+                )}
               </Button>
               <Divider />
               <Typography
