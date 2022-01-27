@@ -22,7 +22,7 @@ const SignUp = () => {
     (values, FormikHelpers) => {
       dispatch(
         createUser(values, () => {
-          navigate("/auth/login");
+          navigate("/");
         })
       );
     },
