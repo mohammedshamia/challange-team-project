@@ -35,22 +35,6 @@ const columns: IColumn[] = [
   },
 ];
 
-const Actions = (props: ICellRendererParams) => {
-  return (
-    <Link to={`/users/${props.data._id}`}>
-      <Icon
-        sx={{
-          cursor: "pointer",
-          background: "#fff",
-          borderRadius: "6px",
-        }}
-      >
-        <EditIcon sx={{ color: "#000", marginBottom: "5px" }} />
-      </Icon>
-    </Link>
-  );
-};
-
 function Users() {
   const {
     users: {
@@ -67,18 +51,19 @@ function Users() {
       setUsers(await fetchAllUsers(pages || 10));
     })();
   }, [dispatch]);
-  console.log(users,'us')
+
   return (
     <Container>
       <Typography variant="h2" color="text.primary">
         Users
       </Typography>
       <div style={{ width: "100%", margin: "auto" }}>
-        <Table data={users} columns={columns}
-               frameworkComponents={{
-                 ActionsRenderer: Edit,
-               }}
-
+        <Table
+          data={users}
+          columns={columns}
+          frameworkComponents={{
+            ActionsRenderer: Edit,
+          }}
           paginationPageSize={10}
         />
       </div>
