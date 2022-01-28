@@ -5,7 +5,7 @@ import { CartConstants } from "../contants/cart.constants";
 import API from "../../api";
 
 export const addToCart =
-  (productID: string, qty: number = 1) =>
+  (productID: string, qty: number = 1, callback?: Function) =>
   async (dispatch: Dispatch<ActionsType>) => {
     try {
       dispatch({
@@ -21,6 +21,7 @@ export const addToCart =
         type: CartConstants.ADD_TO_CART_SUCCESS,
         payload: cart as ICart,
       });
+      callback?.();
     } catch (error: any) {
       notify("error", error?.response?.data?.message || error.message);
       dispatch({

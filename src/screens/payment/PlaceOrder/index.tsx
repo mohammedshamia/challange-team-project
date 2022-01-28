@@ -92,6 +92,8 @@ const PlaceOrder = ({ back, paymentDetails }: IProps) => {
             }
           } catch (error: StripeError | any) {
             notify("error", error.message || "Failed to process payment");
+          } finally {
+            setLoading(false);
           }
         })
       );

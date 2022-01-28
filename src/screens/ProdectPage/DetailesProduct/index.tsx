@@ -21,6 +21,7 @@ import { addToCart } from "../../../redux/actions/cart.actions";
 import { AppState } from "../../../redux/store";
 import { notify } from "../../../utils/helpers";
 import { useCart } from "../../../utils/hooks";
+import { CircularProgress } from "@mui/material";
 
 interface Iprops {
   nameProdect: string;
@@ -51,7 +52,10 @@ export default function DetailesProdect({
   detailsprodect,
   id,
 }: Iprops) {
-  const { auth } = useSelector((state: AppState) => state);
+  const {
+    auth,
+    cart: { loading },
+  } = useSelector((state: AppState) => state);
   const isInCart = useCart(id as string);
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -172,7 +176,13 @@ export default function DetailesProdect({
                     background={theme.palette.primary.main}
                     disabled={isInCart}
                   >
-                    {isInCart ? "In Cart" : "Add to Cart"}
+                    {isInCart ? (
+                      "In Cart"
+                    ) : loading ? (
+                      <CircularProgress size={20} color="inherit" />
+                    ) : (
+                      "Add to Cart"
+                    )}
                   </Button>
                 </SittingContainer>
               </BoxSammary>
