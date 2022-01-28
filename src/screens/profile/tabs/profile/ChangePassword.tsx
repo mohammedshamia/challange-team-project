@@ -7,11 +7,11 @@ import FormInput from "../../../../components/common/FormInput";
 import { FormWrapper } from "../../../auth/signIn/SignIn.styled";
 const changeformSchema = () =>
   yup.object().shape({
-    newpassword: yup.string().required("Password is required"),
+    newPassword: yup.string().required("Password is required"),
     passwordConfirmation: yup
       .string()
       .required("Password Confirmation is required")
-      .oneOf([yup.ref("password")], "Passwords must match"),
+      .oneOf([yup.ref("newPassword")], "Passwords must match"),
   });
 
 const ChangePasswordForm = styled(FormWrapper)`
@@ -23,7 +23,7 @@ export default function ChangePassword() {
     <ChangePasswordForm>
       <Formik
         initialValues={{
-          newpassword: "",
+          newPassword: "",
           passwordConfirmation: "",
         }}
         validationSchema={changeformSchema}
@@ -34,7 +34,6 @@ export default function ChangePassword() {
             <Typography variant="h4" color={"text.primary"}>
               Change password{" "}
             </Typography>
-
             <FormInput
               label={"Enter New password"}
               type="password"

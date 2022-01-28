@@ -93,16 +93,14 @@ export const logout =
     });
   };
 
-// export const forgetPassword =
-//   (data: IForgetPassword) => (dispatch: Dispatch<ActionsType>) => {};
-
 export const getProfile = () => async (dispatch: Dispatch<ActionsType>) => {
   try {
     dispatch({
       type: AuthConstants.GET_PROFILE_START,
     });
+
     const res: AxiosResponse<IUser> = await API.get("/users/profile");
-    localStorage.setItem("user-data", JSON.stringify(res.data));
+
     dispatch({
       type: AuthConstants.GET_PROFILE_SUCCESS,
       payload: res.data,
@@ -133,8 +131,13 @@ export const editProfile =
         ...rest,
         profileImage: profileImage || user.profileImage,
       });
+
       dispatch({
         type: AuthConstants.UPDATE_USER_SUCCESS,
+        payload: {
+          ...user,
+          profileImage,
+        },
       });
       callback?.();
     } catch (error: any) {

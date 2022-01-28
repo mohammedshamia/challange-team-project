@@ -28,7 +28,8 @@ const ProfilePage = () => {
     if (!user.token) {
       navigate("/auth/login");
     }
-  }, [user, navigate]);
+    dispatch(getProfile());
+  }, [dispatch, navigate]);
 
   const handleLogout = useCallback(() => {
     dispatch(
@@ -44,13 +45,10 @@ const ProfilePage = () => {
         editProfile(
           {
             ...(user as IUser),
-            firstName: (user as IUser).firstName + " ",
-            lastName: (user as IUser).lastName + " ",
             profileImage: event.target.files?.[0] as File,
           } as IUser,
           () => {
             notify("success", "User Updated successfully");
-            dispatch(getProfile());
           }
         )
       );
