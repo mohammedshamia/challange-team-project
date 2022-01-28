@@ -4,7 +4,7 @@ import { Button as B } from "@mui/material";
 export const Container = styled.div`
   max-width: 60%;
   margin-inline: auto;
-  margin-top: 2em;
+  margin-block: 2em;
   display: flex;
   flex-direction: column;
 

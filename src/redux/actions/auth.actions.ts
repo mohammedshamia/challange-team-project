@@ -8,8 +8,9 @@ import {
   IUser,
 } from "../../@types/auth.types";
 import { ICart, ActionsType as CartActionsType } from "../../@types/cart.types";
+import { IUserForm } from "../../@types/users.types";
 import API from "../../api";
-import { notify } from "../../utils/helpers";
+import { notify, uploadPhoto } from "../../utils/helpers";
 import { AuthConstants } from "../contants/auth.constants";
 import { CartConstants } from "../contants/cart.constants";
 
@@ -92,5 +93,55 @@ export const logout =
     });
   };
 
-export const forgetPassword =
-  (data: IForgetPassword) => (dispatch: Dispatch<ActionsType>) => {};
+// export const forgetPassword =
+//   (data: IForgetPassword) => (dispatch: Dispatch<ActionsType>) => {};
+
+export const getProfile = () => async (dispatch: Dispatch<ActionsType>) => {
+  try {
+    dispatch({
+      type: AuthConstants.GET_PROFILE_START,
+    });
+    const res: AxiosResponse<IUser> = await API.get("/users/profile");
+    dispatch({
+      type: AuthConstants.GET_PROFILE_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error: any) {
+    notify("error", error?.response?.data?.message || error.message);
+    dispatch({
+      type: AuthConstants.GET_PROFILE_FAIL,
+      payload: error?.response?.data?.message || error.message,
+    });
+  }
+};
+
+export const editProfile =
+  (user: IUser, callback?: Function) =>
+  async (dispatch: Dispatch<ActionsType>) => {
+    try {
+      const { token, cart, _id, ...rest } = user;
+      dispatch({
+        type: AuthConstants.UPDATE_USER_START,
+      });
+      let profileImage: string = "";
+      if (typeof user.profileImage === "object") {
+        const { data } = await uploadPhoto(user.profileImage as File);
+        profileImage = data;
+      }
+      const { data } = await API.put("/users/profile", {
+        ...rest,
+        profileImage: profileImage || user.profileImage,
+      });
+      dispatch({
+        type: AuthConstants.UPDATE_USER_SUCCESS,
+        payload: data,
+      });
+      callback?.();
+    } catch (error: any) {
+      notify("error", error?.response?.data?.message || error.message);
+      dispatch({
+        type: AuthConstants.UPDATE_USER_FAIL,
+        payload: error?.response?.data?.message || error.message,
+      });
+    }
+  };

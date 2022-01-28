@@ -1,25 +1,27 @@
-import { useCallback, useEffect, useState } from "react";
-import VerticalTabs from "../../components/Tabs";
+import { ChangeEvent, useCallback, useEffect } from "react";
 import { Typography } from "@mui/material";
-import Profile from "./tabs/profile";
-import { Container, WrapperAvatarTab, AvatarTab } from "./Profile.style";
+import { useTheme } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../../redux/actions/auth.actions";
+import VerticalTabs from "../../components/Tabs";
+import Profile from "./tabs/profile";
+import { Container, WrapperAvatarTab, AvatarTab } from "./Profile.style";
+import {
+  editProfile,
+  getProfile,
+  logout,
+} from "../../redux/actions/auth.actions";
 import { AppState } from "../../redux/store";
 import OrdersProduct from "./tabs/orders/index";
-import { useTheme } from "styled-components";
-// import { editProfile } from "../../redux/actions/user.actions";
-// import { notify } from "../../utils/helpers";
-// import { IUserForm } from "../../@types/users.types";
+import { notify } from "../../utils/helpers";
+import { IUser } from "../../@types/auth.types";
 
 const ProfilePage = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
-    auth:{user},
-   
+    auth: { user },
   } = useSelector((state: AppState) => state);
 
   useEffect(() => {
@@ -35,14 +37,26 @@ const ProfilePage = () => {
       })
     );
   }, [dispatch, navigate]);
-  const [file, setFile] = useState("");
-  const handleChange = (event: any) => {
-    setFile(URL.createObjectURL(event.target.files[0]));
-    // dispatch(
-    //   editProfile({ ...user, profileImage: file }:IUserForm, () => {
-    //     notify("success", "User Updated successfully");
-    //   })
-    // );
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files?.[0]) {
+      dispatch(
+        editProfile(
+          {
+            ...(user as IUser),
+            firstName: (user as IUser).firstName + " ",
+            lastName: (user as IUser).lastName + " ",
+            profileImage: event.target.files?.[0] as File,
+          } as IUser,
+          () => {
+            notify("success", "User Updated successfully");
+            dispatch(getProfile());
+          }
+        )
+      );
+      return;
+    }
+    notify("error", "Please select an image");
   };
 
   const Tabs = [
@@ -52,9 +66,9 @@ const ProfilePage = () => {
           <AvatarTab
             width="80px"
             height="80px"
-            src={file ? file : user.profileImage}
+            src={user.profileImage as string}
           >
-            {!file && user.firstName[0]}
+            {!user.profileImage && user.firstName[0]}
           </AvatarTab>
           <Typography
             sx={{ fontSize: "1.2rem" }}
@@ -62,7 +76,13 @@ const ProfilePage = () => {
           >{`${user.firstName} ${user.lastName}`}</Typography>
         </WrapperAvatarTab>
       ),
-      content: <Profile file={file} handleChange={handleChange} user={user} />,
+      content: (
+        <Profile
+          file={user.profileImage as string}
+          handleChange={handleChange}
+          user={user}
+        />
+      ),
     },
     {
       label: (
@@ -89,13 +109,13 @@ const ProfilePage = () => {
             variant="h4"
             sx={{ fontSize: "1.5rem" }}
           >
-            Create Products
+            Products
           </Typography>
         </Link>
       ),
       content: (
         <Typography sx={{ textAlign: "left" }} variant="h4">
-          Create Products
+          Products
         </Typography>
       ),
     },

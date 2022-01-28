@@ -17,6 +17,7 @@ import {
 } from "../../redux/actions/products.actions";
 import { AppState } from "../../redux/store";
 import { Banner, Categroy, FeaturedProducts, TopRateProducts } from "./styled";
+import { getCart } from "../../redux/actions/cart.actions";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const HomePage = () => {
   } = useSelector((state: AppState) => state.products);
 
   useEffect(() => {
+    dispatch(getCart());
     dispatch(getProducts());
     dispatch(getTopProducts());
   }, [dispatch]);

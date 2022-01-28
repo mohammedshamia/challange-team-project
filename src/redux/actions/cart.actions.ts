@@ -57,6 +57,7 @@ export const getCart = () => async (dispatch: Dispatch<ActionsType>) => {
     dispatch({
       type: CartConstants.GET_CART_START,
     });
+
     const {
       data: { cart },
     } = await API.get("/users/profile");
@@ -72,7 +73,3 @@ export const getCart = () => async (dispatch: Dispatch<ActionsType>) => {
     });
   }
 };
-
-export const clearCart = () => ({
-  type: CartConstants.CLEAR_CART,
-});
