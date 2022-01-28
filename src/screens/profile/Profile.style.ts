@@ -1,8 +1,11 @@
+import { Avatar } from "@mui/material";
+import { styled as styleM } from "@mui/material";
 import styled from "styled-components";
 interface Iprops {
   borderRadius?: string;
   height?: string;
   width?: string;
+  fontSize?: string;
 }
 export const Container = styled("div")((props) => ({
   padding: "5% 7%",
@@ -24,13 +27,15 @@ export const WrapperAvatar = styled.div`
     color: ${(props) => props.theme.palette.text.primary};
   }
 `;
-export const AvatarTab = styled.img<Iprops>((props) => ({
+export const AvatarTab = styleM(Avatar)<Iprops>((props) => ({
   width: props.width || "137px",
   height: props.height || "137px",
   maxWidth: "100%",
   maxHeight: "100%",
   borderRadius: props.borderRadius || "50%",
   objectFit: "cover",
+  fontSize: props.fontSize || "2rem",
+  textTransform: "uppercase",
 }));
 
 export const LeftSide = styled.div`
@@ -39,13 +44,14 @@ export const LeftSide = styled.div`
 export const RightSide = styled("div")((props) => ({
   display: "flex",
   flexDirection: "column",
+  alignItems:"center",
   [props.theme.breakpoints.down("md")]: {
     justifyContent: "space-between",
     "& img": {
       display: "none",
     },
   },
-  "& button": {
+  "& span": {
     marginTop: "50px",
     textTransform: "none",
   },
@@ -67,7 +73,6 @@ export const InfoUser = styled.div`
     & p {
       width: 100%;
       align-items: flex-start;
-     
     }
   }
 `;

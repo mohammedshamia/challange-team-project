@@ -1,11 +1,10 @@
 import { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
-import { ActionsType, ICategory, IReview } from "../../@types/products.types";
+import { ActionsType, IReview } from "../../@types/products.types";
 import { IProductForm } from "../../@types/products.types";
 import API from "../../api";
 import {
   createFormData,
-  formatCategory,
   notify,
   uploadPhoto,
 } from "../../utils/helpers";

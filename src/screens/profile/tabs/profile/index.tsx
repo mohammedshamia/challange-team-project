@@ -1,5 +1,5 @@
-import React from "react";
-import { Typography } from "@mui/material";
+import React, {  useState } from "react";
+import { styled, Typography } from "@mui/material";
 import {
   WrapperAvatar,
   LeftSide,
@@ -8,14 +8,26 @@ import {
   ChangePasswordBtn,
   AvatarTab,
 } from "./../../Profile.style";
+import {
+  BootstrapDialog,
+} from "../../../../components/ReviewsCard/ReviewForm";
 import { Button } from "../../../../components/Button/Button.style";
 import { IUser } from "../../../../@types/auth.types";
+import ChangePassword from "./ChangePassword";
 
 interface IProps {
   user: IUser;
+  handleChange: Function;
+  file: string;
 }
-
-const Profile = ({ user }: IProps) => {
+const Input = styled("input")({
+  display: "none",
+});
+const Profile = ({ user, handleChange, file }: IProps) => {
+  const [open, setOpen] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <WrapperAvatar>
       <LeftSide>
@@ -68,27 +80,49 @@ const Profile = ({ user }: IProps) => {
             fontSize="13px"
             width="198px"
             height="40px"
+            onClick={() => setOpen(true)}
             style={{ fontWeight: "500" }}
           >
             Change Password
           </Button>
+          <BootstrapDialog
+            onClose={handleClose}
+            aria-labelledby="product-delete-dialog"
+            open={open}
+          >
+            <ChangePassword />
+          </BootstrapDialog>
         </ChangePasswordBtn>
       </LeftSide>
       <RightSide>
         <AvatarTab
-          src={user?.profileImage || "/static/avatar.jpg"}
-          alt="avatar"
+          fontSize="3rem"
+          src={file ? file : user.profileImage}
           width="198px"
           height="198px"
-        />
-        <Button
-          width="153"
-          height="40px"
-          fontSize="13px"
-          style={{ fontWeight: "500" }}
         >
-          Upload new photo
-        </Button>
+          {!file && user.firstName[0]}
+        </AvatarTab>
+        <label htmlFor="contained-button-file">
+          <Input
+            accept="image/*"
+            id="contained-button-file"
+            multiple
+            type="file"
+            onChange={(event) => {
+              handleChange(event);
+            }}
+          />
+          <Button
+            component="span"
+            width="153px"
+            height="40px"
+            fontSize="13px"
+            style={{ fontWeight: "500" }}
+          >
+            Upload new photo
+          </Button>
+        </label>
       </RightSide>
     </WrapperAvatar>
   );

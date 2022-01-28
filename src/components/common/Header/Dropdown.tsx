@@ -55,15 +55,18 @@ export default function AccountMenu({ auth }: Iprops) {
             border="none"
             onClick={handleClick}
             size="small"
-            sx={{ display: "flex", flexDirection: "column" }}
+            sx={{ display: "flex", flexDirection: "column",textTransform:"capitalize" }}
             aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
             {auth.isAuthenticated ? (
               <>
-                <Avatar sx={{ width: 32, height: 32 }}>
-                  {auth.user.firstName[0]}
+                <Avatar
+                  src={auth.user.profileImage}
+                  sx={{ width: 32, height: 32, textTransform: "uppercase" }}
+                >
+                  {!auth.user.profileImage && auth.user.firstName[0]}
                 </Avatar>
                 <Typography>{`${auth.user.firstName} ${auth.user.lastName}`}</Typography>
               </>
@@ -113,34 +116,39 @@ export default function AccountMenu({ auth }: Iprops) {
       >
         <CustomLink to={auth.isAuthenticated ? "/profile" : "/auth/login"}>
           <MenuItem>
-            <Avatar /> {`${auth.user.firstName} ${auth.user.lastName}`}
+            <Avatar src={auth.user.profileImage} />
+            {`${auth.user.firstName} ${auth.user.lastName}`}
           </MenuItem>
         </CustomLink>
         <Divider />
-        <CustomLink to={"/orders"}>
-          <MenuItem>
-            <ListItemIcon>
-              <FactCheckIcon fontSize="small" />
-            </ListItemIcon>
-            Orders
-          </MenuItem>
-        </CustomLink>
-        <CustomLink to={"/products"}>
-          <MenuItem>
-            <ListItemIcon>
-              <CategoryIcon fontSize="small" />
-            </ListItemIcon>
-            Products
-          </MenuItem>
-        </CustomLink>
-        <CustomLink to={"/users"}>
-          <MenuItem>
-            <ListItemIcon>
-              <GroupIcon fontSize="small" />
-            </ListItemIcon>
-            Users
-          </MenuItem>
-        </CustomLink>
+        {auth.user.isAdmin && (
+          <>
+            <CustomLink to={"/orders"}>
+              <MenuItem>
+                <ListItemIcon>
+                  <FactCheckIcon fontSize="small" />
+                </ListItemIcon>
+                Orders
+              </MenuItem>
+            </CustomLink>
+            <CustomLink to={"/products"}>
+              <MenuItem>
+                <ListItemIcon>
+                  <CategoryIcon fontSize="small" />
+                </ListItemIcon>
+                Products
+              </MenuItem>
+            </CustomLink>
+            <CustomLink to={"/users"}>
+              <MenuItem>
+                <ListItemIcon>
+                  <GroupIcon fontSize="small" />
+                </ListItemIcon>
+                Users
+              </MenuItem>
+            </CustomLink>
+          </>
+        )}
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small" />

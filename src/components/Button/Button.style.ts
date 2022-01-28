@@ -11,6 +11,7 @@ interface Iprops {
   unhover?: boolean;
   to?: string;
   color?: string;
+  component?:string
 }
 
 export const Button = styled(B)<Iprops>((props) => ({

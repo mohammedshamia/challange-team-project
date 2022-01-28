@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import VerticalTabs from "../../components/Tabs";
 import { Typography } from "@mui/material";
 import Profile from "./tabs/profile";
@@ -7,15 +7,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../redux/actions/auth.actions";
 import { AppState } from "../../redux/store";
-import OrdersProduct from './tabs/orders/index';
+import OrdersProduct from "./tabs/orders/index";
 import { useTheme } from "styled-components";
+// import { editProfile } from "../../redux/actions/user.actions";
+// import { notify } from "../../utils/helpers";
+// import { IUserForm } from "../../@types/users.types";
 
 const ProfilePage = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
-    auth: { user },
+    auth:{user},
+   
   } = useSelector((state: AppState) => state);
 
   useEffect(() => {
@@ -31,6 +35,15 @@ const ProfilePage = () => {
       })
     );
   }, [dispatch, navigate]);
+  const [file, setFile] = useState("");
+  const handleChange = (event: any) => {
+    setFile(URL.createObjectURL(event.target.files[0]));
+    // dispatch(
+    //   editProfile({ ...user, profileImage: file }:IUserForm, () => {
+    //     notify("success", "User Updated successfully");
+    //   })
+    // );
+  };
 
   const Tabs = [
     {
@@ -39,16 +52,17 @@ const ProfilePage = () => {
           <AvatarTab
             width="80px"
             height="80px"
-            src={user.profileImage || "/static/avatar.jpg"}
-            alt="avatar"
-          />
+            src={file ? file : user.profileImage}
+          >
+            {!file && user.firstName[0]}
+          </AvatarTab>
           <Typography
             sx={{ fontSize: "1.2rem" }}
             variant="h2"
           >{`${user.firstName} ${user.lastName}`}</Typography>
         </WrapperAvatarTab>
       ),
-      content: <Profile user={user} />,
+      content: <Profile file={file} handleChange={handleChange} user={user} />,
     },
     {
       label: (
@@ -56,7 +70,7 @@ const ProfilePage = () => {
           My Orders
         </Typography>
       ),
-      content: <OrdersProduct/>
+      content: <OrdersProduct />,
     },
   ];
 

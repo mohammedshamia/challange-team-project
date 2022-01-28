@@ -53,6 +53,10 @@ const RootRoutes = {
       component: <SearchPage />,
     },
     {
+      path: "/allProducts",
+      component: <SearchPage />,
+    },
+    {
       path: "/product/:id",
       component: <ProductDetails />,
     },
