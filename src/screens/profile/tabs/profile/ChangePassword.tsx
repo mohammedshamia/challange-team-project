@@ -3,6 +3,7 @@ import { Form, Formik } from "formik";
 import { useCallback } from "react";
 import styled from "styled-components";
 import * as yup from "yup";
+import { Button } from "../../../../components/Button/Button.style";
 import FormInput from "../../../../components/common/FormInput";
 import { FormWrapper } from "../../../auth/signIn/SignIn.styled";
 const changeformSchema = () =>
@@ -16,6 +17,10 @@ const changeformSchema = () =>
 
 const ChangePasswordForm = styled(FormWrapper)`
   margin-right: 0;
+  @media (max-width: 1500px) {
+    width: 100%;
+    margin-right: 3em;
+  }
 `;
 export default function ChangePassword() {
   const handleSubmit = useCallback(() => {}, []);
@@ -47,6 +52,14 @@ export default function ChangePassword() {
               placeholder="******"
               label={"Confirm your password"}
             />
+            <Button
+              width="150px"
+              fontSize="20px"
+              style={{ marginTop: "10px" }}
+              type="submit"
+            >
+              Confirm
+            </Button>
           </Form>
         )}
       </Formik>

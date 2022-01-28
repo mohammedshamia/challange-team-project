@@ -24,12 +24,6 @@ const ProfilePage = () => {
     auth: { user },
   } = useSelector((state: AppState) => state);
 
-  useEffect(() => {
-    if (!user.token) {
-      navigate("/auth/login");
-    }
-  }, [user, navigate]);
-
   const handleLogout = useCallback(() => {
     dispatch(
       logout(() => {
@@ -44,8 +38,6 @@ const ProfilePage = () => {
         editProfile(
           {
             ...(user as IUser),
-            firstName: (user as IUser).firstName + " ",
-            lastName: (user as IUser).lastName + " ",
             profileImage: event.target.files?.[0] as File,
           } as IUser,
           () => {
