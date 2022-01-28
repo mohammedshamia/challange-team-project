@@ -58,6 +58,7 @@ export interface UPDATE_USER_START {
 
 export interface UPDATE_USER_SUCCESS {
   type: AuthConstants.UPDATE_USER_SUCCESS;
+  payload: IUser;
 }
 
 export interface UPDATE_USER_FAIL {
