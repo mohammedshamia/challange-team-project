@@ -24,13 +24,6 @@ const ProfilePage = () => {
     auth: { user },
   } = useSelector((state: AppState) => state);
 
-  useEffect(() => {
-    if (!user.token) {
-      navigate("/auth/login");
-    }
-    dispatch(getProfile());
-  }, [dispatch, navigate]);
-
   const handleLogout = useCallback(() => {
     dispatch(
       logout(() => {

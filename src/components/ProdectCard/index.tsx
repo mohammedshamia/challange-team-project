@@ -95,6 +95,7 @@ export default function ProdectCard({
       </div>
       <SittingContainer style={{ gap: "14px" }}>
         <Button
+          color="secondary"
           width="324px"
           background="secondary"
           onClick={AddToCart}

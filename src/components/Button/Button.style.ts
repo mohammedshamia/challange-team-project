@@ -11,11 +11,12 @@ interface Iprops {
   unhover?: boolean;
   to?: string;
   color?: string;
-  component?:string
+  component?: string;
 }
 
 export const Button = styled(B)<Iprops>((props) => ({
-  color: props.theme.palette.text.primary,
+  color:
+    props.color === "secondary" ? props.theme.palette.text.primary : "#242424",
   background:
     props.background === "secondary"
       ? props.theme.palette.secondary.main

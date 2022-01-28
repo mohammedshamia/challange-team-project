@@ -23,6 +23,7 @@ function Counter({ value, maxValue, minValue = 0, onChange }: Iprops) {
         onClick={() => {
           handleChangeCounter("decrement");
         }}
+        color="secondary"
         width="48px"
         height="40px"
         borderRadius="0"
@@ -41,6 +42,7 @@ function Counter({ value, maxValue, minValue = 0, onChange }: Iprops) {
         {value}
       </Typography>
       <Button
+        color="secondary"
         disabled={value === maxValue}
         onClick={() => {
           handleChangeCounter("increment");
