@@ -109,6 +109,20 @@ export interface GET_TOP_PRODUCTS_FAIL {
   payload: string;
 }
 
+export interface GET_ALL_PRODUCTS_START {
+  type: ProductConstants.GET_ALL_PRODUCTS_START;
+}
+
+export interface GET_ALL_PRODUCTS_SUCCESS {
+  type: ProductConstants.GET_ALL_PRODUCTS_SUCCESS;
+  payload: Products[];
+}
+
+export interface GET_ALL_PRODUCTS_FAIL {
+  type: ProductConstants.GET_ALL_PRODUCTS_FAIL;
+  payload: string;
+}
+
 export interface GET_PRODUCTS_START {
   type: ProductConstants.GET_PRODUCTS_START;
 }

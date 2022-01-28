@@ -41,7 +41,6 @@ export default function Header() {
   const handleCloseNavMenu = React.useCallback(() => {
     setAnchorElNav(null);
   }, []);
-  console.log(pathname);
   return (
     <HeaderBox>
       <Toolbar disableGutters>

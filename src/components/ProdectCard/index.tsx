@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import Img from "../common/Img";
 import { AppState } from "../../redux/store";
 import { notify } from "../../utils/helpers";
+import { useCart } from "../../utils/hooks";
 export default function ProdectCard({
   id,
   img,
@@ -28,6 +29,7 @@ export default function ProdectCard({
 }: Card) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isInCart = useCart(id as string);
   const { auth } = useSelector((state: AppState) => state);
   const result = useMemo(
     () => ((discountValue as number) / (price as number)) * 100,
@@ -92,13 +94,13 @@ export default function ProdectCard({
         </div>
       </div>
       <SittingContainer style={{ gap: "14px" }}>
-        <Button background="secondary" width="54px">
-          <BookmarkBorderIcon
-            sx={{ width: "24px", height: "28px", margin: "15px 10px " }}
-          />
-        </Button>
-        <Button width="324px" background="secondary" onClick={AddToCart}>
-          add to card
+        <Button
+          width="324px"
+          background="secondary"
+          onClick={AddToCart}
+          disabled={isInCart}
+        >
+          {isInCart ? "In Cart" : "Add to Cart"}
         </Button>
       </SittingContainer>
 

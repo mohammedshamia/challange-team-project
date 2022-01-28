@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { styled, Typography } from "@mui/material";
 import {
   WrapperAvatar,
@@ -8,9 +8,7 @@ import {
   ChangePasswordBtn,
   AvatarTab,
 } from "./../../Profile.style";
-import {
-  BootstrapDialog,
-} from "../../../../components/ReviewsCard/ReviewForm";
+import { BootstrapDialog } from "../../../../components/ReviewsCard/ReviewForm";
 import { Button } from "../../../../components/Button/Button.style";
 import { IUser } from "../../../../@types/auth.types";
 import ChangePassword from "./ChangePassword";
@@ -97,7 +95,7 @@ const Profile = ({ user, handleChange, file }: IProps) => {
       <RightSide>
         <AvatarTab
           fontSize="3rem"
-          src={file ? file : user.profileImage}
+          src={user.profileImage as string}
           width="198px"
           height="198px"
         >
@@ -107,7 +105,6 @@ const Profile = ({ user, handleChange, file }: IProps) => {
           <Input
             accept="image/*"
             id="contained-button-file"
-            multiple
             type="file"
             onChange={(event) => {
               handleChange(event);

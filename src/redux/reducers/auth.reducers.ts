@@ -6,7 +6,7 @@ const user: string = localStorage.getItem("user-data") || "";
 const initial_state: IAuth = {
   loading: false,
   error: "",
-  isAuthenticated: Boolean(user) || false,
+  isAuthenticated: Boolean(user),
   user:
     (user && (JSON.parse(user) as IUser)) ||
     ({
@@ -36,6 +36,24 @@ export const AuthReducer = (state = initial_state, action: ActionsType) => {
         user: action.payload,
       };
     case AuthConstants.CREATE_USER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case AuthConstants.UPDATE_USER_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case AuthConstants.UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isAuthenticated: true,
+        user: action.payload,
+      };
+    case AuthConstants.UPDATE_USER_FAIL:
       return {
         ...state,
         loading: false,
@@ -74,6 +92,24 @@ export const AuthReducer = (state = initial_state, action: ActionsType) => {
           dateOfBirth: "",
           profileImage: "",
         },
+      };
+    case AuthConstants.GET_PROFILE_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case AuthConstants.GET_PROFILE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isAuthenticated: true,
+        user: action.payload,
+      };
+    case AuthConstants.GET_PROFILE_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
       };
     default:
       return state;

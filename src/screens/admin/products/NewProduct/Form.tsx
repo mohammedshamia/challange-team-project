@@ -112,7 +112,7 @@ const NewProductForm = ({ product, categories }: IProps) => {
         } as IProductForm
       }
     >
-      {({ values, errors }) => (
+      {({ values, errors, touched }) => (
         <Form style={{ width: "100%" }}>
           <Section style={{ padding: "30px", marginBlock: "15px" }}>
             <Row justfiyContent="center" width="100%" gap="20px" wrap reverse>
@@ -121,7 +121,11 @@ const NewProductForm = ({ product, categories }: IProps) => {
                 width="fit-content"
                 style={{ marginBlock: "auto" }}
               >
-                <ImageUpload values={values} errors={errors} />
+                <ImageUpload
+                  values={values}
+                  errors={errors}
+                  touched={touched}
+                />
               </Column>
               <Column justfiyContent="flex-start" width="100%">
                 <Typography

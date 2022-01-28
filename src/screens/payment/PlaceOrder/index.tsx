@@ -153,7 +153,7 @@ const PlaceOrder = ({ back, paymentDetails }: IProps) => {
             <Column justfiyContent="flex-start" width="100%">
               <OrderDetails products={cart.items} cart={cart} />
             </Column>
-            <Column justfiyContent="flex-start" width="100%">
+            {/* <Column justfiyContent="flex-start" width="100%">
               <Column justfiyContent="flex-start" width="100%">
                 <Row
                   justfiyContent="space-between"
@@ -168,7 +168,7 @@ const PlaceOrder = ({ back, paymentDetails }: IProps) => {
                   </Link>
                 </Row>
               </Column>
-            </Column>
+            </Column> */}
           </Column>
         </Section>
         <Container style={{ margin: 0, width: "40%" }}>

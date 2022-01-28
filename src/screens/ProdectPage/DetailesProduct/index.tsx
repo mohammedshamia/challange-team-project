@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../redux/actions/cart.actions";
 import { AppState } from "../../../redux/store";
 import { notify } from "../../../utils/helpers";
+import { useCart } from "../../../utils/hooks";
 
 interface Iprops {
   nameProdect: string;
@@ -51,6 +52,7 @@ export default function DetailesProdect({
   id,
 }: Iprops) {
   const { auth } = useSelector((state: AppState) => state);
+  const isInCart = useCart(id as string);
   const theme = useTheme();
   const dispatch = useDispatch();
   const [state, setState] = useState<Istate>({
@@ -168,8 +170,9 @@ export default function DetailesProdect({
                     height="62px"
                     borderRadius="10px"
                     background={theme.palette.primary.main}
+                    disabled={isInCart}
                   >
-                    add to card
+                    {isInCart ? "In Cart" : "Add to Cart"}
                   </Button>
                 </SittingContainer>
               </BoxSammary>
