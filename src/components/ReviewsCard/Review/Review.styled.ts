@@ -26,7 +26,6 @@ interface Iprops{
 
 export const Line= styled.div<Iprops>`
 height:1px;
-background:  ${(props)=>props.background ?  props.background  : "#F9F9F9"};
 `;
 
 

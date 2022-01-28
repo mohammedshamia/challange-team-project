@@ -9,7 +9,7 @@ export const CounterContainer = styled("div")<Iprpos>((props) => ({
   textAlign: "center",
   backgroundColor: "transparent",
   "& h5": {
-    borderBottom: `0.3px solid ${props.theme.palette.text.disabled}`,
-    borderTop: `0.3px solid ${props.theme.palette.text.disabled}`,
+    borderBottom: `0.1px solid ${props.theme.palette.divider}`,
+    borderTop: `0.1px solid ${props.theme.palette.divider}`,
   },
 }));

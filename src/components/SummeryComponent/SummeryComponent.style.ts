@@ -5,7 +5,7 @@ interface Iprpos {
   active?: boolean;
 }
 
-export const ColorOptional = styled.div<Iprpos>((props: Iprpos) => ({
+export const ColorOptional = styled("div")<Iprpos>((props) => ({
   width: "40px",
   height: "40px",
   display: "inline-block",
@@ -13,13 +13,13 @@ export const ColorOptional = styled.div<Iprpos>((props: Iprpos) => ({
   borderRadius: "50%",
   margin: "0 3%",
   outline: `2px solid ${props.active ? "black" : "transparent"} `,
-  border: "5px solid white",
+  border: `3px solid ${props.theme.palette.text.primary}`,
   backgroundColor: props.color,
 }));
 
 export const ButtonGroup = styled("div")((props) => ({
   display: "flex",
-  gap: "30px",
+  gap: "20px",
   [props.theme.breakpoints.down("lg")]: {
     gap: "16px",
   },
