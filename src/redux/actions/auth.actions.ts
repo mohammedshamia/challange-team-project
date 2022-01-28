@@ -131,7 +131,13 @@ export const editProfile =
         ...rest,
         profileImage: profileImage || user.profileImage,
       });
-
+      localStorage.setItem(
+        "user-data",
+        JSON.stringify({
+          ...user,
+          profileImage,
+        })
+      );
       dispatch({
         type: AuthConstants.UPDATE_USER_SUCCESS,
         payload: {
