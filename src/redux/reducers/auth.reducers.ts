@@ -50,6 +50,7 @@ export const AuthReducer = (state = initial_state, action: ActionsType) => {
       return {
         ...state,
         loading: false,
+        user: action.payload,
       };
     case AuthConstants.UPDATE_USER_FAIL:
       return {
@@ -101,7 +102,10 @@ export const AuthReducer = (state = initial_state, action: ActionsType) => {
         ...state,
         loading: false,
         isAuthenticated: true,
-        user: action.payload,
+        user: {
+          ...state.user,
+          ...action.payload,
+        },
       };
     case AuthConstants.GET_PROFILE_FAIL:
       return {

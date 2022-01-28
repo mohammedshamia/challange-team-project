@@ -44,6 +44,7 @@ const PlaceOrder = ({ back, paymentDetails }: IProps) => {
 
   const {
     cart: { cart },
+    orders: { loading: ordersLoading },
   } = useSelector((state: AppState) => state);
 
   const allDiscount = useMemo(() => {
@@ -238,17 +239,17 @@ const PlaceOrder = ({ back, paymentDetails }: IProps) => {
           <Button
             style={{ width: "100%", marginTop: "1em" }}
             onClick={handlePlaceOrder}
-            disabled={loading}
+            disabled={ordersLoading}
           >
-            {!loading ? (
+            {ordersLoading ? (
+              <CircularProgress color="inherit" />
+            ) : (
               <Typography
                 variant="h6"
                 style={{ textTransform: "capitalize", paddingInline: "50px" }}
               >
                 Place Order
               </Typography>
-            ) : (
-              <CircularProgress color="inherit" />
             )}
           </Button>
         </Container>

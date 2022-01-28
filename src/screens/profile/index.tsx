@@ -42,7 +42,6 @@ const ProfilePage = () => {
           } as IUser,
           () => {
             notify("success", "User Updated successfully");
-            dispatch(getProfile());
           }
         )
       );
