@@ -211,19 +211,17 @@ const NewProductForm = ({ product, categories }: IProps) => {
               }}
               disabled={loading}
             >
-              <Typography
-                variant="body2"
-                color="#fff"
-                sx={{ paddingInline: "2em", textTransform: "capitalize" }}
-              >
-                {loading ? (
-                  <CircularProgress size={20} color="inherit" />
-                ) : Boolean(product) ? (
-                  "Update Product"
-                ) : (
-                  "Create New Product"
-                )}
-              </Typography>
+              {loading ? (
+                <CircularProgress size={"20px"} color="inherit" />
+              ) : (
+                <Typography
+                  variant="body2"
+                  color="#fff"
+                  sx={{ paddingInline: "2em", textTransform: "capitalize" }}
+                >
+                  {Boolean(product) ? "Update Product" : "Create New Product"}
+                </Typography>
+              )}
             </Button>
           </Row>
         </Form>
