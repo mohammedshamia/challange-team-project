@@ -90,6 +90,7 @@ export default function Slider({ products }: { products: IProduct[] }) {
         }}
       >
         <Button
+          color="secondary"
           unhover
           width="17px"
           background="none"
@@ -113,6 +114,7 @@ export default function Slider({ products }: { products: IProduct[] }) {
           />
         ))}
         <Button
+          color="secondary"
           unhover
           width="17px"
           background="none"
