@@ -46,6 +46,21 @@ export const ProductsReducer = (state = initial_state, action: ActionsType) => {
         ...state,
         loading: false,
       };
+    case ProductConstants.UPDATE_PRODUCT_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ProductConstants.UPDATE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case ProductConstants.UPDATE_PRODUCT_FAIL:
+      return {
+        ...state,
+        loading: false,
+      };
     case ProductConstants.DELETE_PRODUCT_START:
       return {
         ...state,
