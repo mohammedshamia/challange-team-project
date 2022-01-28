@@ -23,6 +23,7 @@ export default function CategoryPage() {
     dispatch(getCategoryProducts(keyword as string));
   }, [dispatch, keyword]);
 
+  const NotFoundProducts = (categoryProducts as IProduct[]).length === 0;
   return (
     <Box p={"0 7% 70px"} sx={{ background: theme.palette.background.paper }}>
       <Box p="50px 0">
@@ -32,9 +33,20 @@ export default function CategoryPage() {
           alignItems="center"
         />
       </Box>
-      <Grid spacing={5} container sx={{ justifyContent: "center" }}>
+      <Grid
+        spacing={5}
+        container
+        sx={{
+          justifyContent: "center",
+          height: loading || NotFoundProducts ? "65vh" : "100%",
+        }}
+      >
         {loading ? (
           <Loading />
+        ) : NotFoundProducts ? (
+          <div style={{ marginLeft: "40px" }}>
+            <img src="/static/no_products_found.png" alt="noproductsfound" />
+          </div>
         ) : (
           (categoryProducts as IProduct[]).map((product) => (
             <Grid item xs={12} md={6} lg={4}>

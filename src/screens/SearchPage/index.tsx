@@ -1,5 +1,5 @@
 import { Box, Grid } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useLocation } from "react-router";
 import { useTheme } from "styled-components";
@@ -31,11 +31,9 @@ export default function SearchPage() {
     dispatch(getProducts(keyword as string, page));
   }, [dispatch, keyword, page]);
 
+  const NotFoundProducts = (products as IProduct[]).length === 0;
   return (
-    <Box
-      p={"0 7% 70px"}
-      sx={{ background: theme.palette.background.paper, height: "100%" }}
-    >
+    <Box p={"0 7% 70px"} sx={{ background: theme.palette.background.paper }}>
       <Box p="50px 0">
         <RowComponent
           title={isAllProducts ? "Products" : "Featured Products"}
@@ -43,11 +41,20 @@ export default function SearchPage() {
           alignItems="center"
         />
       </Box>
-      <Grid spacing={5} container sx={{ justifyContent: "center" }}>
+      <Grid
+        spacing={5}
+        container
+        sx={{
+          justifyContent: "center",
+          height: loading || NotFoundProducts ? "65vh" : "100%",
+        }}
+      >
         {loading ? (
           <Loading />
-        ) : (products as IProduct[]).length === 0 ? (
-          "not found products"
+        ) : NotFoundProducts ? (
+          <div style={{ marginLeft: "40px" }}>
+            <img src="/static/no_products_found.png" alt="noproductsfound" />
+          </div>
         ) : (
           (products as IProduct[]).map((product) => (
             <Grid item xs={12} md={6} lg={4}>
@@ -63,8 +70,10 @@ export default function SearchPage() {
           ))
         )}
       </Grid>
-      {isAllProducts && (
+      {!loading && isAllProducts ? (
         <PaginationButtons page={page} onChange={handleChange} count={pages} />
+      ) : (
+        <></>
       )}
     </Box>
   );
