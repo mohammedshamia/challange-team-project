@@ -1,37 +1,9 @@
 import { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
-import { ActionTypes, IUserForm } from "../../@types/users.types";
+import { ActionTypes, IUser, IUserForm } from "../../@types/users.types";
 import { notify, uploadPhoto } from "../../utils/helpers";
 import { UserConstants } from "../contants/user.constant";
 import API from "../../api";
-
-export const editProfile =
-  (user: IUserForm) => async (dispatch: Dispatch<ActionTypes>) => {
-    try {
-      dispatch({
-        type: UserConstants.EDIT_USER_START,
-      });
-      let profileImage: string = "";
-      if (typeof user.profileImage === "object") {
-        const { data } = await uploadPhoto(user.profileImage as File);
-        profileImage = data;
-      }
-      const { data } = await API.put("/users/profile", {
-        ...user,
-        profileImage: profileImage || user.profileImage,
-      });
-      dispatch({
-        type: UserConstants.EDIT_USER_SUCCESS,
-        payload: data,
-      });
-    } catch (error: any) {
-      notify("error", error?.response?.data?.message || error.message);
-      dispatch({
-        type: UserConstants.EDIT_USER_FAIL,
-        payload: error?.response?.data?.message || error.message,
-      });
-    }
-  };
 
 export const editUser =
   (id: string, user: IUserForm, callback?: Function) =>

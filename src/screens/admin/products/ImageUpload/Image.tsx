@@ -18,6 +18,9 @@ const Image = () => {
               onChange={(e) => {
                 form.setFieldValue("images", e.target.files);
               }}
+              onFocus={(e) => {
+                form.setFieldTouched("images", true);
+              }}
             />
             {field.value && field.value?.[0] ? (
               <img

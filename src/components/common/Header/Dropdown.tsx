@@ -55,7 +55,11 @@ export default function AccountMenu({ auth }: Iprops) {
             border="none"
             onClick={handleClick}
             size="small"
-            sx={{ display: "flex", flexDirection: "column",textTransform:"capitalize" }}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              textTransform: "capitalize",
+            }}
             aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
@@ -63,7 +67,7 @@ export default function AccountMenu({ auth }: Iprops) {
             {auth.isAuthenticated ? (
               <>
                 <Avatar
-                  src={auth.user.profileImage}
+                  src={auth.user.profileImage as string}
                   sx={{ width: 32, height: 32, textTransform: "uppercase" }}
                 >
                   {!auth.user.profileImage && auth.user.firstName[0]}
@@ -116,7 +120,7 @@ export default function AccountMenu({ auth }: Iprops) {
       >
         <CustomLink to={auth.isAuthenticated ? "/profile" : "/auth/login"}>
           <MenuItem>
-            <Avatar src={auth.user.profileImage} />
+            <Avatar src={auth.user.profileImage as string} />
             {`${auth.user.firstName} ${auth.user.lastName}`}
           </MenuItem>
         </CustomLink>

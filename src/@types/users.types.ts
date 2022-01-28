@@ -6,7 +6,7 @@ export interface IUserForm {
   email: string;
   isAdmin: boolean;
   dateOfBirth: string | Date;
-  profileImage?: string;
+  profileImage?: string | File;
   _id?: string;
   password?: string;
 }
@@ -20,6 +20,7 @@ export interface IUser {
   isAdmin: boolean;
   dateOfBirth?: string;
   updatedAt?: string;
+  toker?: string;
   __v?: number;
   _id: string;
 }
@@ -37,6 +38,7 @@ export interface GET_USERS_FAIL {
   type: UserConstants.GET_USERS_FAIL;
   payload: string;
 }
+
 export interface GET_USER_START {
   type: UserConstants.GET_USER_START;
 }
@@ -50,6 +52,7 @@ export interface GET_USER_FAIL {
   type: UserConstants.GET_USER_FAIL;
   payload: string;
 }
+
 export interface EDIT_USER_START {
   type: UserConstants.EDIT_USER_START;
 }
