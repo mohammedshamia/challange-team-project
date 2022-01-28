@@ -3,6 +3,8 @@ import { styled } from "@mui/material/styles";
 
 interface IProps {
   count: number;
+  page: number;
+  onChange: (event: React.ChangeEvent<unknown>, value: number) => void;
 }
 
 const Pagination = styled(Pag)((props) => ({
@@ -13,6 +15,6 @@ const Pagination = styled(Pag)((props) => ({
   },
 }));
 
-export default function PaginationButtons({ count }: IProps) {
-  return <Pagination count={count} />;
+export default function PaginationButtons({ count, page, onChange }: IProps) {
+  return <Pagination count={count} page={page} onChange={onChange} />;
 }

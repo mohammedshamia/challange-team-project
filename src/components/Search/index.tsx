@@ -24,7 +24,12 @@ export default function Search(props: Iprops) {
     }
   };
   const handleSearch = React.useCallback(() => {
-    if (value) navigate(`/search/${value}`);
+    if (value) {
+      navigate(`/search/${value}`);
+      return;
+    }
+
+    navigate(`/allProducts`);
   }, [navigate, value]);
   return (
     <Lable width={props.width}>
@@ -39,14 +44,20 @@ export default function Search(props: Iprops) {
           minWidth: "120px",
           textDecoration: "none",
           height: "40px",
-          fontSize: "16px",
+          fontSize: "14px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           fontWeight: "bold",
         }}
       >
-        <SearchIcon /> Search
+        {value ? (
+          <>
+            <SearchIcon /> Search
+          </>
+        ) : (
+          "All Products"
+        )}
       </Button>
     </Lable>
   );

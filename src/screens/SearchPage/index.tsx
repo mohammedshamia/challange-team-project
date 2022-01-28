@@ -1,11 +1,12 @@
 import { Box, Grid } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useParams, useLocation } from "react-router";
 import { useTheme } from "styled-components";
 import { IProduct } from "../../@types/products.types";
 import { baseURL } from "../../api";
 import Loading from "../../components/common/Loading";
+import PaginationButtons from "../../components/common/Pagination";
 import RowComponent from "../../components/GlobalStyles/Row";
 import ProdectCard from "../../components/ProdectCard";
 import { getProducts } from "../../redux/actions/products.actions";
@@ -13,22 +14,31 @@ import { AppState } from "../../redux/store";
 
 export default function SearchPage() {
   const { keyword } = useParams();
+  const { pathname } = useLocation();
+  const isAllProducts = pathname.includes("allProducts");
+  const [page, setPage] = useState(1);
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
   const dispatch = useDispatch();
   const theme = useTheme();
   const {
     loading,
-    products: { products },
+    products: { products, pages },
   } = useSelector((state: AppState) => state.products);
 
   useEffect(() => {
-    dispatch(getProducts(keyword as string));
-  }, [dispatch, keyword]);
+    dispatch(getProducts(keyword as string, page));
+  }, [dispatch, keyword, page]);
 
   return (
-    <Box p={"0 7% 70px"} sx={{ background: theme.palette.background.paper }}>
+    <Box
+      p={"0 7% 70px"}
+      sx={{ background: theme.palette.background.paper, height: "100%" }}
+    >
       <Box p="50px 0">
         <RowComponent
-          title="Featured Products"
+          title={isAllProducts ? "Products" : "Featured Products"}
           widthDivider="200px"
           alignItems="center"
         />
@@ -36,6 +46,8 @@ export default function SearchPage() {
       <Grid spacing={5} container sx={{ justifyContent: "center" }}>
         {loading ? (
           <Loading />
+        ) : (products as IProduct[]).length === 0 ? (
+          "not found products"
         ) : (
           (products as IProduct[]).map((product) => (
             <Grid item xs={12} md={6} lg={4}>
@@ -51,6 +63,9 @@ export default function SearchPage() {
           ))
         )}
       </Grid>
+      {isAllProducts && (
+        <PaginationButtons page={page} onChange={handleChange} count={pages} />
+      )}
     </Box>
   );
 }
