@@ -10,6 +10,7 @@ import { IProduct } from "../../@types/products.types";
 import { DataBannerSlider } from "./sliderData";
 import { Link } from "react-router-dom";
 import { useTheme } from "styled-components";
+import Img from "../common/Img";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 export default function Slider({ products }: { products: IProduct[] }) {
@@ -72,11 +73,7 @@ export default function Slider({ products }: { products: IProduct[] }) {
               </Button>
             </Stack>
             <DivImg>
-              <img
-                src={product.images?.[0] || "/static/img1.PNG"}
-                alt="slide"
-                loading="lazy"
-              />
+              <Img src={product.images?.[0]} alt="slide" />
             </DivImg>
           </Contianer>
         ))}

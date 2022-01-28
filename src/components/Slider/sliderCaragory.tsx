@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { autoPlay } from "react-swipeable-views-utils";
 import SwipeableViews from "react-swipeable-views";
-import { DataCatagorySlider } from "./sliderData";
 import CategroyCard from "../CategroyCard";
 import { Grid } from "@mui/material";
 import { DotGroup, DotsItem } from "./style";
@@ -79,7 +78,7 @@ export default function SliderCatagory() {
         ))}
       </AutoPlaySwipeableViews>
       <DotGroup>
-        {Array.from(Array(DataCatagorySlider.length)).map((_, index) => (
+        {Array.from(Array(formattedCategories.length)).map((_, index) => (
           <DotsItem
             active={activeStep === index}
             onClick={() => handleChangeIndex(index)}

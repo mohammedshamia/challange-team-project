@@ -41,7 +41,8 @@ export const BoldLine = styled.div`
   margin: auto; ;
 `;
 export const ImagesContiner = styled.div`
-  margin-top: 40px; ;
+  margin-top: 40px;
+  width: 650px;
 `;
 export const DetailesContiner = styled.div`
   width: 70%;
