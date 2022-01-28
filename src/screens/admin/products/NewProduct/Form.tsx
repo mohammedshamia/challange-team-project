@@ -216,7 +216,7 @@ const NewProductForm = ({ product, categories }: IProps) => {
               disabled={loading}
             >
               {loading ? (
-                <CircularProgress size={"20px"} color="inherit" />
+                <CircularProgress size={20} color="inherit" />
               ) : (
                 <Typography
                   variant="body2"

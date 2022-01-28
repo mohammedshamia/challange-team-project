@@ -1,5 +1,5 @@
-import { ChangeEvent, useCallback, useEffect } from "react";
-import { Typography } from "@mui/material";
+import { ChangeEvent, useCallback } from "react";
+import { Backdrop, CircularProgress, Typography } from "@mui/material";
 import { useTheme } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,7 +8,6 @@ import Profile from "./tabs/profile";
 import { Container, WrapperAvatarTab, AvatarTab } from "./Profile.style";
 import {
   editProfile,
-  getProfile,
   logout,
 } from "../../redux/actions/auth.actions";
 import { AppState } from "../../redux/store";
@@ -21,7 +20,7 @@ const ProfilePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
-    auth: { user },
+    auth: { user, loading },
   } = useSelector((state: AppState) => state);
 
   const handleLogout = useCallback(() => {
@@ -124,6 +123,12 @@ const ProfilePage = () => {
         button="Log out"
         buttonClick={() => handleLogout()}
       />
+      <Backdrop
+        sx={{ color: "#fcdd06", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </Container>
   );
 };

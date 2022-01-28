@@ -43,7 +43,7 @@ const Edit = (props: ICellRendererParams) => {
         </Icon>
       </Link>
       <Icon
-        sx={{ cursor: "pointer", background: "#FC4059", borderRadius: "6px" }}
+        sx={{ cursor: "pointer", background: "#FC4059", borderRadius: "6px",marginLeft:"10px" }}
         onClick={() => setOpen(true)}
       >
         <DeleteIcon sx={{ color: "#fff", marginBottom: "5px" }} />

@@ -1,15 +1,14 @@
-import { Box, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import {
   CardContainer,
   PriceContainer,
   SalaryPercentage,
   SittingContainer,
 } from "../Card/Card.style";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { Card } from "../Card/Types";
 import RatingComponent from "../Rating";
 import { Button } from "../Button/Button.style";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/actions/cart.actions";
 import { useNavigate } from "react-router-dom";
@@ -30,6 +29,7 @@ export default function ProdectCard({
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isInCart = useCart(id as string);
+  const [loading, setLoading] = useState(false);
   const { auth } = useSelector((state: AppState) => state);
   const result = useMemo(
     () => ((discountValue as number) / (price as number)) * 100,
@@ -38,7 +38,13 @@ export default function ProdectCard({
 
   const AddToCart = useCallback(() => {
     if (auth.isAuthenticated) {
-      dispatch(addToCart(id as string));
+      setLoading(true);
+      dispatch(
+        addToCart(id as string, 1, () => {
+          setLoading(false);
+        })
+      );
+
       return;
     }
 
@@ -101,7 +107,13 @@ export default function ProdectCard({
           onClick={AddToCart}
           disabled={isInCart}
         >
-          {isInCart ? "In Cart" : "Add to Cart"}
+          {isInCart ? (
+            "In Cart"
+          ) : loading ? (
+            <CircularProgress size={20} color="inherit" />
+          ) : (
+            "Add to Cart"
+          )}
         </Button>
       </SittingContainer>
 

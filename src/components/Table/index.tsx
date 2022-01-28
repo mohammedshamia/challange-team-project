@@ -3,6 +3,7 @@ import { AgGridColumn, AgGridReact } from "ag-grid-react";
 import { IColumn } from "../../@types/table.types";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+import { styled } from "@mui/material";
 
 interface IProps<T> {
   columns: IColumn[];
@@ -18,6 +19,32 @@ const onFirstDataRendered = (params: any) => {
   params.api.sizeColumnsToFit();
 };
 
+const TableAg = styled("div")((props) => ({
+  "& .ag-center-cols-clipper": {
+    background: `${props.theme.palette.background.paper} !important`,
+  },
+  "& .ag-overlay": {
+    color: `${props.theme.palette.text.primary} !important`,
+  },
+  "& .ag-header ": {
+    backgroundColor: `${props.theme.palette.background.paper} !important`,
+  },
+  "& .ag-header-row": {
+    color: `${props.theme.palette.text.primary} !important`,
+  },
+  "& .ag-row": {
+    backgroundColor: `${props.theme.palette.background.default} !important`,
+    color: `${props.theme.palette.text.primary} !important`,
+  },
+  "& .ag-row-odd": {
+    backgroundColor: `${props.theme.palette.background.paper} !important`,
+    color: `${props.theme.palette.text.primary} !important`,
+  },
+  "& .ag-paging-panel": {
+    backgroundColor: `${props.theme.palette.background.paper} !important`,
+    color: `${props.theme.palette.text.primary} !important`,
+  },
+}));
 export default class Table<T> extends React.PureComponent<IProps<T>> {
   state = {
     gridApi: null,
@@ -29,25 +56,9 @@ export default class Table<T> extends React.PureComponent<IProps<T>> {
     }));
   }
 
-  // componentDidUpdate() {
-  //   if (this.state.gridApi) {
-  //     const dataSource = {
-  //       getRows: (params: any) => {
-  //         // Use startRow and endRow for sending pagination to Backend
-  //         // params.startRow : Start Page
-  //         // params.endRow : End Page
-
-  //         const page = (params.endRow /
-  //           this.props.paginationPageSize) as number;
-  //       },
-  //     };
-  //     this.state.gridApi?.setDatasource(dataSource);
-  //   }
-  // }
-
   render(): React.ReactNode {
     return (
-      <div
+      <TableAg
         className="ag-theme-alpine"
         style={{
           marginTop: "1em",
@@ -76,7 +87,7 @@ export default class Table<T> extends React.PureComponent<IProps<T>> {
             ></AgGridColumn>
           ))}
         </AgGridReact>
-      </div>
+      </TableAg>
     );
   }
 }
