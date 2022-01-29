@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Typography } from "@mui/material";
 import { IProduct } from "../../../@types/products.types";
 import { calculateDiscount } from "../../../utils/helpers";
+import Img from "../../../components/common/Img";
 
 const Container = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.palette.text.secondary};
@@ -19,7 +20,7 @@ const Product = (props: IProps) => {
   return (
     <Container>
       <Row justfiyContent="flex-start" width="100%" gap="10px">
-        <img
+        <Img
           src={props.product.images?.[0] || "/static/headphones.jpg"}
           alt="headphones"
           width={"90px"}

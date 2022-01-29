@@ -17,7 +17,7 @@ const ProductsContainer = styled.div`
 
 interface IProps {
   products: Item[];
-  cart: ICart;
+  cart?: ICart;
 }
 
 export default class OrderDetails extends React.PureComponent<IProps> {
