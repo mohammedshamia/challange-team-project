@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 interface Iprops {
-  src: string;
+  src: string | undefined;
   alt: string;
   width?: string;
   height?: string;
@@ -8,19 +8,14 @@ interface Iprops {
 export default function Img({ src, alt, width, height }: Iprops) {
   const [imageError, setImageError] = useState<boolean>(false);
   return (
-    <>
-      {" "}
-      {src && !imageError && (
-        <img
-          style={{ objectFit: "contain" }}
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          onError={() => setImageError(true)}
-          loading="lazy"
-        />
-      )}
-    </>
+    <img
+      style={{ objectFit: "contain" }}
+      src={imageError ? "/static/not-found-image.png" : src}
+      alt={alt}
+      width={width}
+      height={height}
+      onError={() => setImageError(true)}
+      loading="lazy"
+    />
   );
 }

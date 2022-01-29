@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import { MouseEventHandler } from "react";
 import { CardContainer } from "../Card/Card.style";
 import { Card } from "../Card/Types";
+import Img from "../common/Img";
 
 interface IProps extends Card {
   onClick?: MouseEventHandler;
@@ -28,14 +29,7 @@ export default function CategroyCard({ img, name, onClick }: IProps) {
           boxShadow: "1px 2px px 1px rgba(0,0,0,0.2)",
         }}
       >
-        <img
-          loading="lazy"
-          src={img}
-          alt="img"
-          width={"300px"}
-          height={"250px"}
-          style={{ objectFit: "contain" }}
-        />
+        <Img src={img} alt="img" width={"300px"} height={"250px"} />
       </CardContainer>
       <Typography
         variant="h2"

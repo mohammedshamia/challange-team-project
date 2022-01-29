@@ -46,7 +46,7 @@ export const PriceContainer = styled("div")`
   gap: 14px;
   margin-block: 16px;
 `;
-export const ImagContainer = styled("img")`
+export const ImagContainer = styled("div")`
   height: 100%;
   object-fit: contain;
   width: 100%;

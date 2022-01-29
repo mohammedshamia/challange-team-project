@@ -22,6 +22,7 @@ import { AppState } from "../../../redux/store";
 import { notify } from "../../../utils/helpers";
 import { useCart } from "../../../utils/hooks";
 import { CircularProgress } from "@mui/material";
+import Img from "../../../components/common/Img";
 
 interface Iprops {
   nameProdect: string;
@@ -92,38 +93,30 @@ export default function DetailesProdect({
     <div>
       <DetailesProductContainer>
         <ImagesContiner>
-          <img
-            src={imgpropdect}
-            alt={nameProdect}
-            width="90%"
-            style={{ objectFit: "contain" }}
-          />
+          <Img src={imgpropdect} alt={nameProdect} width="90%" />
           <SizesOFimgContiner>
             {img1propdect && (
-              <img
+              <Img
                 src={img1propdect}
                 alt="nameprodect"
                 width="29%"
                 height={"100%"}
-                style={{ objectFit: "contain" }}
               />
             )}
             {img2propdect && (
-              <img
+              <Img
                 src={img2propdect}
                 alt="nameprodect"
                 width="29%"
                 height={"100%"}
-                style={{ objectFit: "contain" }}
               />
             )}
             {img3propdect && (
-              <img
+              <Img
                 src={img3propdect}
                 alt="nameprodect"
                 width="29%"
                 height={"100%"}
-                style={{ objectFit: "contain" }}
               />
             )}
           </SizesOFimgContiner>

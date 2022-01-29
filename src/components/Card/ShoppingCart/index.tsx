@@ -9,6 +9,7 @@ import { bindActionCreators } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 import { AppState } from "../../../redux/store";
 import { ActionsType } from "../../../@types/cart.types";
+import Img from "../../common/Img";
 
 interface IPropsShoppingCart extends PropsFromRedux {
   id: string;
@@ -35,7 +36,7 @@ class ShoppingCartCard extends PureComponent<IPropsShoppingCart> {
         onClick={this.RemoveFromCart.bind(this, this.props.id)}
          />
         <ImgContainer item xs={12} lg={3}>
-          <img
+          <Img
             height="100%"
             width="100%"
             src={this.props.imgSrc}

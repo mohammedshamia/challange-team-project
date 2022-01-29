@@ -77,7 +77,7 @@ const Products = () => {
               Create Product
             </Typography>
           ) : (
-            <CircularProgress color="inherit" />
+            <CircularProgress size={20} color="inherit" />
           )}
         </Button>
       </Row>
