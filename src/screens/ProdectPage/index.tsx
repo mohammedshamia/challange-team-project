@@ -49,7 +49,7 @@ export default function ProductPage() {
                   img3propdect={product.images?.[3] as string}
                   detailsprodect={product.description}
                   sizes={["1", "2", "3"]}
-                  colors={["#999", "#000", "#bbe24f"]}
+                  colors={product.colors}
                 />
                 <ReviewesProdect reviews={product.reviews || []} />
               </>

@@ -73,7 +73,7 @@ export default function Slider({ products }: { products: IProduct[] }) {
               </Button>
             </Stack>
             <DivImg>
-              <Img src={product.images?.[0]} alt="slide" />
+              <Img src={product.images?.[0]} alt={product.name || "slide"} />
             </DivImg>
           </Contianer>
         ))}

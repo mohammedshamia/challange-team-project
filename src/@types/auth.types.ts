@@ -36,6 +36,7 @@ export interface IUser {
   dateOfBirth?: string;
   profileImage?: string | File;
   cart?: ICart;
+  password?: string;
 }
 
 export interface CREATE_USER_START {
@@ -63,6 +64,19 @@ export interface UPDATE_USER_SUCCESS {
 
 export interface UPDATE_USER_FAIL {
   type: AuthConstants.UPDATE_USER_FAIL;
+  payload: string;
+}
+
+export interface UPDATE_PASSWORD_START {
+  type: AuthConstants.UPDATE_PASSWORD_START;
+}
+
+export interface UPDATE_PASSWORD_SUCCESS {
+  type: AuthConstants.UPDATE_PASSWORD_SUCCESS;
+}
+
+export interface UPDATE_PASSWORD_FAIL {
+  type: AuthConstants.UPDATE_PASSWORD_FAIL;
   payload: string;
 }
 
@@ -118,6 +132,9 @@ export type ActionsType =
   | UPDATE_USER_START
   | UPDATE_USER_SUCCESS
   | UPDATE_USER_FAIL
+  | UPDATE_PASSWORD_START
+  | UPDATE_PASSWORD_SUCCESS
+  | UPDATE_PASSWORD_FAIL
   | LOGIN_START
   | LOGIN_SUCCESS
   | LOGIN_FAIL
