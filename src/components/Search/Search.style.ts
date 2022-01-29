@@ -11,6 +11,8 @@ export const Lable = styled.label<Iprops>((props:Iprops) => ({
   width: props.width || '43%',
   height: '40px',
   display: 'flex',
+  alignItems:"center",
+  paddingLeft:"1%",
 }));
 
 
@@ -21,7 +23,7 @@ export const SearchInput = styled.input.attrs({ type: "search" })`
   background-color: transparent;
   width: 80%;
   height: 40px;
-  padding: 0 26px;
+  /* padding: 0 26px; */
   color: #242424;
   font-size: 13px;
 
