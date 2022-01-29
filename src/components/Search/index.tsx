@@ -33,7 +33,13 @@ export default function Search(props: Iprops) {
   }, [navigate, value]);
   return (
     <Lable width={props.width}>
-      <SearchInput value={value} onChange={handleValue} onKeyUp={handleKey} />
+      <SearchIcon sx={{ color: "rgba(112,112,112,0.5)" }} />
+      <SearchInput
+        placeholder="Search..."
+        value={value}
+        onChange={handleValue}
+        onKeyUp={handleKey}
+      />
 
       <Button
         ref={ref}
