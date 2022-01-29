@@ -15,6 +15,9 @@ interface IProps<T> {
 }
 
 const TableAg = styled("div")((props) => ({
+  "& .ag-center-cols-container": {
+    width: "auto !important",
+  },
   "& .ag-center-cols-clipper": {
     background: `${props.theme.palette.background.paper} !important`,
   },

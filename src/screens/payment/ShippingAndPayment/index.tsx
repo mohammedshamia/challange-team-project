@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import { Typography } from "@mui/material";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Formik } from "formik";
 import {
-  useStripe,
-  useElements,
   CardNumberElement,
   CardCvcElement,
   CardExpiryElement,

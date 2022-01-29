@@ -17,7 +17,6 @@ import { createOrder } from "../../../redux/actions/orders.actions";
 import { AppState } from "../../../redux/store";
 import { notify } from "../../../utils/helpers";
 import OrderDetails from "../OrderDetails";
-import { Link } from "../Payment.styled";
 import { IPayment } from "../ShippingAndPayment/validation";
 
 const Container = styled.div`
@@ -62,7 +61,7 @@ const PlaceOrder = ({ back, paymentDetails }: IProps) => {
       setLoading(true);
       if (!stripe || !elements) {
         setLoading(false);
-        return;
+        throw new Error("Stripe is not loaded");
       }
       const { country, city, postalCode, address } = paymentDetails as IPayment;
       const ShippingAddress: IShoppingAddress = {
@@ -73,34 +72,30 @@ const PlaceOrder = ({ back, paymentDetails }: IProps) => {
       };
       dispatch(
         createOrder(ShippingAddress, async (res: IOrderResponse) => {
-          try {
-            const { error, paymentIntent } = await stripe.confirmCardPayment(
-              res.clientSecret,
-              {
-                payment_method: {
-                  card: elements.getElement(
-                    CardNumberElement
-                  ) as StripeCardNumberElement,
-                },
-              }
-            );
-            if (error) {
-              throw error;
+          setLoading(true);
+          const { error, paymentIntent } = await stripe.confirmCardPayment(
+            res.clientSecret,
+            {
+              payment_method: {
+                card: elements.getElement(
+                  CardNumberElement
+                ) as StripeCardNumberElement,
+              },
             }
-            if (paymentIntent?.status === "succeeded") {
-              navigate("/payment-success");
-            }
-          } catch (error: StripeError | any) {
-            notify("error", error.message || "Failed to process payment");
-          } finally {
+          );
+          if (error) {
+            throw error;
+          }
+          if (paymentIntent?.status === "succeeded") {
             setLoading(false);
+            navigate("/payment-success");
+            return;
           }
         })
       );
     } catch (error: any) {
+      notify("error", error.message || "Failed to process payment");
       console.error(error);
-    } finally {
-      setLoading(false);
     }
   }, [paymentDetails, stripe, elements, dispatch, navigate]);
 
@@ -225,9 +220,9 @@ const PlaceOrder = ({ back, paymentDetails }: IProps) => {
           <Button
             style={{ width: "100%", marginTop: "1em" }}
             onClick={handlePlaceOrder}
-            disabled={ordersLoading}
+            disabled={ordersLoading || loading}
           >
-            {ordersLoading ? (
+            {ordersLoading || loading ? (
               <CircularProgress color="inherit" />
             ) : (
               <Typography
