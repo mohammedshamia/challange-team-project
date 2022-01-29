@@ -17,6 +17,7 @@ import { Button } from "../../../components/Button/Button.style";
 import { deliverOrder } from "../../../redux/actions/orders.actions";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { OrderDetails } from "./OrderDetails";
+
 const columns: IColumn[] = [
   {
     name: "orderItems",
@@ -42,6 +43,7 @@ const Actions = (params: ICellRendererParams) => {
   const [visible, setVisible] = useState<boolean>(false);
   const [View, setView] = useState<boolean>(false);
   const dispatch = useDispatch();
+
   const markAsDelivered = useCallback(() => {
     dispatch(
       deliverOrder(params.data._id, () => {

@@ -144,13 +144,11 @@ export const GridTopRateProducts = styled(Grid)((props) => ({
   },
 }));
 
-
-export const CustomLink = styled(Link)((props)=>({
-  color:props.theme.palette.text.primary,
-  textDecoration:"none",
-  padding:0,
-  margin:0,
-  fontFamily:"Mulish",
+export const CustomLink = styled(Link)((props) => ({
+  color: props.theme.palette.text.primary,
+  textDecoration: "none",
+  padding: 0,
+  margin: 0,
+  fontFamily: "Mulish",
   cursor: "pointer",
-
-}))
+}));

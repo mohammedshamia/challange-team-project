@@ -1,14 +1,7 @@
 import { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
-import {
-  ILogin,
-  ISignUp,
-  IForgetPassword,
-  ActionsType,
-  IUser,
-} from "../../@types/auth.types";
+import { ILogin, ISignUp, ActionsType, IUser } from "../../@types/auth.types";
 import { ICart, ActionsType as CartActionsType } from "../../@types/cart.types";
-import { IUserForm } from "../../@types/users.types";
 import API from "../../api";
 import { notify, uploadPhoto } from "../../utils/helpers";
 import { AuthConstants } from "../contants/auth.constants";
@@ -127,7 +120,7 @@ export const editProfile =
         const { data } = await uploadPhoto(user.profileImage as File);
         profileImage = data;
       }
-      const { data } = await API.put("/users/profile", {
+      await API.put("/users/profile", {
         ...rest,
         profileImage: profileImage || user.profileImage,
       });
@@ -164,7 +157,7 @@ export const changePassword =
         type: AuthConstants.UPDATE_PASSWORD_START,
       });
 
-      const res: AxiosResponse = await API.put("/users/profile", {
+      await API.put("/users/profile", {
         ...rest,
         password: user.password,
       });

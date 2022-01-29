@@ -46,7 +46,7 @@ export default function AccountMenu({ auth }: Iprops) {
   }, [dispatch, navigate]);
 
   return (
-    <>
+    <div>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
         <Tooltip
           title={auth.isAuthenticated ? "Account settings" : "Login / Sign up"}
@@ -126,7 +126,7 @@ export default function AccountMenu({ auth }: Iprops) {
         </CustomLink>
         <Divider />
         {auth.user.isAdmin && (
-          <>
+          <div>
             <CustomLink to={"/orders"}>
               <MenuItem>
                 <ListItemIcon>
@@ -151,7 +151,7 @@ export default function AccountMenu({ auth }: Iprops) {
                 Users
               </MenuItem>
             </CustomLink>
-          </>
+          </div>
         )}
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>
@@ -160,6 +160,6 @@ export default function AccountMenu({ auth }: Iprops) {
           Logout
         </MenuItem>
       </Menu>
-    </>
+    </div>
   );
 }

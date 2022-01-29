@@ -3,11 +3,7 @@ import { Dispatch } from "redux";
 import { ActionsType, IReview } from "../../@types/products.types";
 import { IProductForm } from "../../@types/products.types";
 import API from "../../api";
-import {
-  createFormData,
-  notify,
-  uploadPhoto,
-} from "../../utils/helpers";
+import { createFormData, notify, uploadPhoto } from "../../utils/helpers";
 import { ProductConstants } from "../contants/products.constants";
 
 export const createProduct =
@@ -47,9 +43,15 @@ export const updateProduct =
       const images = [...data.images].filter(
         (image) => typeof image !== "string"
       );
+      const stringImages = [...data.images].filter(
+        (image) => typeof image === "string"
+      );
       const promises = images.map((image) => uploadPhoto(image as File));
       const urls = await Promise.all<AxiosResponse>(promises);
-      const form = { ...data, images: [...urls.map((url) => url.data)] };
+      const form = {
+        ...data,
+        images: [...urls.map((url) => url.data), ...stringImages],
+      };
       const res = await API.put(`/products/${productID}`, form);
       callback?.();
       dispatch({
