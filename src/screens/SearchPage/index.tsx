@@ -61,7 +61,7 @@ export default function SearchPage() {
               <ProdectCard
                 key={product._id}
                 id={product._id as string}
-                img={`${baseURL}${product.images?.[0]}` || ""}
+                img={product.images?.[0] as string}
                 name={product.name}
                 price={product.price}
                 valueRating={product.rating}

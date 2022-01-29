@@ -53,6 +53,23 @@ export const OrdersReducer = (state = initial_state, action: ActionsType) => {
         loading: false,
         error: action.payload,
       };
+    case OrdersConstants.GET_ORDER_DETAILS_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case OrdersConstants.GET_ORDER_DETAILS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        order: action.payload,
+      };
+    case OrdersConstants.GET_ORDER_DETAILS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     case OrdersConstants.CREATE_ORDER_START:
       return {
         ...state,
