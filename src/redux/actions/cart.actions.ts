@@ -28,6 +28,7 @@ export const addToCart =
         type: CartConstants.ADD_TO_CART_FAIL,
         payload: error?.response?.data?.message || error.message,
       });
+      callback?.();
     }
   };
 

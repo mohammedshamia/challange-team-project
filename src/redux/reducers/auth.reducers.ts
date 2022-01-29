@@ -58,6 +58,22 @@ export const AuthReducer = (state = initial_state, action: ActionsType) => {
         loading: false,
         error: action.payload,
       };
+    case AuthConstants.UPDATE_PASSWORD_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case AuthConstants.UPDATE_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case AuthConstants.UPDATE_PASSWORD_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     case AuthConstants.LOGIN_START:
       return {
         ...state,

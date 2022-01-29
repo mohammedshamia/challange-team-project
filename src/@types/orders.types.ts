@@ -17,40 +17,24 @@ export interface IOrderItems {
 
 export interface IOrderResponse {
   clientSecret: string;
-  order: {
-    taxPrice: number;
-    shippingPrice: number;
-    totalPrice: number;
-    isPaid: boolean;
-    isDelivered: boolean;
-    _id: string;
-    user: string;
-    orderItems: [
-      {
+  order:
+    | IOrder
+    | {
+        taxPrice: number;
+        shippingPrice: number;
+        totalPrice: number;
+        isPaid: boolean;
+        isDelivered: boolean;
         _id: string;
-        product: string;
-        qty: number;
-        itemTotalPrice: number;
-      },
-      {
-        _id: string;
-        product: string;
-        qty: number;
-        itemTotalPrice: number;
-      }
-    ];
-    shippingAddress: {
-      address: string;
-      city: string;
-      postalCode: string;
-      country: string;
-    };
-    paymentMethod: string;
-    createdAt: string;
-    updatedAt: string;
-    __v: 0;
-    clientSecret: string;
-  };
+        user: string;
+        orderItems: IOrderItems[];
+        shippingAddress: IShoppingAddress;
+        paymentMethod: string;
+        createdAt: string;
+        updatedAt: string;
+        __v: 0;
+        clientSecret: string;
+      };
   message: string;
 }
 
@@ -67,6 +51,7 @@ export interface IOrder {
   paidAt: string;
   isDelivered: boolean;
   deliveredAt: string;
+  _id?: string;
 }
 
 export interface GET_MY_ORDERS_START {
