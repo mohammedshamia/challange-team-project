@@ -40,13 +40,13 @@ export default function ShoppingCartPage() {
   }, [dispatch]);
 
   const allDiscount = useMemo(() => {
-    return (
-      (Math.round(totalPrice -
-      (items as Item[]).reduce(
-        (acc, { product }: Item) => (product.discount as number) + acc,
-        0
-      ))).toFixed(2)
-    );
+    return Math.round(
+      totalPrice -
+        (items as Item[]).reduce(
+          (acc, { product }: Item) => (product.discount as number) + acc,
+          0
+        )
+    ).toFixed(2);
   }, [items, totalPrice]);
 
   return (
@@ -71,7 +71,11 @@ export default function ShoppingCartPage() {
             >
               Your shopping cart is empty
             </Typography>
-            <img src="/static/EmptyCart.png" alt="empty" />
+            <img
+              style={{ maxWidth: "-webkit-fill-available" }}
+              src="/static/EmptyCart.png"
+              alt="empty"
+            />
           </div>
           <div style={{ margin: "20px" }}>
             <RowComponent
@@ -120,7 +124,9 @@ export default function ShoppingCartPage() {
           <Grid item xs={12} lg={3} sx={{ order: { xs: -1, lg: 22 } }}>
             <SubTotalCard
               priceAfterDiscount={`$${allDiscount}`}
-              priceBeforeDiscount={`$${(Math.round(totalPrice as number)).toFixed(2)}`}
+              priceBeforeDiscount={`$${Math.round(totalPrice as number).toFixed(
+                2
+              )}`}
               numberOfItems={totalQty}
             />
           </Grid>
