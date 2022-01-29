@@ -15,7 +15,8 @@ import {
 import { Row } from "../../../components/GlobalStyles";
 import { Button } from "../../../components/Button/Button.style";
 import { deliverOrder } from "../../../redux/actions/orders.actions";
-
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import { OrderDetails } from "./OrderDetails";
 const columns: IColumn[] = [
   {
     name: "orderItems",
@@ -39,6 +40,7 @@ const columns: IColumn[] = [
 
 const Actions = (params: ICellRendererParams) => {
   const [visible, setVisible] = useState<boolean>(false);
+  const [View, setView] = useState<boolean>(false);
   const dispatch = useDispatch();
   const markAsDelivered = useCallback(() => {
     dispatch(
@@ -49,38 +51,52 @@ const Actions = (params: ICellRendererParams) => {
     );
   }, [params, dispatch]);
 
-  const handleClose = () => setVisible(false);
+  const handleClose = () => {
+    setVisible(false);
+    setView(false);
+  };
 
   return (
     <>
-      {params.data.isDelivered ? (
-        <></>
-      ) : (
-        <div onClick={() => setVisible(true)}>
-          <Icon
-            sx={{
-              cursor: "pointer",
-              background: "#fff",
-              borderRadius: "6px",
-            }}
-          >
-            <EditIcon sx={{ color: "#000", marginBottom: "5px" }} />
-          </Icon>
-        </div>
-      )}
+      <div style={{ display: "flex", gap: "10px" }}>
+        <Icon
+          onClick={() => setVisible(true)}
+          sx={{
+            cursor: "pointer",
+          }}
+        >
+          <EditIcon sx={{ marginBottom: "5px" }} />
+        </Icon>
+
+        <Icon
+          sx={{
+            cursor: "pointer",
+          }}
+        >
+          <VisibilityIcon onClick={() => setView(true)} />
+        </Icon>
+      </div>
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="product-delete-dialog"
-        open={visible}
+        open={visible || View}
       >
         <BootstrapDialogTitle id="product-delete-dialog" onClose={handleClose}>
-          <Typography
-            variant="h6"
-            color="#FC4059"
-            sx={{ marginBottom: "2em", textAlign: "center" }}
-          >
-            Are you sure you want to mark this order as delivered ?
-          </Typography>
+          {visible ? (
+            <Typography
+              variant="h6"
+              color="#FC4059"
+              sx={{ marginBottom: "2em", textAlign: "center" }}
+            >
+              Are you sure you want to mark this order as delivered ?
+            </Typography>
+          ) : (
+            <Typography color="text.primary" variant="h4">
+              Order Details
+            </Typography>
+          )}
+        </BootstrapDialogTitle>
+        {visible ? (
           <Row wrap gap="100px">
             <Button onClick={markAsDelivered}>Yes</Button>
             <Button
@@ -91,7 +107,9 @@ const Actions = (params: ICellRendererParams) => {
               No
             </Button>
           </Row>
-        </BootstrapDialogTitle>
+        ) : (
+          <OrderDetails params={params} />
+        )}
       </BootstrapDialog>
     </>
   );
