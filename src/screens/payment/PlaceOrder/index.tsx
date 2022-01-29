@@ -156,22 +156,6 @@ const PlaceOrder = ({ back, paymentDetails }: IProps) => {
             <Column justfiyContent="flex-start" width="100%">
               <OrderDetails products={cart.items} cart={cart} />
             </Column>
-            {/* <Column justfiyContent="flex-start" width="100%">
-              <Column justfiyContent="flex-start" width="100%">
-                <Row
-                  justfiyContent="space-between"
-                  width="100%"
-                  alignItems="center"
-                >
-                  <Typography variant="h6" color="text.primary">
-                    Payment Details
-                  </Typography>
-                  <Link to={""} color="text.secondary" onClick={() => back()}>
-                    Change
-                  </Link>
-                </Row>
-              </Column>
-            </Column> */}
           </Column>
         </Section>
         <Container style={{ margin: 0, width: "40%" }}>

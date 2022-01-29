@@ -28,6 +28,28 @@ export const getMyOrders = () => async (dispatch: Dispatch<ActionsType>) => {
   }
 };
 
+export const getOrderByID =
+  (id: string) => async (dispatch: Dispatch<ActionsType>) => {
+    try {
+      dispatch({
+        type: OrdersConstants.GET_ORDER_DETAILS_START,
+      });
+
+      const { data }: AxiosResponse = await API.get(`/orders/${id}`);
+
+      dispatch({
+        type: OrdersConstants.GET_ORDER_DETAILS_SUCCESS,
+        payload: data as IOrderResponse,
+      });
+    } catch (error: any) {
+      notify("error", error?.response?.data?.message || error.message);
+      dispatch({
+        type: OrdersConstants.GET_ORDER_DETAILS_FAIL,
+        payload: error?.response?.data?.message || error.message,
+      });
+    }
+  };
+
 export const getAllOrders = () => async (dispatch: Dispatch<ActionsType>) => {
   try {
     dispatch({

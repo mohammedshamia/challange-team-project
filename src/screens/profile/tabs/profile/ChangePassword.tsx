@@ -1,11 +1,15 @@
 import { Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 import { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import * as yup from "yup";
 import { Button } from "../../../../components/Button/Button.style";
 import FormInput from "../../../../components/common/FormInput";
+import { changePassword } from "../../../../redux/actions/auth.actions";
+import { AppState } from "../../../../redux/store";
 import { FormWrapper } from "../../../auth/signIn/SignIn.styled";
+
 const changeformSchema = () =>
   yup.object().shape({
     newPassword: yup.string().required("Password is required"),
@@ -22,8 +26,21 @@ const ChangePasswordForm = styled(FormWrapper)`
     margin-right: 3em;
   }
 `;
+
 export default function ChangePassword() {
-  const handleSubmit = useCallback(() => {}, []);
+  const dispatch = useDispatch();
+
+  const {
+    auth: { user },
+  } = useSelector((state: AppState) => state);
+
+  const handleSubmit = useCallback(
+    (values) => {
+      dispatch(changePassword({ ...user, ...values }));
+    },
+    [dispatch, user]
+  );
+
   return (
     <ChangePasswordForm>
       <Formik

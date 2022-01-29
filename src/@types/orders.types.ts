@@ -89,7 +89,7 @@ export interface GET_ORDER_DETAILS_START {
 
 export interface GET_ORDER_DETAILS_SUCCESS {
   type: OrdersConstants.GET_ORDER_DETAILS_SUCCESS;
-  payload: IOrder[];
+  payload: IOrderResponse;
 }
 
 export interface GET_ORDER_DETAILS_FAIL {

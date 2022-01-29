@@ -12,12 +12,7 @@ interface IProps<T> {
     [key: string]: any;
   };
   paginationPageSize?: number;
-  onPaginationChanged?: Function;
 }
-
-const onFirstDataRendered = (params: any) => {
-  params.api.sizeColumnsToFit();
-};
 
 const TableAg = styled("div")((props) => ({
   "& .ag-center-cols-clipper": {
@@ -45,17 +40,8 @@ const TableAg = styled("div")((props) => ({
     color: `${props.theme.palette.text.primary} !important`,
   },
 }));
+
 export default class Table<T> extends React.PureComponent<IProps<T>> {
-  state = {
-    gridApi: null,
-  };
-
-  onGridReady(params: any) {
-    this.setState((prev) => ({
-      gridApi: params.api,
-    }));
-  }
-
   render(): React.ReactNode {
     return (
       <TableAg
@@ -69,13 +55,7 @@ export default class Table<T> extends React.PureComponent<IProps<T>> {
           rowData={this.props.data}
           pagination={true}
           paginationPageSize={this.props.paginationPageSize || 10}
-          onPaginationChanged={(e) =>
-            this.props?.onPaginationChanged?.(e.api.paginationGetCurrentPage())
-          }
           frameworkComponents={this.props.frameworkComponents}
-          onFirstDataRendered={onFirstDataRendered}
-          cacheBlockSize={this.props.paginationPageSize || 10}
-          onGridReady={this.onGridReady.bind(this)}
         >
           {this.props.columns.map((column: IColumn) => (
             <AgGridColumn

@@ -59,6 +59,7 @@ export const BootstrapDialogTitle = (props: DialogTitleProps) => {
 export default function FormReview() {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+
   const {
     products: { product },
     auth,
@@ -67,6 +68,7 @@ export default function FormReview() {
   const handleClickOpen = () => {
     setOpen(true);
   };
+
   const handleClose = () => {
     setOpen(false);
   };

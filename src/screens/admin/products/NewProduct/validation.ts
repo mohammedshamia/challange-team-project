@@ -22,9 +22,9 @@ export const formSchema = yup.object().shape({
     .min(0)
     .required("Product discount is required")
     .typeError("Product discount is as number"),
-  images: yup
-    .array()
-    .of(yup.mixed().oneOf([yup.string(), yup.object()], "Image is required"))
-    .nullable()
-    .length(1, "At least one Image is required"),
+  images: yup.lazy((val) =>
+    Array.isArray(val) && typeof val[0] === "string"
+      ? yup.array().of(yup.string()).min(1, "At least one image is required")
+      : yup.array().of(yup.object()).min(1, "At least one image is required")
+  ),
 });
