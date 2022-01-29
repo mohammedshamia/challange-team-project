@@ -8,6 +8,7 @@ import { Button } from "../../../../components/Button/Button.style";
 import FormInput from "../../../../components/common/FormInput";
 import { changePassword } from "../../../../redux/actions/auth.actions";
 import { AppState } from "../../../../redux/store";
+import { notify } from "../../../../utils/helpers";
 import { FormWrapper } from "../../../auth/signIn/SignIn.styled";
 
 const changeformSchema = () =>
@@ -23,22 +24,29 @@ const ChangePasswordForm = styled(FormWrapper)`
   margin-right: 0;
   @media (max-width: 1500px) {
     width: 100%;
-    margin-right: 3em;
   }
 `;
 
-export default function ChangePassword() {
+export default function ChangePassword({
+  handleClose,
+}: {
+  handleClose?: Function;
+}) {
   const dispatch = useDispatch();
-
   const {
     auth: { user },
   } = useSelector((state: AppState) => state);
 
   const handleSubmit = useCallback(
     (values) => {
-      dispatch(changePassword({ ...user, ...values }));
+      dispatch(
+        changePassword({ ...user, ...values }, () => {
+          notify("success", "Password changed successfully");
+          handleClose?.();
+        })
+      );
     },
-    [dispatch, user]
+    [dispatch, user, handleClose]
   );
 
   return (
@@ -71,7 +79,7 @@ export default function ChangePassword() {
             <Button
               width="150px"
               fontSize="20px"
-              style={{ marginTop: "10px" }}
+              style={{ marginTop: "10px", alignSelf: "flex-end" }}
               type="submit"
             >
               Confirm

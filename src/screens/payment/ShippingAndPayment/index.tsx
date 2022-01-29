@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Typography } from "@mui/material";
-import { useCallback, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Form, Formik } from "formik";
 import {
   useStripe,
@@ -23,6 +23,7 @@ import {
 } from "../../../components/common/FormInput/FormInput.styled";
 import { Item } from "../../../@types/cart.types";
 import OrderDetails from "../OrderDetails";
+import { getCart } from "../../../redux/actions/cart.actions";
 
 interface IProps {
   next: Function;
@@ -55,7 +56,7 @@ const ShippingAndPayment = ({
   const {
     cart: { cart },
   } = useSelector((state: AppState) => state);
-
+  const dispatch = useDispatch();
   const handlePayment = useCallback(
     async (values) => {
       setPaymentDetails(values as IPayment);
@@ -72,6 +73,12 @@ const ShippingAndPayment = ({
           0
         )
     ).toFixed(2);
+  }, [cart]);
+
+  useEffect(() => {
+    if (cart.items.length === 0) {
+      dispatch(getCart());
+    }
   }, [cart]);
 
   return (

@@ -88,7 +88,7 @@ const Profile = ({ user, handleChange, file }: IProps) => {
             aria-labelledby="product-delete-dialog"
             open={open}
           >
-            <ChangePassword />
+            <ChangePassword handleClose={handleClose} />
           </BootstrapDialog>
         </ChangePasswordBtn>
       </LeftSide>

@@ -4,15 +4,13 @@ import { Link } from "../Payment.styled";
 import { Row } from "../../../components/GlobalStyles";
 import Product from "./Product";
 import styled from "styled-components";
-import { IProduct } from "../../../@types/products.types";
 import { ICart, Item } from "../../../@types/cart.types";
+import { useLocation } from "react-router-dom";
 
 const ProductsContainer = styled.div`
   overflow-y: auto;
   max-height: 500px;
-  ${(props) => props.theme.breakpoints.down("md")} {
-    width: 100% !important;
-  }
+  width: 100% !important;
 `;
 
 interface IProps {
@@ -20,10 +18,11 @@ interface IProps {
   cart?: ICart;
 }
 
-export default class OrderDetails extends React.PureComponent<IProps> {
-  render(): React.ReactNode {
-    return (
-      <>
+const OrderDetails = ({ products }: IProps) => {
+  const { pathname } = useLocation();
+  return (
+    <>
+      {pathname.includes("/review-order") && (
         <Row justfiyContent="space-between" width="100%" alignItems="center">
           <Typography variant="h6" color="text.primary">
             Order Details
@@ -32,12 +31,14 @@ export default class OrderDetails extends React.PureComponent<IProps> {
             Change
           </Link>
         </Row>
-        <ProductsContainer>
-          {this.props.products?.map((product) => {
-            return <Product product={product.product} qty={product.qty} />;
-          })}
-        </ProductsContainer>
-      </>
-    );
-  }
-}
+      )}
+      <ProductsContainer>
+        {products?.map((product) => {
+          return <Product product={product.product} qty={product.qty} />;
+        })}
+      </ProductsContainer>
+    </>
+  );
+};
+
+export default OrderDetails;
