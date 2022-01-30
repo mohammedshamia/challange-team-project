@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../redux/store";
 import { getProduct } from "../../redux/actions/products.actions";
 import { IProduct } from "../../@types/products.types";
-import Loading from "../../components/common/Loading";
+import Loading from "../../components/Loading";
 import RowComponent from "../../components/GlobalStyles/Row";
 import { SliderProduct } from "../../components/Slider";
 import { FeaturedProductsContiner } from "./ProductPage.styled";

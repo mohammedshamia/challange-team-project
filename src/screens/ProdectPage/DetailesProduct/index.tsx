@@ -39,7 +39,6 @@ interface Iprops {
 interface Istate {
   counter: number;
   color: string;
-  size: string;
 }
 export default function DetailesProdect({
   nameProdect,
@@ -63,7 +62,6 @@ export default function DetailesProdect({
   const [state, setState] = useState<Istate>({
     counter: 1,
     color: "",
-    size: "",
   });
   const handleCounter = (newValue: number) =>
     setState((prev) => ({
@@ -74,11 +72,6 @@ export default function DetailesProdect({
     setState((prev) => ({
       ...prev,
       color: newValue,
-    }));
-  const handelChangeSize = (newValue: string) =>
-    setState((prev) => ({
-      ...prev,
-      size: newValue,
     }));
   const AddToCart = useCallback(() => {
     if (auth.isAuthenticated) {
@@ -149,13 +142,6 @@ export default function DetailesProdect({
                 />
               )}
               <BoxSammary>
-                {sizes && (
-                  <SummeryComponent
-                    onChangeItem={handelChangeSize}
-                    value={state.size}
-                    sizes={sizes}
-                  />
-                )}
                 <SittingContainer justifyContent={true}>
                   <Button
                     onClick={AddToCart}
