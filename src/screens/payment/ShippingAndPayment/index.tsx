@@ -105,7 +105,7 @@ const ShippingAndPayment = ({
               gap="30px"
               wrap
             >
-              <Section style={{ padding: "45px 88px" }}>
+              <Section style={{ padding: "45px 7%" }}>
                 <Column justfiyContent="flex-start" width="100%" gap="20px">
                   <Column justfiyContent="flex-start" width="100%">
                     <Typography

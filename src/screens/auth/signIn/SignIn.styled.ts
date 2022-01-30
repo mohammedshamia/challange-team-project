@@ -54,6 +54,7 @@ export const FormWrapper = styled.div`
   @media (max-width: 768px) {
     margin: auto;
     width: 80%;
+    padding: 20px 0;
   }
 `;
 
