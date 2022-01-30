@@ -58,16 +58,19 @@ const Actions = (params: ICellRendererParams) => {
 
   return (
     <>
-      <div style={{ display: "flex", gap: "10px" }}>
-        <Icon
-          onClick={() => setVisible(true)}
-          sx={{
-            cursor: "pointer",
-          }}
-        >
-          <EditIcon sx={{ marginBottom: "5px" }} />
-        </Icon>
-
+      <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+        {!params.data.isDelivered ? (
+          <Icon
+            onClick={() => setVisible(true)}
+            sx={{
+              cursor: "pointer",
+            }}
+          >
+            <EditIcon sx={{ marginBottom: "5px" }} />
+          </Icon>
+        ) : (
+          <Icon></Icon>
+        )}
         <Icon
           sx={{
             cursor: "pointer",
@@ -108,7 +111,7 @@ const Actions = (params: ICellRendererParams) => {
             </Button>
           </Row>
         ) : (
-          <OrderDetails params={params} />
+          <OrderDetails onClose={handleClose} params={params} />
         )}
       </BootstrapDialog>
     </>
