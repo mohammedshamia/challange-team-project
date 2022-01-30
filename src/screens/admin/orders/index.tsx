@@ -7,7 +7,6 @@ import { IColumn } from "../../../@types/table.types";
 import Table from "../../../components/Table";
 import { AppState } from "../../../redux/store";
 import { fetchAllOrders, notify } from "../../../utils/helpers";
-import EditIcon from "@mui/icons-material/Edit";
 import {
   BootstrapDialog,
   BootstrapDialogTitle,
@@ -61,18 +60,6 @@ const Actions = (params: ICellRendererParams) => {
   return (
     <>
       <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-        {!params.data.isDelivered ? (
-          <Icon
-            onClick={() => setVisible(true)}
-            sx={{
-              cursor: "pointer",
-            }}
-          >
-            <EditIcon sx={{ marginBottom: "5px" }} />
-          </Icon>
-        ) : (
-          <Icon></Icon>
-        )}
         <Icon
           sx={{
             cursor: "pointer",
