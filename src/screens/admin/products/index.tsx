@@ -6,12 +6,11 @@ import { Button } from "../../../components/Button/Button.style";
 import { Row } from "../../../components/GlobalStyles";
 import Table from "../../../components/Table";
 import { Container } from "./Products.styled";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../../redux/store";
 import Actions from "./components/Actions";
 import { minimizeID } from "../../../utils/helpers";
-import { IProduct } from "../../../@types/products.types";
 import { getAllProducts } from "../../../redux/actions/products.actions";
 
 const columns: IColumn[] = [

@@ -1,10 +1,5 @@
 import { Field, FieldProps } from "formik";
-import {
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  RadioGroup,
-} from "@mui/material";
+import { FormControl, FormControlLabel, RadioGroup } from "@mui/material";
 import {
   Checkbox,
   ErrorMessage,

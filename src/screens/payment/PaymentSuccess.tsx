@@ -21,7 +21,7 @@ const PaymentSuccess = () => {
     if ((order as IOrderResponse)?.order?._id) {
       dispatch(getOrderByID((order as IOrderResponse)?.order?._id as string));
     }
-  }, [dispatch]);
+  }, [dispatch, order]);
 
   return (
     <Container style={{ marginTop: "2em" }}>
