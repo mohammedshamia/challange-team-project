@@ -56,14 +56,14 @@ export const lightTheme = createTheme({
       main: "#f2f2f2",
       light:"#f7f8fc"
     },
-    divider: "rgba(112,112,112,0.3)",
+    divider: "rgba(212,212,212,0.5)",
     success: {
       main: "#4BB543",
     },
     text: {
       primary: "#242424",
       secondary: "#707070",
-      disabled: "rgba(0,0,0,0.5)",
+      disabled: "rgba(112,112,112,0.5)",
     },
     background: {
       paper: "#f2f2f2",
