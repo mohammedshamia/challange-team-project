@@ -8,14 +8,16 @@ export const WrapperTab = styled("div")((props) => ({
   [props.theme.breakpoints.down("md")]: {
     flexDirection: "column",
   },
-  " & .css-35zqo5-MuiTabs-root": {
+  " & .MuiTabs-root": {
     borderRight: "none",
+    borderRadius: "16px",
+    backgroundColor: props.theme.palette.background.paper,
   },
-  " & .css-11y7uy9-MuiButtonBase-root-MuiTab-root": {
+  " & .MuiButtonBase-root": {
     textTransform: "none",
     color: props.theme.palette.text.primary,
   },
-  "& .css-jpln7h-MuiTabs-scroller": {
+  "& .MuiTabs-scroller": {
     padding: "20px 16px",
     borderRadius: "16px",
     backgroundColor: props.theme.palette.background.paper,
@@ -29,16 +31,16 @@ export const WrapperTab = styled("div")((props) => ({
     color: props.theme.palette.primary.main,
     fontWeight: "bold",
   },
-  "  & .Mui-selected img": {
+  "& .Mui-selected img": {
     outline: `3px solid  ${props.theme.palette.primary.main}`,
   },
   " & .Mui-selected .MuiTypography-h2": {
     color: props.theme.palette.text.primary,
   },
-  " & .css-v4onqz-MuiTabs-indicator": {
+  " & .MuiTabs-indicator": {
     display: "none",
   },
-  "& .css-lfwcke-MuiTabs-flexContainer": {
+  "& .MuiTabs-flexContainer": {
     alignItems: " flex-start",
   },
 }));
