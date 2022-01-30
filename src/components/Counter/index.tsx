@@ -11,7 +11,7 @@ interface Iprops {
   onChange?: (value: number) => void;
 }
 
-function Counter({ value, maxValue, minValue = 0, onChange }: Iprops) {
+function Counter({ value, maxValue, minValue = 1, onChange }: Iprops) {
   const handleChangeCounter = (name: string) => {
     name === "increment" ? onChange?.(value + 1) : onChange?.(value - 1);
   };
