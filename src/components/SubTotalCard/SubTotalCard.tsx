@@ -11,7 +11,7 @@ interface IProps {
 
 export default function SubTotalCard(props: IProps) {
   return (
-    <Box sx={{ position: "fixed" }}>
+    <Box>
       <Typography color="text.primary" align="center" weight="800" mb="30px">
         Subtotal ({props.numberOfItems}) items
       </Typography>
