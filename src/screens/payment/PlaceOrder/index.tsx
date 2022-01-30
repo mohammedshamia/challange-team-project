@@ -4,7 +4,7 @@ import {
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
-import { StripeCardNumberElement, StripeError } from "@stripe/stripe-js";
+import { StripeCardNumberElement } from "@stripe/stripe-js";
 import { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";

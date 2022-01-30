@@ -63,7 +63,7 @@ export const lightTheme = createTheme({
     text: {
       primary: "#242424",
       secondary: "#707070",
-      disabled: "#979797",
+      disabled: "rgba(0,0,0,0.5)",
     },
     background: {
       paper: "#f2f2f2",

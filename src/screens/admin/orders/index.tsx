@@ -3,7 +3,6 @@ import { ICellRendererParams } from "ag-grid-community";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import EditIcon from "@mui/icons-material/Edit";
 import { IColumn } from "../../../@types/table.types";
 import Table from "../../../components/Table";
 import { AppState } from "../../../redux/store";
@@ -62,16 +61,7 @@ const Actions = (params: ICellRendererParams) => {
 
   return (
     <>
-      <div style={{ display: "flex", gap: "10px" }}>
-        <Icon
-          onClick={() => setVisible(true)}
-          sx={{
-            cursor: "pointer",
-          }}
-        >
-          <EditIcon sx={{ marginBottom: "5px" }} />
-        </Icon>
-
+      <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
         <Icon
           sx={{
             cursor: "pointer",
@@ -112,7 +102,7 @@ const Actions = (params: ICellRendererParams) => {
             </Button>
           </Row>
         ) : (
-          <OrderDetails params={params} />
+          <OrderDetails onClose={handleClose} params={params} />
         )}
       </BootstrapDialog>
     </>

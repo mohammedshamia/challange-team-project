@@ -10,6 +10,7 @@ import { ThunkDispatch } from "redux-thunk";
 import { AppState } from "../../../redux/store";
 import { ActionsType } from "../../../@types/cart.types";
 import Img from "../../common/Img";
+import { Link } from "react-router-dom";
 
 interface IPropsShoppingCart extends PropsFromRedux {
   id: string;
@@ -32,16 +33,16 @@ class ShoppingCartCard extends PureComponent<IPropsShoppingCart> {
   render(): ReactNode {
     return (
       <WrapperCart id={this.props.id} container alignItems="center">
-        <Close 
-        onClick={this.RemoveFromCart.bind(this, this.props.id)}
-         />
+        <Close onClick={this.RemoveFromCart.bind(this, this.props.id)} />
         <ImgContainer item xs={12} lg={3}>
-          <Img
-            height="100%"
-            width="100%"
-            src={this.props.imgSrc}
-            alt={this.props.title}
-          />
+          <Link to={`/product/${this.props.id}`}>
+            <Img
+              height="100%"
+              width="100%"
+              src={this.props.imgSrc}
+              alt={this.props.title}
+            />
+          </Link>
         </ImgContainer>
         <Grid
           item
@@ -83,18 +84,18 @@ class ShoppingCartCard extends PureComponent<IPropsShoppingCart> {
                 color="text.secondary"
                 sx={{ textDecoration: "line-through" }}
               >
-                {(this.props.price)?.toFixed(2)}
+                {this.props.price?.toFixed(2)}
               </Typography>
               <Typography variant="h4" fontWeight="900" color="text.primary">
                 {calculateDiscount(
                   this.props.price as number,
-                  this.props.discount as number
+                  (this.props.discount as number) * this.props.counter,
                 )?.toFixed(2)}
               </Typography>
             </>
           ) : (
             <Typography variant="h4" fontWeight="900" color="text.primary">
-              {(this.props.price).toFixed(2)}
+              {this.props.price.toFixed(2)}
             </Typography>
           )}
         </Grid>

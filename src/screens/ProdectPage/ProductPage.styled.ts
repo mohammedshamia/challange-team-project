@@ -43,6 +43,10 @@ export const BoldLine = styled.div`
 export const ImagesContiner = styled.div`
   margin-top: 40px;
   width: 650px;
+  @media (max-width: 900px) {
+    width: 100%;
+   
+  }
 `;
 export const DetailesContiner = styled.div`
   width: 70%;

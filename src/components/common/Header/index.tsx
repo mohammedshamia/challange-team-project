@@ -48,47 +48,64 @@ export default function Header() {
           <Logo />
         </Box>
         <Box sx={{ display: { xs: "flex", lg: "none" } }}>
-          <IconButton size="large" onClick={handleOpenNavMenu} color="inherit">
-            <MenuIcon />
-          </IconButton>
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorElNav}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "left",
-            }}
-            open={Boolean(anchorElNav)}
-            onClose={handleCloseNavMenu}
-            sx={{
-              "& label": {
-                marginBottom: "35px",
-              },
-              "& ul": {
-                padding: "7px",
-                backgroundColor: "#242424",
-              },
-              textAlign: "center",
-              display: { xs: "block", lg: "none" },
-            }}
-          >
-            <Search width="100%" />
-            <FlexBox>
-              <BottonNavigationGroup
-                isAdmin={isAdmin}
-                wishlist={9}
-                cartItems={Object.keys(cart.items as Item[]).length || 0}
-              />
-              <ButtonIcon onClick={toggleTheme_} aria-label="toggle-theme">
-                {theme === "light" ? <Brightness4Icon /> : <Brightness7Icon />}
-              </ButtonIcon>
-            </FlexBox>
-          </Menu>
+          {!isAuth && (
+            <>
+              <IconButton
+                size="large"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  "& label": {
+                    marginBottom: "35px",
+                  },
+                  "& ul": {
+                    padding: "7px",
+                    backgroundColor: "#242424",
+                  },
+                  textAlign: "center",
+                  display: { xs: "block", lg: "none" },
+                }}
+              >
+                <Search width="100%" />
+                <FlexBox style={{ justifyContent: "space-evenly" }}>
+                  <BottonNavigationGroup
+                    isAdmin={isAdmin}
+                    wishlist={9}
+                    cartItems={Object.keys(cart.items as Item[]).length || 0}
+                  />
+                  <ButtonIcon onClick={toggleTheme_} aria-label="toggle-theme">
+                    {theme === "light" ? (
+                      <Brightness4Icon />
+                    ) : (
+                      <Brightness7Icon />
+                    )}
+                  </ButtonIcon>
+                </FlexBox>
+              </Menu>
+            </>
+          )}
+          {isAuth && (
+            <ButtonIcon onClick={toggleTheme_} aria-label="toggle-theme">
+              {theme === "light" ? <Brightness4Icon /> : <Brightness7Icon />}
+            </ButtonIcon>
+          )}
         </Box>
         <Box
           sx={{

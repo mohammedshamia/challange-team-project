@@ -1,22 +1,17 @@
 import { ChangeEvent, useCallback } from "react";
 import { Backdrop, CircularProgress, Typography } from "@mui/material";
-import { useTheme } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import VerticalTabs from "../../components/Tabs";
 import Profile from "./tabs/profile";
 import { Container, WrapperAvatarTab, AvatarTab } from "./Profile.style";
-import {
-  editProfile,
-  logout,
-} from "../../redux/actions/auth.actions";
+import { editProfile, logout } from "../../redux/actions/auth.actions";
 import { AppState } from "../../redux/store";
 import OrdersProduct from "./tabs/orders/index";
 import { notify } from "../../utils/helpers";
 import { IUser } from "../../@types/auth.types";
 
 const ProfilePage = () => {
-  const theme = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -84,42 +79,11 @@ const ProfilePage = () => {
     },
   ];
 
-  const AdminTabs = [
-    {
-      label: (
-        <Link
-          to={"/products"}
-          style={{
-            textDecoration: "none",
-            color: theme.palette.text.primary,
-          }}
-        >
-          <Typography
-            // as={Link}
-            variant="h4"
-            sx={{ fontSize: "1.5rem" }}
-          >
-            Products
-          </Typography>
-        </Link>
-      ),
-      content: (
-        <Typography sx={{ textAlign: "left" }} variant="h4">
-          Products
-        </Typography>
-      ),
-    },
-  ];
-
   return (
     <Container>
       <VerticalTabs
-        labels={[...Tabs, ...((user.isAdmin && AdminTabs) || [])].map(
-          (label) => label?.label
-        )}
-        content={[...Tabs, ...((user.isAdmin && AdminTabs) || [])].map(
-          (content) => content?.content
-        )}
+        labels={[...Tabs].map((label) => label?.label)}
+        content={[...Tabs].map((content) => content?.content)}
         button="Log out"
         buttonClick={() => handleLogout()}
       />
