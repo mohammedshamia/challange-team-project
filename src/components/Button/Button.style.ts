@@ -42,7 +42,7 @@ export const Button = styled(B)<Iprops>((props) => ({
     opacity: "0.8",
     cursor: "pointer",
     color:
-      props.background === "secondary"
+      props.background === "secondary" || "none"
         ? props.theme.palette.text.disabled
         : "rgba(36,36,36,0.5)",
   },
