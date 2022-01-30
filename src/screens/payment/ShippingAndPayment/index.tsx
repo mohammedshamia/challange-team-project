@@ -81,7 +81,7 @@ const ShippingAndPayment = ({
     if (cart.items.length === 0) {
       dispatch(getCart());
     }
-  }, [cart]);
+  }, [cart, dispatch]);
 
   return (
     <Container>

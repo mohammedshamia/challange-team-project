@@ -74,7 +74,7 @@ export const deleteProduct =
       dispatch({
         type: ProductConstants.DELETE_PRODUCT_START,
       });
-      const res = await API.delete(`/products/${id}`);
+      await API.delete(`/products/${id}`);
       callback?.();
       dispatch({
         type: ProductConstants.DELETE_PRODUCT_SUCCESS,
@@ -241,7 +241,7 @@ export const addReview =
       dispatch({
         type: ProductConstants.ADD_REVIEW_START,
       });
-      const res = await API.post<IReview>(`/products/${productID}/reviews`, {
+      await API.post<IReview>(`/products/${productID}/reviews`, {
         comment,
         rating,
       });
