@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
-import { ActionTypes, IUser, IUserForm } from "../../@types/users.types";
+import { ActionTypes, IUserForm } from "../../@types/users.types";
 import { notify, uploadPhoto } from "../../utils/helpers";
 import { UserConstants } from "../contants/user.constant";
 import API from "../../api";

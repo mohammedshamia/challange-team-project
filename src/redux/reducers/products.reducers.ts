@@ -11,6 +11,7 @@ interface IState {
     pages: number;
     products: IProduct[];
   };
+  allProducts: IProduct[];
   categories: ICategory[];
   categoryProducts: IProduct[];
 }
@@ -24,6 +25,7 @@ const initial_state: IState = {
     pages: 0,
     products: [],
   },
+  allProducts: [],
   categories: [],
   categoryProducts: [],
   product: undefined,
@@ -112,6 +114,23 @@ export const ProductsReducer = (state = initial_state, action: ActionsType) => {
         products: action.payload,
       };
     case ProductConstants.GET_PRODUCTS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case ProductConstants.GET_ALL_PRODUCTS_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case ProductConstants.GET_ALL_PRODUCTS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        allProducts: action.payload,
+      };
+    case ProductConstants.GET_ALL_PRODUCTS_FAIL:
       return {
         ...state,
         loading: false,

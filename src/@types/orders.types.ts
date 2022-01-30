@@ -96,6 +96,20 @@ export interface GET_ORDERS_FAIL {
   payload: string;
 }
 
+export interface GET_ALL_ORDERS_START {
+  type: OrdersConstants.GET_ALL_ORDERS_START;
+}
+
+export interface GET_ALL_ORDERS_SUCCESS {
+  type: OrdersConstants.GET_ALL_ORDERS_SUCCESS;
+  payload: IOrder[];
+}
+
+export interface GET_ALL_ORDERS_FAIL {
+  type: OrdersConstants.GET_ALL_ORDERS_FAIL;
+  payload: string;
+}
+
 export interface CREATE_ORDER_START {
   type: OrdersConstants.CREATE_ORDER_START;
 }
@@ -130,6 +144,9 @@ export type ActionsType =
   | GET_ORDERS_START
   | GET_ORDERS_SUCCESS
   | GET_ORDERS_FAIL
+  | GET_ALL_ORDERS_START
+  | GET_ALL_ORDERS_SUCCESS
+  | GET_ALL_ORDERS_FAIL
   | GET_ORDER_DETAILS_START
   | GET_ORDER_DETAILS_SUCCESS
   | GET_ORDER_DETAILS_FAIL

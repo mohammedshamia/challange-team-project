@@ -2,20 +2,22 @@ import { Icon, Typography } from "@mui/material";
 import { ICellRendererParams } from "ag-grid-community";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IOrder } from "../../../@types/orders.types";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
 import { IColumn } from "../../../@types/table.types";
 import Table from "../../../components/Table";
 import { AppState } from "../../../redux/store";
-import { fetchAllOrders, notify } from "../../../utils/helpers";
-import EditIcon from "@mui/icons-material/Edit";
+import { notify } from "../../../utils/helpers";
 import {
   BootstrapDialog,
   BootstrapDialogTitle,
 } from "../../../components/ReviewsCard/ReviewForm";
 import { Row } from "../../../components/GlobalStyles";
 import { Button } from "../../../components/Button/Button.style";
-import { deliverOrder } from "../../../redux/actions/orders.actions";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+import {
+  deliverOrder,
+  getAllOrders,
+} from "../../../redux/actions/orders.actions";
 import { OrderDetails } from "./OrderDetails";
 
 const columns: IColumn[] = [
@@ -118,19 +120,12 @@ const Actions = (params: ICellRendererParams) => {
 };
 
 export default function AllOrdersProduct() {
-  const {
-    orders: { pages },
-  } = useSelector((state: AppState) => state.orders);
-
-  const [orders, setOrders] = useState<IOrder[]>([]);
+  const { orders } = useSelector((state: AppState) => state.orders);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      setOrders(await fetchAllOrders(pages || 10));
-    })();
-    // dispatch(getAllOrders());
+    dispatch(getAllOrders());
   }, [dispatch]);
 
   return (

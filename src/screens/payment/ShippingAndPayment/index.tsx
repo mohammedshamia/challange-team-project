@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { Typography } from "@mui/material";
 import { useCallback, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -51,10 +51,14 @@ const ShippingAndPayment = ({
   setPaymentDetails,
   paymentDetails,
 }: IProps) => {
+  const theme = useTheme();
+
   const {
     cart: { cart },
   } = useSelector((state: AppState) => state);
+
   const dispatch = useDispatch();
+
   const handlePayment = useCallback(
     async (values) => {
       setPaymentDetails(values as IPayment);
@@ -176,6 +180,11 @@ const ShippingAndPayment = ({
                             onChange={(e) =>
                               setFieldValue("hasNumber", !e.empty && e.complete)
                             }
+                            options={{
+                              style: {
+                                base: { color: theme.palette.text.primary },
+                              },
+                            }}
                           />
                           {errors["hasNumber"] && touched["hasNumber"] && (
                             <ErrorMessage>{errors["hasNumber"]}</ErrorMessage>
@@ -196,6 +205,11 @@ const ShippingAndPayment = ({
                             onChange={(e) =>
                               setFieldValue("hasExpiry", !e.empty && e.complete)
                             }
+                            options={{
+                              style: {
+                                base: { color: theme.palette.text.primary },
+                              },
+                            }}
                           />
                           {errors["hasExpiry"] && touched["hasExpiry"] && (
                             <ErrorMessage>{errors["hasExpiry"]}</ErrorMessage>
@@ -209,6 +223,11 @@ const ShippingAndPayment = ({
                             onChange={(e) =>
                               setFieldValue("hasCvc", !e.empty && e.complete)
                             }
+                            options={{
+                              style: {
+                                base: { color: theme.palette.text.primary },
+                              },
+                            }}
                           />
                           {errors["hasCvc"] && touched["hasCvc"] && (
                             <ErrorMessage>{errors["hasCvc"]}</ErrorMessage>

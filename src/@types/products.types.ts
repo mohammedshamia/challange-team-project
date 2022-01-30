@@ -32,10 +32,12 @@ export interface IProduct {
   __v?: number;
   qty?: number;
 }
+
 export interface Products {
   id: number;
   products: IProduct[];
 }
+
 export interface IReview {
   name?: string;
   rating: number;
@@ -115,7 +117,7 @@ export interface GET_ALL_PRODUCTS_START {
 
 export interface GET_ALL_PRODUCTS_SUCCESS {
   type: ProductConstants.GET_ALL_PRODUCTS_SUCCESS;
-  payload: Products[];
+  payload: IProduct[];
 }
 
 export interface GET_ALL_PRODUCTS_FAIL {
@@ -213,6 +215,9 @@ export type ActionsType =
   | GET_PRODUCTS_START
   | GET_PRODUCTS_SUCCESS
   | GET_PRODUCTS_FAIL
+  | GET_ALL_PRODUCTS_START
+  | GET_ALL_PRODUCTS_SUCCESS
+  | GET_ALL_PRODUCTS_FAIL
   | GET_CATEGORIES_START
   | GET_CATEGORIES_SUCCESS
   | GET_CATEGORIES_FAIL

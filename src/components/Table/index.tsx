@@ -42,6 +42,9 @@ const TableAg = styled("div")((props) => ({
     backgroundColor: `${props.theme.palette.background.paper} !important`,
     color: `${props.theme.palette.text.primary} !important`,
   },
+  "& .ag-paging-button": {
+    color: `${props.theme.palette.text.primary} !important`,
+  },
 }));
 
 export default class Table<T> extends React.PureComponent<IProps<T>> {
