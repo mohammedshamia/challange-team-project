@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useLocation } from "react-router";
 import { useTheme } from "styled-components";
 import { IProduct } from "../../@types/products.types";
-import { baseURL } from "../../api";
 import Loading from "../../components/common/Loading";
 import PaginationButtons from "../../components/common/Pagination";
 import RowComponent from "../../components/GlobalStyles/Row";

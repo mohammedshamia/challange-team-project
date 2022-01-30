@@ -24,7 +24,15 @@ export const formSchema = yup.object().shape({
     .typeError("Product discount is as number"),
   images: yup.lazy((val) =>
     Array.isArray(val) && typeof val[0] === "string"
-      ? yup.array().of(yup.string()).min(1, "At least one image is required")
-      : yup.array().of(yup.object()).min(1, "At least one image is required")
+      ? yup
+          .array()
+          .of(yup.string())
+          .min(1, "At least one image is required")
+          .nullable()
+      : yup
+          .array()
+          .of(yup.object())
+          .min(1, "At least one image is required")
+          .nullable()
   ),
 });
