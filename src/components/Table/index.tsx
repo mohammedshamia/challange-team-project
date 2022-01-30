@@ -4,6 +4,7 @@ import { IColumn } from "../../@types/table.types";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { styled } from "@mui/material";
+import { GridReadyEvent } from "ag-grid-community";
 
 interface IProps<T> {
   columns: IColumn[];
@@ -42,9 +43,16 @@ const TableAg = styled("div")((props) => ({
     backgroundColor: `${props.theme.palette.background.paper} !important`,
     color: `${props.theme.palette.text.primary} !important`,
   },
+  "& .ag-paging-button": {
+    color: `${props.theme.palette.text.primary} !important`,
+  },
 }));
 
 export default class Table<T> extends React.PureComponent<IProps<T>> {
+  onGridReady(params: GridReadyEvent) {
+    params.api.sizeColumnsToFit();
+  }
+
   render(): React.ReactNode {
     return (
       <TableAg
@@ -59,6 +67,7 @@ export default class Table<T> extends React.PureComponent<IProps<T>> {
           pagination={true}
           paginationPageSize={this.props.paginationPageSize || 10}
           frameworkComponents={this.props.frameworkComponents}
+          onGridReady={this.onGridReady.bind(this)}
         >
           {this.props.columns.map((column: IColumn) => (
             <AgGridColumn

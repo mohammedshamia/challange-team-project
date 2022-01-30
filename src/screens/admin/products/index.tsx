@@ -10,8 +10,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "../../../redux/store";
 import Actions from "./components/Actions";
-import { fetchAllProducts, minimizeID } from "../../../utils/helpers";
+import { minimizeID } from "../../../utils/helpers";
 import { IProduct } from "../../../@types/products.types";
+import { getAllProducts } from "../../../redux/actions/products.actions";
 
 const columns: IColumn[] = [
   {
@@ -39,20 +40,13 @@ const columns: IColumn[] = [
 
 const Products = () => {
   const {
-    products: {
-      loading,
-      products: { pages },
-    },
+    products: { loading, allProducts },
   } = useSelector((state: AppState) => state);
-
-  const [products, setProducts] = useState<IProduct[]>([]);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      setProducts(await fetchAllProducts(pages || 10));
-    })();
+    dispatch(getAllProducts());
   }, [dispatch]);
 
   return (
@@ -82,7 +76,7 @@ const Products = () => {
       </Row>
       <div style={{ width: "100%", margin: "auto" }}>
         <Table
-          data={products}
+          data={allProducts}
           columns={columns}
           frameworkComponents={{
             ActionsRenderer: Actions,

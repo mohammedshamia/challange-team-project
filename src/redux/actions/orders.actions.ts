@@ -2,6 +2,7 @@ import { AxiosResponse } from "axios";
 import { Dispatch } from "react";
 import {
   ActionsType,
+  IOrder,
   IOrderResponse,
   IShoppingAddress,
 } from "../../@types/orders.types";
@@ -53,17 +54,37 @@ export const getOrderByID =
 export const getAllOrders = () => async (dispatch: Dispatch<ActionsType>) => {
   try {
     dispatch({
-      type: OrdersConstants.GET_ORDERS_START,
+      type: OrdersConstants.GET_ALL_ORDERS_START,
     });
-    const { data }: AxiosResponse = await API.get("/orders");
-    dispatch({
-      type: OrdersConstants.GET_ORDERS_SUCCESS,
-      payload: data,
-    });
+    const { data }: AxiosResponse = await API.get("/orders?page=1");
+
+    const allOrders: IOrder[] = data.orders;
+
+    if ((data.pages as number) > 1) {
+      const Promises = Array(data.pages as number)
+        .fill(0)
+        .map((_, index) => {
+          return API.get(`/orders?page=${index + 2}`);
+        });
+
+      const responses = await Promise.all(Promises);
+      dispatch({
+        type: OrdersConstants.GET_ALL_ORDERS_SUCCESS,
+        payload: [
+          ...allOrders,
+          ...responses.map((res: AxiosResponse) => res.data.orders),
+        ],
+      });
+    } else {
+      dispatch({
+        type: OrdersConstants.GET_ALL_ORDERS_SUCCESS,
+        payload: allOrders,
+      });
+    }
   } catch (error: any) {
     notify("error", error?.response?.data?.message || error.message);
     dispatch({
-      type: OrdersConstants.GET_ORDERS_FAIL,
+      type: OrdersConstants.GET_ALL_ORDERS_FAIL,
       payload: error?.response?.data?.message || error.message,
     });
   }

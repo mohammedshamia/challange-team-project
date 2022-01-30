@@ -11,6 +11,7 @@ interface IState {
     pages: number;
     users: IUser[];
   };
+  allUsers: IUser[];
 }
 
 const initial_state: IState = {
@@ -22,6 +23,7 @@ const initial_state: IState = {
     pages: 0,
     users: [],
   },
+  allUsers: [],
 };
 
 export const UsersReducer = (state = initial_state, action: ActionTypes) => {
@@ -38,6 +40,23 @@ export const UsersReducer = (state = initial_state, action: ActionTypes) => {
         users: action.payload,
       };
     case UserConstants.GET_USERS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case UserConstants.GET_ALL_USERS_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case UserConstants.GET_ALL_USERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        allUsers: action.payload,
+      };
+    case UserConstants.GET_ALL_USERS_FAIL:
       return {
         ...state,
         loading: false,

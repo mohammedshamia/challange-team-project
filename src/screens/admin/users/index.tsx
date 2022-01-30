@@ -1,14 +1,12 @@
-import { Icon, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { IColumn } from "../../../@types/table.types";
 import Table from "../../../components/Table";
 import { Container } from "../products/Products.styled";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { IUser } from "../../../@types/auth.types";
-import { ICellRendererParams } from "ag-grid-community";
 import Edit from "./Update";
-import { fetchAllUsers } from "../../../utils/helpers";
 import { AppState } from "../../../redux/store";
+import { getAllUsers } from "../../../redux/actions/user.actions";
 
 const columns: IColumn[] = [
   {
@@ -37,19 +35,16 @@ const columns: IColumn[] = [
 
 function Users() {
   const {
-    users: {
-      users: { pages },
-    },
+    users: { allUsers },
   } = useSelector((state: AppState) => state);
-
-  const [users, setUsers] = useState<IUser[]>([]);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      setUsers(await fetchAllUsers(pages || 10));
-    })();
+    // (async () => {
+    //   setUsers(await fetchAllUsers(pages || 10));
+    // })();
+    dispatch(getAllUsers());
   }, [dispatch]);
 
   return (
@@ -59,7 +54,7 @@ function Users() {
       </Typography>
       <div style={{ width: "100%", margin: "auto" }}>
         <Table
-          data={users}
+          data={allUsers}
           columns={columns}
           frameworkComponents={{
             ActionsRenderer: Edit,

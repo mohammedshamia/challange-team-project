@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { Dispatch } from "redux";
-import { ActionsType, IReview } from "../../@types/products.types";
+import { ActionsType, IProduct, IReview } from "../../@types/products.types";
 import { IProductForm } from "../../@types/products.types";
 import API from "../../api";
 import { createFormData, notify, uploadPhoto } from "../../utils/helpers";
@@ -103,6 +103,45 @@ export const getTopProducts = () => async (dispatch: Dispatch<ActionsType>) => {
     notify("error", error?.response?.data?.message || error.message);
     dispatch({
       type: ProductConstants.GET_TOP_PRODUCTS_FAIL,
+      payload: error?.response?.data?.message || error.message,
+    });
+  }
+};
+
+export const getAllProducts = () => async (dispatch: Dispatch<ActionsType>) => {
+  try {
+    dispatch({
+      type: ProductConstants.GET_ALL_PRODUCTS_START,
+    });
+    const { data }: AxiosResponse = await API.get("/products?page=1");
+
+    const allProducts: IProduct[] = data.products;
+
+    if ((data.pages as number) > 1) {
+      const Promises = Array(data.pages as number)
+        .fill(0)
+        .map((_, index) => {
+          return API.get(`/products?page=${index + 2}`);
+        });
+
+      const responses = await Promise.all(Promises);
+      dispatch({
+        type: ProductConstants.GET_ALL_PRODUCTS_SUCCESS,
+        payload: [
+          ...allProducts,
+          ...responses.map((res: AxiosResponse) => res.data.products),
+        ],
+      });
+    } else {
+      dispatch({
+        type: ProductConstants.GET_ALL_PRODUCTS_SUCCESS,
+        payload: allProducts,
+      });
+    }
+  } catch (error: any) {
+    notify("error", error?.response?.data?.message || error.message);
+    dispatch({
+      type: ProductConstants.GET_ALL_PRODUCTS_FAIL,
       payload: error?.response?.data?.message || error.message,
     });
   }

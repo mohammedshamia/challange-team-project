@@ -7,6 +7,7 @@ export interface IState {
   myOrders: IOrder[];
   orders: { orders: IOrder[]; page: number; pages: number };
   order: IOrderResponse | undefined;
+  allOrders: IOrder[];
 }
 
 const initial_state: IState = {
@@ -14,6 +15,7 @@ const initial_state: IState = {
   loading: false,
   orders: { orders: [], page: 0, pages: 0 },
   myOrders: [],
+  allOrders: [],
   order: undefined,
 };
 
@@ -48,6 +50,23 @@ export const OrdersReducer = (state = initial_state, action: ActionsType) => {
         orders: action.payload,
       };
     case OrdersConstants.GET_ORDERS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case OrdersConstants.GET_ALL_ORDERS_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case OrdersConstants.GET_ALL_ORDERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        allOrders: action.payload,
+      };
+    case OrdersConstants.GET_ALL_ORDERS_FAIL:
       return {
         ...state,
         loading: false,

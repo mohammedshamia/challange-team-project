@@ -13,7 +13,7 @@ export interface IUserForm {
 
 export interface IUser {
   createdAt?: string;
-  profileImage?: string;
+  profileImage?: string | File | undefined;
   firstName: string;
   lastName: string;
   email: string;
@@ -36,6 +36,20 @@ export interface GET_USERS_SUCCESS {
 
 export interface GET_USERS_FAIL {
   type: UserConstants.GET_USERS_FAIL;
+  payload: string;
+}
+
+export interface GET_ALL_USERS_START {
+  type: UserConstants.GET_ALL_USERS_START;
+}
+
+export interface GET_ALL_USERS_SUCCESS {
+  type: UserConstants.GET_ALL_USERS_SUCCESS;
+  payload: IUser[];
+}
+
+export interface GET_ALL_USERS_FAIL {
+  type: UserConstants.GET_ALL_USERS_FAIL;
   payload: string;
 }
 
@@ -85,6 +99,9 @@ export type ActionTypes =
   | GET_USERS_START
   | GET_USERS_SUCCESS
   | GET_USERS_FAIL
+  | GET_ALL_USERS_START
+  | GET_ALL_USERS_SUCCESS
+  | GET_ALL_USERS_FAIL
   | GET_USER_START
   | GET_USER_SUCCESS
   | GET_USER_FAIL
