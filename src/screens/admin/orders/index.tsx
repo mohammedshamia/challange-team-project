@@ -21,6 +21,12 @@ import { OrderDetails } from "./OrderDetails";
 
 const columns: IColumn[] = [
   {
+    name: "Order ID",
+    cellRenderer: (params: ICellRendererParams) => {
+      return `${params.data._id}`;
+    },
+  },
+  {
     name: "orderItems",
     cellRenderer: (params) => `${params.value?.length} Items`,
   },
