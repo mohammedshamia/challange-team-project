@@ -54,7 +54,7 @@ export const getOrderByID =
 export const getAllOrders = () => async (dispatch: Dispatch<ActionsType>) => {
   try {
     dispatch({
-      type: OrdersConstants.GET_ORDERS_START,
+      type: OrdersConstants.GET_ALL_ORDERS_START,
     });
     const { data }: AxiosResponse = await API.get("/orders?page=1");
 
@@ -69,7 +69,7 @@ export const getAllOrders = () => async (dispatch: Dispatch<ActionsType>) => {
 
       const responses = await Promise.all(Promises);
       dispatch({
-        type: OrdersConstants.GET_ORDERS_SUCCESS,
+        type: OrdersConstants.GET_ALL_ORDERS_SUCCESS,
         payload: [
           ...allOrders,
           ...responses.map((res: AxiosResponse) => res.data.orders),
@@ -77,14 +77,14 @@ export const getAllOrders = () => async (dispatch: Dispatch<ActionsType>) => {
       });
     } else {
       dispatch({
-        type: OrdersConstants.GET_ORDERS_SUCCESS,
+        type: OrdersConstants.GET_ALL_ORDERS_SUCCESS,
         payload: allOrders,
       });
     }
   } catch (error: any) {
     notify("error", error?.response?.data?.message || error.message);
     dispatch({
-      type: OrdersConstants.GET_ORDERS_FAIL,
+      type: OrdersConstants.GET_ALL_ORDERS_FAIL,
       payload: error?.response?.data?.message || error.message,
     });
   }

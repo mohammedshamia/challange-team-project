@@ -27,6 +27,7 @@ export const OrderDetails = ({
       dispatch(getOrderByID(params.data?._id as string));
     }
   }, [params, dispatch]);
+
   const markAsDelivered = useCallback(() => {
     if (!params.data.isDelivered) {
       dispatch(
@@ -37,6 +38,7 @@ export const OrderDetails = ({
       );
     }
   }, [params, dispatch, onClose]);
+
   return (
     <>
       {loading ? (

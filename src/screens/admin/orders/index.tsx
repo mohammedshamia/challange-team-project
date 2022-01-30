@@ -50,6 +50,7 @@ const Actions = (params: ICellRendererParams) => {
       deliverOrder(params.data._id, () => {
         notify("success", "Order delivered successfully");
         handleClose();
+        dispatch(getAllOrders());
       })
     );
   }, [params, dispatch]);
@@ -65,6 +66,7 @@ const Actions = (params: ICellRendererParams) => {
         <Icon
           sx={{
             cursor: "pointer",
+            height: "1.3em",
           }}
         >
           <VisibilityIcon onClick={() => setView(true)} />
@@ -110,10 +112,8 @@ const Actions = (params: ICellRendererParams) => {
 };
 
 export default function AllOrdersProduct() {
-  const { orders } = useSelector((state: AppState) => state.orders);
-
+  const { allOrders } = useSelector((state: AppState) => state.orders);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getAllOrders());
   }, [dispatch]);
@@ -133,7 +133,7 @@ export default function AllOrdersProduct() {
         ALL ORDERS
       </Typography>
       <Table
-        data={orders}
+        data={allOrders}
         columns={columns}
         frameworkComponents={{
           ActionsRenderer: Actions,
